@@ -1,0 +1,82 @@
+{
+  "site": {
+    "title": "Monteurzimmer & Wohnungen",
+    "description": "Vermietung von Monteurzimmern und Wohnungen – modern, günstig, zentral.",
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "navigation": {
+    "home": "Home",
+    "wohnungen": "Wohnungen",
+    "ueberUns": "Über uns",
+    "buchen": "Buchen",
+    "kontakt": "Kontakt",
+    "agb": "AGB",
+    "impressum": "Impressum"
+  },
+  "footer": {
+    "copyright": "© 2025 Monteurzimmer.Immo – Alle Rechte vorbehalten",
+    "impressum": "Impressum",
+    "agb": "AGB",
+    "privacy": "Datenschutz"
+  },
+  "home": {
+    "headline": "Willkommen bei Monteurzimmer.Immo",
+    "subheadline": "Finden Sie komfortable und günstige Unterkünfte für Handwerker und Monteure.",
+    "cta": "Jetzt buchen",
+    "features": {
+      "heading": "Vorteile",
+      "komfort": {"title": "Komfort", "text": "Voll ausgestattete Wohnungen mit WLAN, Küche und Parkplatz."},
+      "zentral": {"title": "Zentral", "text": "Gute Anbindung für Teams und Monteure – flexibel und praktisch."},
+      "fair": {"title": "Fair", "text": "Transparente Preise und flexible Buchungsoptionen."}
+    }
+  },
+
+  "wohnungen": {
+    "headline": "dUnsere Wohnungen",
+    "description": "Wählen Sie aus verschiedenen Unterkünften – alle vollständig ausgestattet und zentral gelegen.",
+    "card": {
+      "title": "Beispielwohnung",
+      "text": "Moderne Wohnung mit 3 Betten, Küche, WLAN und Parkplatz.",
+      "button": "Details ansehen"
+    }
+  },
+  "ueberUns": {
+    "headline": "Über uns",
+    "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg - im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. Analysen des Immobilienmarktes sind unsere Immobilienmakler stets auf den aktuellen Stand der wirtschaftlichen Entwicklungen. Bei DERKO finden Sie sachkundige und professionelle Immobilienmakler, die sich durch fachliches und lokales Know-how auszeichnen. Unsere höchste Priorität ist die Kundenzufriedenheit und wir passen uns blitzschnell an die Umgebung und die Bedürfnisse unserer Kunden an."
+  },
+  "buchen": {
+    "headline": "Jetzt buchen",
+    "description": "Bitte füllen Sie das Buchungsformular aus oder kontaktieren Sie uns direkt.",
+    "button": "Buchung starten",
+    "note": "Hinweis: Hier kann später ein externes Buchungstool integriert werden."
+  },
+  "kontakt": {
+    "headline": "Kontakt",
+    "description": "Sie haben Fragen oder möchten eine Wohnung anfragen? Nutzen Sie das Formular oder rufen Sie uns an.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "message": "Nachricht",
+      "submit": "Absenden"
+    },
+    "validation": {
+      "nameRequired": "Bitte geben Sie Ihren Namen ein.",
+      "emailRequired": "Bitte geben Sie eine gültige E-Mail ein.",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
+      "messageRequired": "Bitte geben Sie eine Nachricht ein."
+    }
+  },
+  "agb": {
+    "headline": "Allgemeine Geschäftsbedingungen",
+    "text": "Hier stehen die AGB als Platzhaltertext. Bitte rechtlich prüfen und ersetzen."
+  },
+  "impressum": {
+    "headline": "Impressum",
+    "text": "Dies ist ein Platzhalter für das Impressum. Bitte mit rechtlich korrekten Angaben ergänzen."
+  },
+  "datenschutz": {
+    "headline": "Datenschutz",
+    "text": "Platzhaltertext – Datenschutzhinweise (DSGVO). Inhalte bitte rechtlich prüfen und ergänzen."
+  }
+}
