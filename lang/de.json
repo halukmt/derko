@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Monteurzimmer & Wohnungen",
+    "title": "yyy Monteurzimmer & Wohnungen",
     "description": "Vermietung von Monteurzimmern und Wohnungen – modern, günstig, zentral.",
     "skipToContent": "Zum Inhalt springen"
   },
@@ -20,8 +20,8 @@
     "privacy": "Datenschutz"
   },
   "home": {
-    "headline": "Willkommen bei Monteurzimmer.Immo",
-    "subheadline": "Finden Sie komfortable und günstige Unterkünfte für Handwerker und Monteure.",
+    "headline": "Willkommen bei Monteurzimmer.Immo oy oy oy",
+    "subheadline": "chubam Finden Sie komfortable und günstige Unterkünfte für Handwerker und Monteure.",
     "cta": "Jetzt buchen",
     "features": {
       "heading": "Vorteile",
@@ -33,16 +33,17 @@
 
   "wohnungen": {
     "headline": "dUnsere Wohnungen",
-    "description": "Wählen Sie aus verschiedenen Unterkünften – alle vollständig ausgestattet und zentral gelegen.",
+    "description": "dWählen Sie aus verschiedenen Unterkünften – alle vollständig ausgestattet und zentral gelegen.",
     "card": {
-      "title": "Beispielwohnung",
+      "title": "chubam Beispielwohnung",
       "text": "Moderne Wohnung mit 3 Betten, Küche, WLAN und Parkplatz.",
       "button": "Details ansehen"
     }
   },
   "ueberUns": {
     "headline": "Über uns",
-    "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg - im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. Analysen des Immobilienmarktes sind unsere Immobilienmakler stets auf den aktuellen Stand der wirtschaftlichen Entwicklungen. Bei DERKO finden Sie sachkundige und professionelle Immobilienmakler, die sich durch fachliches und lokales Know-how auszeichnen. Unsere höchste Priorität ist die Kundenzufriedenheit und wir passen uns blitzschnell an die Umgebung und die Bedürfnisse unserer Kunden an."
+    "description":
+        "Wir sind ein junges dynamischesUnternehmen aus Duisburg - im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. Derko hat sich auch in den letzten Jahren für seniorengerechte barrierefreie Wohnungen spezialisiert. Das Team von Derko arbeitet ständig am Portfolio und versucht mehr Wohnraum für Senioren zu schaffen! Ihre Vorteile: Wir ermöglichen Ihnen altersgerechtes Wohnumfeld mit Nachbarschaft! Service Wohnen mit DERKO heißt für Sie:  So viel Selbständigkeit wie möglich! So viel Service wie nötig. Bei DERKO wird Komfort sehr großgeschrieben, denn die Atmosphäre und das Umfeld entscheidet am Ende des Tages das Wohlbefinden jeden einzelnen Menschen und steigert somit Ihre Lebensqualität."
   },
   "buchen": {
     "headline": "Jetzt buchen",

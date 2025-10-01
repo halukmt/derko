@@ -2,9 +2,10 @@
 // Loads /lang/de.json and applies [data-i18n] and [data-i18n-meta] attributes.
 (function(){
   const STATE = { dict: null };
+  let CURRENT_LANG = 'de';
 
   async function loadJSON(url){
-    const res = await fetch(url, { credentials: 'same-origin' });
+    const res = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load lang file: '+res.status);
     return res.json();
   }
@@ -68,16 +69,34 @@
     }
   }
 
-  async function init(){
+  async function setLanguage(lang){
     try{
-  STATE.dict = await loadJSON('lang/de.json');
-      document.dispatchEvent(new CustomEvent('i18n:ready'));
+      CURRENT_LANG = lang || 'de';
+      localStorage.setItem('lang', CURRENT_LANG);
+      const isLocalHost = ['localhost', '127.0.0.1'].includes(location.hostname);
+      const hasPort = !!location.port; // dev servers often use a port
+      const isDev = isLocalHost || hasPort;
+      const cacheBuster = isDev ? `?v=${Date.now()}` : '';
+      STATE.dict = await loadJSON(`lang/${CURRENT_LANG}.json${cacheBuster}`);
+      if (!window.__i18nReady) {
+        window.__i18nReady = true;
+        document.dispatchEvent(new CustomEvent('i18n:ready', { detail: { lang: CURRENT_LANG } }));
+      }
+      document.dispatchEvent(new CustomEvent('i18n:changed', { detail: { lang: CURRENT_LANG } }));
       applyTranslations();
     }catch(err){
       console.error(err);
     }
   }
 
+  async function init(){
+    const stored = localStorage.getItem('lang');
+    CURRENT_LANG = stored || 'de';
+    await setLanguage(CURRENT_LANG);
+  }
+
   document.addEventListener('DOMContentLoaded', init);
   window.applyTranslations = applyTranslations;
+  window.setLanguage = setLanguage;
+  window.getLanguage = () => CURRENT_LANG;
 })();

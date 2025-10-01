@@ -1,6 +1,6 @@
-# Monteurzimmer.Immo â€“ Statische Webseite
+# Statische Webseite
 
-Diese statische Seite wurde gemÃ¤ÃŸ Best Practices (2024â€“2025) erstellt.
+Diese statische Seite wurde gemäß Best Practices (2024-2025) erstellt.
 
 Inhalt:
 - Bootstrap 5.3 via CDN, Font Awesome, Google Fonts (Hinweis: FÃ¼r DSGVO idealerweise lokal hosten)
@@ -22,5 +22,3 @@ npx http-server -p 8080
 ```
 
 Dann im Browser: http://localhost:8080/
-# derko
-Immobilien Webseite

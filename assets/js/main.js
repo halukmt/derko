@@ -57,5 +57,55 @@
     }
     document.addEventListener('i18n:ready', markActive);
     document.addEventListener('component:loaded', markActive);
+
+    // Render Wohnung cards (no inline script; works with CSP)
+    function renderWohnungenCards(){
+      const container = document.getElementById('wohnung-list');
+      const tpl = document.getElementById('card-template');
+      if (!container || !tpl) return;
+      if (container.dataset.rendered === 'true') return;
+      const count = 3;
+      for (let i = 0; i < count; i++){
+        const wrapper = document.createElement('div');
+        wrapper.className = 'col-md-4';
+        wrapper.innerHTML = tpl.innerHTML;
+        container.appendChild(wrapper);
+      }
+      container.dataset.rendered = 'true';
+      if (window.applyTranslations) window.applyTranslations(container);
+    }
+    // invoke once DOM/i18n are ready (order independent)
+    renderWohnungenCards();
+    document.addEventListener('i18n:ready', renderWohnungenCards);
+    document.addEventListener('component:loaded', renderWohnungenCards);
+
+    // Language switcher in header
+    function updateLangIndicator(){
+      const label = document.getElementById('current-lang-label');
+      const flag = document.getElementById('current-lang-flag');
+      if (!label || !flag || !window.getLanguage) return;
+      const lang = window.getLanguage();
+      label.textContent = lang.toUpperCase();
+      flag.innerHTML = '';
+      if (lang === 'de'){
+        flag.innerHTML = '<svg width="18" height="12" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="1" y="0" fill="#000"/><rect width="5" height="1" y="1" fill="#DD0000"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>';
+      } else {
+        flag.innerHTML = '<svg width="18" height="12" viewBox="0 0 60 30" aria-hidden="true"><clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><path d="M0,0 v30 h60 v-30 z" fill="#01247d"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#c8102e" stroke-width="4" clip-path="url(#t)"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#c8102e" stroke-width="6" clip-path="url(#t)"/></svg>';
+      }
+    }
+
+    function setupLanguageSwitcher(){
+      document.addEventListener('click', function(e){
+        const btn = e.target.closest('[data-lang]');
+        if (!btn) return;
+        const lang = btn.getAttribute('data-lang');
+        if (window.setLanguage) window.setLanguage(lang).then(updateLangIndicator);
+      });
+      document.addEventListener('i18n:changed', updateLangIndicator);
+      updateLangIndicator();
+    }
+
+    document.addEventListener('component:loaded', setupLanguageSwitcher);
+    if (document.querySelector('#current-lang-label')) setupLanguageSwitcher();
   });
 })();

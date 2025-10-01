@@ -1,0 +1,81 @@
+{
+  "site": {
+    "title": "xxx Monteurzimmer & Apartments",
+    "description": "Accommodation for workers and craftsmen – modern, affordable, central.",
+    "skipToContent": "Skip to content"
+  },
+  "navigation": {
+    "home": "Home",
+    "wohnungen": "Apartments",
+    "ueberUns": "About us",
+    "buchen": "Book",
+    "kontakt": "Contact",
+    "agb": "Terms",
+    "impressum": "Imprint"
+  },
+  "footer": {
+    "copyright": "© 2025 Monteurzimmer.Immo – All rights reserved",
+    "impressum": "Imprint",
+    "agb": "Terms",
+    "privacy": "Privacy"
+  },
+  "home": {
+    "headline": "Welcome to Monteurzimmer.Immo",
+    "subheadline": "Find comfortable and affordable accommodation for teams and craftsmen.",
+    "cta": "Book now",
+    "features": {
+      "heading": "Benefits",
+      "komfort": {"title": "Comfort", "text": "Fully equipped apartments with Wi-Fi, kitchen and parking."},
+      "zentral": {"title": "Central", "text": "Good connections for teams and workers – flexible and practical."},
+      "fair": {"title": "Fair", "text": "Transparent prices and flexible booking options."}
+    }
+  },
+  "wohnungen": {
+    "headline": "Our apartments",
+    "description": "Choose from various accommodations – all fully equipped and centrally located.",
+    "card": {
+      "title": "Sample apartment",
+      "text": "Modern apartment with 3 beds, kitchen, Wi-Fi and parking.",
+      "button": "View details"
+    }
+  },
+  "ueberUns": {
+    "headline": "About us",
+    "description": "We are a young and dynamic company in Duisburg – in the heart of the Ruhr area. Our services include mediation, management and valuation of real estate. As a professional contact, we are also at your side for all questions relating to rental properties. Through market analyses, our real estate agents are always up to date with the latest economic developments. At DERKO you will find knowledgeable and professional real estate agents who are distinguished by their expertise and local know-how. Our top priority is customer satisfaction and we adapt quickly to the environment and the needs of our customers."
+  },
+  "buchen": {
+    "headline": "Book now",
+    "description": "Please fill out the booking form or contact us directly.",
+    "button": "Start booking",
+    "note": "Note: An external booking tool can be integrated here later."
+  },
+  "kontakt": {
+    "headline": "Contact",
+    "description": "Do you have questions or would like to inquire about an apartment? Use the form or give us a call.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Send"
+    },
+    "validation": {
+      "nameRequired": "Please enter your name.",
+      "emailRequired": "Please enter a valid email.",
+      "phoneInvalid": "Please enter a valid phone number.",
+      "messageRequired": "Please enter a message."
+    }
+  },
+  "agb": {
+    "headline": "Terms and Conditions",
+    "text": "Placeholder text for terms and conditions. Please have it legally reviewed and replaced."
+  },
+  "impressum": {
+    "headline": "Imprint",
+    "text": "This is a placeholder for the imprint. Please add legally correct information."
+  },
+  "datenschutz": {
+    "headline": "Privacy",
+    "text": "Placeholder text – privacy notices (GDPR). Please review legally and add details."
+  }
+}
