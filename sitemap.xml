@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>/</loc></url>
   <url><loc>/index.html</loc></url>
-  <url><loc>/wohnungen.html</loc></url>
-  <url><loc>/ueber-uns.html</loc></url>
-  <url><loc>/buchen.html</loc></url>
-  <url><loc>/kontakt.html</loc></url>
-  <url><loc>/agb.html</loc></url>
-  <url><loc>/impressum.html</loc></url>
-  <url><loc>/datenschutz.html</loc></url>
+  <url><loc>/pages/wohnungen.html</loc></url>
+  <url><loc>/pages/ueber-uns.html</loc></url>
+  <url><loc>/pages/buchen.html</loc></url>
+  <url><loc>/pages/kontakt.html</loc></url>
+  <url><loc>/pages/agb.html</loc></url>
+  <url><loc>/pages/impressum.html</loc></url>
+  <url><loc>/pages/datenschutz.html</loc></url>
 </urlset>

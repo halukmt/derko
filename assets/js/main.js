@@ -15,8 +15,55 @@
   function setupIncludes(){
     const header = document.querySelector('[data-component="header"]');
     const footer = document.querySelector('[data-component="footer"]');
-  if (header) injectComponent(header, 'components/header.html');
-  if (footer) injectComponent(footer, 'components/footer.html');
+  const inPages = location.pathname.includes('/pages/');
+  const compBase = inPages ? '../components/' : 'components/';
+  if (header) injectComponent(header, compBase + 'header.html');
+  if (footer) injectComponent(footer, compBase + 'footer.html');
+
+  function adjustNavLinks(){
+    const inPagesNow = location.pathname.includes('/pages/');
+    // Header brand logo path correction
+    const brandImg = document.querySelector('.navbar-brand img');
+    if (brandImg){
+      if (inPagesNow && brandImg.getAttribute('src') === 'assets/img/logo.svg') brandImg.setAttribute('src','../assets/img/logo.svg');
+      if (!inPagesNow && brandImg.getAttribute('src') === '../assets/img/logo.svg') brandImg.setAttribute('src','assets/img/logo.svg');
+    }
+    // Brand link
+    const brandLink = document.querySelector('.navbar-brand');
+    if (brandLink){
+      brandLink.setAttribute('href', inPagesNow ? '../index.html' : 'index.html');
+    }
+    // Nav links
+    document.querySelectorAll('.navbar .nav-link').forEach(a=>{
+      const id = a.id || '';
+      const fileMap = {
+        'nav-home':'index.html',
+        'nav-wohnungen':'wohnungen.html',
+        'nav-ueberuns':'ueber-uns.html',
+        'nav-buchen':'buchen.html',
+        'nav-kontakt':'kontakt.html',
+        'nav-agb':'agb.html',
+        'nav-impressum':'impressum.html'
+      };
+      const file = fileMap[id];
+      if (!file) return;
+      if (file === 'index.html'){
+        a.setAttribute('href', inPagesNow ? '../index.html' : 'index.html');
+      } else {
+        a.setAttribute('href', inPagesNow ? file : 'pages/' + file);
+      }
+    });
+    // Footer links
+    document.querySelectorAll('#site-footer a.nav-link').forEach(a=>{
+      const href = a.getAttribute('href');
+      if (!href) return;
+      if (['impressum.html','agb.html','datenschutz.html'].includes(href)){
+        a.setAttribute('href', inPagesNow ? href : 'pages/' + href);
+      }
+    });
+  }
+  document.addEventListener('component:loaded', adjustNavLinks);
+  document.addEventListener('DOMContentLoaded', adjustNavLinks);
   }
 
   // Bootstrap form validation
