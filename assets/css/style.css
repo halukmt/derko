@@ -2,16 +2,156 @@
   Custom styles for Monteurzimmer.Immo
   - Mobile-first, light theme
   - Overrides for Bootstrap as needed
+
+  --brand-primary: #0d6efd;
+  --brand-dark: #0b2239;
 */
 :root{
-  --brand-primary:#0d6efd;
-  --brand-dark:#0b2239;
+  --brand-primary: #B69B5C;
+  --brand-dark: #505C61;
+  /* Derived brand tokens */
+  --brand-primary-rgb: 182,155,92;
+  --brand-dark-rgb: 80,92,97;
+  --brand-primary-hover: #a3884b; /* ~15% darker for hover backgrounds */
+  --brand-primary-active: #8f753d; /* further darken for active state */
+  --brand-dark-hover: #5d6b71;
+  --brand-dark-active: #435056;
+  --brand-border: #d9cba9; /* soft tint based on primary */
+  --brand-light-bg: #f5f2eb; /* very light wash of primary */
+  --focus-ring: 0 0 0 .25rem rgba(var(--brand-primary-rgb), .35);
 }
 
 body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   color: #222;
 }
+
+/* --------------------------------------------------
+   Brand Color Application (Accessible Usage)
+   Notes:
+   - #B69B5C (brand-primary) has insufficient contrast for body text or white text.
+     We therefore use it as an accent (borders, subtle backgrounds, icons, focus) and
+     rely on brand-dark (#505C61) for solid backgrounds with white text.
+   -------------------------------------------------- */
+
+/* Accent backgrounds / subtle sections */
+.bg-brand-light { background: var(--brand-light-bg); }
+.border-brand { border-color: var(--brand-primary) !important; }
+.text-brand-primary { color: var(--brand-primary); }
+.text-brand-dark { color: var(--brand-dark); }
+
+/* Links: use dark for readability, accent on hover */
+a { color: var(--brand-dark); text-decoration-color: rgba(var(--brand-primary-rgb), .5); }
+a:hover, a:focus { color: var(--brand-dark-hover); text-decoration-color: var(--brand-primary); }
+a:active { color: var(--brand-dark-active); }
+
+/* Navbar */
+.navbar-brand i { color: var(--brand-primary); }
+.navbar .nav-link.active, .navbar .nav-link:focus, .navbar .nav-link:hover {
+  color: var(--brand-primary);
+}
+
+/* Unified Button Style (single visual variant for all buttons) */
+.btn,
+.btn-primary,
+.btn-outline-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand-dark);
+  --bs-btn-border-color: var(--brand-dark);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--brand-dark-hover);
+  --bs-btn-hover-border-color: var(--brand-dark-hover);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--brand-dark-active);
+  --bs-btn-active-border-color: var(--brand-dark-active);
+  --bs-btn-focus-shadow-rgb: var(--brand-primary-rgb);
+  padding: .65rem 1.25rem;
+  font-weight: 600;
+  font-size: 1rem; /* normalize even if .btn-lg used */
+  line-height: 1.25;
+  border-radius: .6rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
+  text-decoration: none;
+  letter-spacing: .25px;
+  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .15s ease;
+}
+
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-outline-primary:focus-visible { box-shadow: var(--focus-ring); }
+
+/* Remove outline visual difference – ensure outline variant (if present in markup) matches primary */
+.btn-outline-primary { background: var(--brand-dark); color: #fff; }
+
+/* Normalize .btn-lg to unified size so only one look remains */
+.btn-lg { padding: .65rem 1.25rem; font-size: 1rem; border-radius: .6rem; }
+
+/* Active / pressed subtle scale */
+.btn:active { transform: translateY(1px); }
+
+/* Badges / pills */
+.badge-brand { background: var(--brand-primary); color: #352d17; font-weight: 500; }
+
+/* Focus ring utility */
+.focus-brand:focus { outline: var(--focus-ring); }
+
+/* Form controls focus shadow override */
+.form-control:focus, .form-select:focus {
+  border-color: var(--brand-primary);
+  box-shadow: var(--focus-ring);
+}
+
+/* Cards accented header variant */
+.card.brand-accent { border-color: var(--brand-border); }
+.card.brand-accent .card-header { background: var(--brand-light-bg); font-weight: 600; }
+
+/* Horizontal rule accent */
+hr.brand { border-top: 2px solid var(--brand-primary); opacity: 1; }
+
+/* Footer accent + unify nav link styling with header */
+footer { border-top: 4px solid var(--brand-primary); }
+/* Make footer navigation links look exactly like header nav links */
+footer .nav-link,
+.navbar .nav-link {
+  color: var(--brand-dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .15s ease-in-out;
+}
+
+footer .nav-link:visited,
+.navbar .nav-link:visited {
+  color: var(--brand-dark);
+}
+
+.navbar .nav-link:hover, .navbar .nav-link:focus,
+footer .nav-link:hover, footer .nav-link:focus {
+  color: var(--brand-primary);
+}
+
+.navbar .nav-link.active,
+footer .nav-link.active {
+  color: var(--brand-primary);
+}
+
+/* Utility to apply subtle accent background */
+.highlight-accent { background: linear-gradient(90deg, rgba(var(--brand-primary-rgb),.15), rgba(var(--brand-primary-rgb),.05)); }
+
+/* Icon color helper */
+.icon-accent { color: var(--brand-primary); }
+
+/* Table accents (if used) */
+table.table thead th { border-bottom: 2px solid var(--brand-primary); }
+table.table tbody tr:hover { background: rgba(var(--brand-primary-rgb), .07); }
+
+/* Alert accent custom class */
+.alert-brand { background: var(--brand-light-bg); border: 1px solid var(--brand-border); color: var(--brand-dark); }
+
+/* Progress bar brand style */
+.progress-bar.brand { background: var(--brand-dark); }
+
+/* Selection color */
+::selection { background: var(--brand-primary); color: #fff; }
 
 .navbar-brand{
   font-weight: 700;

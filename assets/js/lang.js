@@ -14,10 +14,66 @@
     return path.split('.').reduce((o,k)=> (o && k in o) ? o[k] : undefined, obj);
   }
 
+  // Very small sanitizer: allow a limited set of inline / simple block tags so that
+  // translations can contain <br>, emphasis, simple lists, links etc. without risking XSS.
+  // You control the JSON files, so this is mostly defensive against accidents.
+  const ALLOWED_TAGS = new Set(['br','strong','b','em','i','u','span','a','ul','ol','li','p']);
+  const ALLOWED_ATTR = {
+    'a': new Set(['href','title','rel','target']),
+    'span': new Set(['class'])
+  };
+
+  function sanitizeHtml(html){
+    const tpl = document.createElement('template');
+    tpl.innerHTML = html;
+    (function walk(node){
+      const children = Array.from(node.children);
+      for (const child of children){
+        const tag = child.tagName.toLowerCase();
+        if (!ALLOWED_TAGS.has(tag)){
+          // Replace disallowed tag with its text / allowed children
+            child.replaceWith(...child.childNodes);
+            continue;
+        }
+        // Clean attributes
+        for (const attr of Array.from(child.attributes)){
+          const name = attr.name.toLowerCase();
+          if (name.startsWith('on')) { child.removeAttribute(attr.name); continue; }
+          const allowedForTag = ALLOWED_ATTR[tag];
+          if (allowedForTag){
+            if (!allowedForTag.has(name)) child.removeAttribute(attr.name);
+          } else {
+            // no attributes allowed for this tag except aria- / data- minimal safe set
+            if (!name.startsWith('aria-') && !name.startsWith('data-')){
+              child.removeAttribute(attr.name);
+            }
+          }
+          // For anchor ensure safe rel when target=_blank
+          if (tag === 'a' && child.getAttribute('target') === '_blank'){
+            const rel = child.getAttribute('rel') || '';
+            if (!/noopener/i.test(rel)) child.setAttribute('rel', (rel+' noopener noreferrer').trim());
+          }
+        }
+        walk(child);
+      }
+    })(tpl.content || tpl);
+    return tpl.innerHTML;
+  }
+
   function setText(el, text){
     if (el.tagName === 'META') {
-      el.setAttribute('content', text);
-    } else if ('textContent' in el) {
+      // Strip any HTML tags for meta content to avoid broken metadata
+      el.setAttribute('content', text.replace(/<[^>]*>/g,''));
+      return;
+    }
+    if (typeof text !== 'string'){
+      el.textContent = text == null ? '' : String(text);
+      return;
+    }
+    if (text.indexOf('<') !== -1 && text.indexOf('>') !== -1){
+      // Contains potential markup -> sanitize and inject as HTML
+      el.innerHTML = sanitizeHtml(text);
+    } else {
       el.textContent = text;
     }
   }
