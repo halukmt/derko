@@ -90,9 +90,7 @@
         'wohnungen.html': '#nav-wohnungen',
         'ueber-uns.html': '#nav-ueberuns',
         'buchen.html': '#nav-buchen',
-        'kontakt.html': '#nav-kontakt',
-        'agb.html': '#nav-agb',
-        'impressum.html': '#nav-impressum'
+        'kontakt.html': '#nav-kontakt'
       };
       const sel = map[p] || (p === '' ? '#nav-home' : null);
       if (!sel) return;
