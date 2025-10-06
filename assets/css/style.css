@@ -163,6 +163,12 @@ table.table tbody tr:hover { background: rgba(var(--brand-primary-rgb), .07); }
   font-weight: 700;
 }
 
+/* Logo image (replace former inline style) */
+.logo-img { height:40px; width:auto; display:block; }
+
+/* 404 full-height helper */
+.full-height { min-height:100vh; }
+
 footer{
   background: #f8f9fa;
 }
