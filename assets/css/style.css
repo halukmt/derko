@@ -24,7 +24,14 @@
 body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   color: #222;
+  /* Sticky footer layout */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+main{ flex: 1 0 auto; }
+footer{ margin-top: auto; }
 
 /* --------------------------------------------------
    Brand Color Application (Accessible Usage)
