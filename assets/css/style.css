@@ -137,8 +137,14 @@ footer .nav-link.active {
 /* Utility to apply subtle accent background */
 .highlight-accent { background: linear-gradient(90deg, rgba(var(--brand-primary-rgb),.15), rgba(var(--brand-primary-rgb),.05)); }
 
-/* Icon color helper */
+/* Icon color helper - ALL icons should use the golden brand color (#B69B5C) */
 .icon-accent { color: var(--brand-primary); }
+
+/* Override Bootstrap's text-primary for icons to use golden brand color */
+i.text-primary { color: var(--brand-primary) !important; }
+
+/* Default color for all icons (Font Awesome, etc.) */
+i[class*="fa-"] { color: var(--brand-primary); }
 
 /* Table accents (if used) */
 table.table thead th { border-bottom: 2px solid var(--brand-primary); }
