@@ -133,7 +133,9 @@
       const hasPort = !!location.port; // dev servers often use a port
       const isDev = isLocalHost || hasPort;
       const cacheBuster = isDev ? `?v=${Date.now()}` : '';
-      STATE.dict = await loadJSON(`lang/${CURRENT_LANG}.json${cacheBuster}`);
+  const inPages = location.pathname.includes('/pages/');
+  const langBase = inPages ? '../lang/' : 'lang/';
+  STATE.dict = await loadJSON(`${langBase}${CURRENT_LANG}.json${cacheBuster}`);
       if (!window.__i18nReady) {
         window.__i18nReady = true;
         document.dispatchEvent(new CustomEvent('i18n:ready', { detail: { lang: CURRENT_LANG } }));

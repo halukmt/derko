@@ -23,9 +23,18 @@
     "cta": "Jetzt buchen",
     "features": {
       "heading": "Vorteile",
-      "komfort": {"title": "Komfort", "text": "Voll ausgestattete Wohnungen mit WLAN, Küche und Parkplatz."},
-      "zentral": {"title": "Zentral", "text": "Gute Anbindung für Teams und Monteure – flexibel und praktisch."},
-      "fair": {"title": "Fair", "text": "Transparente Preise und flexible Buchungsoptionen."}
+      "komfort": {
+        "title": "Komfort",
+        "text": "Voll ausgestattete Wohnungen mit WLAN, Küche und Parkplatz."
+      },
+      "zentral": {
+        "title": "Zentral",
+        "text": "Gute Anbindung für Teams und Monteure – flexibel und praktisch."
+      },
+      "fair": {
+        "title": "Fair",
+        "text": "Transparente Preise und flexible Buchungsoptionen."
+      }
     }
   },
 
@@ -40,8 +49,7 @@
   },
   "ueberUns": {
     "headline": "Über uns",
-    "description":
-        "Wir sind ein junges dynamisches Unternehmen aus Duisburg im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. <br><br>DERKO Immobilien hat sich auch in den letzten Jahren auf die Vermietung von Monteurzimmern und Wohnungen spezialisiert. Wir arbeiten ständig an unserem Portfolio und versuchen mehr Wohnraum und optimalen Service zu schaffen."
+    "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. <br><br>DERKO Immobilien hat sich auch in den letzten Jahren auf die Vermietung von Monteurzimmern und Wohnungen spezialisiert. Wir arbeiten ständig an unserem Portfolio und versuchen mehr Wohnraum und optimalen Service zu schaffen."
   },
   "buchen": {
     "headline": "Jetzt buchen",
@@ -68,14 +76,14 @@
   },
   "agb": {
     "headline": "Allgemeine Geschäftsbedingungen",
-    "text": "Hier stehen die AGB als Platzhaltertext. Bitte rechtlich prüfen und ersetzen."
+    "text": "lang/de/de.agb.html"
   },
   "impressum": {
     "headline": "Impressum",
-    "text": "Dies ist ein Platzhalter <br> für das Impressum. Bitte mit rechtlich korrekten Angaben ergänzen."
+    "text": "lang/de/de.impressum.html"
   },
   "datenschutz": {
     "headline": "Datenschutz",
-    "text": "Platzhaltertext – Datenschutzhinweise (DSGVO). Inhalte bitte rechtlich prüfen und ergänzen."
+    "text": "lang/de/de.datenschutz.html"
   }
 }
