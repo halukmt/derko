@@ -17,7 +17,7 @@
   // Very small sanitizer: allow a limited set of inline / simple block tags so that
   // translations can contain <br>, emphasis, simple lists, links etc. without risking XSS.
   // You control the JSON files, so this is mostly defensive against accidents.
-  const ALLOWED_TAGS = new Set(['br','strong','b','em','i','u','span','a','ul','ol','li','p']);
+  const ALLOWED_TAGS = new Set(['br','strong','b','em','i','u','span','a','ul','ol','li','p','h1','h2','h3','h4','h5','h6','section','div']);
   const ALLOWED_ATTR = {
     'a': new Set(['href','title','rel','target']),
     'span': new Set(['class'])
@@ -78,13 +78,44 @@
     }
   }
 
-  function applyTranslations(root=document){
+  const HTML_PARTIAL_CACHE = {};
+
+  async function injectHtmlPartial(el, path){
+    try{
+      if (HTML_PARTIAL_CACHE[path]){ el.innerHTML = sanitizeHtml(HTML_PARTIAL_CACHE[path]); return; }
+      const inPages = location.pathname.includes('/pages/');
+      // If path starts with 'lang/' we need correct relative base from /pages/
+      let fetchPath = path;
+      if (path.startsWith('lang/')) fetchPath = inPages ? '../'+path : path;
+      const res = await fetch(fetchPath, { credentials:'same-origin' });
+      if (!res.ok) { console.warn('Partial not found:', path); return; }
+      const txt = await res.text();
+      HTML_PARTIAL_CACHE[path] = txt;
+      el.innerHTML = sanitizeHtml(txt);
+    }catch(err){ console.error('Partial load failed', path, err); }
+  }
+
+  async function applyTranslations(root=document){
     if (!STATE.dict) return;
     const textNodes = root.querySelectorAll('[data-i18n]');
     textNodes.forEach(el => {
       const key = el.getAttribute('data-i18n');
       const val = getByPath(STATE.dict, key);
       if (typeof val === 'string') setText(el, val);
+    });
+    // Rich HTML (block-level) content placeholders
+    const htmlNodes = root.querySelectorAll('[data-i18n-html]');
+    htmlNodes.forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      const val = getByPath(STATE.dict, key);
+      if (typeof val === 'string'){
+        if (/\.html?$/i.test(val)) {
+          injectHtmlPartial(el, val);
+        } else {
+            // treat as direct HTML string
+            el.innerHTML = sanitizeHtml(val);
+        }
+      }
     });
     const metaNodes = root.querySelectorAll('[data-i18n-meta]');
     metaNodes.forEach(el => {
