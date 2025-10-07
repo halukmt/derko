@@ -41,10 +41,17 @@
   "wohnungen": {
     "headline": "Unsere Wohnungen",
     "description": "Wählen Sie aus verschiedenen Unterkünften – alle vollständig ausgestattet und zentral gelegen.",
-    "card": {
-      "title": "Beispielwohnung",
-      "text": "Moderne Wohnung mit 3 Betten, Küche, WLAN und Parkplatz.",
-      "button": "Details ansehen"
+    "cards": {
+      "rahm": {
+        "title": "Wohnung Rahm",
+        "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
+        "button": "Details ansehen"
+      },
+      "beispiel": {
+        "title": "Beispielwohnung",
+        "text": "Moderne Wohnung mit 3 Betten, Küche, WLAN und Parkplatz.",
+        "button": "Details ansehen"
+      }
     }
   },
   "ueberUns": {

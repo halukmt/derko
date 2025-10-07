@@ -40,10 +40,17 @@
   "wohnungen": {
     "headline": "Our apartments",
     "description": "Choose from various accommodations – all fully equipped and centrally located.",
-    "card": {
-      "title": "Sample apartment",
-  "text": "Modern apartment with 3 beds, kitchen, Wi-Fi and parking.",
-      "button": "View details"
+    "cards": {
+      "rahm": {
+        "title": "Rahm apartment",
+        "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
+        "button": "View details"
+      },
+      "beispiel": {
+        "title": "Sample apartment",
+        "text": "Modern apartment with 3 beds, kitchen, Wi-Fi and parking.",
+        "button": "View details"
+      }
     }
   },
   "ueberUns": {

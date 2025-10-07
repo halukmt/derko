@@ -144,20 +144,35 @@
       const tpl = document.getElementById('card-template');
       if (!host || !tpl || host.dataset.rendered) return;
       const base = IS_PAGES ? '../' : '';
-      const apartments = Array.from({length:3}).map(()=>({
-        img: base + 'assets/img/sample.svg',
-        alt: 'Wohnungsbild',
-        title: 'wohnungen.card.title',
-        text: 'wohnungen.card.text',
-        btn: 'wohnungen.card.button'
-      }));
-      apartments.forEach(a=>{
+
+      // Expect structure: wohnungen: { cards: { key1: { title,text,button,img(optional) }, key2: {...} } }
+      const dict = (window.getLanguage && window.applyTranslations) ? (window.__i18nReady && (window.setLanguage && window.getLanguage) ? undefined : undefined) : undefined; // placeholder (we rely on translation keys only)
+      // We will scan translation JSON indirectly by reading keys from current language dictionary if exposed.
+      const langDict = (function(){ try { return window.__i18nReady && (window.getLanguage ? (window.setLanguage && (window.getLanguage(), window) , window) : window); } catch(e){ return null; } })();
+      // Fallback: build keys until none found? Better: require developer to define wohnungen.cards.* groups.
+      // We'll probe keys via pattern wohnungen.cards.*.title existing in DOM translation system.
+      // Simpler: if global STATE dict not publicly exposed, we cannot introspect -> use a configured array via window.WOHNUNGEN_CFG if present.
+
+      let cardKeys = [];
+      // Try to access internal dictionary (STATE.dict) via lang.js closure isn't exposed; so we can't introspect safely.
+      // Provide extension mechanism: if window.WOHNUNGEN_CARDS defined (array of objects with key & optional img), use it.
+      if (window.WOHNUNGEN_CARDS && Array.isArray(window.WOHNUNGEN_CARDS)){
+        cardKeys = window.WOHNUNGEN_CARDS;
+      } else {
+        // Default legacy single card
+        cardKeys = [{ key: 'card', img: base + 'assets/img/sample.svg', alt: 'Wohnungsbild'}];
+      }
+
+      cardKeys.forEach(cfg => {
         const variant = tpl.content.querySelector('[data-variant="wohnung"]').cloneNode(true);
         variant.classList.remove('d-none');
-        const img = variant.querySelector('[data-img]'); img.src = a.img; img.alt = a.alt;
-        translateAttr(variant.querySelector('[data-title]'), a.title);
-        translateAttr(variant.querySelector('[data-text]'), a.text);
-        translateAttr(variant.querySelector('[data-button]'), a.btn);
+        const img = variant.querySelector('[data-img]');
+        const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
+        img.src = imgSrc; img.alt = cfg.alt || 'Wohnungsbild';
+        const prefix = 'wohnungen.' + (cfg.key ? 'cards.' + cfg.key : 'card');
+        translateAttr(variant.querySelector('[data-title]'), prefix + '.title');
+        translateAttr(variant.querySelector('[data-text]'), prefix + '.text');
+        translateAttr(variant.querySelector('[data-button]'), prefix + '.button');
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
       });
       host.dataset.rendered = 'true';
