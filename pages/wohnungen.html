@@ -37,53 +37,13 @@
       <div class="container">
         <h1 class="mb-3" data-i18n="wohnungen.headline"></h1>
         <p class="lead" data-i18n="wohnungen.description"></p>
-        <div class="row g-4" id="wohnung-list"></div>
-        <script>
-          // Konfiguration für dynamische Wohnungs-Cards (Key = wohnungen.cards.<key>)
-          window.WOHNUNGEN_CARDS = [
-            { key: 'rahm', img: '/assets/img/wohnungen/rahm/main.jpg', alt: 'Wohnung Rahm' },
-            { key: 'beispiel', img: '/assets/img/sample.svg', alt: 'Beispielwohnung' }
-          ];
-        </script>
+        <div class="row g-4" id="wohnung-list" data-cards='[{"key":"rahm","img":"/assets/img/wohnungen/rahm/main.jpg","alt":"Wohnung Rahm"},{"key":"beispiel","img":"/assets/img/sample.svg","alt":"Beispielwohnung"}]'></div>
       </div>
     </main>
     <footer id="site-footer" data-component="footer"></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../assets/js/lang.js" defer></script>
     <script src="../assets/js/main.js" defer></script>
-    <script>
-      // Dynamisches JSON-LD basierend auf WOHNUNGEN_CARDS (vereinfachte Variante)
-      (function(){
-        if (!window.WOHNUNGEN_CARDS) return;
-        const lang = (window.getLanguage ? window.getLanguage() : 'de');
-        const dict = { de: {
-          wlan: 'WLAN', kueche: 'Küche', parkplatz: 'Parkplatz'
-        }, en: { wlan: 'Wi-Fi', kueche: 'Kitchen', parkplatz: 'Parking' } };
-        const amenities = function(){
-          const d = dict[lang] || dict.de;
-          return [
-            {"@type":"LocationFeatureSpecification","name": d.wlan, "value": true},
-            {"@type":"LocationFeatureSpecification","name": d.kueche, "value": true},
-            {"@type":"LocationFeatureSpecification","name": d.parkplatz, "value": true}
-          ];
-        }();
-        const base = {
-          '@context':'https://schema.org',
-          '@type':'CollectionPage',
-          name: document.title || 'Wohnungen',
-          hasPart: window.WOHNUNGEN_CARDS.map(c => ({
-            '@type':'Apartment',
-            name: '',
-            description: '',
-            amenityFeature: amenities
-          }))
-        };
-        // Insert script element
-        const el = document.createElement('script');
-        el.type='application/ld+json';
-        el.textContent = JSON.stringify(base);
-        document.head.appendChild(el);
-      })();
-    </script>
+    <!-- JSON-LD für Wohnungen wird nun in main.js nach Rendering ohne Inline-Script erzeugt -->
   </body>
 </html>

@@ -1,6 +1,15 @@
-// main.js - bootstraps header/footer includes and form validation
+// main.js
+// Responsibilities:
+//  - Component injection (header/footer/cards) CSP-safe (no inline eval)
+//  - Navigation link normalization (absolute URLs)
+//  - Active nav highlighting
+//  - Form validation (Bootstrap pattern)
+//  - Feature & apartment cards rendering (data-driven)
+//  - JSON-LD generation for apartment collection
+//  - Language switcher flag update
 (function(){
-  // Simple include: inject components/header.html and footer.html
+  // --- Component Injection -------------------------------------------------
+  // Injects shared HTML fragments and reapplies translations.
   async function injectComponent(el, path){
     try{
       const res = await fetch(path, { credentials: 'same-origin' });
@@ -54,7 +63,7 @@
   document.addEventListener('DOMContentLoaded', adjustNavLinks);
   }
 
-  // Bootstrap form validation
+  // --- Form Validation ------------------------------------------------------
   function setupValidation(){
     const forms = document.querySelectorAll('.needs-validation');
     Array.prototype.slice.call(forms).forEach(function(form){
@@ -71,7 +80,8 @@
   document.addEventListener('DOMContentLoaded', function(){
     setupIncludes();
     setupValidation();
-    function markActive(){
+  // Highlight active navigation link
+  function markActive(){
       const p = location.pathname.split('/').pop() || 'index.html';
       const map = {
         'index.html': '#nav-home',
@@ -94,7 +104,8 @@
     // --- Reusable Card Template Loading & Rendering ---
     const IS_PAGES = location.pathname.includes('/pages/');
 
-    async function ensureCardTemplate(){
+  // Fetch card template once and append <template> to body
+  async function ensureCardTemplate(){
       if (document.getElementById('card-template')) return true;
       const base = IS_PAGES ? '../' : '';
       try{
@@ -109,9 +120,10 @@
       }catch(e){ console.warn('Card template load failed', e); return false; }
     }
 
-    function translateAttr(el, key){ el.setAttribute('data-i18n', key); }
+  const translateAttr = (el, key) => el.setAttribute('data-i18n', key);
 
-    function renderFeatureCards(){
+  // Render static feature benefits from config array
+  function renderFeatureCards(){
       const host = document.getElementById('feature-cards');
       const tpl = document.getElementById('card-template');
       if (!host || !tpl || host.dataset.rendered) return;
@@ -139,28 +151,54 @@
       if (window.applyTranslations) window.applyTranslations(host);
     }
 
-    function renderWohnungenCards(){
+  // Build JSON-LD after translations so localized strings appear
+  function buildWohnungenJSONLD(host){
+      if (!host) return;
+      if (document.head.querySelector('script[data-generated="wohnungen-jsonld"]')) return;
+      const cards = Array.from(host.querySelectorAll('[data-variant="wohnung"]'));
+      if (!cards.length) return;
+      const amenities = [
+        {"@type":"LocationFeatureSpecification","name":"WLAN","value":true},
+        {"@type":"LocationFeatureSpecification","name":"Küche","value":true},
+        {"@type":"LocationFeatureSpecification","name":"Parkplatz","value":true}
+      ];
+      const hasPart = cards.map(card => {
+        const titleEl = card.querySelector('[data-title]');
+        const textEl = card.querySelector('[data-text]');
+        return {
+          '@type':'Apartment',
+          name: titleEl ? titleEl.textContent.trim() : '',
+          description: textEl ? textEl.textContent.trim() : '',
+          amenityFeature: amenities
+        };
+      });
+      const jsonld = {
+        '@context':'https://schema.org',
+        '@type':'CollectionPage',
+        name: document.title || 'Wohnungen',
+        hasPart
+      };
+      const s = document.createElement('script');
+      s.type='application/ld+json';
+      s.dataset.generated='wohnungen-jsonld';
+      s.textContent = JSON.stringify(jsonld);
+      document.head.appendChild(s);
+    }
+
+  // Render apartment cards from data-cards JSON (or fallback single)
+  function renderWohnungenCards(){
       const host = document.getElementById('wohnung-list');
       const tpl = document.getElementById('card-template');
       if (!host || !tpl || host.dataset.rendered) return;
       const base = IS_PAGES ? '../' : '';
-
-      // Expect structure: wohnungen: { cards: { key1: { title,text,button,img(optional) }, key2: {...} } }
-      const dict = (window.getLanguage && window.applyTranslations) ? (window.__i18nReady && (window.setLanguage && window.getLanguage) ? undefined : undefined) : undefined; // placeholder (we rely on translation keys only)
-      // We will scan translation JSON indirectly by reading keys from current language dictionary if exposed.
-      const langDict = (function(){ try { return window.__i18nReady && (window.getLanguage ? (window.setLanguage && (window.getLanguage(), window) , window) : window); } catch(e){ return null; } })();
-      // Fallback: build keys until none found? Better: require developer to define wohnungen.cards.* groups.
-      // We'll probe keys via pattern wohnungen.cards.*.title existing in DOM translation system.
-      // Simpler: if global STATE dict not publicly exposed, we cannot introspect -> use a configured array via window.WOHNUNGEN_CFG if present.
-
+      // Card-Konfiguration aus data-cards Attribut (JSON) oder Fallback
       let cardKeys = [];
-      // Try to access internal dictionary (STATE.dict) via lang.js closure isn't exposed; so we can't introspect safely.
-      // Provide extension mechanism: if window.WOHNUNGEN_CARDS defined (array of objects with key & optional img), use it.
-      if (window.WOHNUNGEN_CARDS && Array.isArray(window.WOHNUNGEN_CARDS)){
-        cardKeys = window.WOHNUNGEN_CARDS;
-      } else {
-        // Default legacy single card
-        cardKeys = [{ key: 'card', img: base + 'assets/img/sample.svg', alt: 'Wohnungsbild'}];
+      const raw = host.getAttribute('data-cards');
+      if (raw){
+        try { cardKeys = JSON.parse(raw); } catch(e){ console.warn('Invalid data-cards JSON', e); }
+      }
+      if (!cardKeys.length){
+        cardKeys = [{ key: 'card', img: base + 'assets/img/sample.svg', alt: 'Wohnungsbild' }];
       }
 
       cardKeys.forEach(cfg => {
@@ -176,10 +214,15 @@
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
       });
       host.dataset.rendered = 'true';
-      if (window.applyTranslations) window.applyTranslations(host);
+      if (window.applyTranslations) {
+        window.applyTranslations(host);
+        // JSON-LD erst nach Übersetzungen erzeugen (Titel/Text lokalisiert)
+        setTimeout(()=> buildWohnungenJSONLD(host), 0);
+      }
     }
 
-    async function renderAllCards(){
+  // Orchestrate card rendering
+  async function renderAllCards(){
       const ok = await ensureCardTemplate();
       if (!ok) return;
       renderFeatureCards();
@@ -191,7 +234,8 @@
     document.addEventListener('component:loaded', renderAllCards);
 
     // Language switcher in header
-    function updateLangIndicator(){
+  // Update language flag & label
+  function updateLangIndicator(){
       const label = document.getElementById('current-lang-label');
       const flag = document.getElementById('current-lang-flag');
       if (!flag || !window.getLanguage) return;
@@ -205,7 +249,8 @@
       }
     }
 
-    function setupLanguageSwitcher(){
+  // Attach click handler for language switching
+  function setupLanguageSwitcher(){
       document.addEventListener('click', function(e){
         const btn = e.target.closest('[data-lang]');
         if (!btn) return;
