@@ -4,7 +4,32 @@ Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentier
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
-## [v0.4.0] - 2025-10-07
+## [v0.6.0] - 2025-10-08
+### Added
+- Dynamische mehrfache Wohnungs-Cards über `data-cards` Attribut in `pages/wohnungen.html` (Schlüsselstruktur `wohnungen.cards.<key>.*`).
+- Automatische JSON-LD Generierung für alle Apartments (Schema.org `CollectionPage` + `Apartment` Einträge) nach erfolgreicher Übersetzungsanwendung.
+- Sitemap mit absoluten URLs & Metadaten (`lastmod`, `changefreq`, `priority`).
+
+### Changed
+- `main.js` refaktoriert: klarere Abschnittskommentare, modularisierte Card-Render-Funktionen, vereinheitlichte Pfadlogik, entfernte Legacy-Einzelkarten-Implementierung (Fallback bleibt falls kein `data-cards`).
+- README stark erweitert (Architektur, Adding Apartments Guide, Sicherheit, i18n Details, vorhandene `robots.txt` / `sitemap.xml`).
+- `sitemap.xml` bereinigt (Entfernung `/index.html` Duplikat, Domain `https://www.derko-immobilien.de`).
+
+### Removed
+- Platzhalterkarte `beispiel` aus Sprachdateien und `wohnungen.html` entfernt.
+
+### Fixed
+- CSP-Verstöße beseitigt: Inline-Skripte auf `wohnungen.html` entfernt (Konfiguration jetzt über `data-cards`, JSON-LD dynamisch erzeugt).
+- Doppelter Request /404 → `/pages/index.html` weiterhin verhindert durch absolute Navigation (Regression ausgeschlossen nach Refactor).
+
+### Developer Experience
+- Übersichtlichere Dokumentation & klarer Erweiterungspfad für neue Wohnungen.
+- Kommentar- und Strukturvereinheitlichung im Kernskript reduziert kognitive Last.
+
+### Notes
+- Alt-Texte aktuell statisch im `data-cards` JSON; Lokalisierung möglich durch zukünftige Keys `wohnungen.cards.<key>.imageAlt`.
+- Mögliche Follow-Ups: Detailseiten pro Apartment, automatischer Sitemap-Generator, erweiterte JSON-LD (Bilder, Ausstattungen), Versioniertes Asset-Caching.
+
 ## [v0.5.0] - 2025-10-07
 ### Added
 - Feature-Card Bild-Unterstützung (komfort.png, zentral.png, fair.png) inkl. neuem `<img data-img-feature>` Element im Template.
@@ -27,6 +52,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 ### Notes
 - 404 Illustration aktuell dekorativ (`alt=""`). Optional kann ein lokalisierter `notFound.imageAlt` Key nachgerüstet werden.
 
+## [v0.4.0] - 2025-10-07
 ### Added
 - Verschachtelte Sprachstruktur `lang/<code>/<code>.json` mit Fallback-Erkennung.
 - Externe HTML-Partials für Rechtstexte (`lang/de/*.html`, `lang/en/*.html`) via `data-i18n-html`.
