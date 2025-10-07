@@ -25,8 +25,8 @@
     // Header brand logo path correction
     const brandImg = document.querySelector('.navbar-brand img');
     if (brandImg){
-      if (inPagesNow && brandImg.getAttribute('src') === 'assets/img/logo.svg') brandImg.setAttribute('src','../assets/img/logo.svg');
-      if (!inPagesNow && brandImg.getAttribute('src') === '../assets/img/logo.svg') brandImg.setAttribute('src','assets/img/logo.svg');
+  if (inPagesNow && brandImg.getAttribute('src') === 'assets/img/logo/logo.svg') brandImg.setAttribute('src','../assets/img/logo/logo.svg');
+  if (!inPagesNow && brandImg.getAttribute('src') === '../assets/img/logo/logo.svg') brandImg.setAttribute('src','assets/img/logo/logo.svg');
     }
     // Brand link
     const brandLink = document.querySelector('.navbar-brand');
