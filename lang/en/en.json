@@ -44,17 +44,32 @@
       "rahm": {
         "title": "Rahm apartment",
         "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
-        "button": "View details"
+        "button": "View details",
+        "city": "Duisburg-Rahm",
+        "rooms": "3 rooms",
+        "beds": "6 beds",
+        "area": "85 m²",
+        "parking": "Parking available"
       },
     "duisburg": {
         "title": "Duisburg apartment",
         "text": "Modern apartment in Duisburg with 2 bedrooms, ideal for contractors.",
-        "button": "View details"
+        "button": "View details",
+        "city": "Duisburg",
+        "rooms": "2 rooms",
+        "beds": "4 beds",
+        "area": "60 m²",
+        "parking": "Parking on request"
       },
       "bonn": {
         "title": "Bonn apartment",
         "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
-        "button": "View details"
+        "button": "View details",
+        "city": "Bonn",
+        "rooms": "3 rooms",
+        "beds": "5 beds",
+        "area": "90 m²",
+        "parking": "Parking available"
       }
     }
   },

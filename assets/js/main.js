@@ -211,6 +211,18 @@
         translateAttr(variant.querySelector('[data-title]'), prefix + '.title');
         translateAttr(variant.querySelector('[data-text]'), prefix + '.text');
         translateAttr(variant.querySelector('[data-button]'), prefix + '.button');
+        // Detailfelder (city, rooms, beds, area, parking)
+        const detailMap = [
+          { sel: '[data-city]', key: '.city' },
+          { sel: '[data-rooms]', key: '.rooms' },
+            { sel: '[data-beds]', key: '.beds' },
+          { sel: '[data-area]', key: '.area' },
+          { sel: '[data-parking]', key: '.parking' }
+        ];
+        detailMap.forEach(m => {
+          const el = variant.querySelector(m.sel);
+          if (el) translateAttr(el, prefix + m.key);
+        });
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
       });
       host.dataset.rendered = 'true';

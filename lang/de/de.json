@@ -45,17 +45,32 @@
       "rahm": {
         "title": "Wohnung Rahm",
         "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
-        "button": "Details ansehen"
+        "button": "Details ansehen",
+        "city": "Duisburg-Rahm",
+        "rooms": "3 Zimmer",
+        "beds": "6 Betten",
+        "area": "85 m²",
+        "parking": "Stellplatz vorhanden"
       },
       "duisburg": {
         "title": "Wohnung Duisburg",
         "text": "Moderne Wohnung in Duisburg mit 2 Schlafzimmern, ideal für Monteure.",
-        "button": "Details ansehen"
+        "button": "Details ansehen",
+        "city": "Duisburg",
+        "rooms": "2 Zimmer",
+        "beds": "4 Betten",
+        "area": "60 m²",
+        "parking": "Parken auf Anfrage"
       },
       "bonn": {
         "title": "Wohnung Bonn",
         "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
-        "button": "Details ansehen"
+        "button": "Details ansehen",
+        "city": "Bonn",
+        "rooms": "3 Zimmer",
+        "beds": "5 Betten",
+        "area": "90 m²",
+        "parking": "Stellplatz verfügbar"
       }
     }
   },
