@@ -84,5 +84,10 @@
   "datenschutz": {
     "headline": "Privacy Policy",
     "text": "lang/en/en.datenschutz.html"
+  },
+  "notFound": {
+    "headline": "Page not found",
+    "description": "The requested page could not be found or no longer exists.",
+    "backHome": "Back to homepage"
   }
 }

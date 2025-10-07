@@ -5,6 +5,28 @@ Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ## [v0.4.0] - 2025-10-07
+## [v0.5.0] - 2025-10-07
+### Added
+- Feature-Card Bild-Unterstützung (komfort.png, zentral.png, fair.png) inkl. neuem `<img data-img-feature>` Element im Template.
+- 404 Seite vollständig integriert (Header, Footer, i18n, OG-Meta, Theme Color, Skip-Link).
+- Neue Übersetzungs-Keys `notFound.*` (de/en) + Button zurück zur Startseite.
+- Illustration `seite_404.png` + Styling-Klasse `.error-404-illustration`.
+
+### Changed
+- Navigationslogik vereinfacht: Alle Links jetzt absolute Pfade (`/`, `/pages/...`) statt kontextabhängiger relativer Berechnung.
+- Brand-Logo & Startseiten-Link führen immer auf `/` (verhindert fehlerhafte `/pages/index.html` Aufrufe).
+- Feature-Card Template erweitert, um optional Bilder vor dem Text zu rendern.
+
+### Fixed
+- Verhindert fehlerhafte Requests auf `/pages/index.html` bei 404-Szenarien oder aus Unterseiten.
+- 404 liefert keine broken CSS/JS Pfade mehr (Assets über absolute Pfade eingebunden).
+
+### Developer Experience
+- Reduzierte Komplexität in `main.js` (entfernte relative Pfadumschaltungen, klarere Link-Setzung).
+
+### Notes
+- 404 Illustration aktuell dekorativ (`alt=""`). Optional kann ein lokalisierter `notFound.imageAlt` Key nachgerüstet werden.
+
 ### Added
 - Verschachtelte Sprachstruktur `lang/<code>/<code>.json` mit Fallback-Erkennung.
 - Externe HTML-Partials für Rechtstexte (`lang/de/*.html`, `lang/en/*.html`) via `data-i18n-html`.

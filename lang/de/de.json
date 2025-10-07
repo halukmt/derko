@@ -85,5 +85,10 @@
   "datenschutz": {
     "headline": "Datenschutz",
     "text": "lang/de/de.datenschutz.html"
+  },
+  "notFound": {
+    "headline": "Seite nicht gefunden",
+    "description": "Die angeforderte Seite wurde nicht gefunden oder existiert nicht mehr.",
+    "backHome": "Zur Startseite"
   }
 }

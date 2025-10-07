@@ -21,19 +21,10 @@
   if (footer) injectComponent(footer, compBase + 'footer.html');
 
   function adjustNavLinks(){
-    const inPagesNow = location.pathname.includes('/pages/');
-    // Header brand logo path correction
-    const brandImg = document.querySelector('.navbar-brand img');
-    if (brandImg){
-  if (inPagesNow && brandImg.getAttribute('src') === 'assets/img/logo/logo.svg') brandImg.setAttribute('src','../assets/img/logo/logo.svg');
-  if (!inPagesNow && brandImg.getAttribute('src') === '../assets/img/logo/logo.svg') brandImg.setAttribute('src','assets/img/logo/logo.svg');
-    }
-    // Brand link
+    // Brand always root
     const brandLink = document.querySelector('.navbar-brand');
-    if (brandLink){
-      brandLink.setAttribute('href', inPagesNow ? '../index.html' : 'index.html');
-    }
-    // Nav links
+    if (brandLink) brandLink.setAttribute('href','/');
+    // Navigation: home = '/', others absolute /pages/...
     document.querySelectorAll('.navbar .nav-link').forEach(a=>{
       const id = a.id || '';
       const fileMap = {
@@ -47,18 +38,15 @@
       };
       const file = fileMap[id];
       if (!file) return;
-      if (file === 'index.html'){
-        a.setAttribute('href', inPagesNow ? '../index.html' : 'index.html');
-      } else {
-        a.setAttribute('href', inPagesNow ? file : 'pages/' + file);
-      }
+      if (file === 'index.html') a.setAttribute('href','/');
+      else a.setAttribute('href','/pages/' + file);
     });
     // Footer links
     document.querySelectorAll('#site-footer a.nav-link').forEach(a=>{
       const href = a.getAttribute('href');
       if (!href) return;
       if (['impressum.html','agb.html','datenschutz.html'].includes(href)){
-        a.setAttribute('href', inPagesNow ? href : 'pages/' + href);
+        a.setAttribute('href','/pages/' + href);
       }
     });
   }
@@ -127,16 +115,22 @@
       const host = document.getElementById('feature-cards');
       const tpl = document.getElementById('card-template');
       if (!host || !tpl || host.dataset.rendered) return;
+      const baseImg = (IS_PAGES ? '../' : '') + 'assets/img/allgemein/';
       const data = [
-        { icon: 'fa-bed', title: 'home.features.komfort.title', text: 'home.features.komfort.text' },
-        { icon: 'fa-location-dot', title: 'home.features.zentral.title', text: 'home.features.zentral.text' },
-        { icon: 'fa-euro-sign', title: 'home.features.fair.title', text: 'home.features.fair.text' }
+        { icon: 'fa-bed', title: 'home.features.komfort.title', text: 'home.features.komfort.text', img: baseImg + 'komfort.png' },
+        { icon: 'fa-location-dot', title: 'home.features.zentral.title', text: 'home.features.zentral.text', img: baseImg + 'zentral.png' },
+        { icon: 'fa-euro-sign', title: 'home.features.fair.title', text: 'home.features.fair.text', img: baseImg + 'fair.png' }
       ];
       data.forEach(item=>{
         const variant = tpl.content.querySelector('[data-variant="feature"]').cloneNode(true);
         const iconEl = variant.querySelector('[data-icon]');
         iconEl.classList.remove('fa-circle-question');
         iconEl.classList.add(item.icon);
+        const imgEl = variant.querySelector('[data-img-feature]');
+        if (imgEl && item.img){
+          imgEl.src = item.img;
+          imgEl.classList.remove('d-none');
+        }
         translateAttr(variant.querySelector('[data-title]'), item.title);
         translateAttr(variant.querySelector('[data-text]'), item.text);
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);

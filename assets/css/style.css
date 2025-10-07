@@ -196,6 +196,9 @@ footer{
 /* Utilities */
 .container-narrow{ max-width: 800px; }
 
+/* 404 illustration */
+.error-404-illustration{ max-width:420px; width:100%; height:auto; display:block; margin:0 auto;  }
+
 /* --------------------------------------------------
   Legal / Long-form Content Formatting
   Applied to AGB / Impressum / Datenschutz pages via .legal-content wrapper
