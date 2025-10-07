@@ -46,9 +46,14 @@
         "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
         "button": "View details"
       },
-      "beispiel": {
-        "title": "Sample apartment",
-        "text": "Modern apartment with 3 beds, kitchen, Wi-Fi and parking.",
+    "duisburg": {
+        "title": "Duisburg apartment",
+        "text": "Modern apartment in Duisburg with 2 bedrooms, ideal for contractors.",
+        "button": "View details"
+      },
+      "bonn": {
+        "title": "Bonn apartment",
+        "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
         "button": "View details"
       }
     }

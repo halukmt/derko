@@ -47,9 +47,14 @@
         "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
         "button": "Details ansehen"
       },
-      "beispiel": {
-        "title": "Beispielwohnung",
-        "text": "Moderne Wohnung mit 3 Betten, Küche, WLAN und Parkplatz.",
+      "duisburg": {
+        "title": "Wohnung Duisburg",
+        "text": "Moderne Wohnung in Duisburg mit 2 Schlafzimmern, ideal für Monteure.",
+        "button": "Details ansehen"
+      },
+      "bonn": {
+        "title": "Wohnung Bonn",
+        "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
         "button": "Details ansehen"
       }
     }

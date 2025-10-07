@@ -128,9 +128,9 @@ Fallback: Falls kein `data-cards` gesetzt → eine Legacy-Karte mit Schlüssel `
 JS klont immer die passende Variante.
 
 ## Deployment Hinweise
+- `robots.txt` & `sitemap.xml` sind vorhanden (Sitemap verweist in `robots.txt`).
 - Empfohlen: Richtigen HTTP 404 Status für `404.html` serverseitig setzen.
 - Optional: Lokales Hosten der Fonts für Datenschutz.
-- Prüfen: `robots.txt` & `sitemap.xml` (noch nicht enthalten – kann ergänzt werden).
 
 ## Wartung / Erweiterung ToDos (Potenzial)
 - Bildoptimierung (WebP/AVIF Fallbacks)
