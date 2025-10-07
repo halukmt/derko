@@ -103,26 +103,83 @@
     document.addEventListener('i18n:ready', markActive);
     document.addEventListener('component:loaded', markActive);
 
-    // Render Wohnung cards (no inline script; works with CSP)
-    function renderWohnungenCards(){
-      const container = document.getElementById('wohnung-list');
-      const tpl = document.getElementById('card-template');
-      if (!container || !tpl) return;
-      if (container.dataset.rendered === 'true') return;
-      const count = 3;
-      for (let i = 0; i < count; i++){
-        const wrapper = document.createElement('div');
-        wrapper.className = 'col-md-4';
-        wrapper.innerHTML = tpl.innerHTML;
-        container.appendChild(wrapper);
-      }
-      container.dataset.rendered = 'true';
-      if (window.applyTranslations) window.applyTranslations(container);
+    // --- Reusable Card Template Loading & Rendering ---
+    const IS_PAGES = location.pathname.includes('/pages/');
+
+    async function ensureCardTemplate(){
+      if (document.getElementById('card-template')) return true;
+      const base = IS_PAGES ? '../' : '';
+      try{
+        const res = await fetch(base + 'components/card.html', { credentials: 'same-origin', cache: 'no-store' });
+        if (!res.ok) return false;
+        const html = await res.text();
+        const wrap = document.createElement('div');
+        wrap.innerHTML = html.trim();
+        const tpl = wrap.querySelector('#card-template');
+        if (tpl) document.body.appendChild(tpl);
+        return !!tpl;
+      }catch(e){ console.warn('Card template load failed', e); return false; }
     }
-    // invoke once DOM/i18n are ready (order independent)
-    renderWohnungenCards();
-    document.addEventListener('i18n:ready', renderWohnungenCards);
-    document.addEventListener('component:loaded', renderWohnungenCards);
+
+    function translateAttr(el, key){ el.setAttribute('data-i18n', key); }
+
+    function renderFeatureCards(){
+      const host = document.getElementById('feature-cards');
+      const tpl = document.getElementById('card-template');
+      if (!host || !tpl || host.dataset.rendered) return;
+      const data = [
+        { icon: 'fa-bed', title: 'home.features.komfort.title', text: 'home.features.komfort.text' },
+        { icon: 'fa-location-dot', title: 'home.features.zentral.title', text: 'home.features.zentral.text' },
+        { icon: 'fa-euro-sign', title: 'home.features.fair.title', text: 'home.features.fair.text' }
+      ];
+      data.forEach(item=>{
+        const variant = tpl.content.querySelector('[data-variant="feature"]').cloneNode(true);
+        const iconEl = variant.querySelector('[data-icon]');
+        iconEl.classList.remove('fa-circle-question');
+        iconEl.classList.add(item.icon);
+        translateAttr(variant.querySelector('[data-title]'), item.title);
+        translateAttr(variant.querySelector('[data-text]'), item.text);
+        const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
+      });
+      host.dataset.rendered = 'true';
+      if (window.applyTranslations) window.applyTranslations(host);
+    }
+
+    function renderWohnungenCards(){
+      const host = document.getElementById('wohnung-list');
+      const tpl = document.getElementById('card-template');
+      if (!host || !tpl || host.dataset.rendered) return;
+      const base = IS_PAGES ? '../' : '';
+      const apartments = Array.from({length:3}).map(()=>({
+        img: base + 'assets/img/sample.svg',
+        alt: 'Wohnungsbild',
+        title: 'wohnungen.card.title',
+        text: 'wohnungen.card.text',
+        btn: 'wohnungen.card.button'
+      }));
+      apartments.forEach(a=>{
+        const variant = tpl.content.querySelector('[data-variant="wohnung"]').cloneNode(true);
+        variant.classList.remove('d-none');
+        const img = variant.querySelector('[data-img]'); img.src = a.img; img.alt = a.alt;
+        translateAttr(variant.querySelector('[data-title]'), a.title);
+        translateAttr(variant.querySelector('[data-text]'), a.text);
+        translateAttr(variant.querySelector('[data-button]'), a.btn);
+        const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
+      });
+      host.dataset.rendered = 'true';
+      if (window.applyTranslations) window.applyTranslations(host);
+    }
+
+    async function renderAllCards(){
+      const ok = await ensureCardTemplate();
+      if (!ok) return;
+      renderFeatureCards();
+      renderWohnungenCards();
+    }
+
+    renderAllCards();
+    document.addEventListener('i18n:ready', renderAllCards);
+    document.addEventListener('component:loaded', renderAllCards);
 
     // Language switcher in header
     function updateLangIndicator(){
