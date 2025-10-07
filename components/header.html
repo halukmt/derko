@@ -17,31 +17,20 @@
   <li class="nav-item"><a class="nav-link" id="nav-kontakt" href="kontakt.html">Kontakt</a></li>
         <li class="nav-item dropdown ms-lg-3">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="me-2" id="current-lang-label">DE</span>
-            <span id="current-lang-flag" aria-hidden="true"></span>
+            <span id="current-lang-label" class="visually-hidden" aria-live="polite">DE</span>
+            <span id="current-lang-flag" class="flag-icon" aria-hidden="true"></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
               <button class="dropdown-item d-flex align-items-center" type="button" data-lang="de">
-                <svg width="18" height="12" viewBox="0 0 5 3" aria-hidden="true">
-                  <rect width="5" height="1" y="0" fill="#000"/>
-                  <rect width="5" height="1" y="1" fill="#DD0000"/>
-                  <rect width="5" height="1" y="2" fill="#FFCE00"/>
-                </svg>
-                <span class="ms-2">Deutsch</span>
+                <span class="flag-icon me-2"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-de-mask"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-de-mask)"><path fill="#000" d="M0 0h24v24H0z"/><path fill="#DD0000" d="M0 8h24v16H0z"/><path fill="#FFCE00" d="M0 16h24v8H0z"/></g></svg></span>
+                <span>Deutsch</span>
               </button>
             </li>
             <li>
               <button class="dropdown-item d-flex align-items-center" type="button" data-lang="en">
-                <svg width="18" height="12" viewBox="0 0 60 30" aria-hidden="true">
-                  <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
-                  <path d="M0,0 v30 h60 v-30 z" fill="#01247d"/>
-                  <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-                  <path d="M0,0 L60,30 M60,0 L0,30" stroke="#c8102e" stroke-width="4" clip-path="url(#t)"/>
-                  <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-                  <path d="M30,0 v30 M0,15 h60" stroke="#c8102e" stroke-width="6" clip-path="url(#t)"/>
-                </svg>
-                <span class="ms-2">English</span>
+                <span class="flag-icon me-2"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#01247d"/><path stroke="#fff" stroke-width="4" d="M0 12h24M12 0v24"/><path stroke="#c8102e" stroke-width="2.5" d="M0 12h24M12 0v24"/><path stroke="#fff" stroke-width="4" d="M3 3l18 18M21 3L3 21"/><path stroke="#c8102e" stroke-width="2.5" d="M3 3l18 18M21 3L3 21"/></svg></span>
+                <span>English</span>
               </button>
             </li>
           </ul>

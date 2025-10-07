@@ -4,24 +4,68 @@ Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentier
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
-## [0.2.1] - 2025-10-06
+## [v0.4.0] - 2025-10-07
+### Added
+- Verschachtelte Sprachstruktur `lang/<code>/<code>.json` mit Fallback-Erkennung.
+- Externe HTML-Partials für Rechtstexte (`lang/de/*.html`, `lang/en/*.html`) via `data-i18n-html`.
+- Englische Sprache (JSON + AGB / Imprint / Privacy Partials).
+- Dropdown-Sprachumschalter mit dynamischer Flagge & Screenreader-Label.
+- Runde SVG-Flaggen (DE/EN) + Styling (`.flag-icon`).
+- Typografie-/Layout-Stile für Rechtstexte (`.legal-content`, `container-narrow`).
+
+### Changed
+- `lang.js`: erweiterter Sanitizer (Block-Tags), Partial-Loader mit Cache, strukturpräferenzbasierte Lade-Reihenfolge.
+- Sprachlade-Strategie reduziert 404-Rauschen durch Kandidaten-Iteration & gespeicherte Präferenz.
+- Komponenten-Injection triggert sofortiges Re-Apply der Übersetzungen.
+- Sprachlabel im Toggle visuell entfernt (nur Flagge sichtbar, Text bleibt für A11y).
+
+### Fixed
+- Verhindert wiederholte 404 beim Laden nicht vorhandener Sprachdateien.
+- Fehlertoleranter Umgang mit fehlenden/leerem Partials (Warnung statt Abbruch).
+
+### Security / Hardening
+- Sanitizing auch für geladene HTML-Partials angewandt (gleiche Whitelist wie Inline-Übersetzungen).
+
+### Developer Experience
+- Großtexte ausgelagert -> bessere Wartbarkeit & Diffbarkeit.
+
+### Migration Notes
+- Frühere Root-`de.json` kann entfernt werden, wenn ausschließlich verschachtelte Struktur genutzt wird.
+- Weitere Sprachen: Ordner + JSON + Partials + Eintrag im Dropdown genügen.
+
+### Known Follow-Ups (nicht enthalten)
+- SEO Prerender der Rechtstexte.
+- Aktive Sprache im Dropdown visuell hervorheben (Häkchen / aria-current).
+
+
+## [v0.3.1] - 2025-10-06
+### Added
+-
+
+### Changed
+-
+
+### Fixed
+- Valid PNG icons to resolve manifest error
+
+## [v0.3.0] - 2025-10-06
+### Added
+-
+
+### Changed
+-
+
+### Fixed
+- Canonical root URLs, favicon/manifest enhancements, nav cleanup
+
+## [v0.2.1] - 2025-10-06
 ### Fixed
 - Dupliziertes zweites HTML-Dokument aus `index.html` entfernt (verursachte Browser-Warnung: CSP meta outside head).
 
 ### Security / Hardening
 - Gewährleistet, dass die CSP nur einmal pro Seite im `<head>` definiert ist.
 
-## [1.0.0] - 2025-10-01
-### Added
-- Erste Version, Seitenstruktur angelegt
-
-### Changed
--
-
-### Fixed
--
-
-## [0.2.0] - 2025-10-06
+## [v0.2.0] - 2025-10-06
 ### Added
 - Neues Logo (`logo.svg`) und aktualisiertes Favicon
 - Brand-Farbsystem mit CSS Custom Properties (Primär-/Dark-Farben, Hover/Active, Fokus-Ring)
@@ -45,3 +89,24 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ### Misc
 - Alte Logo/Favicon Dateien als untracked Backups belassen (`logo_OLD.svg`, `favicon_OLD.svg`)
+
+## [v0.1.1] - 2025-10-02
+### Added
+-
+
+### Changed
+-
+
+### Fixed
+- Fehler behoben v0.1.1
+
+
+## [v0.1.0] - 2025-10-01
+### Added
+- Erste Version, Seitenstruktur angelegt
+
+### Changed
+-
+
+### Fixed
+-

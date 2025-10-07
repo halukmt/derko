@@ -1,0 +1,88 @@
+{
+  "site": {
+    "title": "DERKO Real Estate",
+    "description": "Rental of worker rooms and apartments – modern, affordable, central.",
+    "skipToContent": "Skip to content"
+  },
+  "navigation": {
+    "home": "Home",
+    "wohnungen": "Apartments",
+    "ueberUns": "About us",
+    "buchen": "Book",
+    "kontakt": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2025 DERKO Real Estate – All rights reserved",
+    "impressum": "Imprint",
+    "agb": "Terms",
+    "privacy": "Privacy"
+  },
+  "home": {
+    "headline": "Welcome to DERKO Real Estate",
+    "subheadline": "Find comfortable and affordable accommodation for teams and contractors.",
+    "cta": "Book now",
+    "features": {
+      "heading": "Benefits",
+      "komfort": {
+        "title": "Comfort",
+        "text": "Fully equipped apartments with Wi-Fi, kitchen and parking."
+      },
+      "zentral": {
+        "title": "Central",
+        "text": "Good connections for teams – flexible and practical."
+      },
+      "fair": {
+        "title": "Fair",
+        "text": "Transparent pricing and flexible booking options."
+      }
+    }
+  },
+  "wohnungen": {
+    "headline": "Our apartments",
+    "description": "Choose from various accommodations – all fully equipped and centrally located.",
+    "card": {
+      "title": "Sample apartment",
+  "text": "Modern apartment with 3 beds, kitchen, Wi-Fi and parking.",
+      "button": "View details"
+    }
+  },
+  "ueberUns": {
+    "headline": "About us",
+    "description": "We are a young, dynamic company based in Duisburg in the heart of the Ruhr region. Our service covers brokerage, management and valuation of real estate. As a professional partner we also support you with all questions around rental properties. DERKO Real Estate has specialized over recent years in renting worker accommodation and apartments. We continuously work on our portfolio to create more living space and optimal service."
+  },
+  "buchen": {
+    "headline": "Book now",
+    "description": "Please fill out the booking form or contact us directly.",
+    "button": "Start booking",
+    "note": "Note: An external booking tool can be integrated here later."
+  },
+  "kontakt": {
+    "headline": "Contact",
+    "description": "Questions or want to inquire about an apartment? Use the form or call us.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Send"
+    },
+    "validation": {
+      "nameRequired": "Please enter your name.",
+      "emailRequired": "Please enter a valid email.",
+      "phoneInvalid": "Please enter a valid phone number.",
+      "messageRequired": "Please enter a message."
+    }
+  },
+  "agb": {
+    "headline": "Terms & Conditions",
+    "text": "lang/en/en.agb.html"
+  },
+  "impressum": {
+    "headline": "Imprint",
+    "text": "lang/en/en.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Privacy Policy",
+    "text": "lang/en/en.datenschutz.html"
+  }
+}

@@ -4,9 +4,12 @@
   const STATE = { dict: null };
   let CURRENT_LANG = 'de';
 
-  async function loadJSON(url){
+  async function loadJSON(url, throwOnError = true){
     const res = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to load lang file: '+res.status);
+    if (!res.ok){
+      if (throwOnError) throw new Error('Failed to load lang file: '+res.status);
+      return null;
+    }
     return res.json();
   }
 
@@ -166,7 +169,50 @@
       const cacheBuster = isDev ? `?v=${Date.now()}` : '';
   const inPages = location.pathname.includes('/pages/');
   const langBase = inPages ? '../lang/' : 'lang/';
-  STATE.dict = await loadJSON(`${langBase}${CURRENT_LANG}.json${cacheBuster}`);
+      // Determine preferred structure (cached)
+      const structurePrefKey = 'i18nStructure'; // 'nested' | 'flat'
+      let pref = localStorage.getItem(structurePrefKey);
+      // Build candidate list depending on preference (avoid 404s where possible)
+      let candidates;
+      if (pref === 'nested') {
+        candidates = [
+          `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`,
+          `${langBase}${CURRENT_LANG}.json${cacheBuster}`,
+          (location.pathname.includes('/pages/') ? '../' : '') + `${CURRENT_LANG}.json${cacheBuster}`
+        ];
+      } else if (pref === 'flat') {
+        candidates = [
+          `${langBase}${CURRENT_LANG}.json${cacheBuster}`,
+          `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`,
+          (location.pathname.includes('/pages/') ? '../' : '') + `${CURRENT_LANG}.json${cacheBuster}`
+        ];
+      } else {
+        // Unknown -> optimistically try nested first (if exists no 404), then flat, then root fallback
+        candidates = [
+          `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`,
+          `${langBase}${CURRENT_LANG}.json${cacheBuster}`,
+          (location.pathname.includes('/pages/') ? '../' : '') + `${CURRENT_LANG}.json${cacheBuster}`
+        ];
+      }
+      let loaded = null;
+      for (const url of candidates){
+        const data = await loadJSON(url, false);
+        if (data){
+          loaded = data;
+          console.info('[i18n] loaded', url);
+          // store preference if not already known
+          if (!pref){
+            if (url.includes(`/${CURRENT_LANG}/${CURRENT_LANG}.json`)) {
+              localStorage.setItem(structurePrefKey, 'nested');
+            } else if (url.endsWith(`${CURRENT_LANG}.json${cacheBuster}`) && url.includes(`${langBase}${CURRENT_LANG}.json`)) {
+              localStorage.setItem(structurePrefKey, 'flat');
+            }
+          }
+          break;
+        }
+      }
+      if (!loaded) throw new Error('No language JSON found for '+CURRENT_LANG+' (tried: '+candidates.join(', ')+')');
+      STATE.dict = loaded;
       if (!window.__i18nReady) {
         window.__i18nReady = true;
         document.dispatchEvent(new CustomEvent('i18n:ready', { detail: { lang: CURRENT_LANG } }));
