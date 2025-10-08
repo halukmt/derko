@@ -51,7 +51,8 @@
       { icon:'fa-door-closed', k: '.rooms' },
       { icon:'fa-bed', k: '.beds' },
       { icon:'fa-maximize', k: '.area' },
-      { icon:'fa-square-parking', k: '.parking' }
+  { icon:'fa-square-parking', k: '.parking' },
+  { icon:'fa-tag', k: '.price' }
     ];
     metaEl.innerHTML='';
     metaFields.forEach(f=>{

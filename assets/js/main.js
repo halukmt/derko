@@ -288,7 +288,8 @@
           { sel: '[data-rooms]', key: '.rooms' },
             { sel: '[data-beds]', key: '.beds' },
           { sel: '[data-area]', key: '.area' },
-          { sel: '[data-parking]', key: '.parking' }
+          { sel: '[data-parking]', key: '.parking' },
+          { sel: '[data-price]', key: '.price' }
         ];
         detailMap.forEach(m => {
           const el = variant.querySelector(m.sel);

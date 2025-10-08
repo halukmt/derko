@@ -55,6 +55,7 @@
         "beds": "6 Betten",
         "area": "85 m²",
         "parking": "Stellplatz vorhanden",
+  "price": "25 EUR / Gast / Nacht",
         "amenities": [
           "Kostenloses WLAN",
           "Voll ausgestattete Küche",
@@ -74,6 +75,7 @@
         "beds": "4 Betten",
         "area": "60 m²",
         "parking": "Parken auf Anfrage",
+  "price": "ab 23 EUR / Gast / Nacht",
         "amenities": [
           "Schnelles WLAN",
           "2 separate Schlafzimmer",
@@ -93,6 +95,7 @@
         "beds": "5 Betten",
         "area": "90 m²",
         "parking": "Stellplatz verfügbar",
+  "price": "ab 28 EUR / Gast / Nacht",
         "amenities": [
           "WLAN inklusive",
           "Vollausgestattete Küche",
