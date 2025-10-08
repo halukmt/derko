@@ -8,7 +8,7 @@ Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentier
 ### Added
 - Apartment Detail Seite (`pages/wohnung-detail.html`) mit dynamischer Befüllung über `wohnung-detail.js` (Query `?id=`).
 - Kuratiertes Bild-Mapping `assets/data/apartments.json` (verhindert 404 durch Muster-Raten).
-- Responsive Mehrformat-Galerie: AVIF & WebP Varianten (400 / 800 / 1200) via `sharp`-Script `scripts/optimize-images.js`.
+- Responsive Mehrformat-Galerie: AVIF & WebP Varianten (400 / 800 / 1200) via `sharp`-Script `assets/js/optimize-images.js`.
 - Lazy Loading & IntersectionObserver für Galerie-Bilder (gestaffeltes Rendern, INITIAL_LIMIT + "Weitere Bilder" Toggle).
 - JSON-LD Einzelobjekt (`Apartment`) für Detailseite mit dynamisch generierter Bildliste.
 - Hero-Bild Preload (mit `imagesrcset` / `imagesizes`) & `fetchpriority="high"` zur LCP-Verbesserung.

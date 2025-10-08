@@ -4,8 +4,8 @@
   "private": true,
   "description": "DERKO statische Website – Bildoptimierung via sharp",
   "scripts": {
-    "optimize:images": "node scripts/optimize-images.js",
-    "optimize:images:force": "node scripts/optimize-images.js --force"
+  "optimize:images": "node assets/js/optimize-images.js",
+  "optimize:images:force": "node assets/js/optimize-images.js --force"
   },
   "dependencies": {
     "sharp": "^0.33.3"
