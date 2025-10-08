@@ -52,7 +52,7 @@
       { icon:'fa-bed', k: '.beds' },
       { icon:'fa-maximize', k: '.area' },
   { icon:'fa-square-parking', k: '.parking' },
-  { icon:'fa-tag', k: '.price' }
+  { icon:'fa-euro-sign', k: '.price' }
     ];
     metaEl.innerHTML='';
     metaFields.forEach(f=>{
@@ -112,59 +112,41 @@
     } catch(_){ variantsAvailable = false; }
   }
 
-  function buildPictureElement(folder, file, opts={}){
-    // file: e.g. rahm_01.png or main.png
+  function buildPictureElement(folder, file){
+    // Einheitliches Bild: kein Hero, alle gleich groß
     const base = file.replace(/\.png$/,'');
     const widths = [400,800,1200];
     const title = t(prefix + '.title') || key;
     const photoWord = t('wohnungDetail.gallery.photo') || 'Foto';
-    const index = galleryConfig.images.indexOf(file); // 0-based (hero maybe 0)
+    const index = galleryConfig.images.indexOf(file); // 0-based
     const alt = `${title} – ${photoWord} ${index+1}`;
     const img = document.createElement('img');
     img.alt = alt;
-    // Hero kann eager + hohe Priorität erhalten
-    if(opts.hero){
-      img.loading = 'eager';
-      img.setAttribute('fetchpriority','high');
-      // Intrinsische Maße für Stabilität (4:3) – reduziert minimale Layoutverschiebungen
-      img.width = 1200; // Referenzbreite
-      img.height = 900; // 4:3 Höhe
-    } else {
-      img.loading = 'lazy';
-    }
+    img.loading = 'lazy';
     img.decoding='async';
     img.className='img-fluid rounded shadow-sm gallery-img';
     img.setAttribute('data-filename', file);
-    // Fallback immediate src (lazy set later by IO) omitted
     if(!variantsAvailable){
-      // We will lazy set src via data-src later
       img.dataset.src = folder + file;
-      return img; // plain img element
+      return img;
     }
     const picture = document.createElement('picture');
-    // Build srcset strings
     const avifSet = widths.map(w=>`${folder}${base}-${w}.avif ${w}w`).join(', ');
     const webpSet = widths.map(w=>`${folder}${base}-${w}.webp ${w}w`).join(', ');
-    // PNG Set aktuell nicht zwingend benötigt – Browser nutzt <img src> als Fallback
-    const sizes = opts.hero ? '100vw' : '(max-width: 576px) 50vw, (max-width: 992px) 25vw, 200px';
+    const sizes = '(max-width: 576px) 50vw, (max-width: 992px) 25vw, 200px';
     const sAvif = document.createElement('source'); sAvif.type='image/avif'; sAvif.setAttribute('data-srcset', avifSet); sAvif.sizes = sizes;
     const sWebp = document.createElement('source'); sWebp.type='image/webp'; sWebp.setAttribute('data-srcset', webpSet); sWebp.sizes = sizes;
-    // final <img> fallback uses PNG original (unoptimized) until lazy applied
-    img.dataset.src = folder + file; // lazy actual src
-    img.width=400; // hint (will adjust by browser with srcset)
+    img.dataset.src = folder + file;
+    img.width=400; // Basisbreite für Layout-Stabilität
     picture.appendChild(sAvif);
     picture.appendChild(sWebp);
     picture.appendChild(img);
     picture.className='gallery-picture';
-    // Exponiere Sets für Preload (Hero)
-    picture.dataset.avifSet = avifSet;
-    picture.dataset.webpSet = webpSet;
-    picture.dataset.sizes = sizes;
     return picture;
   }
 
   function mountShowMoreButton(total){
-    if(total <= INITIAL_LIMIT+1) return; // +1 hero
+    if(total <= INITIAL_LIMIT) return; // keine Hero-Kompensation mehr
     const container = document.getElementById('apt-gallery');
     const btnWrap = document.createElement('div');
     btnWrap.className='col-12';
@@ -236,46 +218,15 @@
     clearGallery();
     const folder = basePath + key + '/';
     const images = galleryConfig.images.slice();
-    // Hero always first (index 0)
-    const hero = images.shift();
-    if(hero){
-      const col = document.createElement('div'); col.className='col-12';
-      const heroEl = buildPictureElement(folder, hero, { hero:true });
-      if(heroEl.tagName === 'IMG'){ heroEl.classList.add('w-100','mb-2'); }
-      else heroEl.querySelector('img').classList.add('w-100','mb-2');
-      col.appendChild(heroEl); gallery.appendChild(col);
-      // Smart Preload: nur ein Format (AVIF > WebP > PNG) vermeiden doppelte Bytes
-      const preload = document.createElement('link');
-      preload.rel='preload'; preload.as='image';
-      if(variantsAvailable && heroEl.tagName === 'PICTURE'){
-        // Verwende imagesrcset + imagesizes (Chrome Lighthouse bevorzugt)
-        preload.setAttribute('imagesrcset', heroEl.dataset.avifSet + ', ' + heroEl.dataset.webpSet);
-        preload.setAttribute('imagesizes', heroEl.dataset.sizes || '100vw');
-        // Fallback href auf mittlere Größe (800) AVIF
-        const midAvif = (heroEl.dataset.avifSet.split(',').find(s=>s.includes('800w'))||'').trim().split(' ')[0];
-        if(midAvif) preload.href = midAvif; else preload.href = folder+hero;
-      } else {
-        preload.href=folder+hero;
-      }
-      document.head.appendChild(preload);
-      // immediate load hero
-      if(heroEl.tagName==='PICTURE'){
-        applyResponsiveSources(heroEl);
-        const img = heroEl.querySelector('img'); loadImage(img, heroEl);
-      } else {
-        loadImage(heroEl);
-      }
-    }
     const limit = expanded ? images.length : INITIAL_LIMIT;
     images.slice(0, limit).forEach(file => {
       const col = document.createElement('div');
       col.className='col-6 col-md-4 col-lg-3';
       const el = buildPictureElement(folder, file);
       col.appendChild(el); gallery.appendChild(col);
-      const observeTarget = el.tagName==='PICTURE' ? el : el; // either
-      ensureObserver().observe(observeTarget);
+      ensureObserver().observe(el); // Bild oder Picture beobachten
     });
-    mountShowMoreButton(galleryConfig.images.length-1); // minus hero
+    mountShowMoreButton(galleryConfig.images.length);
   }
 
   async function buildGallery(){
