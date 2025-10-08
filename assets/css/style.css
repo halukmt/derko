@@ -233,6 +233,13 @@ footer{
   [data-details] li{ flex:0 1 220px; }
 }
 
+/* Apartment detail meta list: force max 3 columns (1 mobile, 2 tablet, 3 desktop) */
+#apt-meta{ display:grid; grid-template-columns:1fr; }
+@media (min-width:576px){ #apt-meta{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:992px){ #apt-meta{ grid-template-columns:repeat(3,1fr); } }
+/* Override flex-basis from generic rule inside grid context */
+#apt-meta li{ flex:0 0 auto; }
+
 /* ---------------------------------------------
   Social Links (Footer)
   - Circular buttons using brand accent background
