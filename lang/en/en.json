@@ -77,7 +77,21 @@
   },
   "ueberUns": {
     "headline": "About us",
-    "description": "We are a young, dynamic company based in Duisburg in the heart of the Ruhr region. Our service covers brokerage, management and valuation of real estate. As a professional partner we also support you with all questions around rental properties. DERKO Real Estate has specialized over recent years in renting worker accommodation and apartments. We continuously work on our portfolio to create more living space and optimal service."
+    "description": "We are a young, dynamic company based in Duisburg in the heart of the Ruhr region. Our service covers brokerage, management and valuation of real estate. As a professional partner we also support you with all questions around rental properties. <br><br>DERKO Real Estate has specialized over recent years in renting worker accommodation and apartments. We continuously work on our portfolio to create more living space and optimal service.",
+    "cards": {
+      "vorteile": {
+        "title": "Your benefits",
+        "text": "With DERKO worker apartments you live the way you need: central yet quiet; furnished, clean and well-kept; fast booking and flexible rental periods. We offer accommodation for individuals, teams and companies that value quality, comfort and smooth processes. Service for us: as uncomplicated as possible – as individual as necessary."
+      },
+      "wirBieten": {
+        "title": "What we offer",
+        "text": "Modern, fully equipped apartments with kitchen, Wi-Fi, laundry facility and private bathroom – ideal for contractors, tradespeople, commuters or project teams. Suitable solutions from single unit to full team apartment. On request we handle administration and organisation so you can focus on your core business."
+      },
+      "vorgehen": {
+        "title": "Our approach",
+        "text": "Ongoing market analysis and direct cooperation with landlords and companies ensure precise offers. Clear, fast and transparent processes – from inquiry to key handover. Customer satisfaction first: flexible and solution‑oriented for guests and partners."
+      }
+    }
   },
   "buchen": {
     "headline": "Book now",

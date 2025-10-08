@@ -78,7 +78,21 @@
   },
   "ueberUns": {
     "headline": "Über uns",
-    "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. <br><br>DERKO Immobilien hat sich auch in den letzten Jahren auf die Vermietung von Monteurzimmern und Wohnungen spezialisiert. Wir arbeiten ständig an unserem Portfolio und versuchen mehr Wohnraum und optimalen Service zu schaffen."
+    "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. <br><br>DERKO Immobilien hat sich auch in den letzten Jahren auf die Vermietung von Monteurzimmern und Wohnungen spezialisiert. Wir arbeiten ständig an unserem Portfolio und versuchen mehr Wohnraum und optimalen Service zu schaffen.",
+    "cards": {
+      "vorteile": {
+        "title": "Ihre Vorteile",
+        "text": "Mit DERKO Monteurswohnungen wohnen Sie so, wie Sie es brauchen: zentral, aber ruhig gelegen; möbliert, sauber und gepflegt; mit schneller Buchung und flexibler Mietdauer. Wir bieten Unterkünfte für Einzelpersonen, Teams und Firmen, die Wert auf Qualität, Komfort und reibungslose Abläufe legen. Bei uns bedeutet Service: So unkompliziert wie möglich – so individuell wie nötig."
+      },
+      "wirBieten": {
+        "title": "Wir bieten",
+        "text": "Moderne, voll ausgestattete Wohnungen mit Küche, WLAN, Waschmöglichkeit und eigenem Bad – ideal für Handwerker, Monteure, Berufspendler oder Projektteams. Passende Lösungen vom Einzimmerapartment bis zur Teamwohnung. Wir übernehmen auf Wunsch Verwaltung und Organisation, damit Sie sich auf Ihr Kerngeschäft konzentrieren können."
+      },
+      "vorgehen": {
+        "title": "Unsere Vorgehensweise",
+        "text": "Marktanalysen und direkte Zusammenarbeit mit Vermietern und Unternehmen sichern passgenaue Angebote. Klare, schnelle und transparente Prozesse – von der Anfrage bis zur Schlüsselübergabe. Kundenzufriedenheit zuerst: flexibel und lösungsorientiert für Gäste und Partner."
+      }
+    }
   },
   "buchen": {
     "headline": "Jetzt buchen",

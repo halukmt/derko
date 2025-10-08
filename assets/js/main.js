@@ -152,6 +152,32 @@
       if (window.applyTranslations) window.applyTranslations(host);
     }
 
+  // Render about page benefit cards (reuse card.html template variant about-feature)
+  function renderAboutCards(){
+    if (!/ueber-uns\.html$/.test(location.pathname)) return; // Only on about page
+    const host = document.getElementById('about-cards');
+    if (!host || host.dataset.rendered) return;
+    const tpl = document.getElementById('card-template');
+    if (!tpl) return; // template not yet loaded
+      const entries = [
+        { icon: 'fa-circle-check', title: 'ueberUns.cards.vorteile.title', text: 'ueberUns.cards.vorteile.text' },
+        { icon: 'fa-toolbox', title: 'ueberUns.cards.wirBieten.title', text: 'ueberUns.cards.wirBieten.text' },
+        { icon: 'fa-route', title: 'ueberUns.cards.vorgehen.title', text: 'ueberUns.cards.vorgehen.text' }
+      ];
+      entries.forEach(item => {
+        const node = tpl.content.querySelector('[data-variant="about-feature"]').cloneNode(true);
+        node.classList.remove('d-none');
+        const iconEl = node.querySelector('[data-icon]');
+        iconEl.classList.remove('fa-circle-question');
+        iconEl.classList.add(item.icon);
+        translateAttr(node.querySelector('[data-title]'), item.title);
+        translateAttr(node.querySelector('[data-text]'), item.text);
+        const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(node); host.appendChild(col);
+      });
+      host.dataset.rendered = 'true';
+      if (window.applyTranslations) window.applyTranslations(host);
+  }
+
   // Enriched JSON-LD builder extracting structured apartment facts (rooms, beds, area, parking)
   function buildWohnungenJSONLD(){
       const host = document.getElementById('wohnung-list');
@@ -287,6 +313,7 @@
     }
 
     renderAllCards();
+    renderAboutCards();
   document.addEventListener('i18n:ready', function(){ renderAllCards(); buildWohnungenJSONLD(); });
   document.addEventListener('component:loaded', function(){ renderAllCards(); buildWohnungenJSONLD(); });
   document.addEventListener('i18n:changed', buildWohnungenJSONLD);
