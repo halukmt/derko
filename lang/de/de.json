@@ -15,7 +15,9 @@
     "copyright": "© 2025 DERKO Immobilien – alle Rechte vorbehalten",
     "impressum": "Impressum",
     "agb": "AGB",
-    "privacy": "Datenschutz"
+    "privacy": "Datenschutz",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "home": {
     "headline": "Willkommen bei DERKO Immobilien",
@@ -44,7 +46,7 @@
     "cards": {
       "rahm": {
         "title": "Wohnung Rahm",
-        "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
+        "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche.",
         "button": "Details ansehen",
         "city": "Duisburg-Rahm",
         "rooms": "3 Zimmer",
@@ -64,7 +66,7 @@
       },
       "bonn": {
         "title": "Wohnung Bonn",
-        "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche und schneller Anbindung.",
+        "text": "Geräumige Unterkunft mit mehreren Betten, voll ausgestatteter Küche.",
         "button": "Details ansehen",
         "city": "Bonn",
         "rooms": "3 Zimmer",

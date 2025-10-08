@@ -196,6 +196,18 @@ footer{
 [data-details] li i{ width:1.1rem; text-align:center; line-height:1.1; flex:0 0 1.1rem; margin-top:2px; }
 [data-details] span{ flex:1 1 auto; }
 
+/* ---------------------------------------------
+  Social Links (Footer)
+  - Circular buttons using brand accent background
+  - Accessible (focus ring, hidden label spans)
+---------------------------------------------- */
+.social-links{ gap:.75rem; }
+.social-links .social-link{ display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:50%; background:var(--brand-light-bg); border:1px solid var(--brand-border); color:var(--brand-primary); position:relative; transition: background .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease; }
+.social-links .social-link:focus-visible{ outline:none; box-shadow: var(--focus-ring); }
+.social-links .social-link:hover, .social-links .social-link:focus{ background:var(--brand-primary); color:#fff; text-decoration:none; }
+.social-links .social-link:active{ transform:translateY(1px); }
+.social-links i{ font-size:1.25rem; }
+
 /* Forms */
 .form-label{ font-weight: 600; }
 

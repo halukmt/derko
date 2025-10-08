@@ -1,10 +1,24 @@
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.6.1] - 2025-10-08
+### Added
+- Social Media Icons (Instagram, Facebook) im Footer mit zugänglichen Labels & sicheren externen Links (`rel="noopener noreferrer external"`).
+- `sameAs` Verweise (Instagram, Facebook) im `WebSite.publisher` JSON-LD zur SEO-Anreicherung (Knowledge Panel / Entity Linking).
+
+### Styling
+- Runde, fokusierbare Icon-Buttons (`.social-links .social-link`) mit Hover-, Focus- & Active-State.
+
+### i18n
+- Neue Keys `footer.instagram`, `footer.facebook` (versteckte Beschriftung für Screenreader / SEO semantisch korrekt).
+
+### Notes
+- Optionaler nächster Schritt: Wiederverwendung des `sameAs` Blocks auf Unterseiten oder Umstellung aller relativen JSON-LD URLs auf absolute Domain-URLs.
+
 
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
-## [v0.6.0] - 2025-10-08
+## [v0.6.0] - 2025-10-08a
 ### Added
 - Dynamische mehrfache Wohnungs-Cards über `data-cards` Attribut in `pages/wohnungen.html` (Schlüsselstruktur `wohnungen.cards.<key>.*`).
 - Automatische JSON-LD Generierung für alle Apartments (Schema.org `CollectionPage` + `Apartment` Einträge) nach erfolgreicher Übersetzungsanwendung.
