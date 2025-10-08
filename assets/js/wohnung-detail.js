@@ -53,8 +53,8 @@
     metaFields.forEach(f=>{
       const val = t(prefix+f.k);
       if(!val) return;
-      const li = document.createElement('li');
-      li.className='d-flex align-items-start gap-2 mb-1';
+  const li = document.createElement('li');
+  // Einheitliches Layout über globales CSS ([data-details]) – keine Bootstrap Utility Klassen nötig
       li.innerHTML = '<i class="fa-solid '+f.icon+'" aria-hidden="true"></i><span></span>';
       li.querySelector('span').textContent = val;
       metaEl.appendChild(li);

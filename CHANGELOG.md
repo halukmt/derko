@@ -1,5 +1,49 @@
+Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
+und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
+
+
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.6.2] - 2025-10-08
+### Added
+- Apartment Detail Seite (`pages/wohnung-detail.html`) mit dynamischer Befüllung über `wohnung-detail.js` (Query `?id=`).
+- Kuratiertes Bild-Mapping `assets/data/apartments.json` (verhindert 404 durch Muster-Raten).
+- Responsive Mehrformat-Galerie: AVIF & WebP Varianten (400 / 800 / 1200) via `sharp`-Script `scripts/optimize-images.js`.
+- Lazy Loading & IntersectionObserver für Galerie-Bilder (gestaffeltes Rendern, INITIAL_LIMIT + "Weitere Bilder" Toggle).
+- JSON-LD Einzelobjekt (`Apartment`) für Detailseite mit dynamisch generierter Bildliste.
+- Hero-Bild Preload (mit `imagesrcset` / `imagesizes`) & `fetchpriority="high"` zur LCP-Verbesserung.
+- Skip-Link auch auf Detailseite.
+
+### Changed
+- Vereinheitlichter Head (Favicons, Manifest, Preconnect, Fonts) zwischen Index- und Detailseite.
+- Alle Asset-Pfade auf absolute Varianten (`/assets/...`) um Layoutdrift & Pfadprobleme zu vermeiden.
+- Breadcrumb Styling konsistent (Divider ›, Farben gem. Brand, Unterstreichung nur Hover/Focus).
+- Meta-Detail-Liste neu als flexibles, mehrspaltiges Responsive Layout (größere Icons, zentrierte Ausrichtung, einheitliche Abstände).
+- Globale i18n-Funktion `translateKey` exportiert, damit Detailskript Keys auflösen kann.
+
+### Fixed
+- Horizontaler Layout-Versatz (Scrollbar / Font-Ladeeffekte) durch dauerhafte Scrollbar-Reserve & vereinheitlichte Ressourcenreihenfolge minimiert.
+- Fehlende Übersetzungen auf der Detailseite (fehlendes `translateKey`) behoben.
+- Unnötiger PNG Hero Preload ersetzt durch formatbewussten Preload (verhindert Lighthouse Warnung "preloaded but not used").
+
+### Performance
+- Reduzierter Erst-Download für Bilder durch moderne Formate & abgestufte Größen.
+- Eager Hero + verzögerte restliche Galerie reduziert LCP & TBT.
+- Kein 404-Rauschen mehr durch spekulative Dateinamen.
+
+### Developer Experience
+- Bildoptimierung reproduzierbar über `npm run optimize:images` / `npm run optimize:images:force`.
+- Galerie-Rendering klar strukturiert (Build-Funktionen: `detectVariants`, `buildPictureElement`, `renderImages`, `buildJSONLD`).
+- Diagnose-/Layout-Debug Code hinzugefügt und anschließend entfernt (sauberer Produktionszustand).
+
+### Security / Hardening
+- Strikte CSP unverändert eingehalten (keine Inline-Skripte ergänzt, Preload via DOM API eingefügt).
+
+### Notes / Follow-Ups
+- Optional: Lightbox / Keyboard Navigation für Galerie.
+- Dynamische OG / Meta Description je Apartment (aktuell generisch via Übersetzungstitel + Text möglich).
+- Potenzielles Purging von unbenutzten Bootstrap CSS Klassen zur weiteren Performance-Verbesserung.
+
 ## [v0.6.1] - 2025-10-08
 ### Added
 - Social Media Icons (Instagram, Facebook) im Footer mit zugänglichen Labels & sicheren externen Links (`rel="noopener noreferrer external"`).
@@ -13,10 +57,6 @@ Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentier
 
 ### Notes
 - Optionaler nächster Schritt: Wiederverwendung des `sameAs` Blocks auf Unterseiten oder Umstellung aller relativen JSON-LD URLs auf absolute Domain-URLs.
-
-
-Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
-und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ## [v0.6.0] - 2025-10-08a
 ### Added

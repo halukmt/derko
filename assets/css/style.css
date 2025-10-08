@@ -191,10 +191,37 @@ footer{
 .card img{ object-fit: cover; height: 200px; }
 
 /* Apartment details list (icons + text uniform alignment) */
-[data-details]{ margin:0 0 .75rem; padding:0; }
-[data-details] li{ display:flex; align-items:flex-start; gap:.5rem; line-height:1.3; }
-[data-details] li i{ width:1.1rem; text-align:center; line-height:1.1; flex:0 0 1.1rem; margin-top:2px; }
-[data-details] span{ flex:1 1 auto; }
+[data-details]{
+  margin:0 0 1rem;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem 1.25rem; /* row gap / column gap */
+  font-size:.95rem; /* slightly larger text */
+}
+[data-details] li{
+  display:flex;
+  align-items:center; /* vertical center alignment */
+  gap:.7rem;
+  line-height:1.3;
+  flex:0 1 200px; /* allow wrapping into columns */
+  margin:0;
+}
+[data-details] li i{
+  width:1.75rem;
+  flex:0 0 1.75rem;
+  text-align:center;
+  line-height:1; /* tight so glyph sits optically centered */
+  font-size:1.6rem; /* bigger icon */
+  margin-top:0; /* remove previous optical nudge */
+  color: var(--brand-primary);
+}
+[data-details] span{ flex:1 1 auto; font-weight:500; display:flex; align-items:center; }
+@media (min-width:768px){
+  [data-details]{ gap:.85rem 1.75rem; }
+  [data-details] li{ flex:0 1 220px; }
+}
 
 /* ---------------------------------------------
   Social Links (Footer)
