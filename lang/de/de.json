@@ -5,7 +5,7 @@
     "skipToContent": "Zum Inhalt springen"
   },
   "navigation": {
-    "home": "Home",
+    "home": "Start",
     "wohnungen": "Wohnungen",
     "ueberUns": "Über uns",
     "buchen": "Buchen",
@@ -121,7 +121,7 @@
     "backHome": "Zur Startseite"
   },
   "wohnungDetail": {
-    "headline": "Wohnung",
+    "headline": "Wohnung Details",
     "cta": "Jetzt buchen",
     "gallery": {
       "showMore": "Weitere Bilder anzeigen",
