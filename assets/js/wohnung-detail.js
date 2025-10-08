@@ -100,7 +100,7 @@
   // State
   let galleryConfig = null; // { images: [...] }
   let variantsAvailable = false; // determined once
-  const INITIAL_LIMIT = 6; // images (excluding hero) to render initially
+  const INITIAL_LIMIT = 4; // initial images to render before "Weitere Bilder anzeigen"
   let expanded = false;
 
   // Detect if optimized variants exist (checks one AVIF sample: main-400.avif)
