@@ -205,6 +205,10 @@ footer{
 .social-links .social-link{ display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:50%; background:var(--brand-light-bg); border:1px solid var(--brand-border); color:var(--brand-primary); position:relative; transition: background .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease; }
 .social-links .social-link:focus-visible{ outline:none; box-shadow: var(--focus-ring); }
 .social-links .social-link:hover, .social-links .social-link:focus{ background:var(--brand-primary); color:#fff; text-decoration:none; }
+/* Force icon glyphs to invert (white) on interactive states overriding global icon color rule */
+.social-links .social-link:hover i,
+.social-links .social-link:focus i,
+.social-links .social-link:active i{ color:#fff !important; }
 .social-links .social-link:active{ transform:translateY(1px); }
 .social-links i{ font-size:1.25rem; }
 @media (min-width:768px){
