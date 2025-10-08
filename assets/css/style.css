@@ -315,4 +315,19 @@ html{ scrollbar-gutter: stable; }
 /* Erzwinge immer vertikale Scrollbar (auch wenn Inhalt kurz) um horizontales Springen zu vermeiden */
 body{ overflow-y: scroll; }
 
+/* Founders figure styling */
+.founders-figure { max-width: 960px; margin-left:auto; margin-right:auto; }
+.founders-img { object-fit: cover; border:1px solid var(--brand-border); }
+
+/* --------------------------------------------------
+  About Feature Cards Bullet Icon List
+  - Replaces default bullets with brand-colored check icons
+  - More generous vertical rhythm for readability
+-------------------------------------------------- */
+.about-feature-list{ list-style:none; margin:0; padding:0; }
+.about-feature-list li{ display:flex; align-items:flex-start; gap:.6rem; line-height:1.45; margin:0 0 .55rem; }
+.about-feature-list li:last-child{ margin-bottom:0; }
+.about-feature-list li i{ font-size:.9rem; line-height:1; margin-top:.3rem; color: var(--brand-primary); }
+.about-feature-list li span{ flex:1 1 auto; }
+
 

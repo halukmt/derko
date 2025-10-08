@@ -112,7 +112,52 @@
     textNodes.forEach(el => {
       const key = el.getAttribute('data-i18n');
       const val = getByPath(STATE.dict, key);
-      if (typeof val === 'string') setText(el, val);
+      if (typeof val === 'string') {
+        setText(el, val);
+      } else if (Array.isArray(val)) {
+        // Render arrays as bullet lists (<ul><li>)
+        while (el.firstChild) el.removeChild(el.firstChild); // clear
+        const isAboutFeature = !!el.closest('[data-variant="about-feature"]');
+        const ul = document.createElement('ul');
+        if (isAboutFeature){
+          ul.className = 'about-feature-list';
+        } else {
+          ul.className = 'mb-0 ps-3';
+        }
+        val.forEach(entry => {
+          const li = document.createElement('li');
+          if (isAboutFeature){
+            // Add icon for about-feature variant
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-check';
+            icon.setAttribute('aria-hidden','true');
+            li.appendChild(icon);
+            const span = document.createElement('span');
+            if (typeof entry === 'string') {
+              if (entry.indexOf('<') !== -1 && entry.indexOf('>') !== -1){
+                span.innerHTML = sanitizeHtml(entry);
+              } else {
+                span.textContent = entry;
+              }
+            } else {
+              span.textContent = String(entry);
+            }
+            li.appendChild(span);
+          } else {
+            if (typeof entry === 'string') {
+              if (entry.indexOf('<') !== -1 && entry.indexOf('>') !== -1){
+                li.innerHTML = sanitizeHtml(entry);
+              } else {
+                li.textContent = entry;
+              }
+            } else {
+              li.textContent = String(entry);
+            }
+          }
+          ul.appendChild(li);
+        });
+        el.appendChild(ul);
+      }
     });
     // Rich HTML (block-level) content placeholders
     const htmlNodes = root.querySelectorAll('[data-i18n-html]');
@@ -133,6 +178,13 @@
       const key = el.getAttribute('data-i18n-meta');
       const val = getByPath(STATE.dict, key);
       if (typeof val === 'string') setText(el, val);
+    });
+    // Alt attribute translations (e.g., founders image)
+    const altNodes = root.querySelectorAll('[data-i18n-alt]');
+    altNodes.forEach(el => {
+      const key = el.getAttribute('data-i18n-alt');
+      const val = getByPath(STATE.dict, key);
+      if (typeof val === 'string') el.setAttribute('alt', val.replace(/<[^>]*>/g,''));
     });
     // Navigation labels on header component
     const navMap = {

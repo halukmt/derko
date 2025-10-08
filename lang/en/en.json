@@ -9,7 +9,7 @@
     "wohnungen": "Apartments",
     "ueberUns": "About us",
     "buchen": "Book",
-    "kontakt": "Contact"
+    "kontakt": "Offer"
   },
   "footer": {
     "copyright": "© 2025 DERKO Real Estate – All rights reserved",
@@ -78,18 +78,37 @@
   "ueberUns": {
     "headline": "About us",
     "description": "We are a young, dynamic company based in Duisburg in the heart of the Ruhr region. Our service covers brokerage, management and valuation of real estate. As a professional partner we also support you with all questions around rental properties. <br><br>DERKO Real Estate has specialized over recent years in renting worker accommodation and apartments. We continuously work on our portfolio to create more living space and optimal service.",
+    "founders": {
+      "alt": "Founders Eray and Koray of DERKO Real Estate",
+      "caption": "Eray & Koray – founders of DERKO Real Estate"
+    },
     "cards": {
       "vorteile": {
         "title": "Your benefits",
-        "text": "With DERKO worker apartments you live the way you need: central yet quiet; furnished, clean and well-kept; fast booking and flexible rental periods. We offer accommodation for individuals, teams and companies that value quality, comfort and smooth processes. Service for us: as uncomplicated as possible – as individual as necessary."
+        "text": [
+          "Central yet quiet locations and apartments",
+          "Furnished, clean and well‑kept rooms",
+          "Fast booking and flexible rental periods",
+          "For individuals, teams and companies"
+        ]
       },
       "wirBieten": {
-        "title": "What we offer",
-        "text": "Modern, fully equipped apartments with kitchen, Wi-Fi, laundry facility and private bathroom – ideal for contractors, tradespeople, commuters or project teams. Suitable solutions from single unit to full team apartment. On request we handle administration and organisation so you can focus on your core business."
+        "title": "Our objects",
+        "text": [
+          "Modern, fully equipped units (kitchen, Wi‑Fi, laundry, private bath)",
+          "Solutions from single studio to full team apartment",
+          "For contractors, tradespeople, commuters and project teams",
+          "Optional administration and organisation on request"
+        ]
       },
       "vorgehen": {
-        "title": "Our approach",
-        "text": "Ongoing market analysis and direct cooperation with landlords and companies ensure precise offers. Clear, fast and transparent processes – from inquiry to key handover. Customer satisfaction first: flexible and solution‑oriented for guests and partners."
+        "title": "Common approach",
+        "text": [
+            "Contact us and fill out the inquiry form",
+            "We will get back to you with a suitable offer",
+            "You confirm our offer and sign the rental agreement",
+            "We hand over the keys and wish you a pleasant stay"
+        ]
       }
     }
   },
@@ -100,7 +119,7 @@
     "note": "Note: An external booking tool can be integrated here later."
   },
   "kontakt": {
-    "headline": "Contact",
+    "headline": "Offer",
     "description": "Questions or want to inquire about an apartment? Use the form or call us.",
     "form": {
       "name": "Name",

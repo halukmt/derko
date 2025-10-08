@@ -310,10 +310,10 @@
       if (!ok) return;
       renderFeatureCards();
       renderWohnungenCards();
+      // Also render about page cards after template is guaranteed to be present
+      renderAboutCards();
     }
-
     renderAllCards();
-    renderAboutCards();
   document.addEventListener('i18n:ready', function(){ renderAllCards(); buildWohnungenJSONLD(); });
   document.addEventListener('component:loaded', function(){ renderAllCards(); buildWohnungenJSONLD(); });
   document.addEventListener('i18n:changed', buildWohnungenJSONLD);

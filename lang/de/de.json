@@ -9,7 +9,7 @@
     "wohnungen": "Wohnungen",
     "ueberUns": "Über uns",
     "buchen": "Buchen",
-    "kontakt": "Kontakt"
+    "kontakt": "Angebot"
   },
   "footer": {
     "copyright": "© 2025 DERKO Immobilien – alle Rechte vorbehalten",
@@ -79,18 +79,37 @@
   "ueberUns": {
     "headline": "Über uns",
     "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. <br><br>DERKO Immobilien hat sich auch in den letzten Jahren auf die Vermietung von Monteurzimmern und Wohnungen spezialisiert. Wir arbeiten ständig an unserem Portfolio und versuchen mehr Wohnraum und optimalen Service zu schaffen.",
+    "founders": {
+      "alt": "Die Gründer Eray und Koray von DERKO Immobilien",
+      "caption": "Eray & Koray – Gründer von DERKO Immobilien"
+    },
     "cards": {
       "vorteile": {
         "title": "Ihre Vorteile",
-        "text": "Mit DERKO Monteurswohnungen wohnen Sie so, wie Sie es brauchen: zentral, aber ruhig gelegen; möbliert, sauber und gepflegt; mit schneller Buchung und flexibler Mietdauer. Wir bieten Unterkünfte für Einzelpersonen, Teams und Firmen, die Wert auf Qualität, Komfort und reibungslose Abläufe legen. Bei uns bedeutet Service: So unkompliziert wie möglich – so individuell wie nötig."
+        "text": [
+          "Zentral aber ruhig gelegene Standorte und Wohnungen ",
+          "Möblierte, saubere und gepflegte Zimmer",
+          "Schnelle Buchung und flexible Mietdauer",
+          "Für Einzelpersonen, Teams und Firmen geignet"
+        ]
       },
       "wirBieten": {
-        "title": "Wir bieten",
-        "text": "Moderne, voll ausgestattete Wohnungen mit Küche, WLAN, Waschmöglichkeit und eigenem Bad – ideal für Handwerker, Monteure, Berufspendler oder Projektteams. Passende Lösungen vom Einzimmerapartment bis zur Teamwohnung. Wir übernehmen auf Wunsch Verwaltung und Organisation, damit Sie sich auf Ihr Kerngeschäft konzentrieren können."
+        "title": "Unsere Objekte",
+        "text": [
+          "Moderne, voll ausgestattete Wohnungen (Küche, WLAN, Waschmöglichkeit, Bad)",
+          "Lösungen vom Einzimmerapartment bis zur Teamwohnung",
+          "Unterkünfte für Handwerker, Monteure, Pendler und Projektteams",
+          "Optionale Verwaltung und Organisation für Entlastung"
+        ]
       },
       "vorgehen": {
-        "title": "Unsere Vorgehensweise",
-        "text": "Marktanalysen und direkte Zusammenarbeit mit Vermietern und Unternehmen sichern passgenaue Angebote. Klare, schnelle und transparente Prozesse – von der Anfrage bis zur Schlüsselübergabe. Kundenzufriedenheit zuerst: flexibel und lösungsorientiert für Gäste und Partner."
+        "title": "Gemeinsame Vorgehensweise",
+        "text": [
+          "Kontaktieren Sie uns und füllen Sie das Angebotsformular aus",
+          "Wir melden uns bei Ihnen mit einem passenden Angebot",
+          "Sie bestätigen das unser Angebot und unterzeichnen den Mietvertrag",
+          "Wir übergeben die Schlüssel und wünschen einen angenehmen Aufenthalt"
+        ]
       }
     }
   },
@@ -101,7 +120,7 @@
     "note": "Hinweis: Hier kann später ein externes Buchungstool integriert werden."
   },
   "kontakt": {
-    "headline": "Kontakt",
+    "headline": "Angebot",
     "description": "Sie haben Fragen oder möchten eine Wohnung anfragen? Nutzen Sie das Formular oder rufen Sie uns an.",
     "form": {
       "name": "Name",
