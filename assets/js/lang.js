@@ -17,6 +17,14 @@
     return path.split('.').reduce((o,k)=> (o && k in o) ? o[k] : undefined, obj);
   }
 
+  // Public helper for other scripts (e.g., wohnung-detail.js) to synchronously
+  // fetch a translation string by key. Returns '' if not loaded or not a string.
+  window.translateKey = function(key){
+    if(!STATE.dict || !key) return '';
+    const val = getByPath(STATE.dict, key);
+    return (typeof val === 'string') ? val : '';
+  };
+
   // Very small sanitizer: allow a limited set of inline / simple block tags so that
   // translations can contain <br>, emphasis, simple lists, links etc. without risking XSS.
   // You control the JSON files, so this is mostly defensive against accidents.
