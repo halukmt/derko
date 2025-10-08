@@ -158,13 +158,24 @@
       "email": "Email",
       "phone": "Phone",
       "message": "Message",
+      "dateFrom": "Date from",
+      "dateTo": "Date to",
+      "topic": "Topic",
+      "topicBooking": "Booking inquiry",
+      "topicOther": "Other questions",
+      "apartment": "Apartment",
+      "apartmentPlaceholder": "(optional) Select apartment",
+      "persons": "Number of persons",
+      "personsPlaceholder": "(optional)",
+      "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions.",
       "submit": "Send"
     },
     "validation": {
       "nameRequired": "Please enter your name.",
       "emailRequired": "Please enter a valid email.",
       "phoneInvalid": "Please enter a valid phone number.",
-      "messageRequired": "Please enter a message."
+      "messageRequired": "Please enter a message.",
+      "privacyRequired": "Please accept to store your details."
     }
   },
   "agb": {
