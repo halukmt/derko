@@ -9,6 +9,8 @@
 :root{
   --brand-primary: #B69B5C;
   --brand-dark: #505C61;
+  /* Section spacing token for apartment detail vertical rhythm */
+  --section-spacing: 3rem;
   /* Derived brand tokens */
   --brand-primary-rgb: 182,155,92;
   --brand-dark-rgb: 80,92,97;
@@ -152,6 +154,14 @@ i.text-primary { color: var(--brand-primary) !important; }
 
 /* Default color for all icons (Font Awesome, etc.) */
 i[class*="fa-"] { color: var(--brand-primary); }
+
+/* Composed brand coloring */
+.navbar-brand .brand-composed{ display:inline-flex; gap:.4ch; align-items:baseline; font-weight:600; font-size:1.15rem; }
+.navbar-brand .brand-main{ color: var(--brand-dark); font-weight:700; letter-spacing:.5px; }
+.navbar-brand .brand-sub{ color: var(--brand-primary); font-weight:600; }
+@media (min-width: 992px){
+  .navbar-brand .brand-composed{ font-size:1.25rem; }
+}
 
 /* Table accents (if used) */
 table.table thead th { border-bottom: 2px solid var(--brand-primary); }
@@ -329,5 +339,31 @@ body{ overflow-y: scroll; }
 .about-feature-list li:last-child{ margin-bottom:0; }
 .about-feature-list li i{ font-size:.9rem; line-height:1; margin-top:.3rem; color: var(--brand-primary); }
 .about-feature-list li span{ flex:1 1 auto; }
+
+/* --------------------------------------------------
+  Apartment Detail: Larger Vertical Spacing Between Sections
+  Targets only detail page section IDs to avoid global impact
+-------------------------------------------------- */
+#apt-meta-section,
+#apt-amenities,
+#apt-description { margin-bottom: var(--section-spacing) !important; }
+#apt-gallery { margin-bottom: var(--section-spacing) !important; }
+#apt-meta-section + #apt-amenities { margin-top: calc(var(--section-spacing) * .25); }
+#apt-amenities + #apt-description { margin-top: calc(var(--section-spacing) * .25); }
+#apt-description + #apt-gallery { margin-top: calc(var(--section-spacing) * .25); }
+
+
+/* --------------------------------------------------
+  Amenities List (Apartment Detail)
+  - Two column on >=576px
+  - Check icon consistent with brand
+-------------------------------------------------- */
+#apt-amenities .amenities-list{ list-style:none; padding:0; margin:0; }
+#apt-amenities .amenities-list .amenity-item{ display:flex; align-items:flex-start; gap:.55rem; margin:0 0 .45rem; }
+#apt-amenities .amenities-list .amenity-item i{ font-size:.85rem; margin-top:.35rem; color: var(--brand-primary); }
+@media (min-width:576px){
+  #apt-amenities .amenities-list{ column-count:3; column-gap:2rem; }
+  #apt-amenities .amenities-list .amenity-item{ break-inside:avoid; }
+}
 
 

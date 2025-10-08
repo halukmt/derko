@@ -24,6 +24,11 @@
     const val = getByPath(STATE.dict, key);
     return (typeof val === 'string') ? val : '';
   };
+  // Raw access (arrays / objects) -- used for amenities etc.
+  window.translateRaw = function(key){
+    if(!STATE.dict || !key) return undefined;
+    return getByPath(STATE.dict, key);
+  };
 
   // Very small sanitizer: allow a limited set of inline / simple block tags so that
   // translations can contain <br>, emphasis, simple lists, links etc. without risking XSS.

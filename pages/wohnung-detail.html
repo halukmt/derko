@@ -47,7 +47,18 @@
             </nav>
             <h1 class="mb-3" id="apt-title"></h1>
             <p class="lead" id="apt-text"></p>
-            <ul class="list-unstyled mb-4 small" id="apt-meta" aria-label="Details" data-details></ul>
+            <section class="mb-4" id="apt-meta-section">
+              <h2 class="h5 mb-3 strong" data-i18n="wohnungDetail.meta.title"></h2>
+              <ul class="list-unstyled mb-4 small" id="apt-meta" aria-label="Details" data-details></ul>
+            </section>
+            <section class="mb-4" id="apt-amenities" hidden>
+              <h2 class="h5 mb-3" data-i18n="wohnungDetail.amenities.title"></h2>
+              <ul class="amenities-list" id="apt-amenities-list" aria-label="Ausstattung"></ul>
+            </section>
+            <section class="mb-4" id="apt-description" hidden>
+              <h2 class="h5 mb-3" data-i18n="wohnungDetail.description.title"></h2>
+              <div id="apt-description-body" data-description></div>
+            </section>
             <div id="apt-gallery" class="row g-3 mb-4" aria-label="Galerie"></div>
             <div>
                 <a href="/pages/buchen.html" class="btn" data-i18n="wohnungDetail.cta"></a>

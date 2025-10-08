@@ -3,6 +3,8 @@
     "title": "DERKO Immobilien",
     "description": "Vermietung von Monteurzimmern und Wohnungen – modern, günstig, zentral.",
     "skipToContent": "Zum Inhalt springen"
+    ,"brandMain": "DERKO"
+    ,"brandSub": "Immobilien"
   },
   "navigation": {
     "home": "Start",
@@ -52,7 +54,16 @@
         "rooms": "3 Zimmer",
         "beds": "6 Betten",
         "area": "85 m²",
-        "parking": "Stellplatz vorhanden"
+        "parking": "Stellplatz vorhanden",
+        "amenities": [
+          "Kostenloses WLAN",
+          "Voll ausgestattete Küche",
+          "Mehrere Parkmöglichkeiten",
+          "Waschmöglichkeit",
+          "Ruhige Lage",
+          "Flexible Mietdauer"
+        ],
+        "longDescription": "<p>Wir bieten Ihnen im Duisburger Süden, Stadtteil Großenbaum an der Grenze zu Düsseldorf, mehrere möblierte Monteurwohnungen und Monteurunterkünfte ab 3 Personen und 7 Übernachtungen (maximal 16 Personen).</p><p>Unsere Apartments haben Gratis Parkplätze vor dem Haus, WLAN, Küche, 2 bis 4 Einzel- und Doppelzimmer, 2–4 Bäder, Waschmaschine und großzügige Wohnzimmer mit TV. Für den Feierabend bieten wir darüber hinaus Sitzmöglichkeiten auf der Terrasse und dem Hof, wo Sie auch rauchen dürfen.</p><p>Unsere Kunden sind Messeaussteller und deren Crews sowie Bauunternehmer und Monteurteams, die im Einzugsgebiet Düsseldorf, Messe und Flughafen preiswerte möblierte Unterkünfte suchen.</p><p>Wir liegen in direkter Anbindung an die Autobahnen A59, A52, A524 und A3. Sie sind mit dem Auto in 10–15 Minuten in Düsseldorf, Essen, Mülheim an der Ruhr, Ratingen, Neuss und Krefeld.</p><p>Ab 3 Personen und 7 Übernachtungen in abgeschlossenen Wohneinheiten verschiedener Größen. Bitte fragen Sie am besten telefonisch unter 0173 / 8876767 – gerne aber auch per E‑Mail oder WhatsApp – Ihren tagesaktuellen Preis ab.</p>"
       },
       "duisburg": {
         "title": "Wohnung Duisburg",
@@ -62,7 +73,16 @@
         "rooms": "2 Zimmer",
         "beds": "4 Betten",
         "area": "60 m²",
-        "parking": "Parken auf Anfrage"
+        "parking": "Parken auf Anfrage",
+        "amenities": [
+          "Schnelles WLAN",
+          "2 separate Schlafzimmer",
+          "Küche mit Grundausstattung",
+          "ÖPNV-nahe Lage",
+          "Waschmöglichkeit",
+          "Flexible Mietoptionen"
+        ],
+        "longDescription": "<p>Komfortable Monteurwohnung in Duisburg mit schneller Anbindung an Düsseldorf und das Ruhrgebiet. Belegung ab 3 Personen und 7 Nächten möglich (maximal 12–16 je nach Konfiguration).</p><p>Ausstattung: Gratis WLAN, Küche mit Grundausstattung, separate Schlafzimmer, modernes Bad, Waschmöglichkeit sowie Wohnbereich mit TV. Sitzmöglichkeiten im Außenbereich (Rauchen erlaubt).</p><p>Ideal für Messecrews, Projektteams und Handwerker, die im Einzugsgebiet Düsseldorf / Ruhrgebiet eine gepflegte und zugleich preiswerte Lösung suchen.</p><p>Sehr gute Erreichbarkeit der Autobahnen A59, A3 und Anschluss an ÖPNV. Fahrzeiten nach Düsseldorf, Essen oder Mülheim ca. 15 Minuten.</p><p>Individuelle Konditionen je nach Teamgröße und Dauer. Anfrage gern telefonisch (0173 / 8876767) oder per E‑Mail / WhatsApp.</p>"
       },
       "bonn": {
         "title": "Wohnung Bonn",
@@ -72,7 +92,16 @@
         "rooms": "3 Zimmer",
         "beds": "5 Betten",
         "area": "90 m²",
-        "parking": "Stellplatz verfügbar"
+        "parking": "Stellplatz verfügbar",
+        "amenities": [
+          "WLAN inklusive",
+          "Vollausgestattete Küche",
+          "Mehrere Betten",
+          "Eigenes Bad",
+          "Parkplatz auf Anfrage",
+          "Ruhige Wohnlage"
+        ],
+        "longDescription": "<p>Großzügige Monteur- und Projektwohnung in Bonn – ideal für mittelgroße Teams, die mehrere getrennte Schlafmöglichkeiten und eine voll ausgestattete Infrastruktur benötigen.</p><p>Zur Ausstattung zählen: WLAN, vollausgestattete Küche, mehrere Betten, modernes Bad, Wohnbereich mit TV sowie optionaler Stellplatz. Ruhige Lage mit guter regionaler Anbindung.</p><p>Geeignet für Messe- und Projektaufenthalte im Rheinland sowie Einsätze im Raum Köln / Bonn.</p><p>Schneller Anschluss an die A59 / A3 / regionale Verkehrsachsen ermöglicht kurze Wege in umliegende Wirtschaftsstandorte.</p><p>Fragen Sie Ihren aktuellen Preis und Verfügbarkeiten telefonisch (0173 / 8876767) oder per E‑Mail / WhatsApp an.</p>"
       }
     }
   },
@@ -80,8 +109,8 @@
     "headline": "Über uns",
     "description": "Wir sind ein junges dynamisches Unternehmen aus Duisburg im Herzen des Ruhrgebiets. Unsere Dienstleistung umfasst die Bereiche Vermittlung, Verwaltung und die Bewertung von Immobilien. Als professioneller Ansprechpartner stehen wir auch für alle Fragen rund um Mietobjekte an Ihrer Seite. <br><br>DERKO Immobilien hat sich auch in den letzten Jahren auf die Vermietung von Monteurzimmern und Wohnungen spezialisiert. Wir arbeiten ständig an unserem Portfolio und versuchen mehr Wohnraum und optimalen Service zu schaffen.",
     "founders": {
-      "alt": "Die Gründer Eray und Koray von DERKO Immobilien",
-      "caption": "Eray & Koray – Gründer von DERKO Immobilien"
+      "alt": "Die Gründer von DERKO Immobilien",
+      "caption": "Gründer von DERKO Immobilien"
     },
     "cards": {
       "vorteile": {
@@ -156,6 +185,15 @@
   "wohnungDetail": {
     "headline": "Wohnung Details",
     "cta": "Jetzt buchen",
+    "meta": {
+      "title": "Eckdaten"
+    },
+    "amenities": {
+      "title": "Ausstattung"
+    },
+    "description": {
+      "title": "Beschreibung"
+    },
     "gallery": {
       "showMore": "Weitere Bilder anzeigen",
       "showLess": "Weniger anzeigen",

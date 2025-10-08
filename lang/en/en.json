@@ -3,6 +3,8 @@
     "title": "DERKO Real Estate",
     "description": "Rental of worker rooms and apartments – modern, affordable, central.",
     "skipToContent": "Skip to content"
+    ,"brandMain": "DERKO"
+    ,"brandSub": "Real Estate"
   },
   "navigation": {
     "home": "Home",
@@ -51,7 +53,16 @@
         "rooms": "3 rooms",
         "beds": "6 beds",
         "area": "85 m²",
-        "parking": "Parking available"
+        "parking": "Parking available",
+        "amenities": [
+          "Free Wi-Fi",
+          "Fully equipped kitchen",
+          "Multiple parking options",
+          "Laundry access",
+          "Quiet location",
+          "Flexible rental terms"
+        ],
+        "longDescription": "<p>We offer several furnished worker / contractor apartments in the south of Duisburg (Großenbaum, near the Düsseldorf border) for teams from 3 persons and 7 nights (up to 16 people depending on configuration).</p><p>Apartments include free parking in front of the house, Wi‑Fi, kitchen, 2–4 single and double bedrooms, 2–4 bathrooms, washing machine and generous living rooms with TV. For evenings there is outdoor seating on the terrace / yard where smoking is allowed.</p><p>Typical guests are trade fair exhibitors and crews as well as construction and contractor teams looking for cost‑efficient furnished accommodation in the Düsseldorf catchment area (fair & airport).</p><p>Direct access to motorways A59, A52, A524 and A3. By car you reach Düsseldorf, Essen, Mülheim an der Ruhr, Ratingen, Neuss and Krefeld in about 10–15 minutes.</p><p>From 3 persons and 7 nights in self‑contained units of various sizes. Please request your current day rate by phone (0173 / 8876767), e‑mail or WhatsApp.</p>"
       },
     "duisburg": {
         "title": "Duisburg apartment",
@@ -61,7 +72,16 @@
         "rooms": "2 rooms",
         "beds": "4 beds",
         "area": "60 m²",
-        "parking": "Parking on request"
+        "parking": "Parking on request",
+        "amenities": [
+          "Fast Wi-Fi",
+          "2 separate bedrooms",
+          "Kitchen essentials",
+          "Close to public transport",
+          "Laundry access",
+          "Flexible rental options"
+        ],
+        "longDescription": "<p>Comfortable contractor apartment in Duisburg with fast connections to Düsseldorf and the Ruhr region. Bookable from 3 persons and 7 nights (larger team configs up to roughly 12–16 on request).</p><p>Features: Free Wi‑Fi, kitchen essentials, separate bedrooms, modern bathroom, laundry option and living area with TV. Outdoor seating (smoking permitted).</p><p>Ideal for trade fair crews, project teams and craftsmen needing a clean, affordable base in greater Düsseldorf / Ruhr area.</p><p>Excellent access to A59 and A3 plus public transport. Approx. 15 minutes drive to Düsseldorf, Essen or Mülheim.</p><p>Individual pricing by team size and duration. Request by phone (0173 / 8876767) or via e‑mail / WhatsApp.</p>"
       },
       "bonn": {
         "title": "Bonn apartment",
@@ -71,7 +91,16 @@
         "rooms": "3 rooms",
         "beds": "5 beds",
         "area": "90 m²",
-        "parking": "Parking available"
+        "parking": "Parking available",
+        "amenities": [
+          "Wi-Fi included",
+          "Fully equipped kitchen",
+          "Multiple beds",
+          "Private bathroom",
+          "Parking on request",
+          "Quiet residential area"
+        ],
+        "longDescription": "<p>Generous project / contractor apartment in Bonn – ideal for medium sized teams needing multiple separate sleeping options and a fully equipped infrastructure.</p><p>Includes: Wi‑Fi, fully equipped kitchen, multiple beds, modern bathroom, living area with TV and optional parking space. Quiet location with solid regional access.</p><p>Suitable for trade fair and project stays across the Cologne / Bonn region.</p><p>Quick access to regional highways enables short travel times to surrounding business hubs.</p><p>Check current rates and availability by phone (0173 / 8876767) or via e‑mail / WhatsApp.</p>"
       }
     }
   },
@@ -79,8 +108,8 @@
     "headline": "About us",
     "description": "We are a young, dynamic company based in Duisburg in the heart of the Ruhr region. Our service covers brokerage, management and valuation of real estate. As a professional partner we also support you with all questions around rental properties. <br><br>DERKO Real Estate has specialized over recent years in renting worker accommodation and apartments. We continuously work on our portfolio to create more living space and optimal service.",
     "founders": {
-      "alt": "Founders Eray and Koray of DERKO Real Estate",
-      "caption": "Eray & Koray – founders of DERKO Real Estate"
+      "alt": "Founders of DERKO Real Estate",
+      "caption": "Founders of DERKO Real Estate"
     },
     "cards": {
       "vorteile": {
@@ -155,6 +184,15 @@
   "wohnungDetail": {
     "headline": "Apartment Details",
     "cta": "Book now",
+    "meta": {
+      "title": "Key facts"
+    },
+    "amenities": {
+      "title": "Amenities"
+    },
+    "description": {
+      "title": "Description"
+    },
     "gallery": {
       "showMore": "Show more images",
       "showLess": "Show fewer images",

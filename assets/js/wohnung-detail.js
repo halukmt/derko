@@ -33,6 +33,10 @@
     const titleEl = document.getElementById('apt-title');
     const textEl = document.getElementById('apt-text');
     const metaEl = document.getElementById('apt-meta');
+    const amenitiesSection = document.getElementById('apt-amenities');
+    const amenitiesListEl = document.getElementById('apt-amenities-list');
+  const descSection = document.getElementById('apt-description');
+  const descBody = document.getElementById('apt-description-body');
     const bcEl = document.getElementById('breadcrumb-current');
     const title = t(prefix + '.title') || key;
     const desc = t(prefix + '.text') || '';
@@ -59,6 +63,37 @@
       li.querySelector('span').textContent = val;
       metaEl.appendChild(li);
     });
+
+    // Amenities (array)
+    if(amenitiesSection && amenitiesListEl){
+      const raw = (window.translateRaw ? window.translateRaw(prefix + '.amenities') : undefined);
+      if(Array.isArray(raw) && raw.length){
+        amenitiesListEl.innerHTML='';
+        raw.forEach(entry => {
+          const li = document.createElement('li');
+          li.className='amenity-item';
+          li.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i><span></span>';
+          li.querySelector('span').textContent = typeof entry === 'string' ? entry : String(entry);
+          amenitiesListEl.appendChild(li);
+        });
+        amenitiesSection.hidden = false;
+      } else {
+        amenitiesSection.hidden = true;
+      }
+    }
+
+    // Long Description (HTML paragraphs) – taken from translation key .longDescription
+    if(descSection && descBody){
+      const rawDesc = window.translateRaw ? window.translateRaw(prefix + '.longDescription') : '';
+      if(typeof rawDesc === 'string' && rawDesc.trim()){
+        // Basic safety: strip script tags (should not exist in controlled JSON)
+        const cleaned = rawDesc.replace(/<script[^>]*>[\s\S]*?<\/script>/gi,'');
+        descBody.innerHTML = cleaned; // lang.js sanitizer already applied only to data-i18n; here we trust controlled content
+        descSection.hidden = false;
+      } else {
+        descSection.hidden = true;
+      }
+    }
   }
 
   // State
@@ -275,7 +310,12 @@
       numberOfRooms: rooms ? parseInt(rooms,10) : undefined,
       floorSize: area ? { '@type':'QuantitativeValue', value: parseInt(area,10), unitCode:'MTK' } : undefined,
       bed: beds ? { '@type':'BedDetails', numberOfBeds: parseInt(beds,10) } : undefined,
-      image: imageUrls
+      image: imageUrls,
+      amenityFeature: (function(){
+        const a = (window.translateRaw ? window.translateRaw(prefix + '.amenities') : undefined);
+        if(!Array.isArray(a) || !a.length) return undefined;
+        return a.map(txt => ({ '@type':'LocationFeatureSpecification', name: txt }));
+      })()
     };
     const s = document.createElement('script'); s.type='application/ld+json'; s.dataset.generated='apartment-detail-jsonld'; s.textContent=JSON.stringify(json, null, 2); document.head.appendChild(s);
   }
