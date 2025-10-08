@@ -151,37 +151,74 @@
       if (window.applyTranslations) window.applyTranslations(host);
     }
 
-  // Build JSON-LD after translations so localized strings appear
-  function buildWohnungenJSONLD(host){
+  // Enriched JSON-LD builder extracting structured apartment facts (rooms, beds, area, parking)
+  function buildWohnungenJSONLD(){
+      const host = document.getElementById('wohnung-list');
       if (!host) return;
-      if (document.head.querySelector('script[data-generated="wohnungen-jsonld"]')) return;
+      // Always rebuild (remove previous) to reflect language changes
+      const prev = document.head.querySelector('script[data-generated="wohnungen-jsonld"]');
+      if (prev) prev.remove();
       const cards = Array.from(host.querySelectorAll('[data-variant="wohnung"]'));
       if (!cards.length) return;
-      const amenities = [
-        {"@type":"LocationFeatureSpecification","name":"WLAN","value":true},
-        {"@type":"LocationFeatureSpecification","name":"Küche","value":true},
-        {"@type":"LocationFeatureSpecification","name":"Parkplatz","value":true}
-      ];
-      const hasPart = cards.map(card => {
-        const titleEl = card.querySelector('[data-title]');
-        const textEl = card.querySelector('[data-text]');
+
+      const items = cards.map(card => {
+        const key = card.getAttribute('data-apartment-key') || '';
+        const title = card.querySelector('[data-title]')?.textContent.trim() || '';
+        const desc  = card.querySelector('[data-text]')?.textContent.trim() || '';
+        const city  = card.querySelector('[data-city]')?.textContent.trim() || '';
+        const roomsTxt = card.querySelector('[data-rooms]')?.textContent || '';
+        const bedsTxt  = card.querySelector('[data-beds]')?.textContent || '';
+        const areaTxt  = card.querySelector('[data-area]')?.textContent || '';
+        const parkTxt  = card.querySelector('[data-parking]')?.textContent || '';
+        const imgEl    = card.querySelector('img[data-img]');
+        const img      = imgEl ? (new URL(imgEl.getAttribute('src'), location.origin)).href : undefined;
+
+        const rooms = parseInt((roomsTxt.match(/\d+/)||[])[0]||'',10) || undefined;
+        const beds  = parseInt((bedsTxt.match(/\d+/)||[])[0]||'',10) || undefined;
+        const area  = parseInt((areaTxt.match(/\d+/)||[])[0]||'',10) || undefined;
+
+        // Parking heuristic (true / on request / false)
+        let parkingMode; // true | 'OnRequest' | false
+        if (/anfrage|request/i.test(parkTxt)) parkingMode = 'OnRequest';
+        else if (/vorhanden|verfügbar|available|yes/i.test(parkTxt)) parkingMode = true;
+        else parkingMode = false;
+
+        const amenityFeature = [];
+        if (parkingMode){
+          amenityFeature.push({
+            "@type":"LocationFeatureSpecification",
+            "name":"Parking",
+            "value": parkingMode === true,
+            "description": parkingMode === 'OnRequest' ? 'Parking available on request' : 'On-site parking'
+          });
+        }
+
         return {
           '@type':'Apartment',
-          name: titleEl ? titleEl.textContent.trim() : '',
-          description: textEl ? textEl.textContent.trim() : '',
-          amenityFeature: amenities
+          '@id': key ? `${location.origin}/wohnungen#${key}` : undefined,
+          name: title,
+          description: desc,
+          address: city ? { '@type':'PostalAddress', addressLocality: city } : undefined,
+          numberOfRooms: rooms,
+          floorSize: area ? { '@type':'QuantitativeValue', value: area, unitCode: 'MTK' } : undefined,
+          bed: beds ? { '@type':'BedDetails', numberOfBeds: beds } : undefined,
+          image: img,
+          amenityFeature: amenityFeature.length ? amenityFeature : undefined
         };
       });
+
       const jsonld = {
         '@context':'https://schema.org',
         '@type':'CollectionPage',
+        '@id': `${location.origin}/wohnungen`,
         name: document.title || 'Wohnungen',
-        hasPart
+        hasPart: items
       };
+
       const s = document.createElement('script');
       s.type='application/ld+json';
       s.dataset.generated='wohnungen-jsonld';
-      s.textContent = JSON.stringify(jsonld);
+      s.textContent = JSON.stringify(jsonld, null, 2);
       document.head.appendChild(s);
     }
 
@@ -204,6 +241,7 @@
       cardKeys.forEach(cfg => {
         const variant = tpl.content.querySelector('[data-variant="wohnung"]').cloneNode(true);
         variant.classList.remove('d-none');
+        if (cfg.key) variant.setAttribute('data-apartment-key', cfg.key);
         const img = variant.querySelector('[data-img]');
         const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
         img.src = imgSrc; img.alt = cfg.alt || 'Wohnungsbild';
@@ -228,8 +266,8 @@
       host.dataset.rendered = 'true';
       if (window.applyTranslations) {
         window.applyTranslations(host);
-        // JSON-LD erst nach Übersetzungen erzeugen (Titel/Text lokalisiert)
-        setTimeout(()=> buildWohnungenJSONLD(host), 0);
+        // JSON-LD nach Übersetzungen (leicht verzögert, damit DOM Texte gesetzt sind)
+        setTimeout(buildWohnungenJSONLD, 0);
       }
     }
 
@@ -242,8 +280,9 @@
     }
 
     renderAllCards();
-    document.addEventListener('i18n:ready', renderAllCards);
-    document.addEventListener('component:loaded', renderAllCards);
+  document.addEventListener('i18n:ready', function(){ renderAllCards(); buildWohnungenJSONLD(); });
+  document.addEventListener('component:loaded', function(){ renderAllCards(); buildWohnungenJSONLD(); });
+  document.addEventListener('i18n:changed', buildWohnungenJSONLD);
 
     // Language switcher in header
   // Update language flag & label
