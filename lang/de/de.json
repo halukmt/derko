@@ -119,5 +119,14 @@
     "headline": "Seite nicht gefunden",
     "description": "Die angeforderte Seite wurde nicht gefunden oder existiert nicht mehr.",
     "backHome": "Zur Startseite"
+  },
+  "wohnungDetail": {
+    "headline": "Wohnung",
+    "cta": "Jetzt buchen",
+    "gallery": {
+      "showMore": "Weitere Bilder anzeigen",
+      "showLess": "Weniger anzeigen",
+      "photo": "Foto"
+    }
   }
 }

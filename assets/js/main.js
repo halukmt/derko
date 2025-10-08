@@ -86,6 +86,7 @@
       const map = {
         'index.html': '#nav-home',
         'wohnungen.html': '#nav-wohnungen',
+        'wohnung-detail.html': '#nav-wohnungen', // Detailseite ebenfalls Wohnungen aktiv setzen
         'ueber-uns.html': '#nav-ueberuns',
         'buchen.html': '#nav-buchen',
         'kontakt.html': '#nav-kontakt'
@@ -248,7 +249,13 @@
         const prefix = 'wohnungen.' + (cfg.key ? 'cards.' + cfg.key : 'card');
         translateAttr(variant.querySelector('[data-title]'), prefix + '.title');
         translateAttr(variant.querySelector('[data-text]'), prefix + '.text');
-        translateAttr(variant.querySelector('[data-button]'), prefix + '.button');
+        const btn = variant.querySelector('[data-button]');
+        translateAttr(btn, prefix + '.button');
+        if(cfg.key){
+          btn.setAttribute('href', '/pages/wohnung-detail.html?id='+encodeURIComponent(cfg.key));
+        } else {
+          btn.setAttribute('href', '/pages/wohnungen.html');
+        }
         // Detailfelder (city, rooms, beds, area, parking)
         const detailMap = [
           { sel: '[data-city]', key: '.city' },

@@ -118,5 +118,14 @@
     "headline": "Page not found",
     "description": "The requested page could not be found or no longer exists.",
     "backHome": "Back to homepage"
+  },
+  "wohnungDetail": {
+    "headline": "Apartment",
+    "cta": "Book now",
+    "gallery": {
+      "showMore": "Show more images",
+      "showLess": "Show fewer images",
+      "photo": "Photo"
+    }
   }
 }

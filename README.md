@@ -137,6 +137,7 @@ JS klont immer die passende Variante.
 - Lazy Loading Gallerien / Lightbox
 - Detailseiten pro Wohnung (`/pages/wohnung-<slug>.html` + Deep Link Schema.org)
 - Lokalisierte Alt-Texte für Apartmentbilder
+ - (Neu umgesetzt) Performante Galerie: IntersectionObserver + gestaffeltes Laden, Skript `scripts/optimize-images.js`
 
 ## Schnelles Troubleshooting
 | Problem | Ursache | Lösung |
@@ -148,6 +149,8 @@ JS klont immer die passende Variante.
 ## Lokale Commands (Beispiele)
 ```powershell
 npx http-server -p 8080
+# Bilder optimieren (benötigt: npm install sharp)
+node scripts/optimize-images.js
 git add .
 git commit -m "feat: update"
 git tag vX.Y.Z

@@ -254,4 +254,38 @@ footer{
 .flag-icon { width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.15); background:#f8f9fa; }
 .flag-icon svg{ width:100%; height:100%; display:block; }
 
+/* --------------------------------------------------
+  Apartment Detail Gallery Optimizations
+  - Provide subtle skeleton/placeholder (blur-up optional via class)
+  - Ensure consistent spacing for show more button
+-------------------------------------------------- */
+#apt-gallery img.gallery-img{ background:#f3f3f3; aspect-ratio:4/3; object-fit:cover; transition:filter .35s ease, opacity .35s ease; }
+#apt-gallery img.gallery-img[data-state="loading"]{ filter:blur(8px); opacity:.6; }
+#apt-gallery img.gallery-img[data-state="loaded"]{ filter:blur(0); opacity:1; }
+.gallery-more-btn{ margin-top:.25rem; }
+.gallery-picture{ display:block; }
+
+/* --------------------------------------------------
+  Breadcrumbs (Apartment Detail & future pages)
+  - Remove Bootstrap gray background / default spacing
+  - Use brand colors for divider & active item
+  - Keep links consistent with global link styling
+-------------------------------------------------- */
+.breadcrumb { --bs-breadcrumb-divider: '›'; background:transparent; padding:0; margin:0 0 1rem; font-size:.85rem; }
+.breadcrumb-item + .breadcrumb-item::before { color: var(--brand-primary); font-weight:400; }
+.breadcrumb a { text-decoration:none; color: var(--brand-dark); }
+.breadcrumb a:visited { color: var(--brand-dark); }
+.breadcrumb a:hover, .breadcrumb a:focus { text-decoration:underline; color: var(--brand-primary); }
+.breadcrumb-item.active { color: var(--brand-primary); font-weight:600; }
+.breadcrumb-item a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius:.25rem; }
+
+/* --------------------------------------------------
+  Prevent Horizontal Layout Shift When Scrollbar Appears
+  - Detailseite (wohnung-detail) initially kürzer -> später durch Bilder höher -> vertikale Scrollbar erscheint -> Inhalt springt horizontal
+  - Lösung: Reserviere Scrollbar-Gutter dauerhaft
+-------------------------------------------------- */
+html{ scrollbar-gutter: stable; }
+/* Erzwinge immer vertikale Scrollbar (auch wenn Inhalt kurz) um horizontales Springen zu vermeiden */
+body{ overflow-y: scroll; }
+
 

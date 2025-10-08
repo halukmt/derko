@@ -1,0 +1,47 @@
+{
+  "rahm": {
+    "images": [
+      "main.png",
+      "rahm_01.png",
+      "rahm_02.png",
+      "rahm_03.png",
+      "rahm_04.png",
+      "rahm_05.png",
+      "rahm_06.png",
+      "rahm_07.png",
+      "rahm_08.png",
+      "rahm_09.png",
+      "rahm_10.png",
+      "rahm_11.png",
+      "rahm_12.png",
+      "rahm_13.png",
+      "rahm_14.png",
+      "rahm_15.png",
+      "rahm_16.png",
+      "rahm_17.png",
+      "rahm_18.png"
+    ]
+  },
+  "duisburg": {
+    "images": [
+      "main.png",
+      "duisburg_01.png",
+      "duisburg_02.png",
+      "duisburg_03.png",
+      "duisburg_04.png",
+      "duisburg_05.png",
+      "duisburg_06.png"
+    ]
+  },
+  "bonn": {
+    "images": [
+      "main.png",
+      "bonn_01.png",
+      "bonn_02.png",
+      "bonn_03.png",
+      "bonn_04.png",
+      "bonn_05.png",
+      "bonn_06.png"
+    ]
+  }
+}
