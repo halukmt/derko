@@ -207,6 +207,9 @@ footer{
 .social-links .social-link:hover, .social-links .social-link:focus{ background:var(--brand-primary); color:#fff; text-decoration:none; }
 .social-links .social-link:active{ transform:translateY(1px); }
 .social-links i{ font-size:1.25rem; }
+@media (min-width:768px){
+  footer .social-links{ justify-content:center; }
+}
 
 /* Forms */
 .form-label{ font-weight: 600; }
