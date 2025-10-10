@@ -223,23 +223,6 @@
     ></script>
     <script src="../assets/js/lang.js" defer></script>
     <script src="../assets/js/main.js" defer></script>
-    <script>
-    // Dynamische Befüllung der Wohnung-Auswahl nach i18n Laden
-    document.addEventListener('i18n:ready', populateApartmentSelect);
-    document.addEventListener('i18n:changed', populateApartmentSelect);
-    function populateApartmentSelect(){
-      const sel = document.getElementById('apartment');
-      if(!sel || !window.translateKey) return;
-      // Entferne alte dynamische Optionen (alles außer erster Placeholder)
-      Array.from(sel.options).forEach((opt,i)=>{ if(i>0) opt.remove(); });
-      const keys = ['rahm','duisburg','bonn']; // bekannte Keys; könnte aus einer zentralen Config stammen
-      keys.forEach(k=>{
-        const title = window.translateKey('wohnungen.cards.'+k+'.title') || k;
-        const opt = document.createElement('option');
-        opt.value = k; opt.textContent = title;
-        sel.appendChild(opt);
-      });
-    }
-    </script>
+    <script src="../assets/js/kontakt.js" defer></script>
   </body>
 </html>
