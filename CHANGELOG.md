@@ -4,6 +4,22 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.6.3] - 2025-10-10
+### Added
+- Neuer Link-/Button-Typ `.link-button` (ohne Hintergrund) mit Markenfarbe, Fokus-Ring, Chevron-Pfeil rechts und dezenter Hover-Animation.
+- Haus-Icon am Anfang des Breadcrumbs auf der Detailseite (`pages/wohnung-detail.html`) inkl. zugänglichem Label (`data-i18n="navigation.home"`).
+
+### Changed
+- CTA „Details ansehen“ in Wohnungs-Karten (Template `components/card.html` via `main.js`) auf `.link-button` umgestellt.
+- Galerie-Toggle „Weitere Bilder anzeigen“ auf der Detailseite (`assets/js/wohnung-detail.js`) auf `.link-button` umgestellt.
+- Breadcrumb-Styling an `.link-button` angeglichen: Großbuchstaben, Markenfarben, Hover/Active-Zustände, normaler Schriftschnitt (nicht fett).
+
+### Fixed
+- Pfeil-Unterstreichung entfernt (Underline nur auf dem Text), Pfeil übernimmt stets die Textfarbe (inkl. Hover/Active) und bewegt sich leicht nach rechts bei Hover/Focus.
+
+### Notes
+- `.link-button` nutzt eine Masken-basierte Chevron-Grafik, skaliert zur Schriftgröße und ist bewusst dezent (font-size ~0.85rem) gehalten.
+
 ## [v0.6.2] - 2025-10-08
 ### Added
 - Apartment Detail Seite (`pages/wohnung-detail.html`) mit dynamischer Befüllung über `wohnung-detail.js` (Query `?id=`).

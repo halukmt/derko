@@ -150,9 +150,9 @@
     const container = document.getElementById('apt-gallery');
     const btnWrap = document.createElement('div');
     btnWrap.className='col-12';
-    const btn = document.createElement('button');
-    btn.type='button';
-    btn.className='btn btn-outline-primary gallery-more-btn';
+  const btn = document.createElement('button');
+  btn.type='button';
+  btn.className='link-button gallery-more-btn';
     function syncLabel(){
       btn.textContent = expanded ? (t('wohnungDetail.gallery.showLess') || 'Weniger anzeigen') : (t('wohnungDetail.gallery.showMore') || 'Weitere Bilder anzeigen');
     }

@@ -54,6 +54,32 @@ a { color: var(--brand-dark); text-decoration-color: rgba(var(--brand-primary-rg
 a:hover, a:focus { color: var(--brand-dark-hover); text-decoration-color: var(--brand-primary); }
 a:active { color: var(--brand-dark-active); }
 
+/* Link-style button (brand accent, no background) */
+.link-button{
+  display:inline-flex; align-items:center; gap:.45rem;
+  color: var(--brand-primary);
+  font-weight: 400; line-height:1.25;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent; border: 0; padding: 0; margin: 0;
+  cursor: pointer;
+  font-size:.85rem;
+}
+.link-button:visited{ color: var(--brand-primary); }
+.link-button:hover, .link-button:focus{ color: var(--brand-primary-hover); text-decoration: underline; }
+.link-button:active{ color: var(--brand-primary-active); }
+.link-button:focus-visible{ outline:none; box-shadow: var(--focus-ring); border-radius:.35rem; }
+.link-button::after{
+  content:""; /* decorative arrow */
+  width:0.85em; height:0.85em; flex:0 0 auto; display:inline-block; vertical-align:middle;
+  background-color: currentColor; /* arrow adopts text color */
+  /* Right chevron (no shaft), rounded, thicker stroke */
+  -webkit-mask: center/100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4l8 8-8 8'/%3E%3C/svg%3E");
+  mask: center/100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4l8 8-8 8'/%3E%3C/svg%3E");
+  transition: transform .15s ease; transform: translateX(0);
+}
+.link-button:hover::after, .link-button:focus::after{ transform: translateX(2px); }
+
 /* Navbar */
 .navbar-brand i { color: var(--brand-primary); }
 .navbar .nav-link.active, .navbar .nav-link:focus, .navbar .nav-link:hover {
@@ -315,13 +341,21 @@ footer{
   - Use brand colors for divider & active item
   - Keep links consistent with global link styling
 -------------------------------------------------- */
-.breadcrumb { --bs-breadcrumb-divider: '›'; background:transparent; padding:0; margin:0 0 1rem; font-size:.85rem; }
+.breadcrumb { --bs-breadcrumb-divider: '›'; background:transparent; padding:0; margin:0 0 1rem; font-size:.85rem; text-transform: uppercase; }
 .breadcrumb-item + .breadcrumb-item::before { color: var(--brand-primary); font-weight:400; }
-.breadcrumb a { text-decoration:none; color: var(--brand-dark); }
-.breadcrumb a:visited { color: var(--brand-dark); }
-.breadcrumb a:hover, .breadcrumb a:focus { text-decoration:underline; color: var(--brand-primary); }
-.breadcrumb-item.active { color: var(--brand-primary); font-weight:600; }
+/* Adopt link-button styling for breadcrumb links */
+.breadcrumb a { color: var(--brand-primary); text-decoration:none; font-weight:400; transition: color .15s ease; }
+.breadcrumb a:visited { color: var(--brand-primary); }
+.breadcrumb a:hover, .breadcrumb a:focus { color: var(--brand-primary-hover); text-decoration: underline; }
+.breadcrumb a:active { color: var(--brand-primary-active); }
+.breadcrumb-item.active { color: var(--brand-primary); font-weight:400; }
 .breadcrumb-item a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius:.25rem; }
+
+/* Breadcrumb home icon link tweaks */
+.breadcrumb .breadcrumb-home{ display:inline-flex; align-items:center; gap:.35rem; text-decoration:none; color: var(--brand-primary); }
+.breadcrumb .breadcrumb-home:hover, .breadcrumb .breadcrumb-home:focus{ color: var(--brand-primary-hover); text-decoration:none; }
+.breadcrumb .breadcrumb-home:active{ color: var(--brand-primary-active); }
+.breadcrumb .breadcrumb-home i{ font-size:.95em; line-height:1; }
 
 /* --------------------------------------------------
   Prevent Horizontal Layout Shift When Scrollbar Appears

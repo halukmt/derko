@@ -5,6 +5,7 @@
     "skipToContent": "Zum Inhalt springen"
     ,"brandMain": "DERKO"
     ,"brandSub": "Immobilien"
+    ,"langNames": { "de": "Deutsch", "en": "Englisch" }
   },
   "navigation": {
     "home": "Start",
@@ -24,7 +25,7 @@
   "home": {
     "headline": "Willkommen bei DERKO Immobilien",
     "subheadline": "Hier finden Sie komfortable und günstige Unterkünfte für Handwerker und Monteure.",
-    "cta": "Jetzt buchen",
+    "cta": "Angebot anfragen",
     "features": {
       "heading": "Vorteile",
       "komfort": {
@@ -155,20 +156,20 @@
     "headline": "Angebot",
     "description": "Sie haben Fragen oder möchten eine Wohnung anfragen? Nutzen Sie das Formular oder rufen Sie uns an.",
     "form": {
-      "name": "Name",
-      "email": "E-Mail",
+      "name": "Name *",
+      "email": "E-Mail *",
       "phone": "Telefon",
-      "message": "Nachricht",
+      "message": "Nachricht *",
       "dateFrom": "Datum von",
       "dateTo": "Datum bis",
       "topic": "Thema",
       "topicBooking": "Buchungsanfrage",
       "topicOther": "Sonstige Fragen",
       "apartment": "Wohnung",
-      "apartmentPlaceholder": "(optional) Wohnung wählen",
+      "apartmentPlaceholder": "Wohnung wählen",
       "persons": "Anzahl Personen",
-      "personsPlaceholder": "(optional)",
-      "privacyConsent": "Ich habe die Datenschutzerklärung zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.",
+      "personsPlaceholder": "Anzahl Personen wählen",
+      "privacyConsent": "Ich habe die Datenschutzerklärung zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden. *",
       "submit": "Absenden"
     },
     "validation": {
@@ -198,7 +199,7 @@
   },
   "wohnungDetail": {
     "headline": "Wohnung Details",
-    "cta": "Jetzt buchen",
+    "cta": "Angebot anfragen",
     "meta": {
       "title": "Eckdaten"
     },
@@ -209,8 +210,8 @@
       "title": "Beschreibung"
     },
     "gallery": {
-      "showMore": "Weitere Bilder anzeigen",
-      "showLess": "Weniger anzeigen",
+      "showMore": "Mehr Bilder",
+      "showLess": "Weniger Bilder",
       "photo": "Foto"
     }
   }

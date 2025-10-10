@@ -326,7 +326,11 @@
       const flag = document.getElementById('current-lang-flag');
       if (!flag || !window.getLanguage) return;
       const lang = window.getLanguage();
-      if (label) label.textContent = lang.toUpperCase(); // still updated for screen readers
+      if (label){
+        const nameKey = 'site.langNames.'+lang;
+        const name = (window.translateKey ? window.translateKey(nameKey) : null) || lang.toUpperCase();
+        label.textContent = name;
+      }
       flag.innerHTML = '';
       if (lang === 'de'){
         flag.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-de-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-de-mask-current)"><path fill="#000" d="M0 0h24v24H0z"/><path fill="#DD0000" d="M0 8h24v16H0z"/><path fill="#FFCE00" d="M0 16h24v8H0z"/></g></svg>';

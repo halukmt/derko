@@ -5,6 +5,7 @@
     "skipToContent": "Skip to content"
     ,"brandMain": "DERKO"
     ,"brandSub": "Real Estate"
+    ,"langNames": { "de": "German", "en": "English" }
   },
   "navigation": {
     "home": "Home",
@@ -154,20 +155,20 @@
     "headline": "Offer",
     "description": "Questions or want to inquire about an apartment? Use the form or call us.",
     "form": {
-      "name": "Name",
-      "email": "Email",
+      "name": "Name *",
+      "email": "Email *",
       "phone": "Phone",
-      "message": "Message",
+      "message": "Message *",
       "dateFrom": "Date from",
       "dateTo": "Date to",
       "topic": "Topic",
       "topicBooking": "Booking inquiry",
       "topicOther": "Other questions",
       "apartment": "Apartment",
-      "apartmentPlaceholder": "(optional) Select apartment",
+      "apartmentPlaceholder": "Select apartment",
       "persons": "Number of persons",
-      "personsPlaceholder": "(optional)",
-      "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions.",
+      "personsPlaceholder": "Select number of persons",
+      "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions. *",
       "submit": "Send"
     },
     "validation": {
@@ -208,8 +209,8 @@
       "title": "Description"
     },
     "gallery": {
-      "showMore": "Show more images",
-      "showLess": "Show fewer images",
+      "showMore": "More images",
+      "showLess": "Fewer images",
       "photo": "Photo"
     }
   }

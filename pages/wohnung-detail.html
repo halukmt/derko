@@ -6,7 +6,7 @@
     <title data-i18n="wohnungDetail.headline"></title>
   <link rel="canonical" href="/wohnung" />
     <meta name="description" content="" data-i18n-meta="wohnungen.description" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src-elem 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; base-uri 'self'; form-action 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src-elem 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="" data-i18n-meta="wohnungDetail.headline" />
@@ -41,6 +41,12 @@
         <div class="container" id="apartment-detail" data-apartment-root>
             <nav aria-label="Breadcrumb" class="mb-3 small">
                 <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                      <a href="/" class="breadcrumb-home" aria-label="Home">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                        <span class="visually-hidden" data-i18n="navigation.home">Startseite</span>
+                      </a>
+                    </li>
                     <li class="breadcrumb-item"><a href="/pages/wohnungen.html" data-i18n="navigation.wohnungen"></a></li>
                     <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-current">–</li>
                 </ol>
@@ -59,10 +65,10 @@
               <h2 class="h5 mb-3" data-i18n="wohnungDetail.description.title"></h2>
               <div id="apt-description-body" data-description></div>
             </section>
-            <div class="mb-4">
-                <a href="/pages/buchen.html" class="btn" data-i18n="wohnungDetail.cta"></a>
-            </div>
             <div id="apt-gallery" class="row g-3 mb-4" aria-label="Galerie"></div>
+            <div class="mb-4">
+                <a href="/pages/kontakt.html" class="btn" data-i18n="wohnungDetail.cta"></a>
+            </div>
         </div>
         </main>
     <footer id="site-footer" data-component="footer"></footer>
