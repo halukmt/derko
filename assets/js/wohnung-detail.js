@@ -17,6 +17,16 @@
   const configPath = '/assets/data/apartments.json';
   const known = ['rahm','bonn','dus_airport']; // sync with listing
   if(!key || !known.includes(key)){
+    // Redirect to the dedicated 404 page for unknown/removed apartments
+    // Use replace() so the invalid URL doesn't stay in history
+    try {
+      const fourOhFour = '/404.html';
+      if(location.pathname !== fourOhFour){
+        location.replace(fourOhFour);
+        return;
+      }
+    } catch(_) { /* ignore and fall back to inline message */ }
+    // Fallback: inline warning if redirect isn't possible
     root.innerHTML = '<div class="alert alert-warning" role="status" data-i18n="notFound.description">Apartment nicht gefunden.</div>';
     return;
   }

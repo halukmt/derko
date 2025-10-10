@@ -54,7 +54,7 @@
         "beds": "6 beds",
         "area": "85 m²",
         "parking": "Parking available",
-  "price": "25 EUR / guest / night",
+        "price": "25 EUR / guest / night",
         "amenities": [
           "Free Wi-Fi",
           "Fully equipped kitchen",
@@ -74,7 +74,7 @@
         "beds": "5 beds",
         "area": "90 m²",
         "parking": "Parking available",
-  "price": "from 28 EUR / guest / night",
+        "price": "from 28 EUR / guest / night",
         "amenities": [
           "Wi-Fi included",
           "Fully equipped kitchen",
