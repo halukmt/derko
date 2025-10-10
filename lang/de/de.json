@@ -55,7 +55,7 @@
         "beds": "6 Betten",
         "area": "85 m²",
         "parking": "Stellplatz vorhanden",
-  "price": "25 EUR / Gast / Nacht",
+        "price": "25 EUR / Gast / Nacht",
         "amenities": [
           "Kostenloses WLAN",
           "Voll ausgestattete Küche",
@@ -75,7 +75,7 @@
         "beds": "4 Betten",
         "area": "60 m²",
         "parking": "Parken auf Anfrage",
-  "price": "ab 23 EUR / Gast / Nacht",
+        "price": "ab 23 EUR / Gast / Nacht",
         "amenities": [
           "Schnelles WLAN",
           "2 separate Schlafzimmer",
@@ -95,7 +95,7 @@
         "beds": "5 Betten",
         "area": "90 m²",
         "parking": "Stellplatz verfügbar",
-  "price": "ab 28 EUR / Gast / Nacht",
+        "price": "ab 28 EUR / Gast / Nacht",
         "amenities": [
           "WLAN inklusive",
           "Vollausgestattete Küche",
@@ -105,6 +105,30 @@
           "Ruhige Wohnlage"
         ],
         "longDescription": "<p>Großzügige Monteur- und Projektwohnung in Bonn – ideal für mittelgroße Teams, die mehrere getrennte Schlafmöglichkeiten und eine voll ausgestattete Infrastruktur benötigen.</p><p>Zur Ausstattung zählen: WLAN, vollausgestattete Küche, mehrere Betten, modernes Bad, Wohnbereich mit TV sowie optionaler Stellplatz. Ruhige Lage mit guter regionaler Anbindung.</p><p>Geeignet für Messe- und Projektaufenthalte im Rheinland sowie Einsätze im Raum Köln / Bonn.</p><p>Schneller Anschluss an die A59 / A3 / regionale Verkehrsachsen ermöglicht kurze Wege in umliegende Wirtschaftsstandorte.</p><p>Fragen Sie Ihren aktuellen Preis und Verfügbarkeiten telefonisch (0173 / 8876767) oder per E‑Mail / WhatsApp an.</p>"
+      },
+      "dus_airport": {
+        "title": "Wohnungen nähe Düsseldorf Airport",
+        "text": "Moderne Wohnung in Duisburg mit 5 Schlafzimmern",
+        "button": "Details ansehen",
+        "city": "Duisburg-Rahm",
+        "rooms": "3 Zimmer",
+        "beds": "7 Betten",
+        "area": "70 m²",
+        "parking": "Stellplätze nicht vorhanden",
+        "price": "25 EUR / Person / Nacht",
+        "amenities": [
+          "WLAN",
+          "Möbliert",
+          "Kühlschrank",
+          "Backofen",
+          "Herd",
+          "Waschmaschine",
+          "Spülmaschine",
+          "TV",
+          "Garage/Stellplatz",
+          "Stufenloser Zugang"
+        ],
+        "longDescription": "<p>Wir bieten ihnen im Duisburger Süden, Stadtteil Großenbaum an der Grenze zu Düsseldorf, mehrere möblierte Monteurwohnungen und Monteurunterkünfte ab 3 Personen und 7 Übernachtungen (maximal 16 Personen).</p><p>Unsere Apartments haben Gratis Parkplätze vor dem Haus, WLAN, Küche 2 bis 4 Einzel und Doppelzimmer, 2-4 Bäder, Waschmaschine und großzügige Wohnzimmer mit TV . Für den Feierabend bieten darüber hinaus Sitzmöglichkeiten auf der Terrasse ,dem Hof wo Sie auch Rauchen dürfen.</p><p>Unsere Kunden sind Messeaussteller und deren Crews sowie Bauunternehmer und Monteurteams, die im Einzugsgebiet Düsseldorf, Messe und Flughafen preiswerte möblierte Unterkünfte suchen.</p><p>Wir liegen in direkter Anbindung an die Autobahnen A59, A52 ,A524 und A3. Sie sind mit dem Auto in 10-15 Minuten in Düsseldorf, Essen, Mülheim an der Ruhr , Ratingen, Neuss und Krefeld.</p><p>Ab 3 Personen und 7 Übernachtungen in abgeschlossene Wohneinheiten verschiedener Größen .Bitte fragen Sie am besten telefonisch unter 0173 /8876767, gerne aber auch per email oder whats app, ihren tagesaktuellen Preis ab.</p>"
       }
     }
   },

@@ -12,7 +12,7 @@ const path = require('path');
 const sharp = require('sharp');
 
 const ROOT = path.resolve(__dirname, '..', '..');
-const IMG_DIR = path.join(ROOT, 'img', 'wohnungen');
+const IMG_DIR = path.join(ROOT, 'assets', 'img', 'wohnungen');
 const TARGET_WIDTHS = [400,800,1200];
 const FORCE = process.argv.includes('--force');
 
@@ -38,7 +38,10 @@ async function optimizeFile(full){
 
 async function run(){
   if(!fs.existsSync(IMG_DIR)) throw new Error('Image dir missing: '+IMG_DIR);
-  const apartments = fs.readdirSync(IMG_DIR).filter(f=>fs.statSync(path.join(IMG_DIR,f)).isDirectory());
+  // Optional: allow passing a specific subfolder
+  const only = process.argv.find(a=>!/^-/.test(a) && a !== __filename && a !== process.argv[1] && a !== '--force');
+  const candidates = only ? [path.basename(only)] : fs.readdirSync(IMG_DIR);
+  const apartments = candidates.filter(f=>fs.existsSync(path.join(IMG_DIR,f)) && fs.statSync(path.join(IMG_DIR,f)).isDirectory());
   for (const apt of apartments){
     const dir = path.join(IMG_DIR, apt);
     const files = fs.readdirSync(dir).filter(f=>/\.png$/i.test(f));

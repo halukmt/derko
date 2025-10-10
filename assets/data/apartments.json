@@ -43,5 +43,24 @@
       "bonn_05.png",
       "bonn_06.png"
     ]
+  },
+  "dus_airport": {
+    "images": [
+      "main.png",
+      "dus_airport_01.png",
+      "dus_airport_02.png",
+      "dus_airport_03.png",
+      "dus_airport_04.png",
+      "dus_airport_05.png",
+      "dus_airport_06.png",
+      "dus_airport_07.png",
+      "dus_airport_08.png",
+      "dus_airport_09.png",
+      "dus_airport_10.png",
+      "dus_airport_11.png",
+      "dus_airport_12.png",
+      "dus_airport_13.png",
+      "dus_airport_14.png"
+    ]
   }
 }

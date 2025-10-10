@@ -15,7 +15,7 @@
 
   const basePath = '/assets/img/wohnungen/';
   const configPath = '/assets/data/apartments.json';
-  const known = ['rahm','duisburg','bonn']; // sync with listing
+  const known = ['rahm','duisburg','bonn','dus_airport']; // sync with listing
   if(!key || !known.includes(key)){
     root.innerHTML = '<div class="alert alert-warning" role="status" data-i18n="notFound.description">Apartment nicht gefunden.</div>';
     return;

@@ -4,8 +4,10 @@
   "private": true,
   "description": "DERKO statische Website – Bildoptimierung via sharp",
   "scripts": {
-  "optimize:images": "node assets/js/optimize-images.js",
-  "optimize:images:force": "node assets/js/optimize-images.js --force"
+    "optimize:images": "node assets/js/optimize-images.js",
+    "optimize:images:force": "node assets/js/optimize-images.js --force",
+    "gen:png:dus": "node assets/js/avif-to-png.js assets/img/wohnungen/dus_airport",
+    "gen:images:dus": "npm run gen:png:dus && npm run optimize:images"
   },
   "dependencies": {
     "sharp": "^0.33.3"
