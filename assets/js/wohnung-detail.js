@@ -103,13 +103,26 @@
   const INITIAL_LIMIT = 4; // initial images to render before "Weitere Bilder anzeigen"
   let expanded = false;
 
-  // Detect if optimized variants exist (checks one AVIF sample: main-400.avif)
+  // Detect if optimized variants exist
+  // 1) Try variants.json map (authoritative, no network noise)
+  // 2) Fallback: HEAD probe for one AVIF sample (maintains backward compatibility)
   async function detectVariants(folder){
+    variantsAvailable = false;
+    try {
+      const mapRes = await fetch('/assets/data/variants.json', { cache:'no-store' });
+      if(mapRes.ok){
+        const map = await mapRes.json();
+        if(Object.prototype.hasOwnProperty.call(map, key)){
+          variantsAvailable = !!map[key];
+          return; // authoritative
+        }
+      }
+    } catch(_) { /* ignore and fallback */ }
     try {
       const testUrl = folder + 'main-400.avif';
       const res = await fetch(testUrl, { method:'HEAD' });
       variantsAvailable = res.ok;
-    } catch(_){ variantsAvailable = false; }
+    } catch(_) { variantsAvailable = false; }
   }
 
   function buildPictureElement(folder, file){
