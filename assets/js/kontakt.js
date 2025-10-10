@@ -4,7 +4,7 @@
     if(!sel || !window.translateKey) return;
     // Remove dynamically added options (keep placeholder at index 0)
     Array.from(sel.options).forEach((opt,i)=>{ if(i>0) opt.remove(); });
-    const keys = ['rahm','duisburg','bonn','dus_airport'];
+  const keys = ['rahm','bonn','dus_airport'];
     keys.forEach(k=>{
       const title = window.translateKey('wohnungen.cards.'+k+'.title') || k;
       const opt = document.createElement('option');
