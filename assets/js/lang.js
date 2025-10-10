@@ -209,7 +209,8 @@
     const footerMap = {
       '#ft-impressum': 'footer.impressum',
       '#ft-agb': 'footer.agb',
-      '#ft-privacy': 'footer.privacy'
+      '#ft-privacy': 'footer.privacy',
+      '#ft-kontakt': 'footer.kontakt'
     };
     Object.entries(footerMap).forEach(([sel,key])=>{
       const el = document.querySelector(sel);
