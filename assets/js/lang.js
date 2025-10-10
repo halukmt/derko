@@ -196,7 +196,6 @@
       '#nav-home': 'navigation.home',
       '#nav-wohnungen': 'navigation.wohnungen',
       '#nav-ueberuns': 'navigation.ueberUns',
-      '#nav-buchen': 'navigation.buchen',
       '#nav-kontakt': 'navigation.kontakt',
       '#nav-agb': 'navigation.agb',
       '#nav-impressum': 'navigation.impressum'

@@ -40,7 +40,6 @@
         'nav-home':'index.html',
         'nav-wohnungen':'wohnungen.html',
         'nav-ueberuns':'ueber-uns.html',
-        'nav-buchen':'buchen.html',
         'nav-kontakt':'kontakt.html',
         'nav-agb':'agb.html',
         'nav-impressum':'impressum.html'
@@ -88,7 +87,6 @@
         'wohnungen.html': '#nav-wohnungen',
         'wohnung-detail.html': '#nav-wohnungen', // Detailseite ebenfalls Wohnungen aktiv setzen
         'ueber-uns.html': '#nav-ueberuns',
-        'buchen.html': '#nav-buchen',
         'kontakt.html': '#nav-kontakt'
       };
       const sel = map[p] || (p === '' ? '#nav-home' : null);

@@ -10,9 +10,8 @@
   "navigation": {
     "home": "Home",
     "wohnungen": "Apartments",
-    "ueberUns": "About us",
-    "buchen": "Book",
-    "kontakt": "Offer"
+  "ueberUns": "About us",
+  "kontakt": "Offer"
   },
   "footer": {
     "copyright": "© 2025 DERKO Real Estate – All rights reserved",
@@ -143,13 +142,10 @@
             "We hand over the keys and wish you a pleasant stay"
         ]
       }
+    },
+    "partners": {
+      "title": "Our partners"
     }
-  },
-  "buchen": {
-    "headline": "Book now",
-    "description": "Please fill out the booking form or contact us directly.",
-    "button": "Start booking",
-    "note": "Note: An external booking tool can be integrated here later."
   },
   "kontakt": {
     "headline": "Offer",

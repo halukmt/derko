@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title data-i18n="ueberUns.headline"></title>
-  <link rel="canonical" href="/ueber-uns" />
+    <link rel="canonical" href="/ueber-uns" />
     <meta
       name="description"
       content="Wir bieten seit über 10 Jahren Monteurzimmer und Wohnungen..."
@@ -26,11 +26,11 @@
       content="Wir bieten seit über 10 Jahren Monteurzimmer und Wohnungen..."
       data-i18n-meta="ueberUns.description"
     />
-  <meta property="og:url" content="/ueber-uns" />
-  <meta property="og:image" content="/assets/img/logo/og-default.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="/ueber-uns" />
+    <meta property="og:image" content="/assets/img/logo/og-default.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,14 +50,32 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-  <meta name="theme-color" content="#505C61" />
-  <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/logo/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/logo/favicon-32x32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/logo/apple-touch-icon.png" />
-  <link rel="shortcut icon" href="/assets/img/logo/favicon.ico" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#505C61" />
+    <meta name="theme-color" content="#505C61" />
+    <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/img/logo/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/img/logo/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/img/logo/apple-touch-icon.png"
+    />
+    <link rel="shortcut icon" href="/assets/img/logo/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/assets/img/safari-pinned-tab.svg"
+      color="#505C61"
+    />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
@@ -74,14 +92,116 @@
           <img
             src="../assets/img/allgemein/eray_koray.png"
             class="img-fluid rounded shadow-sm founders-img"
-            width="1360" height="768"
-            loading="lazy" decoding="async"
+            width="1360"
+            height="768"
+            loading="lazy"
+            decoding="async"
             data-i18n-alt="ueberUns.founders.alt"
             alt="Gründer"
           />
-          <figcaption class="mt-2 small text-muted" data-i18n="ueberUns.founders.caption"></figcaption>
+          <figcaption
+            class="mt-2 small text-muted"
+            data-i18n="ueberUns.founders.caption"
+          ></figcaption>
         </figure>
-        <section class="row g-4 mt-4" id="about-cards" aria-label="Vorteile"></section>
+        <section
+          class="row g-4 mt-4"
+          id="about-cards"
+          aria-label="Vorteile"
+        ></section>
+
+        <!-- Partners: manual slider (no auto-scroll) -->
+        <section class="partners-section" aria-labelledby="partners-title">
+          <h2
+            id="partners-title"
+            class="h5 mb-3"
+            data-i18n="ueberUns.partners.title"
+          ></h2>
+          <div class="partners-band" role="region" aria-label="Partner Logos">
+            <button
+              class="partners-control partners-prev"
+              type="button"
+              aria-label="Zurück"
+              title="Zurück"
+            ></button>
+            <div
+              class="partners-viewport"
+              tabindex="0"
+              aria-roledescription="carousel"
+              aria-label="Partnerlogos"
+              aria-live="polite"
+            >
+              <div class="partners-track" data-mode="manual">
+                <a class="partners-item" href="https://monteurzimmer.immo/" aria-label="Monteurzimmer Immo" target="_blank"
+                  ><img
+                    src="../assets/img/partner/DIM_Monteurzimmer.png"
+                    alt="Monteurzimmer Immo"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a
+                  class="partners-item" href="https://www.techsulting.de/" aria-label="TechSulting" target="_blank"
+                  ><img
+                    src="../assets/img/partner/TechSulting.png"
+                    alt="TechSulting"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a class="partners-item" href="https://monteurzimmer.immo/" aria-label="Monteurzimmer Immo" target="_blank"
+                  ><img
+                    src="../assets/img/partner/DIM_Monteurzimmer.png"
+                    alt="Monteurzimmer Immo"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a
+                  class="partners-item" href="https://www.techsulting.de/" aria-label="TechSulting" target="_blank"
+                  ><img
+                    src="../assets/img/partner/TechSulting.png"
+                    alt="TechSulting"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a class="partners-item" href="https://monteurzimmer.immo/" aria-label="Monteurzimmer Immo" target="_blank"
+                  ><img
+                    src="../assets/img/partner/DIM_Monteurzimmer.png"
+                    alt="Monteurzimmer Immo"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a
+                  class="partners-item" href="https://www.techsulting.de/" aria-label="TechSulting" target="_blank"
+                  ><img
+                    src="../assets/img/partner/TechSulting.png"
+                    alt="TechSulting"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a class="partners-item" href="https://monteurzimmer.immo/" aria-label="Monteurzimmer Immo" target="_blank"
+                  ><img
+                    src="../assets/img/partner/DIM_Monteurzimmer.png"
+                    alt="Monteurzimmer Immo"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+                <a
+                  class="partners-item" href="https://www.techsulting.de/" aria-label="TechSulting" target="_blank"
+                  ><img
+                    src="../assets/img/partner/TechSulting.png"
+                    alt="TechSulting"
+                    loading="lazy"
+                    decoding="async"
+                /></a>
+              </div>
+            </div>
+            <button
+              class="partners-control partners-next"
+              type="button"
+              aria-label="Weiter"
+              title="Weiter"
+            ></button>
+          </div>
+        </section>
       </div>
     </main>
     <footer id="site-footer" data-component="footer"></footer>
@@ -92,5 +212,6 @@
     ></script>
     <script src="../assets/js/lang.js" defer></script>
     <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/partners.js" defer></script>
   </body>
 </html>

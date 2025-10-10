@@ -10,9 +10,8 @@
   "navigation": {
     "home": "Start",
     "wohnungen": "Wohnungen",
-    "ueberUns": "Über uns",
-    "buchen": "Buchen",
-    "kontakt": "Angebot"
+  "ueberUns": "Über uns",
+  "kontakt": "Angebot"
   },
   "footer": {
     "copyright": "© 2025 DERKO Immobilien – alle Rechte vorbehalten",
@@ -144,13 +143,10 @@
           "Wir übergeben die Schlüssel und wünschen einen angenehmen Aufenthalt"
         ]
       }
+    },
+    "partners": {
+      "title": "Unsere Partner"
     }
-  },
-  "buchen": {
-    "headline": "Jetzt buchen",
-    "description": "Bitte füllen Sie das Buchungsformular aus oder kontaktieren Sie uns direkt.",
-    "button": "Buchung starten",
-    "note": "Hinweis: Hier kann später ein externes Buchungstool integriert werden."
   },
   "kontakt": {
     "headline": "Angebot",
