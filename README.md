@@ -132,6 +132,39 @@ JS klont immer die passende Variante.
 - Empfohlen: Richtigen HTTP 404 Status für `404.html` serverseitig setzen.
 - Optional: Lokales Hosten der Fonts für Datenschutz.
 
+## Kontaktformular (PHP Backend)
+Produktiver Versand ohne Drittanbieter via `api/sendmail.php` (Strato‑kompatibel über `mail()`):
+
+- Formular: `pages/kontakt.html` → `action="../api/sendmail.php"`, Methode POST
+- Pflichtfelder: Name, E‑Mail, Telefon, Thema, Nachricht, Datenschutz; bei Thema=booking zusätzlich: Von/Bis/Wohnung/Personen
+- Betreffschema: `Thema - Name - Anfrage-ID: DDMMYYHHMM`
+- Versand: 1) an Betreiber, 2) Bestätigung an Absender (Reply‑To = Absender)
+- Weiterleitung nach Erfolg: `/pages/bestaetigung.html`
+
+Konfiguration (Empfänger/Absender) in `api/sendmail.php`:
+
+```php
+$TO   = 'social@techsulting.de';      // Zieladresse
+$FROM = 'kontakt@derko-immobilien.de';// Absender (Domain‑Adresse)
+```
+
+Hinweise Zustellbarkeit:
+- FROM sollte zu deiner Domain gehören (SPF/DMARC prüfen).
+- Bei Bedarf später SMTP/PHPMailer einsetzen (gleiches Endpoint, anderer Versandweg).
+
+Sicherheit & CSP:
+- Keine Dritt‑Domains nötig; `form-action 'self'` bleibt erhalten.
+- Serverseitige Header‑Injection vorbeugt (`\r\n` entfernt), Minimal‑Validierung vorhanden.
+
+Bestätigungsseite:
+- `pages/bestaetigung.html` zeigt lokalisierte Meldung (`confirmation.message`) und ist wie die Detailseite aufgebaut (Header, Footer, Breadcrumb).
+
+Testfälle (Server):
+1. Thema=Booking: Alle Felder ausfüllen → Redirect auf Bestätigungsseite; Betreiber‑Mail + Bestätigungsmail an Absender; Betreff mit korrekter Anfrage-ID.
+2. Thema=Other: Booking‑Felder ausgeblendet/disabled → E‑Mail enthält nur befüllte Felder.
+3. Validierung: ungültige E‑Mail bzw. fehlende Pflichtfelder → 400 (bei direktem POST sichtbar).
+4. Reply‑To: Antwort auf Betreiber‑Mail geht an Absender.
+
 ## Wartung / Erweiterung ToDos (Potenzial)
 - Bildoptimierung (WebP/AVIF Fallbacks)
 - Lazy Loading Gallerien / Lightbox

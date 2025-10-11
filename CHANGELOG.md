@@ -4,6 +4,26 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.7.0] - 2025-10-11
+### Added
+- Serverseitiger Mail‑Endpunkt `api/sendmail.php` (PHP, Strato‑kompatibel) für das Kontaktformular.
+	- Empfänger: `social@techsulting.de`, Absender: `kontakt@derko-immobilien.de`.
+	- Betreffformat: `Thema - Name - Anfrage-ID: DDMMYYHHMM`.
+	- Sendet Kopie an den Absender (Reply‑To auf Absender‑E‑Mail).
+- Bestätigungsseite `pages/bestaetigung.html` mit Header, Footer, Breadcrumb.
+- Neue i18n‑Keys `confirmation.headline|description|message` (de/en).
+
+### Changed
+- `pages/kontakt.html`: Formular `action` auf `../api/sendmail.php` umgestellt; CSP `form-action 'self'`.
+- Link „Datenschutzerklärung“ im Hinweis ist jetzt stilistisch an andere Links angeglichen (Klasse `.inline-link`) und öffnet in neuem Tab.
+- Pflichtfelder vereinheitlicht und dynamisches Ein-/Ausblenden der Buchungsfelder (topic=booking).
+
+### Fixed
+- Detailseite: Unbekannte Apartment‑IDs leiten auf die dedizierte `404.html` weiter (statt Inline‑Warnung).
+
+### Notes
+- Für beste Zustellbarkeit Absender‑Domain (SPF/DMARC) prüfen. Optionaler Umstieg auf SMTP/PHPMailer möglich.
+
 ## [v0.6.3] - 2025-10-10
 ### Added
 - Neuer Link-/Button-Typ `.link-button` (ohne Hintergrund) mit Markenfarbe, Fokus-Ring, Chevron-Pfeil rechts und dezenter Hover-Animation.

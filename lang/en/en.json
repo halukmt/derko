@@ -215,4 +215,10 @@
       "photo": "Photo"
     }
   }
+  ,
+  "confirmation": {
+    "headline": "Request sent",
+    "description": "We have received your request.",
+    "message": "Thank you for your interest in our apartments.\nWe will review your details and get back to you as soon as possible.\nKind regards,\nYour DERKO Team."
+  }
 }

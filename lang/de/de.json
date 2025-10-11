@@ -216,4 +216,10 @@
       "photo": "Foto"
     }
   }
+  ,
+  "confirmation": {
+    "headline": "Anfrage gesendet",
+    "description": "Wir haben Ihre Anfrage erhalten.",
+    "message": "Vielen Dank für Ihr Interesse an unseren Wohnungen.\nWir prüfen Ihre Angaben und melden uns so schnell wie möglich bei Ihnen.\nHerzliche Grüße,\nIhr DERKO-Team."
+  }
 }
