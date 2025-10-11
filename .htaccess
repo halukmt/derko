@@ -1,4 +1,0 @@
-RewriteEngine On
-
-# Ensure trailing slashless /api/sendmail goes to /api/sendmail.php
-RewriteRule ^api/sendmail$ api/sendmail.php [L]

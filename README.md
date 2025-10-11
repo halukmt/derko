@@ -165,22 +165,7 @@ Testfälle (Server):
 3. Validierung: ungültige E‑Mail bzw. fehlende Pflichtfelder → 400 (bei direktem POST sichtbar).
 4. Reply‑To: Antwort auf Betreiber‑Mail geht an Absender.
 
-### Provider-agnostischer Endpoint `/api/sendmail`
 
-Damit das Formular unabhängig vom Hoster funktioniert, postet `pages/kontakt.html` nun auf `/api/sendmail`.
-
-- PHP-Hosts (Apache): Die mitgelieferte `.htaccess` rewritet `/api/sendmail` auf `api/sendmail.php`.
-- Netlify: `netlify.toml` mappt `/api/sendmail` auf `/.netlify/functions/sendmail`. Die Function `netlify/functions/sendmail.js` versendet mit Nodemailer per SMTP.
-
-Für Netlify müssen folgende Environment-Variablen gesetzt werden (Site Settings → Build & Deploy → Environment):
-
-- `SMTP_HOST`, `SMTP_PORT` (587 für STARTTLS, 465 für SMTPS)
-- `SMTP_SECURE` (`false` für STARTTLS/587, `true` für SMTPS/465)
-- `SMTP_USER`, `SMTP_PASS`
-- `FROM_EMAIL` (z. B. kontakt@derko-immobilien.de)
-- `TO_EMAIL` (z. B. social@techsulting.de)
-
-Nach erfolgreichem Versand antwortet der Endpoint mit `303 See Other` und leitet auf `/pages/bestaetigung.html`.
 
 ## Wartung / Erweiterung ToDos (Potenzial)
 - Bildoptimierung (WebP/AVIF Fallbacks)

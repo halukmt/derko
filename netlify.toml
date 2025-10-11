@@ -1,8 +1,0 @@
-[build]
-  functions = "netlify/functions"
-  publish = "."
-
-[[redirects]]
-  from = "/api/sendmail"
-  to = "/.netlify/functions/sendmail"
-  status = 200
