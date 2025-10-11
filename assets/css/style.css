@@ -54,6 +54,11 @@ a { color: var(--brand-dark); text-decoration-color: rgba(var(--brand-primary-rg
 a:hover, a:focus { color: var(--brand-dark-hover); text-decoration-color: var(--brand-primary); }
 a:active { color: var(--brand-dark-active); }
 
+/* Utility: inline link style matching legal-content behavior */
+.inline-link{ color: var(--brand-dark); text-decoration-color: rgba(var(--brand-primary-rgb), .55); transition: color .15s ease, text-decoration-color .15s ease; }
+.inline-link:hover, .inline-link:focus{ color: var(--brand-primary); text-decoration-color: var(--brand-primary); }
+.inline-link:active{ color: var(--brand-dark-active); }
+
 /* Link-style button (brand accent, no background) */
 .link-button{
   display:inline-flex; align-items:center; gap:.45rem;

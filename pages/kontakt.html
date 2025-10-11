@@ -128,6 +128,8 @@
                 name="phone"
                 autocomplete="tel"
                 pattern="^[+0-9 /()-]{6,}$"
+                required
+                aria-required="true"
               />
               <div
                 class="invalid-feedback"
@@ -137,28 +139,28 @@
             </div>
             <div class="col-md-6">
               <label for="topic" class="form-label" data-i18n="kontakt.form.topic"></label>
-              <select id="topic" name="topic" class="form-select">
+              <select id="topic" name="topic" class="form-select" required aria-required="true">
                 <option value="booking" data-i18n="kontakt.form.topicBooking"></option>
                 <option value="other" data-i18n="kontakt.form.topicOther"></option>
               </select>
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="date_from" class="form-label" data-i18n="kontakt.form.dateFrom"></label>
-              <input type="date" class="form-control" id="date_from" name="date_from" />
+              <input type="date" class="form-control" id="date_from" name="date_from" required aria-required="true" />
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="date_to" class="form-label" data-i18n="kontakt.form.dateTo"></label>
-              <input type="date" class="form-control" id="date_to" name="date_to" />
+              <input type="date" class="form-control" id="date_to" name="date_to" required aria-required="true" />
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="apartment" class="form-label" data-i18n="kontakt.form.apartment"></label>
-              <select id="apartment" name="apartment" class="form-select">
+              <select id="apartment" name="apartment" class="form-select" required aria-required="true">
                 <option value="" data-i18n="kontakt.form.apartmentPlaceholder"></option>
               </select>
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="persons" class="form-label" data-i18n="kontakt.form.persons"></label>
-              <select id="persons" name="persons" class="form-select">
+              <select id="persons" name="persons" class="form-select" required aria-required="true">
                 <option value="" data-i18n="kontakt.form.personsPlaceholder"></option>
                 <option value="1">1</option>
                 <option value="2">2</option>

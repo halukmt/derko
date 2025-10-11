@@ -46,11 +46,45 @@
     toggleBookingOnlyFields();
   }
 
+  function linkPrivacyPolicyWord(){
+    const label = document.querySelector('label[for="privacy"][data-i18n="kontakt.form.privacyConsent"]');
+    if(!label) return;
+    // Idempotent guard
+    if(label.querySelector('a[data-privacy-link]')) return;
+    const txt = label.textContent || '';
+  const target = 'datenschutz.html';
+    const keyword = 'Datenschutzerklärung';
+    const idx = txt.indexOf(keyword);
+    if(idx === -1){
+      // No keyword found (likely non-DE language). Do nothing to avoid awkward phrasing.
+      return;
+    }
+    const before = txt.slice(0, idx);
+    const after = txt.slice(idx + keyword.length);
+    label.textContent = '';
+    label.appendChild(document.createTextNode(before));
+    const a = document.createElement('a');
+  a.href = target; a.textContent = keyword; a.setAttribute('data-privacy-link','');
+  a.className = 'inline-link';
+    a.rel = 'noopener noreferrer';
+    a.target = '_blank';
+    label.appendChild(a);
+    label.appendChild(document.createTextNode(after));
+  }
+
+  // Schedule linking after i18n events so it runs after applyTranslations()
+  function schedulePrivacyLink(){
+    setTimeout(linkPrivacyPolicyWord, 0);
+  }
+
   document.addEventListener('i18n:ready', populateApartmentSelect);
   document.addEventListener('i18n:changed', populateApartmentSelect);
+  document.addEventListener('i18n:ready', schedulePrivacyLink);
+  document.addEventListener('i18n:changed', schedulePrivacyLink);
   document.addEventListener('DOMContentLoaded', initTopicBehavior);
   // In case scripts load after DOMContentLoaded (defer), run immediately
   if(document.readyState === 'interactive' || document.readyState === 'complete'){
     initTopicBehavior();
+    schedulePrivacyLink();
   }
 })();
