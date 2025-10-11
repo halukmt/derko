@@ -10,6 +10,7 @@
     "gen:images:dus": "npm run gen:png:dus && npm run optimize:images"
   },
   "dependencies": {
-    "sharp": "^0.33.3"
+    "sharp": "^0.33.3",
+    "nodemailer": "^6.9.12"
   }
 }
