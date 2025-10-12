@@ -63,16 +63,16 @@
     if (ts) ts.value = String(Date.now());
     let submitting = false;
     form.addEventListener('submit', (e)=>{
-      // Client-side bot heuristics: block if honeypot filled or time since render < 1500ms
+      // Client-side bot heuristics: block if honeypot filled or time since render < 15000ms (testing threshold)
       const now = Date.now();
       const start = ts ? parseInt(ts.value || '0', 10) : 0;
-      const tooFast = start && (now - start < 1500);
+      const tooFast = start && (now - start < 15000);
       const isTrap = honeypot && honeypot.value && honeypot.value.trim() !== '';
 
       if (isTrap || tooFast){
         e.preventDefault();
         if (alertBox){
-          const t = (window.translateKey ? window.translateKey('validation.bot') : null) || 'Request blocked: please try again in a few seconds.';
+          const t = (window.translateKey && (window.translateKey('kontakt.validation.bot') || window.translateKey('validation.bot'))) || 'Request blocked: please try again in a few seconds.';
           alertBox.textContent = t;
           alertBox.classList.remove('d-none');
         }
