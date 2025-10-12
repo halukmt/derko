@@ -69,16 +69,37 @@
       const tooFast = start && (now - start < 15000);
       const isTrap = honeypot && honeypot.value && honeypot.value.trim() !== '';
 
-      if (isTrap || tooFast){
+      // 1) If honeypot is filled, treat as bot immediately
+      if (isTrap){
         e.preventDefault();
         if (alertBox){
           const t = (window.translateKey && (window.translateKey('kontakt.validation.bot') || window.translateKey('validation.bot'))) || 'Request blocked: please try again in a few seconds.';
           alertBox.textContent = t;
           alertBox.classList.remove('d-none');
         }
-        return; // do not mark submitting or disable button
+        return;
       }
 
+      // 2) If form is invalid (missing required fields), let Bootstrap validation show errors and hide bot alert
+      if (!form.checkValidity()){
+        e.preventDefault();
+        form.classList.add('was-validated');
+        if (alertBox){ alertBox.classList.add('d-none'); }
+        return;
+      }
+
+      // 3) If form is valid but too fast, show bot alert and block
+      if (tooFast){
+        e.preventDefault();
+        if (alertBox){
+          const t = (window.translateKey && (window.translateKey('kontakt.validation.bot') || window.translateKey('validation.bot'))) || 'Request blocked: please try again in a few seconds.';
+          alertBox.textContent = t;
+          alertBox.classList.remove('d-none');
+        }
+        return;
+      }
+
+      // 4) All good: proceed with submit (apply double-submit guard)
       if(submitting){ e.preventDefault(); return; }
       submitting = true;
       const btn = form.querySelector('button[type="submit"]');
