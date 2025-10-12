@@ -39,11 +39,31 @@
     <header id="site-header" class="sticky-top" data-component="header"></header>
     <main id="main" class="py-5">
       <div class="container">
-        <div class="text-center mb-4">
-          <h1 class="display-5 fw-bold" data-i18n="home.headline"></h1>
-          <p class="lead" data-i18n="home.subheadline"></p>
-          <a href="pages/kontakt.html" class="btn mt-3" data-i18n="home.cta"></a>
-        </div>
+        <!-- Hero section -->
+        <section class="hero bg-brand-light rounded-4 p-4 p-lg-5 mb-5" aria-labelledby="hero-title">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-6">
+              <h1 id="hero-title" class="display-5 fw-bold mb-3 hero-title" data-i18n="home.headline"></h1>
+              <p class="lead mb-4 hero-lead" data-i18n="home.hero.lead"></p>
+              <div class="d-flex flex-wrap gap-3">
+                <a href="/pages/kontakt.html" class="btn btn-lg" data-i18n="home.hero.ctaPrimary"></a>
+                <a href="/pages/wohnungen.html" class="btn btn-lg btn-outline-primary" data-i18n="home.hero.ctaSecondary"></a>
+              </div>
+
+            </div>
+            <div class="col-lg-6 text-center text-lg-end">
+              <img
+                src="/assets/img/allgemein/fair.png"
+                alt=""
+                aria-hidden="true"
+                class="img-fluid hero-img shadow-sm border"
+                width="800" height="520"
+                decoding="async" fetchpriority="high" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Feature cards -->
         <section aria-labelledby="features-heading" class="row g-4" id="feature-cards">
           <h2 id="features-heading" class="visually-hidden" data-i18n="home.features.heading"></h2>
           <!-- Feature cards injected -->

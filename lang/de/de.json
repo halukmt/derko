@@ -27,6 +27,12 @@
     "headline": "Willkommen bei DERKO Immobilien",
     "subheadline": "Hier finden Sie komfortable und günstige Unterkünfte für Handwerker und Monteure.",
     "cta": "Angebot anfragen",
+    "hero": {
+      "title": "Monteurwohnungen – modern, fair, zentral",
+      "lead": "Flexibel buchbare, vollständig ausgestattete Unterkünfte für Teams, Monteure und Projektaufenthalte. Direkte Anbindung, faire Konditionen, zuverlässiger Service.",
+      "ctaPrimary": "Angebot anfragen",
+      "ctaSecondary": "Wohnungen ansehen"
+    },
     "features": {
       "heading": "Vorteile",
       "komfort": {

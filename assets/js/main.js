@@ -130,7 +130,7 @@
       const data = [
         { icon: 'fa-bed', title: 'home.features.komfort.title', text: 'home.features.komfort.text', img: baseImg + 'komfort.png' },
         { icon: 'fa-location-dot', title: 'home.features.zentral.title', text: 'home.features.zentral.text', img: baseImg + 'zentral.png' },
-        { icon: 'fa-euro-sign', title: 'home.features.fair.title', text: 'home.features.fair.text', img: baseImg + 'fair.png' }
+        { icon: 'fa-euro-sign', title: 'home.features.fair.title', text: 'home.features.fair.text', img: baseImg + 'fair_2.png' }
       ];
       data.forEach(item=>{
         const variant = tpl.content.querySelector('[data-variant="feature"]').cloneNode(true);

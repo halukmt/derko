@@ -414,6 +414,22 @@ body{ overflow-y: scroll; }
 .founders-img { object-fit: cover; border:1px solid var(--brand-border); }
 
 /* --------------------------------------------------
+  Homepage Hero
+  - Split layout with badges and CTAs
+  - Uses brand light background and subtle gradient overlay on large screens
+-------------------------------------------------- */
+.hero{ position:relative; overflow:hidden; }
+.hero::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.45; mix-blend-mode: multiply;
+  background: radial-gradient(1200px 600px at 120% -10%, rgba(var(--brand-primary-rgb), .35), rgba(0,0,0,0));
+}
+.hero-title{ color: var(--brand-dark); }
+.hero-lead{ color:#333; }
+.hero-badges .badge{ background: var(--brand-primary); color:#352d17; font-weight:600; letter-spacing:.2px; padding:.6rem .8rem; }
+.hero-img{ background:#f3f3f3; object-fit:cover; border-color: var(--brand-border) !important; border-radius:1rem; }
+@media (max-width: 575.98px){ .hero-img{ border-radius:.8rem; } }
+
+/* --------------------------------------------------
   About Feature Cards Bullet Icon List
   - Replaces default bullets with brand-colored check icons
   - More generous vertical rhythm for readability

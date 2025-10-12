@@ -27,6 +27,12 @@
     "headline": "Welcome to DERKO Real Estate",
     "subheadline": "Find comfortable and affordable accommodation for teams and contractors.",
     "cta": "Book now",
+    "hero": {
+      "title": "Contractor apartments – modern, fair, central",
+      "lead": "Flexible, fully equipped accommodation for teams, trades and project stays. Direct connections, fair terms, reliable service.",
+      "ctaPrimary": "Request an offer",
+      "ctaSecondary": "View apartments"
+    },
     "features": {
       "heading": "Benefits",
       "komfort": {
