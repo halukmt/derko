@@ -171,7 +171,10 @@
       "persons": "Number of persons",
       "personsPlaceholder": "Select number of persons",
       "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions.",
-      "submit": "Send"
+      "submit": "Send",
+      "captchaLabel": "Security check",
+      "captchaHelp": "Please enter the characters from the image.",
+      "captchaRefresh": "Refresh"
     },
     "validation": {
       "nameRequired": "Please enter your name.",
@@ -179,7 +182,8 @@
       "phoneInvalid": "Please enter a valid phone number.",
       "messageRequired": "Please enter a message.",
       "privacyRequired": "Please accept to store your details.",
-      "bot": "Request blocked: please try again in a few seconds."
+      "bot": "Request blocked: please try again in a few seconds.",
+      "captcha": "The security code is incorrect."
     }
     ,
     "email": {

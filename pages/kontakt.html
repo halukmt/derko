@@ -208,6 +208,19 @@
                 <div class="invalid-feedback" data-i18n="kontakt.validation.privacyRequired"></div>
               </div>
             </div>
+            <div class="col-md-6">
+              <label for="captcha" class="form-label" data-i18n="kontakt.form.captchaLabel"></label>
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <input type="text" class="form-control" id="captcha" name="captcha" autocomplete="off" inputmode="text" required aria-required="true" />
+                <img id="captcha-img" src="/api/captcha.php" alt="CAPTCHA" width="120" height="40" class="rounded border flex-shrink-0" />
+                <button type="button" id="captcha-refresh" class="icon-circle flex-shrink-0" aria-label="Neu laden">
+                  <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                  <span class="visually-hidden" data-i18n="kontakt.form.captchaRefresh"></span>
+                </button>
+              </div>
+              <div class="captcha-help" data-i18n="kontakt.form.captchaHelp"></div>
+              <div class="invalid-feedback" data-i18n="kontakt.validation.captcha"></div>
+            </div>
             <div class="col-12">
               <button class="btn" type="submit" data-i18n="kontakt.form.submit">
               </button>
@@ -217,14 +230,7 @@
       </div>
     </main>
     <footer id="site-footer" data-component="footer"></footer>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Kontakt",
-        "url": "/pages/kontakt.html"
-      }
-    </script>
+    <link rel="alternate" type="application/ld+json" href="../assets/seo/kontakt.jsonld" />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

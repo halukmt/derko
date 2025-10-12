@@ -1,4 +1,5 @@
 <?php
+@session_start();
 // sendmail.php – Minimal backend for contact form (Strato compatible)
 // Config
 $TO = 'social@techsulting.de'; // Empfänger
@@ -98,6 +99,8 @@ $apartment = get_post('apartment');
 $persons = get_post('persons');
 $message = get_post('message');
 $privacy = get_post('privacy');
+// Captcha
+$captcha = get_post('captcha');
 // Anti-bot fields
 $honeypot = get_post('company'); // should stay empty
 $js_enabled = get_post('js_enabled');
@@ -116,6 +119,13 @@ if($topic === 'booking'){
   if($apartment === '') $errors[] = 'apartment';
   if($persons === '' || !preg_match('/^\d+$/', $persons)) $errors[] = 'persons';
 }
+
+// CAPTCHA check (case-insensitive)
+if ($captcha === '' || !isset($_SESSION['captcha_code']) || strcasecmp(trim($captcha), $_SESSION['captcha_code']) !== 0) {
+  $errors[] = 'captcha';
+}
+// Invalidate used code regardless
+unset($_SESSION['captcha_code']);
 
 // Basic anti-bot checks
 // 1) Honeypot must be empty

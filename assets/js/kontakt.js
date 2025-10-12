@@ -63,10 +63,10 @@
     if (ts) ts.value = String(Date.now());
     let submitting = false;
     form.addEventListener('submit', (e)=>{
-      // Client-side bot heuristics: block if honeypot filled or time since render < 15000ms (testing threshold)
+      // Client-side bot heuristics: block if honeypot filled or time since render < 1500ms (testing threshold)
       const now = Date.now();
       const start = ts ? parseInt(ts.value || '0', 10) : 0;
-      const tooFast = start && (now - start < 15000);
+      const tooFast = start && (now - start < 1500);
       const isTrap = honeypot && honeypot.value && honeypot.value.trim() !== '';
 
       // 1) If honeypot is filled, treat as bot immediately
@@ -202,6 +202,16 @@
     setTimeout(() => { ensureStaticYear(df); ensureStaticYear(dt); }, 0);
   }
 
+  function initCaptcha(){
+    const img = document.getElementById('captcha-img');
+    if (!img) return;
+    const btn = document.getElementById('captcha-refresh');
+    const refresh = () => { img.src = '/api/captcha.php?r=' + Date.now(); };
+    if (btn && !btn._wired){ btn.addEventListener('click', refresh); btn._wired = true; }
+    // cache-bust on first load
+    refresh();
+  }
+
   function markRequiredLabels(){
     // Map input/select/textarea[required] to its label[for]
     const requiredControls = document.querySelectorAll('#contact-form input[required], #contact-form select[required], #contact-form textarea[required]');
@@ -255,6 +265,7 @@
   document.addEventListener('DOMContentLoaded', initTopicBehavior);
   document.addEventListener('DOMContentLoaded', markRequiredLabels);
   document.addEventListener('DOMContentLoaded', initAntiBot);
+  document.addEventListener('DOMContentLoaded', initCaptcha);
   // In case scripts load after DOMContentLoaded (defer), run immediately
   if(document.readyState === 'interactive' || document.readyState === 'complete'){
     initTopicBehavior();
@@ -263,5 +274,6 @@
     setHiddenLang();
     initDatePickers();
     initAntiBot();
+    initCaptcha();
   }
 })();

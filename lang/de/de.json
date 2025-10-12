@@ -172,7 +172,10 @@
       "persons": "Anzahl Personen",
       "personsPlaceholder": "Anzahl Personen wählen",
       "privacyConsent": "Ich habe die Datenschutzerklärung zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden.",
-      "submit": "Absenden"
+      "submit": "Absenden",
+      "captchaLabel": "Sicherheitsprüfung",
+      "captchaHelp": "Bitte geben Sie die Zeichen aus dem Bild ein.",
+      "captchaRefresh": "Neu laden"
     },
     "validation": {
       "nameRequired": "Bitte geben Sie Ihren Namen ein.",
@@ -180,7 +183,8 @@
       "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
       "messageRequired": "Bitte geben Sie eine Nachricht ein.",
       "privacyRequired": "Bitte stimmen Sie der Speicherung Ihrer Angaben zu.",
-      "bot": "Anfrage blockiert: Bitte versuchen Sie es in wenigen Sekunden erneut."
+      "bot": "Anfrage blockiert: Bitte versuchen Sie es in wenigen Sekunden erneut.",
+      "captcha": "Der Sicherheitscode ist nicht korrekt."
     }
     ,
     "email": {
