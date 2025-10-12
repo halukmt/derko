@@ -401,6 +401,101 @@ body{ overflow-y: scroll; }
 .about-feature-list li span{ flex:1 1 auto; }
 
 /* --------------------------------------------------
+  Flatpickr Theme Overrides (brand-aligned)
+  - Uses brand tokens for selection and focus
+  - Keeps typography consistent
+-------------------------------------------------- */
+.flatpickr-calendar { font-family: inherit; border:1px solid var(--brand-border); box-shadow: 0 8px 24px rgba(0,0,0,.08); border-radius:.6rem; }
+.flatpickr-months { border-bottom: 1px solid var(--brand-border); }
+.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month { color: var(--brand-dark); fill: var(--brand-dark); }
+.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month { opacity:.85; }
+.flatpickr-months .flatpickr-prev-month:hover, .flatpickr-months .flatpickr-next-month:hover { opacity:1; }
+.flatpickr-months .flatpickr-prev-month svg, .flatpickr-months .flatpickr-next-month svg{ display:none; }
+.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month{
+  top:1%; transform: translateY(-1%);
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2rem; height:2rem;
+}
+.flatpickr-months .flatpickr-prev-month::before, .flatpickr-months .flatpickr-next-month::before{
+  content:""; display:inline-block; width:1.1em; height:1.1em; background-color: var(--brand-dark); vertical-align:middle;
+  -webkit-mask: center/100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4L8 12l8 8'/%3E%3C/svg%3E");
+  mask: center/100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4L8 12l8 8'/%3E%3C/svg%3E");
+}
+.flatpickr-months .flatpickr-next-month::before{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4l8 8-8 8'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4l8 8-8 8'/%3E%3C/svg%3E");
+}
+.flatpickr-current-month{ display:flex; align-items:center; justify-content:center; gap:.5rem; padding:.35rem 0; }
+.flatpickr-current-month .flatpickr-monthDropdown-months{ display:none; }
+.flatpickr-current-month .numInputWrapper{ display:none !important; }
+.flatpickr-current-month .cur-year-display{ font-weight:700; color: var(--brand-dark); margin:0; font-size:1rem; line-height:1.2; }
+.flatpickr-current-month .numInputWrapper span.arrowUp,
+.flatpickr-current-month .numInputWrapper span.arrowDown{ display:none; }
+.flatpickr-current-month .numInputWrapper input.cur-year{
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  background: transparent;
+  border: 0;
+  width: 4.2ch; /* fits 2025 comfortably */
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font-weight: 700;
+  color: var(--brand-dark);
+}
+/* remove spinners in WebKit */
+.flatpickr-current-month .numInputWrapper input.cur-year::-webkit-outer-spin-button,
+.flatpickr-current-month .numInputWrapper input.cur-year::-webkit-inner-spin-button{ -webkit-appearance: none; margin: 0; }
+.flatpickr-current-month .numInputWrapper input.cur-year:focus{ outline: none; box-shadow: inset 0 -2px 0 var(--brand-primary); border-radius:0; }
+.flatpickr-current-month .numInputWrapper input.cur-year:hover:not(:focus){ box-shadow: none !important; text-decoration:none !important; }
+.flatpickr-current-month .numInputWrapper input.cur-year:hover{ text-decoration: none; }
+.flatpickr-current-month .cur-month { font-weight:700; color: var(--brand-dark) !important; margin:0; }
+.flatpickr-current-month .cur-year { display:none; }
+.flatpickr-current-month .cur-year:focus{ outline:none; box-shadow:none; }
+.flatpickr-current-month .cur-month, .flatpickr-current-month .cur-year-display { font-size:1rem !important; line-height:1.2; }
+/* Remove hover greys and link-like appearance */
+.flatpickr-current-month .cur-month:hover,
+.flatpickr-current-month .cur-month:active,
+.flatpickr-current-month .cur-year:hover,
+.flatpickr-current-month .cur-year:active{
+  background: transparent !important;
+  color: var(--brand-dark);
+  text-decoration: none;
+  box-shadow: none;
+}
+.flatpickr-current-month .cur-month{ cursor: default; }
+.flatpickr-current-month .cur-year{ display:none; }
+
+/* Remove grey hover background and ensure transparent background at all times */
+.flatpickr-current-month .numInputWrapper{ background: transparent !important; }
+.flatpickr-current-month .numInputWrapper:hover{ background: transparent !important; }
+.flatpickr-current-month .numInputWrapper input.cur-year{
+  background: transparent !important;
+  -webkit-user-select: none; -moz-user-select: none; user-select: none;
+}
+.flatpickr-current-month .numInputWrapper input.cur-year:focus{
+  -webkit-user-select: text; -moz-user-select: text; user-select: text;
+}
+/* prevent visible selection highlight by mouse drag */
+.flatpickr-current-month .cur-month{ -webkit-user-select:none; -moz-user-select:none; user-select:none; }
+.flatpickr-current-month .numInputWrapper::selection,
+.flatpickr-current-month .cur-month::selection,
+.flatpickr-current-month .numInputWrapper input.cur-year::selection{ background: transparent; color: inherit; }
+.flatpickr-current-month .numInputWrapper input.cur-year::-moz-selection{ background: transparent; color: inherit; }
+/* Branded selection color inside the year input */
+.flatpickr-current-month .numInputWrapper input.cur-year::selection{ background: var(--brand-primary); color:#fff; }
+.flatpickr-current-month .flatpickr-monthDropdown-months { font-weight:600; }
+.flatpickr-current-month input.cur-year { font-weight:700 !important; color: var(--brand-dark) !important; }
+.flatpickr-day.today { border-color: var(--brand-primary); }
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.selected:focus, .flatpickr-day.selected:hover { background: var(--brand-dark); border-color: var(--brand-dark); color:#fff; }
+.flatpickr-day:hover { background: rgba(var(--brand-primary-rgb), .15); border-color: var(--brand-border); }
+.flatpickr-day.disabled, .flatpickr-day.disabled:hover { color:#aaa; background:transparent; }
+.flatpickr-weekday { color: var(--brand-dark); font-weight:600; }
+.flatpickr-calendar.hasTime .flatpickr-time { border-top:1px solid var(--brand-border); }
+.flatpickr-input:focus-visible, input.flatpickr-input:focus { border-color: var(--brand-primary); box-shadow: var(--focus-ring); }
+
+/* --------------------------------------------------
   Apartment Detail: Larger Vertical Spacing Between Sections
   Targets only detail page section IDs to avoid global impact
 -------------------------------------------------- */

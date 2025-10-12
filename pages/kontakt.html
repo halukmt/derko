@@ -50,6 +50,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- Flatpickr CSS (datepicker) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
   <meta name="theme-color" content="#505C61" />
   <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/logo/favicon-16x16.png" />
@@ -58,7 +60,7 @@
   <link rel="shortcut icon" href="/assets/img/logo/favicon.ico" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#505C61" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
     <header
@@ -146,11 +148,11 @@
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="date_from" class="form-label" data-i18n="kontakt.form.dateFrom"></label>
-              <input type="date" class="form-control" id="date_from" name="date_from" required aria-required="true" />
+              <input type="text" class="form-control" id="date_from" name="date_from" placeholder="tt.mm.jjjj" required aria-required="true" />
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="date_to" class="form-label" data-i18n="kontakt.form.dateTo"></label>
-              <input type="date" class="form-control" id="date_to" name="date_to" required aria-required="true" />
+              <input type="text" class="form-control" id="date_to" name="date_to" placeholder="tt.mm.jjjj" required aria-required="true" />
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="apartment" class="form-label" data-i18n="kontakt.form.apartment"></label>
@@ -223,6 +225,9 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- Flatpickr JS + Locale (DE) -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js" defer></script>
     <script src="../assets/js/lang.js" defer></script>
     <script src="../assets/js/main.js" defer></script>
     <script src="../assets/js/kontakt.js" defer></script>
