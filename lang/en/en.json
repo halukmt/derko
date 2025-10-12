@@ -156,10 +156,10 @@
     "headline": "Offer",
     "description": "Questions or want to inquire about an apartment? Use the form or call us.",
     "form": {
-      "name": "Name *",
-      "email": "Email *",
+      "name": "Name",
+      "email": "Email",
       "phone": "Phone",
-      "message": "Message *",
+      "message": "Message",
       "dateFrom": "Date from",
       "dateTo": "Date to",
       "topic": "Topic",
@@ -169,7 +169,7 @@
       "apartmentPlaceholder": "Select apartment",
       "persons": "Number of persons",
       "personsPlaceholder": "Select number of persons",
-      "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions. *",
+      "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions.",
       "submit": "Send"
     },
     "validation": {
@@ -178,6 +178,11 @@
       "phoneInvalid": "Please enter a valid phone number.",
       "messageRequired": "Please enter a message.",
       "privacyRequired": "Please accept to store your details."
+    }
+    ,
+    "email": {
+      "subjectIdLabel": "Request ID",
+      "yourDetails": "Your details:"
     }
   },
   "agb": {
@@ -219,6 +224,6 @@
   "confirmation": {
     "headline": "Request sent",
     "description": "We have received your request.",
-    "message": "Thank you for your interest in our apartments.\nWe will review your details and get back to you as soon as possible.\nKind regards,\nYour DERKO Team."
+    "message": "Thank you for your interest in our apartments.<br>We will review your details and get back to you as soon as possible.<br><br>Kind regards,<br>Your DERKO Team."
   }
 }

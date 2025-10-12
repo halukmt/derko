@@ -1,4 +1,9 @@
 (function(){
+  function setHiddenLang(){
+    const hf = document.getElementById('lang');
+    if (!hf) return;
+    if (window.getLanguage){ hf.value = window.getLanguage(); }
+  }
   function populateApartmentSelect(){
     const sel = document.getElementById('apartment');
     if(!sel || !window.translateKey) return;
@@ -46,6 +51,17 @@
     toggleBookingOnlyFields();
   }
 
+  function markRequiredLabels(){
+    // Map input/select/textarea[required] to its label[for]
+    const requiredControls = document.querySelectorAll('#contact-form input[required], #contact-form select[required], #contact-form textarea[required]');
+    requiredControls.forEach(ctrl => {
+      const id = ctrl.getAttribute('id');
+      if (!id) return;
+      const label = document.querySelector('label.form-label[for="'+CSS.escape(id)+'"]');
+      if (label) label.classList.add('is-required-label');
+    });
+  }
+
   function linkPrivacyPolicyWord(){
     const label = document.querySelector('label[for="privacy"][data-i18n="kontakt.form.privacyConsent"]');
     if(!label) return;
@@ -81,10 +97,15 @@
   document.addEventListener('i18n:changed', populateApartmentSelect);
   document.addEventListener('i18n:ready', schedulePrivacyLink);
   document.addEventListener('i18n:changed', schedulePrivacyLink);
+  document.addEventListener('i18n:ready', setHiddenLang);
+  document.addEventListener('i18n:changed', setHiddenLang);
   document.addEventListener('DOMContentLoaded', initTopicBehavior);
+  document.addEventListener('DOMContentLoaded', markRequiredLabels);
   // In case scripts load after DOMContentLoaded (defer), run immediately
   if(document.readyState === 'interactive' || document.readyState === 'complete'){
     initTopicBehavior();
     schedulePrivacyLink();
+    markRequiredLabels();
+    setHiddenLang();
   }
 })();

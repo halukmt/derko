@@ -77,6 +77,7 @@
           action="../api/sendmail.php"
           method="POST"
         >
+          <input type="hidden" id="lang" name="lang" value="" />
           <div class="row g-3">
             <div class="col-md-6">
               <label for="name" class="form-label" data-i18n="kontakt.form.name"></label
@@ -127,9 +128,8 @@
                 id="phone"
                 name="phone"
                 autocomplete="tel"
-                pattern="^[+0-9 /()-]{6,}$"
-                required
-                aria-required="true"
+                inputmode="tel"
+                minlength="6"
               />
               <div
                 class="invalid-feedback"

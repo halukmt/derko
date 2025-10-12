@@ -157,10 +157,10 @@
     "headline": "Angebot",
     "description": "Sie haben Fragen oder möchten eine Wohnung anfragen? Nutzen Sie das Formular oder rufen Sie uns an.",
     "form": {
-      "name": "Name *",
-      "email": "E-Mail *",
+      "name": "Name",
+      "email": "E-Mail",
       "phone": "Telefon",
-      "message": "Nachricht *",
+      "message": "Nachricht",
       "dateFrom": "Datum von",
       "dateTo": "Datum bis",
       "topic": "Thema",
@@ -170,7 +170,7 @@
       "apartmentPlaceholder": "Wohnung wählen",
       "persons": "Anzahl Personen",
       "personsPlaceholder": "Anzahl Personen wählen",
-      "privacyConsent": "Ich habe die Datenschutzerklärung zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden. *",
+      "privacyConsent": "Ich habe die Datenschutzerklärung zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden.",
       "submit": "Absenden"
     },
     "validation": {
@@ -179,6 +179,11 @@
       "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
       "messageRequired": "Bitte geben Sie eine Nachricht ein.",
       "privacyRequired": "Bitte stimmen Sie der Speicherung Ihrer Angaben zu."
+    }
+    ,
+    "email": {
+      "subjectIdLabel": "Anfrage-ID",
+      "yourDetails": "Ihre Angaben:"
     }
   },
   "agb": {
@@ -220,6 +225,6 @@
   "confirmation": {
     "headline": "Anfrage gesendet",
     "description": "Wir haben Ihre Anfrage erhalten.",
-    "message": "Vielen Dank für Ihr Interesse an unseren Wohnungen.\nWir prüfen Ihre Angaben und melden uns so schnell wie möglich bei Ihnen.\nHerzliche Grüße,\nIhr DERKO-Team."
+    "message": "Vielen Dank für Ihr Interesse an unseren Wohnungen.<br>Wir prüfen Ihre Angaben und melden uns so schnell wie möglich bei Ihnen.<br><br>Herzliche Grüße,<br>Ihr DERKO-Team."
   }
 }
