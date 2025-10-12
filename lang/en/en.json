@@ -20,7 +20,8 @@
     "privacy": "Privacy",
     "kontakt": "Contact",
     "instagram": "Instagram",
-    "facebook": "Facebook"
+    "facebook": "Facebook",
+    "creditHtml": "Webdesign by <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
     "headline": "Welcome to DERKO Real Estate",
@@ -177,7 +178,8 @@
       "emailRequired": "Please enter a valid email.",
       "phoneInvalid": "Please enter a valid phone number.",
       "messageRequired": "Please enter a message.",
-      "privacyRequired": "Please accept to store your details."
+      "privacyRequired": "Please accept to store your details.",
+      "bot": "Request blocked: please try again in a few seconds."
     }
     ,
     "email": {

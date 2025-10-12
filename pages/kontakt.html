@@ -79,7 +79,12 @@
           action="../api/sendmail.php"
           method="POST"
         >
+          <div id="form-alert" class="alert alert-warning d-none" role="alert" aria-live="polite"></div>
           <input type="hidden" id="lang" name="lang" value="" />
+          <!-- Bot protection helpers: honeypot + JS flags (no inline styles due to CSP) -->
+          <input type="text" id="company" name="company" class="d-none" autocomplete="off" tabindex="-1" aria-hidden="true" />
+          <input type="hidden" id="js_enabled" name="js_enabled" value="" />
+          <input type="hidden" id="form_ts" name="form_ts" value="" />
           <div class="row g-3">
             <div class="col-md-6">
               <label for="name" class="form-label" data-i18n="kontakt.form.name"></label

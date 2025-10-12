@@ -51,6 +51,42 @@
     toggleBookingOnlyFields();
   }
 
+  // Lightweight bot/rate protection: set JS flag, timestamp, and disable double submit
+  function initAntiBot(){
+    const form = document.getElementById('contact-form');
+    if(!form) return;
+    const jsEnabled = form.querySelector('#js_enabled');
+    const ts = form.querySelector('#form_ts');
+    const honeypot = form.querySelector('#company');
+    const alertBox = document.getElementById('form-alert');
+    if (jsEnabled) jsEnabled.value = '1';
+    if (ts) ts.value = String(Date.now());
+    let submitting = false;
+    form.addEventListener('submit', (e)=>{
+      // Client-side bot heuristics: block if honeypot filled or time since render < 1500ms
+      const now = Date.now();
+      const start = ts ? parseInt(ts.value || '0', 10) : 0;
+      const tooFast = start && (now - start < 1500);
+      const isTrap = honeypot && honeypot.value && honeypot.value.trim() !== '';
+
+      if (isTrap || tooFast){
+        e.preventDefault();
+        if (alertBox){
+          const t = (window.translateKey ? window.translateKey('validation.bot') : null) || 'Request blocked: please try again in a few seconds.';
+          alertBox.textContent = t;
+          alertBox.classList.remove('d-none');
+        }
+        return; // do not mark submitting or disable button
+      }
+
+      if(submitting){ e.preventDefault(); return; }
+      submitting = true;
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn){ btn.disabled = true; btn.setAttribute('aria-disabled','true'); }
+      // Optional: small delay to prevent ultra-fast bots; kept minimal for UX
+    }, { capture:true });
+  }
+
   function initDatePickers(){
     if (typeof flatpickr === 'undefined') return;
 
@@ -197,6 +233,7 @@
   document.addEventListener('i18n:changed', initDatePickers);
   document.addEventListener('DOMContentLoaded', initTopicBehavior);
   document.addEventListener('DOMContentLoaded', markRequiredLabels);
+  document.addEventListener('DOMContentLoaded', initAntiBot);
   // In case scripts load after DOMContentLoaded (defer), run immediately
   if(document.readyState === 'interactive' || document.readyState === 'complete'){
     initTopicBehavior();
@@ -204,5 +241,6 @@
     markRequiredLabels();
     setHiddenLang();
     initDatePickers();
+    initAntiBot();
   }
 })();
