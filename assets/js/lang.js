@@ -203,7 +203,14 @@
     Object.entries(navMap).forEach(([sel,key])=>{
       const el = document.querySelector(sel);
       const val = getByPath(STATE.dict, key);
-      if (el && val) el.textContent = val;
+      if (!el || !val) return;
+      // If a nested label placeholder exists, populate that to preserve any icons
+      const childLabel = el.querySelector('[data-nav-label]');
+      if (childLabel){
+        childLabel.textContent = val;
+      } else {
+        el.textContent = val;
+      }
     });
     // Footer
     const footerMap = {
