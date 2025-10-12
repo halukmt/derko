@@ -235,6 +235,16 @@ footer{
   background: #f8f9fa;
 }
 
+/* Footer layout tweaks */
+footer .container{ row-gap: .5rem; flex-wrap: wrap; }
+@media (min-width:768px){
+  footer .container{ row-gap: .25rem; flex-wrap: wrap; }
+  footer .container{ display:flex; }
+  footer .container > #ft-copyright{ flex:1 1 0; }
+  footer .container > .social-links{ flex:0 0 auto; }
+  footer .container > .nav{ flex:1 1 0; justify-content:flex-end; }
+}
+
 .visually-hidden-focusable:not(:focus):not(:focus-within){
   position:absolute !important;
   width:1px;height:1px;

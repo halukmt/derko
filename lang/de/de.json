@@ -20,7 +20,8 @@
     "kontakt": "Kontakt",
     "privacy": "Datenschutz",
     "instagram": "Instagram",
-    "facebook": "Facebook"
+    "facebook": "Facebook",
+    "creditHtml": "Webdesign von <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
     "headline": "Willkommen bei DERKO Immobilien",
@@ -178,7 +179,8 @@
       "emailRequired": "Bitte geben Sie eine gültige E-Mail ein.",
       "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
       "messageRequired": "Bitte geben Sie eine Nachricht ein.",
-      "privacyRequired": "Bitte stimmen Sie der Speicherung Ihrer Angaben zu."
+      "privacyRequired": "Bitte stimmen Sie der Speicherung Ihrer Angaben zu.",
+      "bot": "Anfrage blockiert: Bitte versuchen Sie es in wenigen Sekunden erneut."
     }
     ,
     "email": {

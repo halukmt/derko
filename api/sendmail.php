@@ -98,6 +98,10 @@ $apartment = get_post('apartment');
 $persons = get_post('persons');
 $message = get_post('message');
 $privacy = get_post('privacy');
+// Anti-bot fields
+$honeypot = get_post('company'); // should stay empty
+$js_enabled = get_post('js_enabled');
+$form_ts = get_post('form_ts');
 
 // Einfache Validierung
 $errors = [];
@@ -111,6 +115,18 @@ if($topic === 'booking'){
   if($date_to === '') $errors[] = 'date_to';
   if($apartment === '') $errors[] = 'apartment';
   if($persons === '' || !preg_match('/^\d+$/', $persons)) $errors[] = 'persons';
+}
+
+// Basic anti-bot checks
+// 1) Honeypot must be empty
+if($honeypot !== ''){ $errors[] = 'bot_honeypot'; }
+// 2) JS flag should be set (progressive enhancement: if missing, allow but flag)
+if($js_enabled === ''){ /* could add soft flag; not blocking to avoid false negatives */ }
+// 3) Submission too fast (< 2s) since render
+$clientTs = ctype_digit($form_ts) ? (int)$form_ts : 0;
+if($clientTs > 0){
+  $delta = (int)(microtime(true)*1000) - $clientTs;
+  if($delta < 2000){ $errors[] = 'bot_too_fast'; }
 }
 
 if(!empty($errors)){

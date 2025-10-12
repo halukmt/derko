@@ -222,6 +222,11 @@
       const val = getByPath(STATE.dict, 'footer.copyright');
       if (val) copyright.textContent = val;
     }
+    const credit = document.querySelector('#ft-credit');
+    if (credit) {
+      const html = getByPath(STATE.dict, 'footer.creditHtml');
+      if (typeof html === 'string') credit.innerHTML = sanitizeHtml(html);
+    }
   }
 
   async function setLanguage(lang){
