@@ -200,6 +200,9 @@ i.text-primary { color: var(--brand-primary) !important; }
 /* Default color for all icons (Font Awesome, etc.) */
 i[class*="fa-"] { color: var(--brand-primary); }
 
+/* Ensure header nav icons follow link color (so hover/active behave like text) */
+.navbar .nav-link i{ color: currentColor; }
+
 /* Composed brand coloring */
 .navbar-brand .brand-composed{ display:inline-flex; gap:.4ch; align-items:baseline; font-weight:600; font-size:1.15rem; }
 .navbar-brand .brand-main{ color: var(--brand-dark); font-weight:700; letter-spacing:.5px; }
