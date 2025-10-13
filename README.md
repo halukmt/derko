@@ -1,6 +1,6 @@
-# DERKO Statische Website
+# DERKO Immobilien – Website
 
-Mehrsprachige (DE/EN) statische Website mit komponentenbasiertem Aufbau, strikt ohne Inline-Skripte (CSP-kompatibel) und datengetriebener Card-Generierung.
+Moderne, mehrsprachige Website mit statischem Frontend und kleinem PHP-Backend für Mailversand und CAPTCHA. Strikte CSP, keine Inline-Skripte.
 
 ## Features
 - Bootstrap 5.3 (CDN), Font Awesome, Inter Font
@@ -12,7 +12,7 @@ Mehrsprachige (DE/EN) statische Website mit komponentenbasiertem Aufbau, strikt 
 - Einheitliches Button-/Branding-Design (CSS Custom Properties)
 - Barrierefreiheit: Skip-Link, ARIA, Fokus-Ring, semantische Überschriften
 
-## Projektstruktur (Auszug)
+## Projektstruktur
 ```
 assets/
 	css/style.css
@@ -33,12 +33,14 @@ index.html          # Startseite
 ```
 
 ## Lokale Entwicklung
-Einfachen HTTP Server starten (weil Fetch für Komponenten / i18n benötigt wird):
+Einfachen HTTP Server starten (weil Fetch für Komponenten / i18n benötigt wird). Für das PHP-Backend (Mail & CAPTCHA) bitte den PHP Built-in Server nutzen:
 
 ```powershell
+cd C:\zdev\derko
+# PHP Built-in Server (empfohlen)
+php -S localhost:8080 -t .
+# Alternativ, nur statisch (ohne PHP-Endpunkte):
 npx http-server -p 8080
-# oder
-python -m http.server 8080
 ```
 
 Aufrufen: http://localhost:8080/
@@ -127,12 +129,7 @@ Fallback: Falls kein `data-cards` gesetzt → eine Legacy-Karte mit Schlüssel `
 ```
 JS klont immer die passende Variante.
 
-## Deployment Hinweise
-- `robots.txt` & `sitemap.xml` sind vorhanden (Sitemap verweist in `robots.txt`).
-- Empfohlen: Richtigen HTTP 404 Status für `404.html` serverseitig setzen.
-- Optional: Lokales Hosten der Fonts für Datenschutz.
-
-## Kontaktformular (PHP Backend)
+## E-Mail-Versand
 Produktiver Versand ohne Drittanbieter via `api/sendmail.php` (Strato‑kompatibel über `mail()`):
 
 - Formular: `pages/kontakt.html` → `action="../api/sendmail.php"`, Methode POST
@@ -152,6 +149,25 @@ Hinweise Zustellbarkeit:
 - FROM sollte zu deiner Domain gehören (SPF/DMARC prüfen).
 - Bei Bedarf später SMTP/PHPMailer einsetzen (gleiches Endpoint, anderer Versandweg).
 
+## Datenschutz-/Cookie-Banner (TTDSG)
+- Informativ (keine Analytics; nur essentielle Dienste):
+	- PHP Session-Cookie für CAPTCHA auf der Kontaktseite
+	- `localStorage` für Sprachpräferenz und Banner-Einwilligung
+- Banner: Vollbreite, dimmender Backdrop, gestapelte gleich breite Buttons
+	- „Verstanden“: setzt `localStorage.siteConsent`
+	- „Datenschutz“: öffnet die Datenschutzseite
+- Texte über i18n (`site.cookie.*`) gepflegt.
+
+Banner erneut anzeigen (lokal testen):
+```js
+localStorage.removeItem('siteConsent'); location.reload();
+```
+
+## Deployment Hinweise
+- `robots.txt` & `sitemap.xml` sind vorhanden (Sitemap verweist in `robots.txt`).
+- Empfohlen: Richtigen HTTP 404 Status für `404.html` serverseitig setzen.
+- Optional: Lokales Hosten der Fonts für Datenschutz.
+
 Sicherheit & CSP:
 - Keine Dritt‑Domains nötig; `form-action 'self'` bleibt erhalten.
 - Serverseitige Header‑Injection vorbeugt (`\r\n` entfernt), Minimal‑Validierung vorhanden.
@@ -167,6 +183,14 @@ Testfälle (Server):
 
 
 
+## Testing-Hinweise
+- Honeypot auslösen: in der Konsole das versteckte Feld befüllen und absenden
+```js
+const hp = document.querySelector('input[name="company"]'); if (hp) hp.value = 'bot';
+```
+- Mindestzeit: Standard 1500 ms (anpassbar in `assets/js/kontakt.js`)
+- CAPTCHA: Refresh-Icon lädt neues Bild; falscher Code → Feld-Fehler
+
 ## Wartung / Erweiterung ToDos (Potenzial)
 - Bildoptimierung (WebP/AVIF Fallbacks)
 - Lazy Loading Gallerien / Lightbox
@@ -180,6 +204,12 @@ Testfälle (Server):
 | Keine Übersetzungen | JSON nicht geladen | Dev-Tools Network prüfen (Pfad) |
 | Karten fehlen | `data-cards` JSON ungültig | JSON validieren (Lint / Konsole) |
 | CSP Fehler | Inline Script eingefügt | In externe Datei auslagern |
+
+## Workflow
+- Branches: `feat/<nr>-kurz`, `fix/<nr>-kurz`
+- Commits referenzieren Issues: „feat: … (refs #123)“
+- PR-Text mit „Fixes #123“ schließt Issues automatisch
+- GitHub Projects: Issues/PRs verknüpfen
 
 ## Lokale Commands (Beispiele)
 ```powershell

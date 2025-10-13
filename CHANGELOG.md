@@ -4,6 +4,24 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.9.0] - 2025-10-13
+### Added
+- Datenschutz-/Cookie-Banner (informativ, nur essentielle Dienste):
+	- Vollbreit am Seitenende ohne untere Lücke (edge-to-edge Hintergrundstreifen).
+	- Halbtransparenter Seiten-Backdrop während der Anzeige (Seite dezent abgeblendet).
+	- Zwei gleich breite, gestapelte Buttons: „Verstanden“ (Speichern in `localStorage.siteConsent`) und „Datenschutz“ (Navigation zur Policy).
+	- i18n-Texte in DE/EN mit Schlüsselpräfix `site.cookie.*`.
+
+### Changed
+- Banner-Titel „Wir respektieren Ihre Privatsphäre“ nun fett hervorgehoben.
+- Layout/Abstände des Banners konsolidiert (Flex-Layout, konsistente Gaps, responsives Verhalten).
+
+### Fixed
+- Haus-Icon im Header (Home-Link) vertikal an Text-Baseline ausgerichtet.
+
+### Documentation
+- README überarbeitet (Lokale Entwicklung mit PHP-Server, Security & Privacy, Testhinweise zum Banner, Workflow).
+
 ## [v0.8.0] - 2025-10-13
 ### Added
 - Startseiten-Hero modernisiert: Split-Layout mit Titel, Lead, Primär-/Sekundär-CTA, Marken‑Badges und Hero‑Visual; neue i18n‑Keys (`home.hero.*`).
