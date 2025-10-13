@@ -7,9 +7,10 @@
     ,"brandSub": "Immobilien"
     ,"langNames": { "de": "Deutsch", "en": "Englisch" }
     ,"cookie": {
-      "text": "Wir verwenden nur technisch notwendige Dienste: eine Sitzung für die Sicherheitsprüfung (CAPTCHA) auf der Kontaktseite und Ihre Sprachwahl (localStorage). Es kommen keine Tracking- oder Marketing-Cookies zum Einsatz.",
-      "more": "Mehr erfahren",
-      "accept": "Verstanden"
+      "title": "Wir respektieren Ihre Privatsphäre",
+      "text": "Wir nehmen den Schutz Ihrer Daten sehr ernst und möchten gleichzeitig, dass Sie bei uns die Angebote finden, die zu Ihnen passen.  Deshalb verwenden wir nur technisch notwendige Dienste. Eine Sitzung für die Sicherheitsprüfung (CAPTCHA) auf der Kontaktseite und Ihre Sprachwahl. Es kommen keine Tracking- oder Marketing-Cookies zum Einsatz.",
+      "accept": "Verstanden",
+      "privacy": "Datenschutz"
     }
   },
   "navigation": {

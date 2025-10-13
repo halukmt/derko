@@ -364,10 +364,13 @@
         bar.innerHTML = `
           <div class="cookie-inner">
             <div class="cookie-content container">
-              <p class="cookie-text mb-2 mb-md-0" data-i18n="site.cookie.text"></p>
+              <div class="cookie-text-wrap">
+                <h2 class="h6 mb-2" data-i18n="site.cookie.title"></h2>
+                <p class="cookie-text mb-2 mb-md-0" data-i18n="site.cookie.text"></p>
+              </div>
               <div class="cookie-actions">
-                <a href="/pages/datenschutz.html" class="btn btn-outline-primary btn-sm" data-i18n="site.cookie.more"></a>
-                <button type="button" class="btn btn-sm" data-action="accept" data-i18n="site.cookie.accept"></button>
+                <button type="button" class="btn btn-primary" data-action="accept" data-i18n="site.cookie.accept"></button>
+                <button type="button" class="btn btn-outline-primary" data-action="privacy" data-i18n="site.cookie.privacy"></button>
               </div>
             </div>
           </div>`;
@@ -379,11 +382,18 @@
         if (window.applyTranslations) window.applyTranslations(bar);
         bar.addEventListener('click', function(e){
           const btn = e.target.closest('[data-action="accept"]');
-          if (!btn) return;
-          // Store consent (only essential used), remove banner
-          try{ localStorage.setItem(CONSENT_KEY, 'true'); }catch(err){ /* ignore */ }
-          bar.remove();
-          backdrop.remove();
+          const more = e.target.closest('[data-action="privacy"]');
+          if (btn){
+            // Store consent (only essential used), remove banner
+            try{ localStorage.setItem(CONSENT_KEY, 'true'); }catch(err){ /* ignore */ }
+            bar.remove();
+            backdrop.remove();
+            return;
+          }
+          if (more){
+            window.location.href = '/pages/datenschutz.html';
+            return;
+          }
         });
       }catch(err){ console.warn('Cookie banner failed', err); }
     })();

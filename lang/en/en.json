@@ -7,9 +7,10 @@
     ,"brandSub": "Real Estate"
     ,"langNames": { "de": "German", "en": "English" }
     ,"cookie": {
-      "text": "We only use essential services: a session for the CAPTCHA (contact form) and your language preference (localStorage). No tracking or marketing cookies are used.",
-      "more": "Learn more",
-      "accept": "Got it"
+      "title": "We respect your privacy",
+      "text": "We only use essential services: a session for the CAPTCHA (contact page) and your language preference. No tracking or marketing cookies are used.",
+      "accept": "Got it",
+      "privacy": "Privacy"
     }
   },
   "navigation": {
