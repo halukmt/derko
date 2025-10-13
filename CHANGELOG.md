@@ -4,6 +4,30 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.8.0] - 2025-10-13
+### Added
+- Startseiten-Hero modernisiert: Split-Layout mit Titel, Lead, Primär-/Sekundär-CTA, Marken‑Badges und Hero‑Visual; neue i18n‑Keys (`home.hero.*`).
+- Selbstgehostetes SVG‑CAPTCHA (`api/captcha.php`) mit Session‑Validierung; UI‑Integration auf `pages/kontakt.html` inkl. Refresh‑Icon.
+- Clientseitiger Bot‑Schutz: Honeypot, JS‑Flag, Zeit‑Schwelle, freundliche i18n‑Meldung, Double‑Submit‑Guard.
+- Flatpickr‑Datepicker: Lokalisierung, Marken‑Theme, statische Jahresanzeige, synchronisierte Zeiträume.
+- Footer‑Ergänzung: Designer‑Credit (TechSulting) und zentrierte Social‑Icons.
+
+### Changed
+- Kontaktformular‑UX: Pflichtfeld‑Marker als goldene Icon‑Marke; verbesserte Eingabe‑Ergonomie; Datenschutz‑Link im Rechtshinweis stilistisch konsistent.
+- JSON‑LD auf Kontaktseite ausgelagert (externes File), um sichtbare Inline‑Darstellung unter dem Footer zu vermeiden; saubere SEO‑Einbindung.
+- CSP: Erforderliche Assets (Bootstrap/Font Awesome/Flatpickr/Google Fonts) freigegeben; `form-action 'self'` beibehalten.
+
+### Fixed
+- CAPTCHA‑Refresh‑Button als perfekte, runde Icon‑Schaltfläche; Icon bleibt auf Hover/Focus/Active weiß; keine Deformation neben dem Bild.
+- Bot‑Hinweis wird nur bei echten Bot‑Signalen gezeigt (keine Störung bei normalen Validierungsfehlern).
+- Verhindert sichtbares JSON‑LD unter dem Footer.
+
+### Security / Hardening
+- Serverseitige CAPTCHA‑Prüfung und Invalidierung; zusätzliche serverseitige Bot‑Heuristiken (Honeypot, Zeit‑Schwelle).
+
+### Accessibility
+- Startseite mit genau einem H1; Hero‑Bild dekorativ (`alt=""`); konsistente Fokus‑Stati.
+
 ## [v0.7.0] - 2025-10-11
 ### Added
 - Serverseitiger Mail‑Endpunkt `api/sendmail.php` (PHP, Strato‑kompatibel) für das Kontaktformular.
