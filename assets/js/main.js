@@ -139,8 +139,21 @@
         iconEl.classList.add(item.icon);
         const imgEl = variant.querySelector('[data-img-feature]');
         if (imgEl && item.img){
-          imgEl.src = item.img;
-          imgEl.classList.remove('d-none');
+          // Build responsive <picture> with AVIF/WebP sources and PNG fallback
+          const srcPng = item.img;
+          const baseNoExt = srcPng.replace(/\.(png|jpe?g)$/i, '');
+          const mkSrcSet = (ext) => [`${baseNoExt}-400.${ext} 400w`, `${baseNoExt}-800.${ext} 800w`, `${baseNoExt}-1200.${ext} 1200w`].join(', ');
+          const picture = document.createElement('picture');
+          const s1 = document.createElement('source'); s1.type = 'image/avif'; s1.setAttribute('srcset', mkSrcSet('avif'));
+          const s2 = document.createElement('source'); s2.type = 'image/webp'; s2.setAttribute('srcset', mkSrcSet('webp'));
+          const img = document.createElement('img');
+          img.src = srcPng; // fallback
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.alt = '';
+          img.className = 'card-img-top';
+          picture.appendChild(s1); picture.appendChild(s2); picture.appendChild(img);
+          imgEl.replaceWith(picture);
         }
         translateAttr(variant.querySelector('[data-title]'), item.title);
         translateAttr(variant.querySelector('[data-text]'), item.text);
@@ -267,9 +280,25 @@
         const variant = tpl.content.querySelector('[data-variant="wohnung"]').cloneNode(true);
         variant.classList.remove('d-none');
         if (cfg.key) variant.setAttribute('data-apartment-key', cfg.key);
-        const img = variant.querySelector('[data-img]');
+        const imgEl = variant.querySelector('[data-img]');
         const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
-        img.src = imgSrc; img.alt = cfg.alt || 'Wohnungsbild';
+        // If the image looks like /assets/img/wohnungen/<apt>/main.png
+        // prefer AVIF/WEBP where available by injecting a <picture>.
+        if (/\/assets\/img\/wohnungen\//.test(imgSrc) && /\/main\.(png|jpe?g)$/i.test(imgSrc)){
+          const noExt = imgSrc.replace(/\.(png|jpe?g)$/i, '');
+          const picture = document.createElement('picture');
+          const s1 = document.createElement('source'); s1.type='image/avif'; s1.srcset = noExt + '.avif';
+          const s2 = document.createElement('source'); s2.type='image/webp'; s2.srcset = noExt + '.webp';
+          const img = document.createElement('img');
+          img.src = imgSrc; // fallback PNG
+          img.alt = cfg.alt || 'Wohnungsbild';
+          img.loading = 'lazy'; img.decoding = 'async'; img.className = 'card-img-top';
+          picture.appendChild(s1); picture.appendChild(s2); picture.appendChild(img);
+          imgEl.replaceWith(picture);
+        } else {
+          // default behavior
+          imgEl.src = imgSrc; imgEl.alt = cfg.alt || 'Wohnungsbild';
+        }
         const prefix = 'wohnungen.' + (cfg.key ? 'cards.' + cfg.key : 'card');
         translateAttr(variant.querySelector('[data-title]'), prefix + '.title');
         translateAttr(variant.querySelector('[data-text]'), prefix + '.text');

@@ -41,7 +41,11 @@
           <h1 class="h2 mb-3" data-i18n="notFound.headline"></h1>
           <p class="lead mb-4" data-i18n="notFound.description"></p>
           <div class="mb-4">
-            <img src="/assets/img/allgemein/seite_404.png" alt="" class="error-404-illustration img-fluid" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/avif" srcset="/assets/img/allgemein/seite_404-400.avif 400w, /assets/img/allgemein/seite_404-800.avif 800w, /assets/img/allgemein/seite_404-1200.avif 1200w" />
+              <source type="image/webp" srcset="/assets/img/allgemein/seite_404-400.webp 400w, /assets/img/allgemein/seite_404-800.webp 800w, /assets/img/allgemein/seite_404-1200.webp 1200w" />
+              <img src="/assets/img/allgemein/seite_404.png" alt="" class="error-404-illustration img-fluid" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <a class="btn" href="/" data-i18n="notFound.backHome"></a>
         </div>

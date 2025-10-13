@@ -89,16 +89,20 @@
         <h1 class="mb-3" data-i18n="ueberUns.headline"></h1>
         <p class="lead" data-i18n="ueberUns.description"></p>
         <figure class="founders-figure my-4 text-center">
-          <img
-            src="../assets/img/allgemein/eray_koray.png"
-            class="img-fluid rounded shadow-sm founders-img"
-            width="1360"
-            height="768"
-            loading="lazy"
-            decoding="async"
-            data-i18n-alt="ueberUns.founders.alt"
-            alt="Gründer"
-          />
+          <picture>
+            <source type="image/avif" srcset="../assets/img/allgemein/eray_koray-400.avif 400w, ../assets/img/allgemein/eray_koray-800.avif 800w, ../assets/img/allgemein/eray_koray-1200.avif 1200w" />
+            <source type="image/webp" srcset="../assets/img/allgemein/eray_koray-400.webp 400w, ../assets/img/allgemein/eray_koray-800.webp 800w, ../assets/img/allgemein/eray_koray-1200.webp 1200w" />
+            <img
+              src="../assets/img/allgemein/eray_koray.png"
+              class="img-fluid rounded shadow-sm founders-img"
+              width="1360"
+              height="768"
+              loading="lazy"
+              decoding="async"
+              data-i18n-alt="ueberUns.founders.alt"
+              alt="Gründer"
+            />
+          </picture>
           <figcaption
             class="mt-2 small text-muted"
             data-i18n="ueberUns.founders.caption"

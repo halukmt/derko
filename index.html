@@ -52,13 +52,17 @@
 
             </div>
             <div class="col-lg-6 text-center text-lg-end">
-              <img
-                src="/assets/img/allgemein/fair.png"
-                alt=""
-                aria-hidden="true"
-                class="img-fluid hero-img shadow-sm border"
-                width="800" height="520"
-                decoding="async" fetchpriority="high" />
+              <picture>
+                <source type="image/avif" srcset="/assets/img/allgemein/fair-400.avif 400w, /assets/img/allgemein/fair-800.avif 800w, /assets/img/allgemein/fair-1200.avif 1200w" />
+                <source type="image/webp" srcset="/assets/img/allgemein/fair-400.webp 400w, /assets/img/allgemein/fair-800.webp 800w, /assets/img/allgemein/fair-1200.webp 1200w" />
+                <img
+                  src="/assets/img/allgemein/fair.png"
+                  alt=""
+                  aria-hidden="true"
+                  class="img-fluid hero-img shadow-sm border"
+                  width="800" height="520"
+                  decoding="async" fetchpriority="high" />
+              </picture>
             </div>
           </div>
         </section>
