@@ -208,8 +208,9 @@
         const bedsTxt  = card.querySelector('[data-beds]')?.textContent || '';
         const areaTxt  = card.querySelector('[data-area]')?.textContent || '';
         const parkTxt  = card.querySelector('[data-parking]')?.textContent || '';
-        const imgEl    = card.querySelector('img[data-img]');
-        const img      = imgEl ? (new URL(imgEl.getAttribute('src'), location.origin)).href : undefined;
+  // Image: support both plain <img data-img> and <picture><img> replacement
+  const imgNode  = card.querySelector('img[data-img]') || card.querySelector('picture img') || card.querySelector('img.card-img-top');
+  const img      = imgNode && imgNode.getAttribute('src') ? (new URL(imgNode.getAttribute('src'), location.origin)).href : undefined;
 
         const rooms = parseInt((roomsTxt.match(/\d+/)||[])[0]||'',10) || undefined;
         const beds  = parseInt((bedsTxt.match(/\d+/)||[])[0]||'',10) || undefined;
