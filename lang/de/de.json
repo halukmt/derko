@@ -6,6 +6,11 @@
     ,"brandMain": "DERKO"
     ,"brandSub": "Immobilien"
     ,"langNames": { "de": "Deutsch", "en": "Englisch" }
+    ,"cookie": {
+      "text": "Wir verwenden nur technisch notwendige Dienste: eine Sitzung für die Sicherheitsprüfung (CAPTCHA) auf der Kontaktseite und Ihre Sprachwahl (localStorage). Es kommen keine Tracking- oder Marketing-Cookies zum Einsatz.",
+      "more": "Mehr erfahren",
+      "accept": "Verstanden"
+    }
   },
   "navigation": {
     "home": "Start",

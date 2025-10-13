@@ -351,5 +351,36 @@
 
     document.addEventListener('component:loaded', setupLanguageSwitcher);
     if (document.querySelector('#current-lang-label')) setupLanguageSwitcher();
+
+    // --- GDPR / Cookie Banner -------------------------------------------------
+    (function setupCookieBanner(){
+      try{
+        // We only use essential cookies/storage: PHP session for CAPTCHA (contact only) and localStorage for language preference.
+        const CONSENT_KEY = 'siteConsent';
+        const hasConsent = localStorage.getItem(CONSENT_KEY) === 'true';
+        if (hasConsent) return;
+        const bar = document.createElement('div');
+        bar.className = 'cookie-banner';
+        bar.innerHTML = `
+          <div class="cookie-inner">
+            <div class="cookie-content container">
+              <p class="cookie-text mb-2 mb-md-0" data-i18n="site.cookie.text"></p>
+              <div class="cookie-actions">
+                <a href="/pages/datenschutz.html" class="btn btn-outline-primary btn-sm" data-i18n="site.cookie.more"></a>
+                <button type="button" class="btn btn-sm" data-action="accept" data-i18n="site.cookie.accept"></button>
+              </div>
+            </div>
+          </div>`;
+        document.body.appendChild(bar);
+        if (window.applyTranslations) window.applyTranslations(bar);
+        bar.addEventListener('click', function(e){
+          const btn = e.target.closest('[data-action="accept"]');
+          if (!btn) return;
+          // Store consent (only essential used), remove banner
+          try{ localStorage.setItem(CONSENT_KEY, 'true'); }catch(err){ /* ignore */ }
+          bar.remove();
+        });
+      }catch(err){ console.warn('Cookie banner failed', err); }
+    })();
   });
 })();

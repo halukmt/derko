@@ -435,6 +435,18 @@ body{ overflow-y: scroll; }
 @media (max-width: 575.98px){ .hero-img{ border-radius:.8rem; } }
 
 /* --------------------------------------------------
+  Cookie / Privacy Banner (GDPR/TTDSG notice)
+  - Fixed bottom, brand-aligned, no inline styles
+-------------------------------------------------- */
+.cookie-banner{ position:fixed; left:0; right:0; bottom:0; z-index:1050; }
+.cookie-banner .cookie-inner{ margin: .75rem; border:1px solid var(--brand-border); border-radius: .75rem; background:#fff; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+.cookie-banner .cookie-content{ display:flex; gap:1rem; align-items:flex-start; padding: .9rem 1rem; }
+.cookie-banner .cookie-text{ margin:0; color:#222; line-height:1.45; }
+.cookie-banner .cookie-actions{ display:flex; gap:.5rem; margin-left:auto; flex-wrap:wrap; }
+@media (min-width: 768px){ .cookie-banner .cookie-content{ padding: 1rem 1.25rem; } }
+@media (max-width: 575.98px){ .cookie-banner .cookie-content{ flex-direction:column; align-items:stretch; } .cookie-banner .cookie-actions{ margin-left:0; } }
+
+/* --------------------------------------------------
   About Feature Cards Bullet Icon List
   - Replaces default bullets with brand-colored check icons
   - More generous vertical rhythm for readability
