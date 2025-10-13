@@ -439,12 +439,19 @@ body{ overflow-y: scroll; }
   - Fixed bottom, brand-aligned, no inline styles
 -------------------------------------------------- */
 .cookie-banner{ position:fixed; left:0; right:0; bottom:0; z-index:1050; }
-.cookie-banner .cookie-inner{ margin: .75rem; border:1px solid var(--brand-border); border-radius: .75rem; background:#fff; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+/* Edge-to-edge background strip with no bottom gap */
+.cookie-banner .cookie-inner{ margin: 0; border-top:1px solid var(--brand-border); background:#fff; box-shadow: 0 -4px 16px rgba(0,0,0,.08); }
 .cookie-banner .cookie-content{ display:flex; gap:1rem; align-items:flex-start; padding: .9rem 1rem; }
+.cookie-banner .cookie-text-wrap{ flex: 1 1 auto; }
+.cookie-banner .cookie-text-wrap [data-i18n="site.cookie.title"]{ font-weight:700; }
 .cookie-banner .cookie-text{ margin:0; color:#222; line-height:1.45; }
-.cookie-banner .cookie-actions{ display:flex; gap:.5rem; margin-left:auto; flex-wrap:wrap; }
+.cookie-banner .cookie-actions{ display:flex; flex-direction:column; gap:.5rem; margin-left:auto; flex: 0 0 240px; }
+.cookie-banner .cookie-actions .btn{ width:100%; }
 @media (min-width: 768px){ .cookie-banner .cookie-content{ padding: 1rem 1.25rem; } }
-@media (max-width: 575.98px){ .cookie-banner .cookie-content{ flex-direction:column; align-items:stretch; } .cookie-banner .cookie-actions{ margin-left:0; } }
+@media (max-width: 575.98px){ .cookie-banner .cookie-content{ flex-direction:column; align-items:stretch; } .cookie-banner .cookie-actions{ margin-left:0; flex: 1 1 auto; } }
+
+/* Fullscreen dim backdrop shown under banner */
+.cookie-backdrop{ position:fixed; inset:0; background: rgba(0,0,0,.35); z-index:1040; }
 
 /* --------------------------------------------------
   About Feature Cards Bullet Icon List

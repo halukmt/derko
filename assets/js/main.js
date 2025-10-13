@@ -359,7 +359,7 @@
         const CONSENT_KEY = 'siteConsent';
         const hasConsent = localStorage.getItem(CONSENT_KEY) === 'true';
         if (hasConsent) return;
-        const bar = document.createElement('div');
+  const bar = document.createElement('div');
         bar.className = 'cookie-banner';
         bar.innerHTML = `
           <div class="cookie-inner">
@@ -371,6 +371,10 @@
               </div>
             </div>
           </div>`;
+        // Add backdrop beneath banner
+        const backdrop = document.createElement('div');
+        backdrop.className = 'cookie-backdrop';
+        document.body.appendChild(backdrop);
         document.body.appendChild(bar);
         if (window.applyTranslations) window.applyTranslations(bar);
         bar.addEventListener('click', function(e){
@@ -379,6 +383,7 @@
           // Store consent (only essential used), remove banner
           try{ localStorage.setItem(CONSENT_KEY, 'true'); }catch(err){ /* ignore */ }
           bar.remove();
+          backdrop.remove();
         });
       }catch(err){ console.warn('Cookie banner failed', err); }
     })();
