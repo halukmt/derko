@@ -116,6 +116,27 @@ Fallback: Falls kein `data-cards` gesetzt → eine Legacy-Karte mit Schlüssel `
 ## Sicherheit
 - CSP ohne `unsafe-inline` / Hash: alle Skripte extern oder dynamisch DOM-generiert.
 - Sanitizing in `lang.js` Whitelist (Tags & Attribute) für Übersetzungen und HTML-Partials.
+- Kontaktformular zusätzliche Schutzschicht (Server):
+	- IP-Rate-Limit: max 3 Einsendungen / 10 Minuten (429 bei Überschreitung)
+	- Honeypot + Mindestzeit + CAPTCHA (bereits vorhanden)
+	- Eingabefeld-Sanitizing (Strip Tags, Zeichensatz-Whitelist, Längenbegrenzung)
+	- Limitierte Anzahl URLs in Nachricht (max 2) zur Spam-Eindämmung
+	- Blockierung einfacher Wegwerf-Domains (mailinator, trashmail, tempmail, 10minutemail)
+	- Zufällige Antwort-Verzögerung (80–220 ms) gegen Timing-Angriffe
+	- Header-Säuberung (CRLF Removal) in `safe_header()`
+
+### SPF / DKIM Empfehlung
+- SPF-Record Beispiel (Strato, nur Mailserver + Webserver):
+	`v=spf1 a mx include:strato.com ~all`
+- DKIM: Über Strato-Panel aktivieren (Schlüsselpaar + DNS TXT). Sicherstellen, dass Selector im DNS korrekt hinterlegt ist.
+- DMARC für Analyse/Policy:
+	`_dmarc.derko-immobilien.de TXT "v=DMARC1; p=none; rua=mailto:dmarc@derko-immobilien.de"`
+	Nach Auswertung später p=quarantine oder p=reject setzen.
+
+Zustellbarkeit testen:
+1. Testmail an Mail-Tester oder Gmail senden.
+2. Header prüfen (Authentication-Results: SPF=pass DKIM=pass DMARC=pass).
+3. Bei Problemen: DNS TTL, korrekte Absenderadresse (`FROM` Domain) und keine HTML-Injection sicherstellen.
 
 ## Navigation
 - Alle Links absolut (`/`, `/pages/...`) → robust bei 404 & Deep Links.
@@ -197,6 +218,7 @@ const hp = document.querySelector('input[name="company"]'); if (hp) hp.value = '
 - Detailseiten pro Wohnung (`/pages/wohnung-<slug>.html` + Deep Link Schema.org)
 - Lokalisierte Alt-Texte für Apartmentbilder
  - (Neu umgesetzt) Performante Galerie: IntersectionObserver + gestaffeltes Laden, Skript `assets/js/optimize-images.js`
+	- (Neu) Formular-Härtung: Rate-Limit, Sanitizing, URL/Disposable-Domain-Checks implementiert
 
 ## Schnelles Troubleshooting
 | Problem | Ursache | Lösung |

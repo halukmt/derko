@@ -88,6 +88,32 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
   exit;
 }
 
+// --- Basic IP rate limiting -------------------------------------------------
+// Allow small burst, e.g. 3 submissions per 10 minutes per IP
+$RATE_WINDOW = 600; // seconds
+$RATE_MAX = 3;
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$rateStore = __DIR__.DIRECTORY_SEPARATOR.'rate_store';
+if(!is_dir($rateStore)) @mkdir($rateStore, 0700);
+$rateFile = $rateStore.DIRECTORY_SEPARATOR.'ip_'.preg_replace('/[^a-zA-Z0-9_.-]/','_', $ip);
+$now = time();
+$hits = [];
+if(is_file($rateFile)){
+  $raw = @file_get_contents($rateFile);
+  if($raw !== false){
+    $hits = array_filter(array_map('intval', explode(',', $raw)), function($t) use ($now,$RATE_WINDOW){ return $t > $now - $RATE_WINDOW; });
+  }
+}
+if(count($hits) >= $RATE_MAX){
+  http_response_code(429);
+  header('Content-Type: application/json; charset=UTF-8');
+  echo json_encode(['ok'=>false,'errors'=>['rate_limit']]);
+  exit;
+}
+// Record current attempt (provisionally; if validation fails we still count it)
+$hits[] = $now;
+@file_put_contents($rateFile, implode(',', $hits));
+
 // Felder einlesen
 $name = get_post('name');
 $email = get_post('email');
@@ -108,6 +134,22 @@ $form_ts = get_post('form_ts');
 
 // Einfache Validierung
 $errors = [];
+// Sanitization & hardening of input fields (strip HTML/JS, limit length, whitelist characters)
+function sanitize_field($val, $maxLen){
+  // Remove HTML tags
+  $val = strip_tags($val);
+  // Replace control characters
+  $val = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $val);
+  // Trim
+  $val = trim($val);
+  // Whitelist basic characters (letters, numbers, common punctuation, umlauts)
+  $val = preg_replace('/[^A-Za-z0-9ÄÖÜäöüß .,;:\\'"\-+()\/!?@]/u', '', $val);
+  return mb_substr($val, 0, $maxLen);
+}
+$name = sanitize_field($name, 120);
+$phone = sanitize_field($phone, 40);
+$message = sanitize_field($message, 4000); // longer text allowed
+
 if($name === '') $errors[] = 'name';
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'email';
 if($topic === '') $errors[] = 'topic';
@@ -139,12 +181,28 @@ if($clientTs > 0){
   if($delta < 2000){ $errors[] = 'bot_too_fast'; }
 }
 
+// Limit number of URLs inside message (spam mitigation)
+if($message !== ''){
+  $urlCount = preg_match_all('/https?:\/\/\S+/i', $message, $m);
+  if($urlCount > 2){ $errors[] = 'too_many_urls'; }
+}
+
+// Block simple disposable domains (extendable list)
+$dispDomains = ['mailinator.com','trashmail.com','tempmail.com','10minutemail.com'];
+$emailDomain = strtolower(substr(strrchr($email,'@'),1));
+if($emailDomain && in_array($emailDomain, $dispDomains, true)){
+  $errors[] = 'email_disposable';
+}
+
 if(!empty($errors)){
   http_response_code(400);
   header('Content-Type: application/json; charset=UTF-8');
   echo json_encode(['ok'=>false,'errors'=>$errors]);
   exit;
 }
+
+// Small randomized delay (obfuscate timing for bots)
+usleep(random_int(80000, 220000)); // 80–220ms
 
 // Anfrage-ID erstellen (DDMMYYHHMM)
 $reqId = date('dmyHi');
