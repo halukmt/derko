@@ -1,0 +1,27 @@
+# .htaccess security & performance headers
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "DENY"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header set Cross-Origin-Opener-Policy "same-origin"
+  Header set Cross-Origin-Resource-Policy "same-origin"
+  Header set Cross-Origin-Embedder-Policy "require-corp"
+  # Disable legacy XSS Auditor (avoid false positives)
+  Header set X-XSS-Protection "0"
+</IfModule>
+
+# Force HTTPS (optional; uncomment if certificate active on all hosts)
+#<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#</IfModule>
+
+# Basic caching of static assets
+<FilesMatch "\.(avif|webp|png|jpg|jpeg|svg|css|js|woff2)$">
+  <IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 30 days"
+  </IfModule>
+</FilesMatch>

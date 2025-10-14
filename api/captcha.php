@@ -1,7 +1,12 @@
 <?php
 // Simple self-hosted SVG CAPTCHA (no external deps)
-// Stores the solution in $_SESSION['captcha_code']
-
+// Stores the solution in $_SESSION['captcha_code'] with hardened cookie flags
+@session_set_cookie_params([
+  'path' => '/',
+  'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+  'httponly' => true,
+  'samesite' => 'Lax'
+]);
 @session_start();
 
 function make_code($len = 5) {

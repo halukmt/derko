@@ -2,15 +2,21 @@
 
 Moderne, mehrsprachige Website mit statischem Frontend und kleinem PHP-Backend für Mailversand und CAPTCHA. Strikte CSP, keine Inline-Skripte.
 
-## Features
+## Features (Aktuell)
 - Bootstrap 5.3 (CDN), Font Awesome, Inter Font
 - Komponenten (Header, Footer, Cards) via Fetch – kein Build-Tool notwendig
 - i18n mit JSON-Struktur + HTML-Partials für Rechtstexte
 - Dynamische Feature-Cards & Wohnungs-Cards
-- JSON-LD (WebSite & dynamisch generierte Collection/Apartments)
+- JSON-LD (WebSite & dynamisch generierte Collection/Apartments inkl. Offers & Breadcrumb)
 - Strenge Content-Security-Policy (keine inline Skripte nötig)
 - Einheitliches Button-/Branding-Design (CSS Custom Properties)
 - Barrierefreiheit: Skip-Link, ARIA, Fokus-Ring, semantische Überschriften
+- Hreflang & Canonical Tags für alle Hauptseiten (de, en, x-default)
+- Responsive Bildausgabe (AVIF/WebP + PNG Fallback) inkl. srcset für Wohnungen (-400/-800/-1200) + Hero Preload
+- Lokalisierte Alt-Texte für Wohnungsbilder (Keys `wohnungen.cards.<key>.alt`)
+- CSRF-Token Endpoint & Validierung beim Kontaktformular
+- Sicherheits-Header (.htaccess) & `/.well-known/security.txt`
+- Hero-Image Preload (LCP-Optimierung)
 
 ## Projektstruktur
 ```
@@ -107,11 +113,12 @@ wohnungen.cards.<key>.button
 Fallback: Falls kein `data-cards` gesetzt → eine Legacy-Karte mit Schlüssel `wohnungen.card.*`.
 
 ### Barrierefreiheit & Alt-Texte
-`alt` aus `data-cards` wird direkt genutzt. Für lokalisierte Alt-Texte könnte `data-i18n` Konzept erweitert werden (aktuell nicht nötig).
+`alt` wird nun lokalisiert über Schlüssel `wohnungen.cards.<key>.alt` (Fallback zu statischem Wert / "Wohnungsbild").
 
 ## JSON-LD
 - Startseite: `WebSite` + Publisher Logo.
-- Wohnungen: Dynamisch erzeugtes `CollectionPage` + `Apartment` Einträge (Titel & Beschreibung lokalisiert).
+- Wohnungen: Dynamisch erzeugtes `CollectionPage` + `Apartment` Einträge (Titel, Beschreibung, Zimmer, Fläche, Betten, Parking) + `Offer` (Preis extrahiert) + `BreadcrumbList`.
+	- Preis wird aus Text (`price`) normalisiert; zukünftige Erweiterung: mehrere Offers für Saisonpreise.
 
 ## Sicherheit
 - CSP ohne `unsafe-inline` / Hash: alle Skripte extern oder dynamisch DOM-generiert.
@@ -124,6 +131,22 @@ Fallback: Falls kein `data-cards` gesetzt → eine Legacy-Karte mit Schlüssel `
 	- Blockierung einfacher Wegwerf-Domains (mailinator, trashmail, tempmail, 10minutemail)
 	- Zufällige Antwort-Verzögerung (80–220 ms) gegen Timing-Angriffe
 	- Header-Säuberung (CRLF Removal) in `safe_header()`
+	- CSRF Token Prüfung (`api/csrf.php` + Hidden Field `csrf_token`)
+	- Session-Cookie Flags (Secure/HttpOnly/SameSite=Lax) gesetzt vor `session_start()`
+	- Sicherheits-Header via `.htaccess` (X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP/CORP/COEP)
+	- `/.well-known/security.txt` vorhanden (Kontakt & Policy)
+
+### CSRF Schutz
+`api/csrf.php` erzeugt pro Session einen Token (`csrf_token`). Dieser wird beim Laden des Kontaktformulars via JS (Fetch) eingefügt. `sendmail.php` validiert den Token vor Versand. Fehlender/ungültiger Token → 400 Fehler.
+
+### Security Headers
+Zentrale `.htaccess` liefert konsistente Header:
+- Content-Security-Policy (strikt, kein Inline JS/CSS)
+- X-Frame-Options: DENY
+- Referrer-Policy: strict-origin-when-cross-origin
+- Permissions-Policy: geolocation=(), camera=(), microphone=()
+- Strict-Transport-Security (Produktiv auf HTTPS)
+- Cross-Origin-* (OPENER/EMBEDDER/RESOURCE) vorbereitet für zukünftige Isolation
 
 ### SPF / DKIM Empfehlung
 - SPF-Record Beispiel (Strato, nur Mailserver + Webserver):
@@ -184,6 +207,12 @@ Banner erneut anzeigen (lokal testen):
 localStorage.removeItem('siteConsent'); location.reload();
 ```
 
+## Performance Hinweise
+- Hero Bild Preload für verkürzte LCP: `<link rel="preload" as="image" href="/assets/img/allgemein/fair-800.avif" type="image/avif" imagesrcset="/assets/img/allgemein/fair-400.avif 400w, /assets/img/allgemein/fair-800.avif 800w, /assets/img/allgemein/fair-1200.avif 1200w" />`
+- AVIF/WebP Varianten via Script `assets/js/optimize-images.js` (Qualität avif=50, webp=78).
+- Lazy Loading aller Card-Bilder reduziert initiales Transfer-Volumen.
+- Potenzial: Self-Hosting Fonts, kritisches CSS Inline (falls CSP angepasst), HTTP/2 Push ersetzt durch Preload.
+
 ## Deployment Hinweise
 - `robots.txt` & `sitemap.xml` sind vorhanden (Sitemap verweist in `robots.txt`).
 - Empfohlen: Richtigen HTTP 404 Status für `404.html` serverseitig setzen.
@@ -213,11 +242,13 @@ const hp = document.querySelector('input[name="company"]'); if (hp) hp.value = '
 - CAPTCHA: Refresh-Icon lädt neues Bild; falscher Code → Feld-Fehler
 
 ## Wartung / Erweiterung ToDos (Potenzial)
-- Bildoptimierung (WebP/AVIF Fallbacks)
+- Erweiterte Preis-/Verfügbarkeitslogik für Offers (z.B. Mindestnächte, saisonale Raten)
 - Lazy Loading Gallerien / Lightbox
 - Detailseiten pro Wohnung (`/pages/wohnung-<slug>.html` + Deep Link Schema.org)
-- Lokalisierte Alt-Texte für Apartmentbilder
- - (Neu umgesetzt) Performante Galerie: IntersectionObserver + gestaffeltes Laden, Skript `assets/js/optimize-images.js`
+- Erweiterte Breadcrumbs für Unterseiten/Detail
+- Automatisches Pre-Rendering wichtiger Komponenten bei Build (optional)
+- Font Self-Hosting zur weiteren DSGVO-Optimierung
+- Performante Galerie: IntersectionObserver + gestaffeltes Laden (Ansatz vorbereitbar)
 	- (Neu) Formular-Härtung: Rate-Limit, Sanitizing, URL/Disposable-Domain-Checks implementiert
 
 ## Schnelles Troubleshooting

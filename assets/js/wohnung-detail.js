@@ -54,6 +54,34 @@
     if(textEl) textEl.textContent = desc;
     if(bcEl) bcEl.textContent = title;
     document.title = title + ' – DERKO';
+    // Update meta description & OG tags dynamically for Lighthouse (late hydration fallback already present in HTML)
+    const metaDesc = document.querySelector('meta[name="description"][data-i18n-meta]');
+    if(metaDesc){
+      const longDesc = t(prefix + '.text') || desc || ('Informationen zur Wohnung ' + title);
+      metaDesc.setAttribute('content', longDesc);
+    }
+    const ogTitle = document.querySelector('meta[property="og:title"][data-i18n-meta]');
+    if(ogTitle){ ogTitle.setAttribute('content', title); }
+    const ogDesc = document.querySelector('meta[property="og:description"][data-i18n-meta]');
+    if(ogDesc){
+      const ogd = t(prefix + '.text') || desc || ('Details zu ' + title);
+      ogDesc.setAttribute('content', ogd);
+    }
+    // Canonical: include id parameter for distinct apartment pages
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if(canonical){
+      const url = '/wohnung?id=' + encodeURIComponent(key);
+      canonical.setAttribute('href', url);
+    }
+    // Hreflang alternates: adapt to parameter
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(link => {
+      const lang = link.getAttribute('hreflang');
+      if(!lang) return;
+      let base = '/wohnung';
+      if(lang === 'en') base = '/en/wohnung';
+      // Use same id parameter for canonical separation
+      link.setAttribute('href', base + '?id=' + encodeURIComponent(key));
+    });
 
     // Meta details list
     const metaFields = [
@@ -274,6 +302,21 @@
     const rooms = (t(prefix + '.rooms').match(/\d+/)||[])[0];
     const beds = (t(prefix + '.beds').match(/\d+/)||[])[0];
     const area = (t(prefix + '.area').match(/\d+/)||[])[0];
+    const priceRaw = t(prefix + '.price') || '';
+    // Extract numeric price (first number) and normalize to Offer if found
+    const priceNumber = (priceRaw.match(/\d+[\.,]?\d*/)||[])[0];
+    let offerObj = undefined;
+    if(priceNumber){
+      const normalized = parseFloat(priceNumber.replace(',','.'));
+      if(!isNaN(normalized)){
+        offerObj = [{
+          '@type':'Offer',
+          priceCurrency:'EUR',
+          price: normalized,
+          availability:'https://schema.org/InStock'
+        }];
+      }
+    }
     const folderAbs = location.origin + basePath + key + '/';
     const imageUrls = (galleryConfig?.images||[]).map(f=>folderAbs+f);
     const json = {
@@ -290,9 +333,21 @@
         const a = (window.translateRaw ? window.translateRaw(prefix + '.amenities') : undefined);
         if(!Array.isArray(a) || !a.length) return undefined;
         return a.map(txt => ({ '@type':'LocationFeatureSpecification', name: txt }));
-      })()
+      })(),
+      offers: offerObj
     };
-    const s = document.createElement('script'); s.type='application/ld+json'; s.dataset.generated='apartment-detail-jsonld'; s.textContent=JSON.stringify(json, null, 2); document.head.appendChild(s);
+    // Add BreadcrumbList for detail page (static 3 item trail)
+    const breadcrumb = {
+      '@context':'https://schema.org',
+      '@type':'BreadcrumbList',
+      itemListElement: [
+        { '@type':'ListItem', position:1, name: 'Start', item: location.origin + '/' },
+        { '@type':'ListItem', position:2, name: t('wohnungen.headline') || 'Wohnungen', item: location.origin + '/wohnungen' },
+        { '@type':'ListItem', position:3, name }
+      ]
+    };
+    const container = { '@graph':[ json, breadcrumb ] };
+    const s = document.createElement('script'); s.type='application/ld+json'; s.dataset.generated='apartment-detail-jsonld'; s.textContent=JSON.stringify(container, null, 2); document.head.appendChild(s);
   }
 
   function init(){

@@ -1,4 +1,12 @@
 <?php
+// Harden session cookie flags (must be set before session_start)
+// Secure only effective over HTTPS; SameSite=Lax prevents CSRF on top navigation GETs.
+@session_set_cookie_params([
+  'path' => '/',
+  'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+  'httponly' => true,
+  'samesite' => 'Lax'
+]);
 @session_start();
 // sendmail.php – Minimal backend for contact form (Strato compatible)
 // Config
@@ -127,6 +135,7 @@ $message = get_post('message');
 $privacy = get_post('privacy');
 // Captcha
 $captcha = get_post('captcha');
+$csrf_token = get_post('csrf_token');
 // Anti-bot fields
 $honeypot = get_post('company'); // should stay empty
 $js_enabled = get_post('js_enabled');
@@ -162,6 +171,10 @@ if($topic === 'booking'){
   if($persons === '' || !preg_match('/^\d+$/', $persons)) $errors[] = 'persons';
 }
 
+// CSRF token check
+if (!isset($_SESSION['csrf_token']) || $csrf_token === '' || !hash_equals($_SESSION['csrf_token'], $csrf_token)){
+  $errors[] = 'csrf';
+}
 // CAPTCHA check (case-insensitive)
 if ($captcha === '' || !isset($_SESSION['captcha_code']) || strcasecmp(trim($captcha), $_SESSION['captcha_code']) !== 0) {
   $errors[] = 'captcha';

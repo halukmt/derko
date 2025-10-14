@@ -57,10 +57,18 @@
     if(!form) return;
     const jsEnabled = form.querySelector('#js_enabled');
     const ts = form.querySelector('#form_ts');
+    const csrfField = form.querySelector('#csrf_token');
     const honeypot = form.querySelector('#company');
     const alertBox = document.getElementById('form-alert');
     if (jsEnabled) jsEnabled.value = '1';
     if (ts) ts.value = String(Date.now());
+    // Fetch CSRF token asynchronously
+    if (csrfField){
+      fetch('../api/csrf.php', { credentials:'same-origin' })
+        .then(r=> r.ok ? r.json() : Promise.reject())
+        .then(data=>{ if(data && data.ok && data.token){ csrfField.value = data.token; } })
+        .catch(()=>{ /* silently ignore; server will reject */ });
+    }
     let submitting = false;
     form.addEventListener('submit', (e)=>{
       // Client-side bot heuristics: block if honeypot filled or time since render < 1500ms (testing threshold)
@@ -100,6 +108,15 @@
       }
 
       // 4) All good: proceed with submit (apply double-submit guard)
+      // Ensure CSRF token present
+      if (csrfField && !csrfField.value){
+        e.preventDefault();
+        if (alertBox){
+          alertBox.textContent = (window.translateKey && window.translateKey('kontakt.validation.bot')) || 'Request blocked: token missing.';
+          alertBox.classList.remove('d-none');
+        }
+        return;
+      }
       if(submitting){ e.preventDefault(); return; }
       submitting = true;
       const btn = form.querySelector('button[type="submit"]');

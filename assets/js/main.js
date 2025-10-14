@@ -232,6 +232,22 @@
           });
         }
 
+        // Extract price text (localized) if present
+        const priceTxt = card.querySelector('[data-price]')?.textContent.trim() || '';
+        let offerObj;
+        if (priceTxt){
+          // Try to parse a number (EUR) from price text
+          const mPrice = priceTxt.match(/(\d+[\.,]?\d*)/);
+          const val = mPrice ? parseFloat(mPrice[1].replace(',', '.')) : undefined;
+          if (val){
+            offerObj = {
+              '@type':'Offer',
+              price: val,
+              priceCurrency: 'EUR',
+              availability: 'https://schema.org/InStock'
+            };
+          }
+        }
         return {
           '@type':'Apartment',
           '@id': key ? `${location.origin}/wohnungen#${key}` : undefined,
@@ -242,7 +258,8 @@
           floorSize: area ? { '@type':'QuantitativeValue', value: area, unitCode: 'MTK' } : undefined,
           bed: beds ? { '@type':'BedDetails', numberOfBeds: beds } : undefined,
           image: img,
-          amenityFeature: amenityFeature.length ? amenityFeature : undefined
+          amenityFeature: amenityFeature.length ? amenityFeature : undefined,
+          offers: offerObj
         };
       });
 
@@ -251,7 +268,14 @@
         '@type':'CollectionPage',
         '@id': `${location.origin}/wohnungen`,
         name: document.title || 'Wohnungen',
-        hasPart: items
+        hasPart: items,
+        breadcrumb: {
+          '@type':'BreadcrumbList',
+          'itemListElement': [
+            { '@type':'ListItem', position: 1, name: 'Home', item: location.origin+'/' },
+            { '@type':'ListItem', position: 2, name: 'Wohnungen', item: location.origin+'/wohnungen' }
+          ]
+        }
       };
 
       const s = document.createElement('script');
@@ -283,22 +307,33 @@
         if (cfg.key) variant.setAttribute('data-apartment-key', cfg.key);
         const imgEl = variant.querySelector('[data-img]');
         const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
-        // If the image looks like /assets/img/wohnungen/<apt>/main.png
-        // prefer AVIF/WEBP where available by injecting a <picture>.
+        // If the image looks like /assets/img/wohnungen/<apt>/main.png build responsive <picture> with srcset variants.
         if (/\/assets\/img\/wohnungen\//.test(imgSrc) && /\/main\.(png|jpe?g)$/i.test(imgSrc)){
           const noExt = imgSrc.replace(/\.(png|jpe?g)$/i, '');
+          const mkSizes = (ext) => [`${noExt}-400.${ext} 400w`, `${noExt}-800.${ext} 800w`, `${noExt}-1200.${ext} 1200w`];
           const picture = document.createElement('picture');
-          const s1 = document.createElement('source'); s1.type='image/avif'; s1.srcset = noExt + '.avif';
-          const s2 = document.createElement('source'); s2.type='image/webp'; s2.srcset = noExt + '.webp';
+          const s1 = document.createElement('source'); s1.type='image/avif'; s1.setAttribute('srcset', mkSizes('avif').join(', '));
+          const s2 = document.createElement('source'); s2.type='image/webp'; s2.setAttribute('srcset', mkSizes('webp').join(', '));
           const img = document.createElement('img');
           img.src = imgSrc; // fallback PNG
-          img.alt = cfg.alt || 'Wohnungsbild';
+          // Localized alt text key wohnungen.cards.<key>.alt (if available)
+          const altKey = cfg.key ? 'wohnungen.cards.'+cfg.key+'.alt' : null;
+          let altText = cfg.alt || '';
+          if (altKey && window.translateKey){
+            const tr = window.translateKey(altKey);
+            if (tr) altText = tr;
+          }
+          img.alt = altText || 'Wohnungsbild';
           img.loading = 'lazy'; img.decoding = 'async'; img.className = 'card-img-top';
           picture.appendChild(s1); picture.appendChild(s2); picture.appendChild(img);
           imgEl.replaceWith(picture);
         } else {
-          // default behavior
-          imgEl.src = imgSrc; imgEl.alt = cfg.alt || 'Wohnungsbild';
+          // default behavior (non-apartment or non-main image)
+          imgEl.src = imgSrc;
+          const altKey = cfg.key ? 'wohnungen.cards.'+cfg.key+'.alt' : null;
+          let altText = cfg.alt || '';
+          if (altKey && window.translateKey){ const tr = window.translateKey(altKey); if (tr) altText = tr; }
+          imgEl.alt = altText || 'Wohnungsbild';
         }
         const prefix = 'wohnungen.' + (cfg.key ? 'cards.' + cfg.key : 'card');
         translateAttr(variant.querySelector('[data-title]'), prefix + '.title');
