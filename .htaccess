@@ -1,0 +1,67 @@
+# .htaccess — security, performance, and SEO rewrites
+
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "DENY"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header set Cross-Origin-Opener-Policy "same-origin"
+  Header set Cross-Origin-Resource-Policy "same-origin"
+  Header set Cross-Origin-Embedder-Policy "require-corp"
+  # Disable legacy XSS Auditor (avoid false positives)
+  Header set X-XSS-Protection "0"
+</IfModule>
+
+# Force HTTPS (optional; enable only if cert available on all hosts)
+#<IfModule mod_rewrite.c>
+#  RewriteEngine On
+#  RewriteCond %{HTTPS} !=on
+#  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#</IfModule>
+
+# Correct MIME types for modern images
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+</IfModule>
+
+# Browser caching for static assets
+<FilesMatch "\.(avif|webp|png|jpe?g|svg|css|js|woff2)$">
+  <IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 30 days"
+  </IfModule>
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=2592000, immutable"
+  </IfModule>
+</FilesMatch>
+
+# Pretty URLs and 301 redirects
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # If file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Pretty path to pages (German slugs)
+  RewriteRule ^$ /index.html [L]
+  RewriteRule ^wohnungen/?$ /pages/wohnungen.html [L]
+  RewriteRule ^kontakt/?$ /pages/kontakt.html [L]
+  RewriteRule ^ueber-uns/?$ /pages/ueber-uns.html [L]
+  RewriteRule ^impressum/?$ /pages/impressum.html [L]
+  RewriteRule ^agb/?$ /pages/agb.html [L]
+  RewriteRule ^datenschutz/?$ /pages/datenschutz.html [L]
+  # Detailseite mit Query-Parameter beibehalten
+  RewriteRule ^wohnung/?$ /pages/wohnung-detail.html [QSA,L]
+
+  # Canonical 301 from /pages/*.html to pretty paths
+  RedirectMatch 301 ^/pages/wohnungen\.html$ /wohnungen
+  RedirectMatch 301 ^/pages/kontakt\.html$ /kontakt
+  RedirectMatch 301 ^/pages/ueber-uns\.html$ /ueber-uns
+  RedirectMatch 301 ^/pages/impressum\.html$ /impressum
+  RedirectMatch 301 ^/pages/agb\.html$ /agb
+  RedirectMatch 301 ^/pages/datenschutz\.html$ /datenschutz
+  RedirectMatch 301 ^/pages/wohnung-detail\.html$ /wohnung
+</IfModule>
