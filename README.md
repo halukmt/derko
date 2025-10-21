@@ -65,7 +65,7 @@ Beispiel Ausschnitt (`de/de.json`):
 	"home": { "headline": "Willkommen ..." },
 	"wohnungen": {
 		"cards": {
-			"rahm": { "title": "Wohnung Rahm", "text": "Geräumige Unterkunft ...", "button": "Details ansehen" }
+			"w01_derko_apart": { "title": "DERKO Apart", "text": "Kurzbeschreibung ...", "button": "Details ansehen" }
 		}
 	}
 }
@@ -78,7 +78,7 @@ Für weitere Vorteile: Array in `main.js` erweitern (Icon, Title-Key, Text-Key, 
 ## Wohnungs-Cards (dynamisch)
 Die Seite `pages/wohnungen.html` enthält ein DIV mit:
 ```html
-<div id="wohnung-list" data-cards='[{"key":"rahm","img":"/assets/img/wohnungen/rahm/main.jpg","alt":"Wohnung Rahm"}]'></div>
+<div id="wohnung-list" data-cards='[{"key":"w01_derko_apart","img":"/assets/img/wohnungen/w01_derko_apart/main.png","alt":"DERKO Apart"}]'></div>
 ```
 
 `main.js` liest `data-cards` (JSON Array) und baut für jeden Eintrag eine Card basierend auf Keys in den Sprachdateien:
@@ -91,13 +91,13 @@ wohnungen.cards.<key>.button
 ```
 
 ### Neue Wohnung hinzufügen – Schritt für Schritt
-1. Bilder ablegen, z.B.: `assets/img/wohnungen/meinobjekt/main.jpg`
+1. Bilder ablegen, z.B.: `assets/img/wohnungen/w08_beispiel/main.png`
 2. Sprachdateien erweitern:
 ```json
-"wohnungen": {
+ "wohnungen": {
 	"cards": {
-		"meinobjekt": {
-			"title": "Wohnung Mein Objekt",
+		"w08_beispiel": {
+			"title": "Wohnung Beispiel",
 			"text": "Kurzer Beschreibungstext ...",
 			"button": "Details ansehen"
 		}
@@ -106,7 +106,7 @@ wohnungen.cards.<key>.button
 ```
 3. In `pages/wohnungen.html` im `data-cards` Array ergänzen:
 ```json
-{"key":"meinobjekt","img":"/assets/img/wohnungen/meinobjekt/main.jpg","alt":"Wohnung Mein Objekt"}
+{"key":"w08_beispiel","img":"/assets/img/wohnungen/w08_beispiel/main.png","alt":"Wohnung Beispiel"}
 ```
 4. Seite neu laden. (Cache leeren falls Keys nicht sofort erscheinen.)
 

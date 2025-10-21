@@ -2,11 +2,11 @@
   "site": {
     "title": "DERKO Real Estate",
     "description": "Rental of worker rooms and apartments – modern, affordable, central.",
-    "skipToContent": "Skip to content"
-    ,"brandMain": "DERKO"
-    ,"brandSub": "Real Estate"
-    ,"langNames": { "de": "German", "en": "English" }
-    ,"cookie": {
+    "skipToContent": "Skip to content",
+    "brandMain": "DERKO",
+    "brandSub": "Real Estate",
+    "langNames": { "de": "German", "en": "English" },
+    "cookie": {
       "title": "We respect your privacy",
 	  "text": "We take the protection of your personal data very seriously, while also wanting you to find the offers that best suit your needs. Therefore, we only use technically necessary services — such as a security verification session (CAPTCHA) on the contact page and your language selection. No tracking or marketing cookies are used.",
       "accept": "Got it",
@@ -16,8 +16,8 @@
   "navigation": {
     "home": "Home",
     "wohnungen": "Apartments",
-  "ueberUns": "About us",
-  "kontakt": "Offer"
+    "ueberUns": "About us",
+    "kontakt": "Offer"
   },
   "footer": {
     "copyright": "© 2025 DERKO Real Estate – All rights reserved",
@@ -60,73 +60,7 @@
     "headline": "Our apartments",
     "description": "Choose from various accommodations – all fully equipped and centrally located.",
     "cards": {
-      "rahm": {
-        "title": "Rahm apartment",
-        "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
-        "button": "View details",
-        "city": "Duisburg-Rahm",
-        "rooms": "3 rooms",
-        "beds": "6 beds",
-        "area": "85 m²",
-        "parking": "Parking available",
-        "price": "25 EUR / guest / night",
-        "alt": "Exterior and interior views of Rahm apartment",
-        "amenities": [
-          "Free Wi-Fi",
-          "Fully equipped kitchen",
-          "Multiple parking options",
-          "Laundry access",
-          "Quiet location",
-          "Flexible rental terms"
-        ],
-        "longDescription": "<p>We offer several furnished worker / contractor apartments in the south of Duisburg (Großenbaum, near the Düsseldorf border) for teams from 3 persons and 7 nights (up to 16 people depending on configuration).</p><p>Apartments include free parking in front of the house, Wi‑Fi, kitchen, 2–4 single and double bedrooms, 2–4 bathrooms, washing machine and generous living rooms with TV. For evenings there is outdoor seating on the terrace / yard where smoking is allowed.</p><p>Typical guests are Exhibition Centre visitors and crews as well as construction and contractor teams looking for cost‑efficient furnished accommodation in the Düsseldorf catchment area (Exhibition Centre & Airport).</p><p>Direct access to motorways A59, A52, A524 and A3. By car you reach Düsseldorf, Essen, Mülheim an der Ruhr, Ratingen, Neuss and Krefeld in about 10–15 minutes.</p><p>From 3 persons and 7 nights in self‑contained units of various sizes. Please request your current day rate by phone (0173 / 8876767), e‑mail or WhatsApp.</p>"
-      },
-      "bonn": {
-        "title": "Bonn apartment",
-        "text": "Spacious unit with multiple beds, fully equipped kitchen and fast connections.",
-        "button": "View details",
-        "city": "Bonn",
-        "rooms": "3 rooms",
-        "beds": "5 beds",
-        "area": "90 m²",
-        "parking": "Parking available",
-        "price": "from 28 EUR / guest / night",
-        "alt": "Living area and sleeping options of Bonn apartment",
-        "amenities": [
-          "Wi-Fi included",
-          "Fully equipped kitchen",
-          "Multiple beds",
-          "Private bathroom",
-          "Parking on request",
-          "Quiet residential area"
-        ],
-        "longDescription": "<p>Generous project / contractor apartment in Bonn – ideal for medium sized teams needing multiple separate sleeping options and a fully equipped infrastructure.</p><p>Includes: Wi‑Fi, fully equipped kitchen, multiple beds, modern bathroom, living area with TV and optional parking space. Quiet location with solid regional access.</p><p>Suitable for Exhibition Centre and project stays across the Cologne / Bonn region.</p><p>Quick access to regional highways enables short travel times to surrounding business hubs.</p><p>Check current rates and availability by phone (0173 / 8876767) or via e‑mail / WhatsApp.</p>"
-      },
-      "dus_airport": {
-        "title": "Apartments near Düsseldorf Airport",
-        "text": "Modern apartment in Duisburg with 5 bedrooms",
-        "button": "View details",
-        "city": "Duisburg-Rahm",
-        "rooms": "3 rooms",
-        "beds": "7 beds",
-        "area": "70 m²",
-        "parking": "No parking spaces on site",
-        "price": "25 EUR / person / night",
-        "alt": "Apartment near Düsseldorf Airport with multiple rooms",
-        "amenities": [
-          "Wi‑Fi",
-          "Furnished",
-          "Fridge",
-          "Oven",
-          "Stove",
-          "Washing machine",
-          "Dishwasher",
-          "TV",
-          "Garage/Parking space",
-          "Step-free access"
-        ],
-        "longDescription": "<p>We offer several furnished worker apartments in the south of Duisburg (Großenbaum, at the Düsseldorf border) from 3 persons and 7 nights (up to 16 persons).</p><p>Our apartments include free parking in front of the house, Wi‑Fi, kitchen, 2–4 single and double bedrooms, 2–4 bathrooms, washing machine and spacious living rooms with TV. For the evening there are seating areas on the terrace and courtyard where smoking is permitted.</p><p>Our customers include Exhibition Centre visitors and crews as well as construction companies and contractor teams looking for affordable furnished accommodation in the Düsseldorf area near the Exhibition Centre and airport.</p><p>Direct connection to the motorways A59, A52, A524 and A3. By car you are in Düsseldorf, Essen, Mülheim an der Ruhr, Ratingen, Neuss and Krefeld in 10–15 minutes.</p><p>From 3 persons and 7 nights in self‑contained units of various sizes. Please ask by phone (0173 / 8876767), e‑mail or WhatsApp for your current daily rate.</p>"
-      },
+      
       "w03_exklusiv": {
         "title": "Exclusiv: Airport / Exhibition Centre apartment near Düsseldorf",
         "text": "Quiet 2‑room apartment with excellent connection towards Düsseldorf Exhibition Centre and airport.",

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Simple converter: AVIF -> PNG for a given apartment folder
- * Usage: node assets/js/avif-to-png.js assets/img/wohnungen/dus_airport
+ * Usage: node assets/js/avif-to-png.js assets/img/wohnungen/<apartmentKey>
  */
 const fs = require('fs');
 const path = require('path');
