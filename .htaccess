@@ -1,5 +1,8 @@
 # .htaccess — security, performance, and SEO rewrites
 
+# Disable MultiViews (content negotiation) to avoid rewrite surprises
+Options -MultiViews
+
 <IfModule mod_headers.c>
   Header set X-Frame-Options "DENY"
   Header set X-Content-Type-Options "nosniff"
