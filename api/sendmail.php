@@ -19,6 +19,28 @@ if (defined('PHP_VERSION_ID') && PHP_VERSION_ID >= 70300) {
   @session_set_cookie_params(0, '/');
 }
 @session_start();
+
+// --- Lightweight crash logging & fail-safe 500 handler --------------------
+// Enable by creating an empty file api/.debug on the server (no PII included)
+$__DERKO_DEBUG = @is_file(__DIR__.DIRECTORY_SEPARATOR.'.debug');
+function derko_log($msg){
+  $line = '['.date('Y-m-d H:i:s').'] '.$msg.' ip='.( $_SERVER['REMOTE_ADDR'] ?? 'n/a')."\n";
+  @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'error.log', $line, FILE_APPEND);
+}
+register_shutdown_function(function() use ($__DERKO_DEBUG){
+  $e = error_get_last();
+  if (!$e) return;
+  $fatalTypes = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR];
+  if (!in_array($e['type'], $fatalTypes, true)) return; // non-fatal
+  derko_log('FATAL at '.$e['file'].':'.$e['line'].' - '.$e['message']);
+  if (!headers_sent()){
+    http_response_code(500);
+    header('Content-Type: application/json; charset=UTF-8');
+    $body = ['ok'=>false,'errors'=>['server_error']];
+    if ($__DERKO_DEBUG){ $body['debug']=$e['message']; }
+    echo json_encode($body);
+  }
+});
 // sendmail.php – Minimal backend for contact form (Strato compatible)
 // Config
 $TO = 'social@techsulting.de'; // Empfänger
