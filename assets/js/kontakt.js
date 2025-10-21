@@ -9,7 +9,7 @@
     if(!sel || !window.translateKey) return;
     // Remove dynamically added options (keep placeholder at index 0)
     Array.from(sel.options).forEach((opt,i)=>{ if(i>0) opt.remove(); });
-  const keys = ['rahm','bonn','dus_airport'];
+  const keys = ['w03_exklusiv','w04_exklusiv_2','w01_derko_apart','w02_derko_apart_2','w05_dus_1','w06_dus_2','w07_dus_3'];
     keys.forEach(k=>{
       const title = window.translateKey('wohnungen.cards.'+k+'.title') || k;
       const opt = document.createElement('option');

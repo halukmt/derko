@@ -1,5 +1,12 @@
 {
   "rahm": true,
   "bonn": true,
-  "dus_airport": false
+  "dus_airport": false,
+  "w01_derko_apart": false,
+  "w02_derko_apart_2": false,
+  "w03_exklusiv": false,
+  "w04_exklusiv_2": false,
+  "w05_dus_1": false,
+  "w06_dus_2": false,
+  "w07_dus_3": false
 }

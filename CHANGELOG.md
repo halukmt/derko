@@ -4,6 +4,35 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+## [v0.9.1] - 2025-10-21
+### Added
+- 7 neue Wohnungen aus `bookings.md` integriert und auf der Übersichtsseite sichtbar:
+	- `w01_derko_apart`, `w02_derko_apart_2`, `w03_exklusiv`, `w04_exklusiv_2`, `w05_dus_1`, `w06_dus_2`, `w07_dus_3`.
+- Vollständige i18n‑Einträge (DE/EN) pro Wohnung (`wohnungen.cards.<key>.*`).
+- Kuratierte Galerien in `assets/data/apartments.json` für alle neuen Wohnungen.
+- Einträge in `assets/data/variants.json` für neue Wohnungen (ohne -400/-800/-1200 Varianten → `false`).
+- Listen‑ und Detailansichten bevorzugen AVIF/WebP (PNG nur Fallback) – ohne neue Größenvarianten zu generieren.
+
+### Changed
+- `pages/wohnungen.html`: Kartenliste auf die 7 neuen Wohnungen umgestellt.
+- `assets/js/main.js`: Kartenbild‑Rendering über `<picture>`:
+	- Mit responsive Srcset, falls `variants.json` für den Key `true` ist.
+	- Sonst Basis‑`main.avif` / `main.webp` mit PNG‑Fallback (keine -400/-800/-1200 nötig).
+	- Render‑Lock hinzugefügt, um Duplikate durch parallele Events zu verhindern.
+- `assets/js/wohnung-detail.js`:
+	- Erweitert für die 7 neuen Keys; Galerie bevorzugt AVIF/WebP.
+	- URLs in `srcset` und `img` URL‑kodiert (Dateinamen mit Leerzeichen → keine Chrome Warnungen mehr).
+	- `data-srcset` → `srcset` wird immer gesetzt, damit AVIF/WebP vor PNG gewählt werden.
+- `assets/js/kontakt.js`: Auswahlfeld der Wohnungen (Dropdown) auf neue Keys aktualisiert.
+
+### Fixed
+- Doppelte Karten auf `wohnungen.html` (Ursache: mehrere Render‑Triggers) → durch Render‑Lock behoben.
+- 404 in der Detail‑Galerie nach Bildlöschungen → kuratierte `apartments.json` lädt nur existierende Dateien.
+- Chrome Warnung „Failed parsing 'srcset' attribute value…“ durch URL‑Kodierung der Quellen in der Galerie beseitigt.
+
+### Performance
+- Deutlich geringerer Bild‑Transfer durch bevorzugte AVIF/WebP sowohl in Liste als auch Galerie – ohne zusätzliche Größenvarianten.
+
 ## [v0.9.0] - 2025-10-13
 ### Added
 - Datenschutz-/Cookie-Banner (informativ, nur essentielle Dienste):

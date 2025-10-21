@@ -51,5 +51,133 @@
       "dus_airport_13.png",
       "dus_airport_14.png"
     ]
+  },
+  "w01_derko_apart": {
+    "images": [
+      "main.png",
+      "Derko Apart - 01.png",
+      "Derko Apart - 02.png",
+      "Derko Apart - 03.png",
+      "Derko Apart - 04.png",
+      "Derko Apart - 06.png",
+      "Derko Apart - 07.png",
+      "Derko Apart - 08.png",
+      "Derko Apart - 09.png",
+      "Derko Apart - 10.png",
+      "Derko Apart - 11.png"
+    ]
+  },
+  "w02_derko_apart_2": {
+    "images": [
+      "main.png",
+      "Derko Apart 2 - 01.png",
+      "Derko Apart 2 - 02.png",
+      "Derko Apart 2 - 03.png",
+      "Derko Apart 2 - 04.png",
+      "Derko Apart 2 - 05.png",
+      "Derko Apart 2 - 06.png",
+      "Derko Apart 2 - 07.png",
+      "Derko Apart 2 - 08.png",
+      "Derko Apart 2 - 09.png",
+      "Derko Apart 2 - 10.png",
+      "Derko Apart 2 - 11.png",
+      "Derko Apart 2 - 12.png",
+      "Derko Apart 2 - 13.png",
+      "Derko Apart 2 - 14.png",
+      "Derko Apart 2 - 15.png",
+      "Derko Apart 2 - 16.png",
+      "Derko Apart 2 - 17.png",
+      "Derko Apart 2 - 19.png",
+      "Derko Apart 2 - 20.png",
+      "Derko Apart 2 - 21.png"
+    ]
+  },
+  "w03_exklusiv": {
+    "images": [
+      "main.png",
+      "Exklusiv - 01.png",
+      "Exklusiv - 02.png",
+      "Exklusiv - 03.png",
+      "Exklusiv - 04.png",
+      "Exklusiv - 05.png",
+      "Exklusiv - 06.png",
+      "Exklusiv - 07.png",
+      "Exklusiv - 08.png",
+      "Exklusiv - 09.png",
+      "Exklusiv - 10.png",
+      "Exklusiv - 11.png",
+      "Exklusiv - 12.png"
+    ]
+  },
+  "w04_exklusiv_2": {
+    "images": [
+      "main.png",
+      "Exklusiv 2 - 01.png",
+      "Exklusiv 2 - 02.png",
+      "Exklusiv 2 - 03.png",
+      "Exklusiv 2 - 04.png",
+      "Exklusiv 2 - 05.png",
+      "Exklusiv 2 - 06.png",
+      "Exklusiv 2 - 08.png",
+      "Exklusiv 2 - 09.png",
+      "Exklusiv 2 - 10.png",
+      "Exklusiv 2 - 11.png",
+      "Exklusiv 2 - 12.png",
+      "Exklusiv 2 - 13.png",
+      "Exklusiv 2 - 14.png",
+      "Exklusiv 2 - 15.png",
+      "Exklusiv 2 - 16.png",
+      "Exklusiv 2 - 17.png",
+      "Exklusiv 2 - 18.png"
+    ]
+  },
+  "w05_dus_1": {
+    "images": [
+      "main.png",
+      "DUS Flughafen 1 - 02.png",
+      "DUS Flughafen 1 - 03.png",
+      "DUS Flughafen 1 - 04.png",
+      "DUS Flughafen 1 - 05.png",
+      "DUS Flughafen 1 - 06.png",
+      "DUS Flughafen 1 - 07.png",
+      "DUS Flughafen 1 - 08.png",
+      "DUS Flughafen 1 - 09.png",
+      "DUS Flughafen 1 - 10.png",
+      "DUS Flughafen 1 - 11.png",
+      "DUS Flughafen 1 - 12.png",
+      "DUS Flughafen 1 - 13.png"
+    ]
+  },
+  "w06_dus_2": {
+    "images": [
+      "main.png",
+      "DUS Flughafen 2 - 01.png",
+      "DUS Flughafen 2 - 02.png",
+      "DUS Flughafen 2 - 03.png",
+      "DUS Flughafen 2 - 04.png",
+      "DUS Flughafen 2 - 05.png",
+      "DUS Flughafen 2 - 06.png",
+      "DUS Flughafen 2 - 07.png",
+      "DUS Flughafen 2 - 08.png",
+      "DUS Flughafen 2 - 10.png",
+      "DUS Flughafen 2 - 11.png"
+    ]
+  },
+  "w07_dus_3": {
+    "images": [
+      "main.png",
+      "DUS Flughafen 3 - 01.png",
+      "DUS Flughafen 3 - 02.png",
+      "DUS Flughafen 3 - 03.png",
+      "DUS Flughafen 3 - 04.png",
+      "DUS Flughafen 3 - 05.png",
+      "DUS Flughafen 3 - 06.png",
+      "DUS Flughafen 3 - 07.png",
+      "DUS Flughafen 3 - 08.png",
+      "DUS Flughafen 3 - 09.png",
+      "DUS Flughafen 3 - 10.png",
+      "DUS Flughafen 3 - 11.png",
+      "DUS Flughafen 3 - 12.png"
+    ]
   }
 }

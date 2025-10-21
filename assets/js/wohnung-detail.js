@@ -15,7 +15,7 @@
 
   const basePath = '/assets/img/wohnungen/';
   const configPath = '/assets/data/apartments.json';
-  const known = ['rahm','bonn','dus_airport']; // sync with listing
+  const known = ['w03_exklusiv','w04_exklusiv_2','w01_derko_apart','w02_derko_apart_2','w05_dus_1','w06_dus_2','w07_dus_3']; // sync with listing
   if(!key || !known.includes(key)){
     // Redirect to the dedicated 404 page for unknown/removed apartments
     // Use replace() so the invalid URL doesn't stay in history
@@ -165,7 +165,7 @@
 
   function buildPictureElement(folder, file){
     // Einheitliches Bild: kein Hero, alle gleich groß
-    const base = file.replace(/\.png$/,'');
+    const base = file.replace(/\.(png|webp|avif)$/,'');
     const widths = [400,800,1200];
     const title = t(prefix + '.title') || key;
     const photoWord = t('wohnungDetail.gallery.photo') || 'Foto';
@@ -177,23 +177,33 @@
     img.decoding='async';
     img.className='img-fluid rounded shadow-sm gallery-img';
     img.setAttribute('data-filename', file);
-    if(!variantsAvailable){
-      img.dataset.src = folder + file;
-      return img;
+    // If sized variants exist, use responsive srcset; otherwise prefer base AVIF/WEBP and fall back to PNG
+    if(variantsAvailable){
+      const picture = document.createElement('picture');
+      const avifSet = widths.map(w=>`${encodeURI(folder + base + '-' + w + '.avif')} ${w}w`).join(', ');
+      const webpSet = widths.map(w=>`${encodeURI(folder + base + '-' + w + '.webp')} ${w}w`).join(', ');
+      const sizes = '(max-width: 576px) 50vw, (max-width: 992px) 25vw, 200px';
+      const sAvif = document.createElement('source'); sAvif.type='image/avif'; sAvif.setAttribute('data-srcset', avifSet); sAvif.sizes = sizes;
+      const sWebp = document.createElement('source'); sWebp.type='image/webp'; sWebp.setAttribute('data-srcset', webpSet); sWebp.sizes = sizes;
+      img.dataset.src = encodeURI(folder + file);
+      img.width=400; // Basisbreite für Layout-Stabilität
+      picture.appendChild(sAvif);
+      picture.appendChild(sWebp);
+      picture.appendChild(img);
+      picture.className='gallery-picture';
+      return picture;
+    } else {
+      const picture = document.createElement('picture');
+      const sAvif = document.createElement('source'); sAvif.type='image/avif'; sAvif.setAttribute('data-srcset', encodeURI(`${folder}${base}.avif`));
+      const sWebp = document.createElement('source'); sWebp.type='image/webp'; sWebp.setAttribute('data-srcset', encodeURI(`${folder}${base}.webp`));
+      img.dataset.src = encodeURI(folder + `${base}.png`);
+      img.width=400;
+      picture.appendChild(sAvif);
+      picture.appendChild(sWebp);
+      picture.appendChild(img);
+      picture.className='gallery-picture';
+      return picture;
     }
-    const picture = document.createElement('picture');
-    const avifSet = widths.map(w=>`${folder}${base}-${w}.avif ${w}w`).join(', ');
-    const webpSet = widths.map(w=>`${folder}${base}-${w}.webp ${w}w`).join(', ');
-    const sizes = '(max-width: 576px) 50vw, (max-width: 992px) 25vw, 200px';
-    const sAvif = document.createElement('source'); sAvif.type='image/avif'; sAvif.setAttribute('data-srcset', avifSet); sAvif.sizes = sizes;
-    const sWebp = document.createElement('source'); sWebp.type='image/webp'; sWebp.setAttribute('data-srcset', webpSet); sWebp.sizes = sizes;
-    img.dataset.src = folder + file;
-    img.width=400; // Basisbreite für Layout-Stabilität
-    picture.appendChild(sAvif);
-    picture.appendChild(sWebp);
-    picture.appendChild(img);
-    picture.className='gallery-picture';
-    return picture;
   }
 
   function mountShowMoreButton(total){
@@ -238,7 +248,6 @@
   }
 
   function applyResponsiveSources(picture){
-    if(!variantsAvailable) return;
     picture.querySelectorAll('source').forEach(srcEl => {
       const ds = srcEl.getAttribute('data-srcset');
       if(ds) srcEl.setAttribute('srcset', ds);

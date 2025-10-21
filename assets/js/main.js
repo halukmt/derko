@@ -8,6 +8,17 @@
 //  - JSON-LD generation for apartment collection
 //  - Language switcher flag update
 (function(){
+  // Cache for variant availability map used to avoid broken srcset on list cards
+  let VARIANTS_MAP = null;
+  async function getVariantsMap(){
+    if (VARIANTS_MAP !== null) return VARIANTS_MAP;
+    try {
+      const res = await fetch('/assets/data/variants.json', { cache:'no-store' });
+      if (res.ok){ VARIANTS_MAP = await res.json(); }
+      else { VARIANTS_MAP = {}; }
+    } catch(_) { VARIANTS_MAP = {}; }
+    return VARIANTS_MAP;
+  }
   // --- Component Injection -------------------------------------------------
   // Injects shared HTML fragments and reapplies translations.
   async function injectComponent(el, path){
@@ -286,11 +297,15 @@
     }
 
   // Render apartment cards from data-cards JSON (or fallback single)
-  function renderWohnungenCards(){
+  async function renderWohnungenCards(){
       const host = document.getElementById('wohnung-list');
       const tpl = document.getElementById('card-template');
-      if (!host || !tpl || host.dataset.rendered) return;
+    if (!host || !tpl) return;
+    // Prevent concurrent duplicate renders when multiple events fire near-simultaneously
+    if (host.dataset.rendered === 'true' || host.dataset.rendering === 'true') return;
+    host.dataset.rendering = 'true';
       const base = IS_PAGES ? '../' : '';
+      const vmap = await getVariantsMap();
       // Card-Konfiguration aus data-cards Attribut (JSON) oder Fallback
       let cardKeys = [];
       const raw = host.getAttribute('data-cards');
@@ -307,8 +322,10 @@
         if (cfg.key) variant.setAttribute('data-apartment-key', cfg.key);
         const imgEl = variant.querySelector('[data-img]');
         const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
-        // If the image looks like /assets/img/wohnungen/<apt>/main.png build responsive <picture> with srcset variants.
-        if (/\/assets\/img\/wohnungen\//.test(imgSrc) && /\/main\.(png|jpe?g)$/i.test(imgSrc)){
+        // If the image looks like /assets/img/wohnungen/<apt>/main.png build responsive <picture> ONLY if variants exist.
+        const isMainAptImg = (/\/assets\/img\/wohnungen\//.test(imgSrc) && /\/main\.(png|jpe?g)$/i.test(imgSrc));
+        const hasVariants = cfg.key && vmap && vmap[cfg.key] === true;
+        if (isMainAptImg && hasVariants){
           const noExt = imgSrc.replace(/\.(png|jpe?g)$/i, '');
           const mkSizes = (ext) => [`${noExt}-400.${ext} 400w`, `${noExt}-800.${ext} 800w`, `${noExt}-1200.${ext} 1200w`];
           const picture = document.createElement('picture');
@@ -323,6 +340,21 @@
             const tr = window.translateKey(altKey);
             if (tr) altText = tr;
           }
+          img.alt = altText || 'Wohnungsbild';
+          img.loading = 'lazy'; img.decoding = 'async'; img.className = 'card-img-top';
+          picture.appendChild(s1); picture.appendChild(s2); picture.appendChild(img);
+          imgEl.replaceWith(picture);
+        } else if (isMainAptImg){
+          // No sized variants present: still prefer AVIF/WebP using base filenames
+          const noExt = imgSrc.replace(/\.(png|jpe?g)$/i, '');
+          const picture = document.createElement('picture');
+          const s1 = document.createElement('source'); s1.type='image/avif'; s1.setAttribute('srcset', `${noExt}.avif`);
+          const s2 = document.createElement('source'); s2.type='image/webp'; s2.setAttribute('srcset', `${noExt}.webp`);
+          const img = document.createElement('img');
+          img.src = imgSrc; // PNG fallback
+          const altKey = cfg.key ? 'wohnungen.cards.'+cfg.key+'.alt' : null;
+          let altText = cfg.alt || '';
+          if (altKey && window.translateKey){ const tr = window.translateKey(altKey); if (tr) altText = tr; }
           img.alt = altText || 'Wohnungsbild';
           img.loading = 'lazy'; img.decoding = 'async'; img.className = 'card-img-top';
           picture.appendChild(s1); picture.appendChild(s2); picture.appendChild(img);
@@ -361,6 +393,7 @@
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
       });
       host.dataset.rendered = 'true';
+      delete host.dataset.rendering;
       if (window.applyTranslations) {
         window.applyTranslations(host);
         // JSON-LD nach Übersetzungen (leicht verzögert, damit DOM Texte gesetzt sind)
