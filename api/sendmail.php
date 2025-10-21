@@ -286,6 +286,10 @@ $__DICT_CHAIN = build_dict_chain($lang);
 $topicBooking = t_chain($__DICT_CHAIN, 'kontakt.form.topicBooking');
 $topicOther   = t_chain($__DICT_CHAIN, 'kontakt.form.topicOther');
 $topicText = ($topic === 'booking') ? $topicBooking : $topicOther;
+// Resolve apartment title in user's language (fallback to key)
+$apartmentTitle_user = ($apartment !== '')
+  ? t_chain($__DICT_CHAIN, 'wohnungen.cards.'.$apartment.'.title', $apartment)
+  : '';
 // Build user-specific subject using user's language
 $subjectIdLabel_user = t_chain($__DICT_CHAIN, 'kontakt.email.subjectIdLabel');
 $subject_user = sprintf('%s - %s - %s: %s', $topicText, $name, $subjectIdLabel_user, $reqId);
@@ -303,7 +307,7 @@ $L_persons   = strip_required_marker(t_chain($__DICT_CHAIN,'kontakt.form.persons
 $L_message   = strip_required_marker(t_chain($__DICT_CHAIN,'kontakt.form.message'));
 
 // Helper to build a language-specific body, including Anfrage-ID as the first line
-$build_body = function($L, $idLabel, $reqId) use ($name,$email,$phone,$topicText,$topic,$date_from,$date_to,$apartment,$persons,$message){
+$build_body = function($L, $idLabel, $reqId, $apartmentValue) use ($name,$email,$phone,$topicText,$topic,$date_from,$date_to,$persons,$message){
   $lines = [];
   if($idLabel !== '' && $reqId !== ''){
     $lines[] = sprintf('%s: %s', $idLabel, $reqId);
@@ -316,7 +320,7 @@ $build_body = function($L, $idLabel, $reqId) use ($name,$email,$phone,$topicText
   if($topic === 'booking'){
     $add($L['from'], $date_from);
     $add($L['to'], $date_to);
-    $add($L['apartment'], $apartment);
+    $add($L['apartment'], $apartmentValue);
     $add($L['persons'], $persons);
   }
   if($message !== ''){
@@ -331,7 +335,7 @@ $LABELS_USER = [
   'name'=>$L_name,'email'=>$L_email,'phone'=>$L_phone,'topic'=>$L_topic,
   'from'=>$L_from,'to'=>$L_to,'apartment'=>$L_apartment,'persons'=>$L_persons,'message'=>$L_message
 ];
-$body_user = $build_body($LABELS_USER, $subjectIdLabel_user, $reqId);
+$body_user = $build_body($LABELS_USER, $subjectIdLabel_user, $reqId, $apartmentTitle_user);
 
 // Build operator (always German) chain and labels
 $__DICT_CHAIN_OP = build_dict_chain('de');
@@ -354,8 +358,12 @@ $LABELS_OP = [
   'name'=>$L_name_de,'email'=>$L_email_de,'phone'=>$L_phone_de,'topic'=>$L_topic_de,
   'from'=>$L_from_de,'to'=>$L_to_de,'apartment'=>$L_apartment_de,'persons'=>$L_persons_de,'message'=>$L_message_de
 ];
+// Resolve apartment title for operator (German)
+$apartmentTitle_de = ($apartment !== '')
+  ? t_chain($__DICT_CHAIN_OP, 'wohnungen.cards.'.$apartment.'.title', $apartment)
+  : '';
 // Build operator body (always German), include Anfrage-ID as first line
-$body_op = (function($L,$idLabel,$reqId,$name,$email,$phone,$topic_de,$topic,$date_from,$date_to,$apartment,$persons,$message){
+$body_op = (function($L,$idLabel,$reqId,$name,$email,$phone,$topic_de,$topic,$date_from,$date_to,$apartment_value,$persons,$message){
   $lines = [];
   if($idLabel !== '' && $reqId !== ''){
     $lines[] = sprintf('%s: %s', $idLabel, $reqId);
@@ -368,7 +376,7 @@ $body_op = (function($L,$idLabel,$reqId,$name,$email,$phone,$topic_de,$topic,$da
   if($topic === 'booking'){
     $add($L['from'], $date_from);
     $add($L['to'], $date_to);
-    $add($L['apartment'], $apartment);
+    $add($L['apartment'], $apartment_value);
     $add($L['persons'], $persons);
   }
   if($message !== ''){
@@ -376,7 +384,7 @@ $body_op = (function($L,$idLabel,$reqId,$name,$email,$phone,$topic_de,$topic,$da
     $lines[] = $message;
   }
   return implode("\r\n", $lines);
-})($LABELS_OP,$subjectIdLabel_op,$reqId,$name,$email,$phone,$topicText_de,$topic,$date_from,$date_to,$apartment,$persons,$message);
+})($LABELS_OP,$subjectIdLabel_op,$reqId,$name,$email,$phone,$topicText_de,$topic,$date_from,$date_to,$apartmentTitle_de,$persons,$message);
 
 // Header vorbereiten
 // Operator headers: reply-to = user email
