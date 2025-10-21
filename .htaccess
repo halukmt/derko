@@ -60,6 +60,9 @@ Options -MultiViews
   RewriteCond %{THE_REQUEST} \s/+pages/wohnung-detail\.html [NC]
   RewriteRule ^pages/wohnung-detail\.html$ /wohnung [R=301,L]
 
+  # Allow extensionless access below /pages (e.g., /pages/kontakt -> /pages/kontakt.html)
+  RewriteRule ^pages/([A-Za-z0-9_-]+)/?$ /pages/$1.html [L]
+
   # If file or directory exists, serve it directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
