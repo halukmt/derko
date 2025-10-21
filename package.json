@@ -7,7 +7,7 @@
     "optimize:images": "node assets/js/optimize-images.js",
     "optimize:images:allgemein": "node assets/js/optimize-images.js allgemein",
     "optimize:images:force": "node assets/js/optimize-images.js --force"
-    
+
   },
   "dependencies": {
     "sharp": "^0.33.3"
