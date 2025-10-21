@@ -40,6 +40,23 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # --- Canonicalize direct /pages/*.html requests to pretty paths (avoid loops) ---
+  # Use THE_REQUEST so only user-entered URLs redirect; internal rewrites won't trigger
+  RewriteCond %{THE_REQUEST} \s/+pages/wohnungen\.html [NC]
+  RewriteRule ^pages/wohnungen\.html$ /wohnungen [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/kontakt\.html [NC]
+  RewriteRule ^pages/kontakt\.html$ /kontakt [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/ueber-uns\.html [NC]
+  RewriteRule ^pages/ueber-uns\.html$ /ueber-uns [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/impressum\.html [NC]
+  RewriteRule ^pages/impressum\.html$ /impressum [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/agb\.html [NC]
+  RewriteRule ^pages/agb\.html$ /agb [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/datenschutz\.html [NC]
+  RewriteRule ^pages/datenschutz\.html$ /datenschutz [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/wohnung-detail\.html [NC]
+  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [R=301,L]
+
   # If file or directory exists, serve it directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
@@ -56,12 +73,5 @@
   # Detailseite mit Query-Parameter beibehalten
   RewriteRule ^wohnung/?$ /pages/wohnung-detail.html [QSA,L]
 
-  # Canonical 301 from /pages/*.html to pretty paths
-  RedirectMatch 301 ^/pages/wohnungen\.html$ /wohnungen
-  RedirectMatch 301 ^/pages/kontakt\.html$ /kontakt
-  RedirectMatch 301 ^/pages/ueber-uns\.html$ /ueber-uns
-  RedirectMatch 301 ^/pages/impressum\.html$ /impressum
-  RedirectMatch 301 ^/pages/agb\.html$ /agb
-  RedirectMatch 301 ^/pages/datenschutz\.html$ /datenschutz
-  RedirectMatch 301 ^/pages/wohnung-detail\.html$ /wohnung
+  # (Replaced RedirectMatch rules with THE_REQUEST-based rules above to prevent redirect loops)
 </IfModule>
