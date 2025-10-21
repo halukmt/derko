@@ -175,19 +175,9 @@
             </div>
             <div class="col-md-3" data-booking-only>
               <label for="persons" class="form-label" data-i18n="kontakt.form.persons"></label>
-              <select id="persons" name="persons" class="form-select" required aria-required="true">
-                <option value="" data-i18n="kontakt.form.personsPlaceholder"></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
+              <input type="number" class="form-control" id="persons" name="persons" inputmode="numeric" pattern="[0-9]*" min="1" step="1" required aria-required="true" aria-describedby="personsHelp personsFeedback" />
+              <div id="personsHelp" class="form-text" data-i18n="kontakt.form.personsPlaceholder"></div>
+              <div id="personsFeedback" class="invalid-feedback" data-i18n="kontakt.validation.personsRequired"></div>
             </div>
             <div class="col-12">
               <label

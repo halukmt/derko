@@ -88,6 +88,17 @@
         return;
       }
 
+      // Enforce persons >= 1 for number input
+      const personsEl = document.getElementById('persons');
+      if (personsEl && !personsEl.disabled) {
+        const val = personsEl.value !== '' ? parseInt(personsEl.value, 10) : NaN;
+        if (!Number.isFinite(val) || val < 1) {
+          personsEl.setCustomValidity('invalid');
+        } else {
+          personsEl.setCustomValidity('');
+        }
+      }
+
       // 2) If form is invalid (missing required fields), let Bootstrap validation show errors and hide bot alert
       if (!form.checkValidity()){
         e.preventDefault();

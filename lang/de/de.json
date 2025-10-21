@@ -288,6 +288,7 @@
       "emailRequired": "Bitte geben Sie eine gültige E-Mail ein.",
       "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
       "messageRequired": "Bitte geben Sie eine Nachricht ein.",
+      "personsRequired": "Bitte geben Sie die Anzahl der Personen an (mindestens 1).",
       "privacyRequired": "Bitte stimmen Sie der Speicherung Ihrer Angaben zu.",
       "bot": "Anfrage blockiert: Bitte versuchen Sie es in wenigen Sekunden erneut.",
       "captcha": "Der Sicherheitscode ist nicht korrekt."
