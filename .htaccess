@@ -3,14 +3,20 @@
 # Disable MultiViews (content negotiation) to avoid rewrite surprises
 Options -MultiViews
 
+<IfModule mod_setenvif.c>
+  # Flag HTTPS so we can conditionally set powerful feature headers only on secure origins
+  SetEnvIfNoCase HTTPS on HTTPS_ON=1
+</IfModule>
+
 <IfModule mod_headers.c>
   Header set X-Frame-Options "DENY"
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-  Header set Cross-Origin-Opener-Policy "same-origin"
-  Header set Cross-Origin-Resource-Policy "same-origin"
-  Header set Cross-Origin-Embedder-Policy "require-corp"
+  # Only send the COOP/COEP/CORP trio on HTTPS to avoid Chrome console warnings on http
+  Header set Cross-Origin-Opener-Policy "same-origin" env=HTTPS_ON
+  Header set Cross-Origin-Resource-Policy "same-origin" env=HTTPS_ON
+  Header set Cross-Origin-Embedder-Policy "require-corp" env=HTTPS_ON
   # Disable legacy XSS Auditor (avoid false positives)
   Header set X-XSS-Protection "0"
 </IfModule>
