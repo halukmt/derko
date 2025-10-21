@@ -264,7 +264,7 @@
     "headline": "Angebot",
     "description": "Sie haben Fragen oder möchten eine Wohnung anfragen? Nutzen Sie das Formular oder rufen Sie uns an.",
     "form": {
-      "name": "Name",
+      "name": "Name / Firma",
       "email": "E-Mail",
       "phone": "Telefon",
       "message": "Nachricht",
