@@ -1,12 +1,23 @@
 <?php
 // Harden session cookie flags (must be set before session_start)
-// Secure only effective over HTTPS; SameSite=Lax prevents CSRF on top navigation GETs.
-@session_set_cookie_params([
-  'path' => '/',
-  'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-  'httponly' => true,
-  'samesite' => 'Lax'
-]);
+// Backward-compatible across older PHP versions on some hosts.
+$isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+if (defined('PHP_VERSION_ID') && PHP_VERSION_ID >= 70300) {
+  // PHP 7.3+: array form supports SameSite
+  @session_set_cookie_params([
+    'path' => '/',
+    'secure' => $isHttps,
+    'httponly' => true,
+    'samesite' => 'Lax'
+  ]);
+} else {
+  // Older PHP: fallbacks via ini_set + classic signature
+  @ini_set('session.cookie_secure', $isHttps ? '1' : '0');
+  @ini_set('session.cookie_httponly', '1');
+  // SameSite may not be supported; try if available
+  @ini_set('session.cookie_samesite', 'Lax');
+  @session_set_cookie_params(0, '/');
+}
 @session_start();
 // sendmail.php – Minimal backend for contact form (Strato compatible)
 // Config
@@ -83,7 +94,30 @@ function html_to_text($html){
   if (!is_string($html) || $html==='') return '';
   $html = preg_replace('/<br\s*\/?\>/i', "\n", $html);
   $text = strip_tags($html);
-  return html_entity_decode($text, ENT_QUOTES|ENT_HTML5, 'UTF-8');
+  $flags = defined('ENT_HTML5') ? (ENT_QUOTES|ENT_HTML5) : ENT_QUOTES;
+  return html_entity_decode($text, $flags, 'UTF-8');
+}
+
+// --- Polyfills for older PHP versions -------------------------------------
+// Provide hash_equals on very old PHP (<5.6)
+if (!function_exists('hash_equals')){
+  function hash_equals($known_string, $user_string){
+    if (!is_string($known_string) || !is_string($user_string)) return false;
+    $len1 = strlen($known_string);
+    $len2 = strlen($user_string);
+    if ($len1 !== $len2) return false;
+    $res = 0;
+    for ($i = 0; $i < $len1; $i++){
+      $res |= ord($known_string[$i]) ^ ord($user_string[$i]);
+    }
+    return $res === 0;
+  }
+}
+// Provide random_int on PHP <7 (fallback to mt_rand for non-crypto usage)
+if (!function_exists('random_int')){
+  function random_int($min, $max){
+    return mt_rand($min, $max);
+  }
 }
 
 function get_post($key){ return isset($_POST[$key]) ? trim((string)$_POST[$key]) : ''; }
@@ -153,7 +187,10 @@ function sanitize_field($val, $maxLen){
   $val = trim($val);
   // Whitelist basic characters (letters, numbers, common punctuation, umlauts)
   $val = preg_replace('/[^A-Za-z0-9ÄÖÜäöüß .,;:\\'"\-+()\/!?@]/u', '', $val);
-  return mb_substr($val, 0, $maxLen);
+  if (function_exists('mb_substr')){
+    return mb_substr($val, 0, $maxLen);
+  }
+  return substr($val, 0, $maxLen);
 }
 $name = sanitize_field($name, 120);
 $phone = sanitize_field($phone, 40);
