@@ -286,7 +286,7 @@
     "validation": {
       "nameRequired": "Please enter your name.",
       "emailRequired": "Please enter a valid email.",
-      "phoneInvalid": "Please enter a valid phone number.",
+  "phoneInvalid": "Please enter a valid phone number (e.g., +49 173 1234567).",
       "messageRequired": "Please enter a message.",
       "personsRequired": "Please enter the number of persons (at least 1).",
       "privacyRequired": "Please accept to store your details.",
