@@ -217,8 +217,9 @@ if(!empty($errors)){
 // Small randomized delay (obfuscate timing for bots)
 usleep(random_int(80000, 220000)); // 80–220ms
 
-// Anfrage-ID erstellen (DDMMYYHHMM)
-$reqId = date('dmyHi');
+// Anfrage-ID erstellen (YYYYMMDDHHMM)
+// Format: Jahr-Monat-Tag-Stunde-Minute per Anforderung
+$reqId = date('YmdHi');
 $lang = detect_lang();
 $__DICT_CHAIN = build_dict_chain($lang);
 // Topic text localized
@@ -241,9 +242,12 @@ $L_apartment = strip_required_marker(t_chain($__DICT_CHAIN,'kontakt.form.apartme
 $L_persons   = strip_required_marker(t_chain($__DICT_CHAIN,'kontakt.form.persons'));
 $L_message   = strip_required_marker(t_chain($__DICT_CHAIN,'kontakt.form.message'));
 
-// Helper to build a language-specific body
-$build_body = function($L) use ($name,$email,$phone,$topicText,$topic,$date_from,$date_to,$apartment,$persons,$message){
+// Helper to build a language-specific body, including Anfrage-ID as the first line
+$build_body = function($L, $idLabel, $reqId) use ($name,$email,$phone,$topicText,$topic,$date_from,$date_to,$apartment,$persons,$message){
   $lines = [];
+  if($idLabel !== '' && $reqId !== ''){
+    $lines[] = sprintf('%s: %s', $idLabel, $reqId);
+  }
   $add = function($label, $val) use (&$lines){ if($val !== '') $lines[] = sprintf('%s: %s', $label, $val); };
   $add($L['name'], $name);
   $add($L['email'], $email);
@@ -267,7 +271,7 @@ $LABELS_USER = [
   'name'=>$L_name,'email'=>$L_email,'phone'=>$L_phone,'topic'=>$L_topic,
   'from'=>$L_from,'to'=>$L_to,'apartment'=>$L_apartment,'persons'=>$L_persons,'message'=>$L_message
 ];
-$body_user = $build_body($LABELS_USER);
+$body_user = $build_body($LABELS_USER, $subjectIdLabel_user, $reqId);
 
 // Build operator (always German) chain and labels
 $__DICT_CHAIN_OP = build_dict_chain('de');
@@ -290,13 +294,12 @@ $LABELS_OP = [
   'name'=>$L_name_de,'email'=>$L_email_de,'phone'=>$L_phone_de,'topic'=>$L_topic_de,
   'from'=>$L_from_de,'to'=>$L_to_de,'apartment'=>$L_apartment_de,'persons'=>$L_persons_de,'message'=>$L_message_de
 ];
-$body_op = (function() use ($build_body,$LABELS_OP,$topicText_de){
-  // swap topicText to German for operator
-  return $build_body(array_merge($LABELS_OP,[]));
-})();
-// but the above uses $topicText (user). Rebuild with German topic text explicitly
-$body_op = (function($L,$name,$email,$phone,$topic_de,$topic,$date_from,$date_to,$apartment,$persons,$message){
+// Build operator body (always German), include Anfrage-ID as first line
+$body_op = (function($L,$idLabel,$reqId,$name,$email,$phone,$topic_de,$topic,$date_from,$date_to,$apartment,$persons,$message){
   $lines = [];
+  if($idLabel !== '' && $reqId !== ''){
+    $lines[] = sprintf('%s: %s', $idLabel, $reqId);
+  }
   $add = function($label, $val) use (&$lines){ if($val !== '') $lines[] = sprintf('%s: %s', $label, $val); };
   $add($L['name'], $name);
   $add($L['email'], $email);
@@ -313,7 +316,7 @@ $body_op = (function($L,$name,$email,$phone,$topic_de,$topic,$date_from,$date_to
     $lines[] = $message;
   }
   return implode("\r\n", $lines);
-})($LABELS_OP,$name,$email,$phone,$topicText_de,$topic,$date_from,$date_to,$apartment,$persons,$message);
+})($LABELS_OP,$subjectIdLabel_op,$reqId,$name,$email,$phone,$topicText_de,$topic,$date_from,$date_to,$apartment,$persons,$message);
 
 // Header vorbereiten
 // Operator headers: reply-to = user email
