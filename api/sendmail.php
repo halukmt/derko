@@ -207,8 +207,9 @@ function sanitize_field($val, $maxLen){
   $val = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $val);
   // Trim
   $val = trim($val);
-  // Whitelist basic characters (letters, numbers, common punctuation, umlauts)
-  $val = preg_replace('/[^A-Za-z0-9ÄÖÜäöüß .,;:\\'"\-+()\/!?@]/u', '', $val);
+    // Unicode whitelist: letters, numbers, whitespace and common punctuation
+    // Safer pattern to avoid fragile escaping in PHP string literals
+    $val = preg_replace('/[^\p{L}\p{N}\s\.,;:\+\(\)\/!?\"\'"@\-]/u', '', $val);
   if (function_exists('mb_substr')){
     return mb_substr($val, 0, $maxLen);
   }
