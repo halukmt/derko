@@ -145,7 +145,8 @@
                 autocomplete="tel"
                 inputmode="tel"
                 minlength="6"
-                pattern="[-+() 0-9]{6,}"
+                pattern="^[0-9()\+\-\s]{6,}$"
+                title="Mindestens 6 Zeichen, Ziffern und + ( ) - erlaubt"
                 required
                 aria-required="true"
               />
