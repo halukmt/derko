@@ -18,5 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 if (empty($_SESSION['csrf_token'])) {
   // 32 random bytes base64
   $_SESSION['csrf_token'] = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
+  $_SESSION['csrf_issued_at'] = time();
 }
-echo json_encode(['ok'=>true,'token'=>$_SESSION['csrf_token']]);
+if (empty($_SESSION['csrf_issued_at'])) { $_SESSION['csrf_issued_at'] = time(); }
+echo json_encode(['ok'=>true,'token'=>$_SESSION['csrf_token'],'issued'=>$_SESSION['csrf_issued_at']]);

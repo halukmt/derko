@@ -152,31 +152,10 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
   exit;
 }
 
-// --- Basic IP rate limiting -------------------------------------------------
-// Allow small burst, e.g. 3 submissions per 10 minutes per IP
-$RATE_WINDOW = 600; // seconds
-$RATE_MAX = 3;
-$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$rateStore = __DIR__.DIRECTORY_SEPARATOR.'rate_store';
-if(!is_dir($rateStore)) @mkdir($rateStore, 0700);
-$rateFile = $rateStore.DIRECTORY_SEPARATOR.'ip_'.preg_replace('/[^a-zA-Z0-9_.-]/','_', $ip);
-$now = time();
-$hits = [];
-if(is_file($rateFile)){
-  $raw = @file_get_contents($rateFile);
-  if($raw !== false){
-    $hits = array_filter(array_map('intval', explode(',', $raw)), function($t) use ($now,$RATE_WINDOW){ return $t > $now - $RATE_WINDOW; });
-  }
-}
-if(count($hits) >= $RATE_MAX){
-  http_response_code(429);
-  header('Content-Type: application/json; charset=UTF-8');
-  echo json_encode(['ok'=>false,'errors'=>['rate_limit']]);
-  exit;
-}
-// Record current attempt (provisionally; if validation fails we still count it)
-$hits[] = $now;
-@file_put_contents($rateFile, implode(',', $hits));
+// --- Settings: CSRF TTL and rate limit -------------------------------------
+$CSRF_TTL = 600; // seconds
+$RATE_WINDOW = 60; // seconds
+$RATE_MAX = 1; // max submissions per window
 
 // Felder einlesen
 $name = get_post('name');
@@ -231,9 +210,20 @@ if($topic === 'booking'){
   if($persons === '' || !preg_match('/^\d+$/', $persons)) $errors[] = 'persons';
 }
 
-// CSRF token check
+// CSRF token check (and optional TTL)
+$csrf_ok = true;
 if (!isset($_SESSION['csrf_token']) || $csrf_token === '' || !hash_equals($_SESSION['csrf_token'], $csrf_token)){
-  $errors[] = 'csrf';
+  $csrf_ok = false;
+}
+// TTL if available
+$issuedAt = isset($_SESSION['csrf_issued_at']) ? (int)$_SESSION['csrf_issued_at'] : 0;
+if ($csrf_ok && $issuedAt && (time() - $issuedAt) > $CSRF_TTL){
+  $csrf_ok = false;
+}
+if (!$csrf_ok){
+  // Redirect to friendly session timeout page (do not count towards rate limit)
+  header('Location: /pages/error-session.html');
+  exit;
 }
 // CAPTCHA check (case-insensitive)
 if ($captcha === '' || !isset($_SESSION['captcha_code']) || strcasecmp(trim($captcha), $_SESSION['captcha_code']) !== 0) {
@@ -241,6 +231,30 @@ if ($captcha === '' || !isset($_SESSION['captcha_code']) || strcasecmp(trim($cap
 }
 // Invalidate used code regardless
 unset($_SESSION['captcha_code']);
+
+// --- Rate limiting (only after CSRF is valid) ------------------------------
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$rateStore = __DIR__.DIRECTORY_SEPARATOR.'rate_store';
+if(!is_dir($rateStore)) @mkdir($rateStore, 0700);
+$rateFile = $rateStore.DIRECTORY_SEPARATOR.'ip_'.preg_replace('/[^a-zA-Z0-9_.-]/','_', $ip);
+$now = time();
+$hits = [];
+if(is_file($rateFile)){
+  $raw = @file_get_contents($rateFile);
+  if($raw !== false){
+    $hits = array_filter(array_map('intval', explode(',', $raw)), function($t) use ($now,$RATE_WINDOW){ return $t > $now - $RATE_WINDOW; });
+  }
+}
+if(count($hits) >= $RATE_MAX){
+  $oldest = min($hits);
+  $wait = max(1, $RATE_WINDOW - ($now - $oldest));
+  header('Retry-After: '.$wait);
+  header('Location: /pages/error-rate-limit.html?wait='.$wait);
+  exit;
+}
+// Record current attempt now
+$hits[] = $now;
+@file_put_contents($rateFile, implode(',', $hits));
 
 // Basic anti-bot checks
 // 1) Honeypot must be empty
@@ -268,6 +282,7 @@ if($emailDomain && in_array($emailDomain, $dispDomains, true)){
 }
 
 if(!empty($errors)){
+  // For regular validation errors keep JSON (used by inline feedback)
   http_response_code(400);
   header('Content-Type: application/json; charset=UTF-8');
   echo json_encode(['ok'=>false,'errors'=>$errors]);
