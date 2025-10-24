@@ -4,6 +4,31 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 # Changelog
 Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+
+## [v0.9.2] - 2025-10-24
+### Added
+- E-Mail-Obfuskation für rechtlich erforderliche Kontaktadresse:
+	- Neues Skript `assets/js/email-reveal.js` wandelt zur Laufzeit `<span class="obf-email" data-user data-domain>` in klickbare `mailto:`-Links um.
+	- Funktioniert ohne Inline-JS und reagiert auf `i18n:ready`/`i18n:changed` (Partials nachgeladen).
+- Wrapper-Seiten für Rechtstexte eingebunden (nutzen weiterhin i18n-Partials):
+	- `pages/impressum.html`, `pages/datenschutz.html` laden Inhalte über `data-i18n-html` (`lang/<code>/*.html`).
+
+### Changed
+- Footer- und Navigationslinks auf „schöne“ absolute Routen umgestellt (sprach-/seitenkontext‑robust):
+	- Footer (`components/footer.html`): `/impressum`, `/agb`, `/datenschutz`, `/kontakt`.
+	- Header/Navigation (`assets/js/main.js`): Link-Setzung vereinheitlicht auf Pretty-URLs.
+	- Cookie-Banner „Datenschutz“-Button leitet jetzt auf `/datenschutz`.
+- 404-Handling konsolidiert:
+	- Benutzerdefinierte 404-Seite lebt unter `pages/404.html` (i18n, keine Inline-Skripte, absolute Assets).
+	- `.htaccess` nutzt `ErrorDocument 404 /pages/404.html` und schließt die Datei von Rewrites aus.
+
+### Removed
+- Veraltete Root-Fehlerseite `404.html` entfernt (es existiert nur noch `pages/404.html`).
+
+### Notes / Dev
+- Lokale Dev-Server ohne Apache/.htaccess zeigen weiterhin Dateiendungen und keine benutzerdefinierte 404.
+	Für realitätsnahe Tests lokal Apache nutzen (oder PHP Built-in mit Router), auf dem Hoster greift `.htaccess`.
+
 ## [v0.9.1] - 2025-10-21
 ### Added
 - 7 neue Wohnungen aus `bookings.md` integriert und auf der Übersichtsseite sichtbar:
