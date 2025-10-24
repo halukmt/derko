@@ -55,6 +55,9 @@
   function initAntiBot(){
     const form = document.getElementById('contact-form');
     if(!form) return;
+    // Idempotent wiring: prevent attaching multiple listeners when this runs twice
+    if (form._antibotWired) return;
+    form._antibotWired = true;
     const jsEnabled = form.querySelector('#js_enabled');
     const ts = form.querySelector('#form_ts');
     const csrfField = form.querySelector('#csrf_token');
