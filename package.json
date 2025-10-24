@@ -6,10 +6,23 @@
   "scripts": {
     "optimize:images": "node assets/js/optimize-images.js",
     "optimize:images:allgemein": "node assets/js/optimize-images.js allgemein",
-    "optimize:images:force": "node assets/js/optimize-images.js --force"
-
+    "optimize:images:force": "node assets/js/optimize-images.js --force",
+    "clean": "rimraf dist",
+  "copy": "cpy \"assets/**\" dist/assets --dot --cwd=. && cpy \"pages/**\" dist/pages --dot --cwd=. && cpy \"lang/**\" dist/lang --dot --cwd=. && cpy \"api/**\" dist/api --dot --cwd=. --ignore=\"**/.debug\" --ignore=\"**/error.log\" && cpy \"components/**\" dist/components --dot --cwd=. && cpy \".well-known/**\" dist/.well-known --dot --cwd=. && cpy \"robots.txt\" \"sitemap.xml\" \"site.webmanifest\" \".htaccess\" dist --dot --cwd=.",
+    "build:js": "esbuild assets/js/email-reveal.js assets/js/error-rate-limit.js assets/js/kontakt.js assets/js/lang.js assets/js/main.js assets/js/partners.js assets/js/wohnung-detail.js --minify --sourcemap=external --outdir=dist/assets/js",
+    "build:css": "cleancss -o dist/assets/css/style.css assets/css/style.css",
+    "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir pages --output-dir dist/pages && html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir lang --output-dir dist/lang && if exist index.html html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o dist/index.html index.html",
+    "build": "npm-run-all clean copy build:js build:css build:html"
   },
   "dependencies": {
     "sharp": "^0.33.3"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "cpy-cli": "^6.0.0",
+    "esbuild": "^0.25.11",
+    "html-minifier-terser": "^7.2.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1"
   }
 }
