@@ -311,6 +311,9 @@
     "headline": "Datenschutz",
     "text": "lang/de/de.datenschutz.html"
   },
+  "legal": {
+    "revealEmail": "E-Mail Adresse anzeigen"
+  },
   "notFound": {
     "title": "404",
     "headline": "Seite nicht gefunden",

@@ -311,6 +311,9 @@
     "headline": "Privacy Policy",
     "text": "lang/en/en.datenschutz.html"
   },
+  "legal": {
+    "revealEmail": "Show email address"
+  },
   "notFound": {
     "title": "404",
     "headline": "Page not found",

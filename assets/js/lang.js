@@ -55,14 +55,14 @@
         for (const attr of Array.from(child.attributes)){
           const name = attr.name.toLowerCase();
           if (name.startsWith('on')) { child.removeAttribute(attr.name); continue; }
+          // Always allow safe aria-* and data-* attributes for any tag (used by components and obfuscation)
+          if (name.startsWith('aria-') || name.startsWith('data-')) { continue; }
           const allowedForTag = ALLOWED_ATTR[tag];
           if (allowedForTag){
             if (!allowedForTag.has(name)) child.removeAttribute(attr.name);
           } else {
-            // no attributes allowed for this tag except aria- / data- minimal safe set
-            if (!name.startsWith('aria-') && !name.startsWith('data-')){
-              child.removeAttribute(attr.name);
-            }
+            // no attributes allowed for this tag (beyond aria-/data- handled above)
+            child.removeAttribute(attr.name);
           }
           // For anchor ensure safe rel when target=_blank
           if (tag === 'a' && child.getAttribute('target') === '_blank'){
