@@ -64,13 +64,13 @@
     if (ts) ts.value = String(Date.now());
     // Fetch CSRF token asynchronously
     if (csrfField){
-      fetch('../api/csrf.php', { credentials:'same-origin' })
+      fetch('/api/csrf.php', { credentials:'same-origin' })
         .then(r=> r.ok ? r.json() : Promise.reject())
         .then(data=>{ if(data && data.ok && data.token){ csrfField.value = data.token; } })
         .catch(()=>{ /* silently ignore; server will reject */ });
     }
     let submitting = false;
-    form.addEventListener('submit', (e)=>{
+  form.addEventListener('submit', (e)=>{
       // Client-side bot heuristics: block if honeypot filled or time since render < 1500ms (testing threshold)
       const now = Date.now();
       const start = ts ? parseInt(ts.value || '0', 10) : 0;
@@ -118,21 +118,27 @@
         return;
       }
 
-      // 4) All good: proceed with submit (apply double-submit guard)
-      // Ensure CSRF token present
-      if (csrfField && !csrfField.value){
-        e.preventDefault();
-        if (alertBox){
-          alertBox.textContent = (window.translateKey && window.translateKey('kontakt.validation.bot')) || 'Request blocked: token missing.';
-          alertBox.classList.remove('d-none');
-        }
-        return;
+      // 4) All good: ensure fresh CSRF (refresh issued_at) just before submit
+      // Always prevent default and manually submit after a quick refresh call
+      e.preventDefault();
+      if (submitting) return;
+      const proceed = () => {
+        if (submitting) return;
+        submitting = true;
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn){ btn.disabled = true; btn.setAttribute('aria-disabled','true'); }
+        form.submit();
+      };
+      const refreshCsrf = () => fetch('/api/csrf.php', { credentials:'same-origin' })
+        .then(r => r.ok ? r.json() : null)
+        .then(data => { if (data && data.ok && data.token && csrfField){ csrfField.value = data.token; } })
+        .catch(()=>{/* ignore and proceed anyway */});
+      // If we have a CSRF field, try to refresh first, then submit
+      if (csrfField) {
+        refreshCsrf().finally(proceed);
+      } else {
+        proceed();
       }
-      if(submitting){ e.preventDefault(); return; }
-      submitting = true;
-      const btn = form.querySelector('button[type="submit"]');
-      if (btn){ btn.disabled = true; btn.setAttribute('aria-disabled','true'); }
-      // Optional: small delay to prevent ultra-fast bots; kept minimal for UX
     }, { capture:true });
   }
 

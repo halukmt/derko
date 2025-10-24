@@ -182,11 +182,24 @@ Produktiver Versand ohne Drittanbieter via `api/sendmail.php` (Strato‑kompatib
 - Versand: 1) an Betreiber, 2) Bestätigung an Absender (Reply‑To = Absender)
 - Weiterleitung nach Erfolg: `/pages/bestaetigung.html`
 
-Konfiguration (Empfänger/Absender) in `api/sendmail.php`:
+ Konfiguration (Empfänger/Absender) erfolgt zentral in `api/config.php` (optional via Umgebungsvariablen überschreibbar):
 
 ```php
-$TO   = 'social@techsulting.de';      // Zieladresse
-$FROM = 'kontakt@derko-immobilien.de';// Absender (Domain‑Adresse)
+<?php
+// api/config.php
+define('DERKO_CONTACT_TO', getenv('DERKO_CONTACT_TO') ?: 'contact@example.com');
+define('DERKO_CONTACT_FROM', getenv('DERKO_CONTACT_FROM') ?: 'no-reply@example.com');
+```
+
+`api/sendmail.php` lädt diese Konstanten automatisch und verwendet sie als Absender/Empfänger.
+
+Zentrale Sicherheits-/Rate-Parameter (ebenfalls in `api/config.php`):
+
+```php
+// Standardwerte (überschreibbar via Env oder config.local.php)
+define('DERKO_CSRF_TTL', 600);       // Sekunden
+define('DERKO_RATE_WINDOW', 60);     // Sekunden pro Fenster
+define('DERKO_RATE_MAX', 1);         // max. Einsendungen je Fenster
 ```
 
 Hinweise Zustellbarkeit:

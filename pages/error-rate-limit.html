@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bitte kurz warten</title>
+  <title data-i18n="error.rate.title"></title>
     <meta name="robots" content="noindex" />
-    <meta name="description" content="Sie haben soeben eine Anfrage gesendet. Bitte warten Sie kurz und versuchen Sie es erneut." />
+  <meta name="description" data-i18n-meta="error.rate.message" content="Sie haben soeben eine Anfrage gesendet. Bitte warten Sie kurz und versuchen Sie es erneut." />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src-elem 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="theme-color" content="#505C61" />
@@ -27,23 +27,14 @@
     <main id="main" class="py-5">
       <div class="container">
         <div class="text-center py-5">
-          <h1 class="h2 mb-3">Bitte kurz warten</h1>
-          <p id="msg" class="lead mb-4">Sie haben soeben eine Anfrage gesendet. Bitte warten Sie einen Moment und versuchen Sie es erneut.</p>
-          <a class="btn" href="/kontakt">Zurück zum Kontaktformular</a>
+          <h1 class="h2 mb-3" data-i18n="error.rate.title"></h1>
+          <p id="msg" class="lead mb-4" data-i18n="error.rate.message"></p>
+          <a class="btn" data-i18n="error.backToContact" href="/kontakt"></a>
         </div>
       </div>
     </main>
     <footer id="site-footer" data-component="footer"></footer>
-    <script>
-      (function(){
-        var params = new URLSearchParams(location.search);
-        var wait = params.get('wait');
-        if(wait){
-          var el = document.getElementById('msg');
-          if(el){ el.textContent = 'Sie haben soeben eine Anfrage gesendet. Bitte warten Sie etwa ' + wait + ' Sekunden und versuchen Sie es erneut.'; }
-        }
-      })();
-    </script>
+    <script src="/assets/js/error-rate-limit.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/js/lang.js" defer></script>
     <script src="/assets/js/main.js" defer></script>

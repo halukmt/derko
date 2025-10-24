@@ -312,6 +312,7 @@
     "text": "lang/en/en.datenschutz.html"
   },
   "notFound": {
+    "title": "404",
     "headline": "Page not found",
     "description": "The requested page could not be found or no longer exists.",
     "backHome": "Back to homepage"
@@ -335,6 +336,19 @@
     }
   }
   ,
+  "error": {
+    "session": {
+      "title": "Session expired",
+      "message": "Your session has expired. Please reload the page and submit the form again."
+    },
+    "rate": {
+      "title": "Please wait a moment",
+      "message": "You have just sent a request. Please wait a moment and try again.",
+      "messageWithWait": "You have just sent a request. Please wait about {seconds} seconds and try again."
+    },
+    "backToContact": "Back to contact form"
+  },
+
   "confirmation": {
     "headline": "Request sent",
     "description": "We have received your request.",

@@ -312,6 +312,7 @@
     "text": "lang/de/de.datenschutz.html"
   },
   "notFound": {
+    "title": "404",
     "headline": "Seite nicht gefunden",
     "description": "Die angeforderte Seite wurde nicht gefunden oder existiert nicht mehr.",
     "backHome": "Zur Startseite"
@@ -335,6 +336,19 @@
     }
   }
   ,
+  "error": {
+    "session": {
+      "title": "Sitzung abgelaufen",
+      "message": "Ihre Sitzung ist abgelaufen. Bitte laden Sie die Seite neu und senden Sie das Formular erneut."
+    },
+    "rate": {
+      "title": "Bitte kurz warten",
+      "message": "Sie haben soeben eine Anfrage gesendet. Bitte warten Sie einen Moment und versuchen Sie es erneut.",
+      "messageWithWait": "Sie haben soeben eine Anfrage gesendet. Bitte warten Sie etwa {seconds} Sekunden und versuchen Sie es erneut."
+    },
+    "backToContact": "Zurück zum Kontaktformular"
+  },
+
   "confirmation": {
     "headline": "Anfrage gesendet",
     "description": "Wir haben Ihre Anfrage erhalten.",

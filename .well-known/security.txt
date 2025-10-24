@@ -1,4 +1,4 @@
-Contact: mailto:social@techsulting.de
+Contact: http://dev.derko-immobilien.de/kontakt
 Expires: 2026-01-01T00:00:00.000Z
 Preferred-Languages: de, en
 Policy: https://derko-immobilien.de/datenschutz

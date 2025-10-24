@@ -42,9 +42,22 @@ register_shutdown_function(function() use ($__DERKO_DEBUG){
   }
 });
 // sendmail.php – Minimal backend for contact form (Strato compatible)
-// Config
-$TO = 'social@techsulting.de'; // Empfänger
-$FROM = 'kontakt@derko-immobilien.de'; // Absender (Domain-eigene Adresse)
+// Config (externalized)
+// Read operator addresses from api/config.php (with env var overrides)
+// Falls back to previous defaults if config is missing
+@require_once __DIR__ . '/config.php';
+$TO = defined('DERKO_CONTACT_TO') ? DERKO_CONTACT_TO : '';
+$FROM = defined('DERKO_CONTACT_FROM') ? DERKO_CONTACT_FROM : '';
+// Fail fast if config not provided (avoid leaking or using placeholder addresses)
+if ($TO === '' || $FROM === ''){
+  derko_log('Mail config missing: ensure DERKO_CONTACT_TO / DERKO_CONTACT_FROM are set');
+  if (!headers_sent()){
+    http_response_code(500);
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode(['ok'=>false,'errors'=>['server_misconfig']]);
+  }
+  exit;
+}
 
 // Keine hardcodierten Benutzer-Texte mehr – alles kommt aus den Sprachdateien.
 
@@ -152,10 +165,10 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
   exit;
 }
 
-// --- Settings: CSRF TTL and rate limit -------------------------------------
-$CSRF_TTL = 600; // seconds
-$RATE_WINDOW = 60; // seconds
-$RATE_MAX = 1; // max submissions per window
+// --- Settings: CSRF TTL and rate limit (from centralized config) -----------
+$CSRF_TTL   = defined('DERKO_CSRF_TTL') ? (int)DERKO_CSRF_TTL : 600;
+$RATE_WINDOW = defined('DERKO_RATE_WINDOW') ? (int)DERKO_RATE_WINDOW : 60;
+$RATE_MAX    = defined('DERKO_RATE_MAX') ? (int)DERKO_RATE_MAX : 1;
 
 // Felder einlesen
 $name = get_post('name');
@@ -221,6 +234,16 @@ if ($csrf_ok && $issuedAt && (time() - $issuedAt) > $CSRF_TTL){
   $csrf_ok = false;
 }
 if (!$csrf_ok){
+  $hasSessionTok = isset($_SESSION['csrf_token']);
+  $hasPostedTok  = ($csrf_token !== '');
+  $age = $issuedAt ? (time() - $issuedAt) : -1;
+  $reason = !$hasSessionTok ? 'no_session_token' : (!$hasPostedTok ? 'no_post_token' : ($issuedAt && $age > $CSRF_TTL ? 'expired' : 'mismatch'));
+  // Optional debug header + log when api/.debug exists
+  if (@is_file(__DIR__.DIRECTORY_SEPARATOR.'.debug')){
+    header('X-DERKO-CSRF: '.$reason);
+    $ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+    derko_log('CSRF fail: sid='.session_id()." reason=$reason age=$age ttl=$CSRF_TTL referer=".safe_header($ref));
+  }
   // Redirect to friendly session timeout page (do not count towards rate limit)
   header('Location: /pages/error-session.html');
   exit;

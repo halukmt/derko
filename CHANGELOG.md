@@ -78,7 +78,7 @@ Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentier
 ## [v0.7.0] - 2025-10-11
 ### Added
 - Serverseitiger Mail‑Endpunkt `api/sendmail.php` (PHP, Strato‑kompatibel) für das Kontaktformular.
-	- Empfänger: `social@techsulting.de`, Absender: `kontakt@derko-immobilien.de`.
+	- Empfänger/Absender konfigurierbar (zentral, ohne hart codierte Adressen).
 	- Betreffformat: `Thema - Name - Anfrage-ID: DDMMYYHHMM`.
 	- Sendet Kopie an den Absender (Reply‑To auf Absender‑E‑Mail).
 - Bestätigungsseite `pages/bestaetigung.html` mit Header, Footer, Breadcrumb.

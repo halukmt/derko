@@ -49,6 +49,12 @@ Options -MultiViews
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Serve custom 404 page from /pages without redirects
+  ErrorDocument 404 /pages/404.html
+
+  # Do not rewrite the 404 page itself
+  RewriteRule ^pages/404\.html$ - [L]
+
   # --- Canonicalize direct /pages/*.html requests to pretty paths (avoid loops) ---
   # Use THE_REQUEST so only user-entered URLs redirect; internal rewrites won't trigger
   RewriteCond %{THE_REQUEST} \s/+pages/wohnungen\.html [NC]
