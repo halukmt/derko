@@ -1,0 +1,360 @@
+{
+  "site": {
+    "title": "DERKO Imobiliare",
+    "description": "Închiriere camere pentru muncitori și apartamente – moderne, accesibile, centrale.",
+    "skipToContent": "Sari la conținut",
+    "brandMain": "DERKO",
+    "brandSub": "Immobilien",
+    "langNames": {
+      "de": "Germană",
+      "en": "Engleză",
+      "pl": "Poloneză",
+      "hu": "Maghiară",
+      "sk": "Slovacă",
+      "cs": "Cehă",
+      "it": "Italiană",
+      "bg": "Bulgară",
+      "ro": "Română"
+    },
+    "cookie": {
+      "title": "Respectăm confidențialitatea ta",
+      "text": "Tratăm cu seriozitate protecția datelor tale și ne dorim să găsești la noi ofertele potrivite. Folosim doar servicii strict necesare din punct de vedere tehnic: o sesiune pentru verificarea de securitate (CAPTCHA) pe pagina de contact și pentru reținerea limbii selectate. Nu folosim cookie‑uri de tracking sau marketing.",
+      "accept": "Am înțeles",
+      "privacy": "Confidențialitate"
+    }
+  },
+  "navigation": {
+    "home": "Acasă",
+    "wohnungen": "Apartamente",
+    "ueberUns": "Despre noi",
+    "kontakt": "Ofertă"
+  },
+  "footer": {
+    "copyright": "© 2025 DERKO Imobiliare – toate drepturile rezervate",
+    "impressum": "Informații legale",
+    "agb": "Termeni",
+    "kontakt": "Contact",
+    "privacy": "Confidențialitate",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "creditHtml": "Webdesign de <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
+  },
+  "home": {
+    "headline": "Bun venit la DERKO Imobiliare",
+    "subheadline": "Cazare confortabilă și accesibilă pentru echipe și profesioniști.",
+    "cta": "Solicită ofertă",
+    "hero": {
+      "title": "Apartamente pentru muncitori – moderne, corecte, centrale",
+      "lead": "Cazare flexibilă și complet utilată pentru echipe, meseriași și proiecte. Conexiuni directe, condiții corecte, servicii de încredere.",
+      "ctaPrimary": "Solicită ofertă",
+      "ctaSecondary": "Vezi apartamentele"
+    },
+    "features": {
+      "heading": "Avantaje",
+      "komfort": {
+        "title": "Confort",
+        "text": "Apartamente complet utilate cu Wi‑Fi, bucătărie și parcare."
+      },
+      "zentral": {
+        "title": "Central",
+        "text": "Conexiuni bune pentru echipe – flexibil și practic."
+      },
+      "fair": {
+        "title": "Corect",
+        "text": "Prețuri transparente și opțiuni flexibile de rezervare."
+      }
+    }
+  },
+
+  "wohnungen": {
+    "headline": "Apartamentele noastre",
+    "description": "Alege din mai multe tipuri de cazare – toate complet utilate și situate central.",
+    "cards": {
+      "w03_exklusiv": {
+        "title": "Exclusiv: apartament Aeroport‑Târg lângă Düsseldorf",
+        "text": "Apartament liniștit cu 2 camere, cu conexiuni excelente către târg și aeroportul Düsseldorf.",
+        "button": "Detalii",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Germania",
+        "rooms": "2 camere",
+        "beds": "2 paturi",
+        "area": "50 m²",
+        "parking": "Loc de parcare disponibil",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "Exclusiv: apartament Aeroport‑Târg lângă Düsseldorf",
+        "amenities": [
+          "Wi‑Fi gratuit",
+          "Bucătărie complet utilată",
+          "Duș",
+          "Mașină de spălat",
+          "Vedere la grădină",
+          "Fără fumători",
+          "Întregul apartament",
+          "Mașină de spălat vase",
+          "TV cu ecran plat",
+          "Espressor"
+        ],
+        "longDescription": "<p>Exklusive Flughafen‑Messe Apartment near Düsseldorf, cu terasă, oferă cazare în Duisburg cu Wi‑Fi gratuit și vedere la grădină. La 12 km de Einschornsteinsiedlung; proprietatea oferă grădină și parcare privată gratuită.</p><p>Apartamentul include 1 dormitor, un living, o bucătărie complet utilată (frigider și espressor) și 1 baie (duș și uscător de păr). Prosoape și lenjerie sunt incluse.</p><p>Gara centrală Duisburg este la 13 km, Silberpalais la 13 km. Cel mai apropiat aeroport este Düsseldorf, la 11 km.</p>"
+      },
+      "w04_exklusiv_2": {
+        "title": "Exclusiv 2: apartament Aeroport‑Târg lângă Düsseldorf",
+        "text": "Apartament liniștit cu 3 camere și terasă, cu conexiuni excelente către târg și aeroportul Düsseldorf.",
+        "button": "Detalii",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Germania",
+        "rooms": "3 camere",
+        "beds": "8 paturi",
+        "area": "120 m²",
+        "parking": "Loc de parcare disponibil",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "Exclusiv 2: apartament Aeroport‑Târg lângă Düsseldorf",
+        "amenities": [
+          "Wi‑Fi inclus",
+          "Bucătărie complet utilată",
+          "Duș",
+          "Mașină de spălat",
+          "Terasă",
+          "Vedere la grădină",
+          "Fără fumători",
+          "2 băi"
+        ],
+        "longDescription": "<p>Exklusive Flughafen‑Messe Apartment near Düsseldorf, cu terasă privată, oferă cazare modernă în Duisburg, cu Wi‑Fi gratuit și vedere la grădină. Situat la 12 km de Einschornsteinsiedlung, proprietatea oferă grădină și parcare privată gratuită.</p><p>Apartamentul spațios include două dormitoare, living, bucătărie complet utilată (frigider și espressor) și două băi (duș și uscător de păr). Prosoape și lenjerie sunt incluse.</p><p>Gara centrală Duisburg este la 13 km, Silberpalais la 13 km. Aeroportul Düsseldorf se află la 11 km.</p>"
+      },
+      "w01_derko_apart": {
+        "title": "DERKO Apart",
+        "text": "Apartament spațios cu 3 camere, acces rapid la A3/A59 și legătură directă S‑Bahn către Düsseldorf.",
+        "button": "Detalii",
+        "city": "Walderbenweg 6, 47269 Duisburg, Germania",
+        "rooms": "3 camere",
+        "beds": "7 paturi",
+        "area": "70 m²",
+        "parking": "Parcare gratuită la proprietate",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "DERKO Apart – imagini",
+        "amenities": [
+          "Întreaga unitate doar pentru tine",
+          "Wi‑Fi gratuit",
+          "Baie privată",
+          "Vedere spre curte",
+          "Terasă",
+          "Camere pentru nefumători",
+          "Duș",
+          "Mașină de spălat"
+        ],
+        "longDescription": "<p>DERKO Apart oferă vedere frumoasă la grădină, terasă și fierbător, la aproximativ 7,2 km de Einschornsteinsiedlung. Wi‑Fi gratuit în întreaga proprietate, iar Gara Centrală Duisburg se află la doar 7,8 km.</p><p>Apartamentul modern are trei dormitoare, o baie cu duș și uscător de păr și o bucătărie complet utilată. Prosoape și lenjerie sunt asigurate pentru confortul dvs.</p><p>Silberpalais este la 7,9 km, iar Citibank Tower la 8,1 km. Cel mai apropiat aeroport este Düsseldorf, la 10 km.</p>"
+      },
+      "w02_derko_apart_2": {
+        "title": "DERKO Apart 2",
+        "text": "Apartament spațios cu 4 camere (110 m²), acces rapid la A3/A59 și legătură directă S‑Bahn către Düsseldorf.",
+        "button": "Detalii",
+        "city": "Walderbenweg 6, 47269 Duisburg, Germania",
+        "rooms": "4 camere",
+        "beds": "7 paturi",
+        "area": "110 m²",
+        "parking": "Parcare gratuită la proprietate",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "DERKO Apart 2",
+        "amenities": [
+          "Wi‑Fi inclus",
+          "Bucătărie complet utilată",
+          "2 x băi",
+          "Mașină de spălat",
+          "Terasă",
+          "Fără fumători"
+        ],
+        "longDescription": "<p>La mai puțin de 7,2 km de Einschornsteinsiedlung și 7,8 km de Gara Centrală Duisburg, DERKO Apart 2 oferă Wi‑Fi gratuit și terasă. Apartamentul este la 8,2 km de Mercatorhalle și 8,5 km de Primăria Duisburg.</p><p>Dispune de patru dormitoare, o bucătărie complet utilată cu frigider și două băi cu duș și uscător de păr. Prosoape și lenjerie sunt incluse.</p><p>Silberpalais este la 7,9 km, iar Citibank Tower la 8,1 km. Aeroportul Düsseldorf este la 10 km.</p>"
+      },
+      "w05_dus_1": {
+        "title": "Apartament lângă Aeroportul și Târgul Düsseldorf",
+        "text": "Apartament cu 2 camere între aeroport și târgul Düsseldorf, poziție bine conectată.",
+        "button": "Detalii",
+        "city": "Walderbenweg 6, 47269 Duisburg, Germania",
+        "rooms": "2 camere",
+        "beds": "4 paturi",
+        "area": "50 m²",
+        "parking": "Parcare gratuită la proprietate",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "Apartament lângă Aeroportul și Târgul Düsseldorf",
+        "amenities": [
+          "Wi‑Fi inclus",
+          "Bucătărie complet utilată",
+          "Terasă",
+          "Fără fumători",
+          "Camere de familie",
+          "Vedere"
+        ],
+        "longDescription": "<p>Situat în cartierul Großenbaum din Duisburg, Apartment near Düsseldorf Airport Messe oferă grădină, terasă, vedere la grădină și Wi‑Fi gratuit în întreaga proprietate. La 7,2 km de Einschornsteinsiedlung, 7,7 km de Gara Centrală Duisburg și 7,9 km de Silberpalais.</p><p>Apartamentul include două dormitoare, living cu TV cu ecran plat, bucătărie complet utilată (frigider și mașină de spălat vase) și o baie cu uscător de păr. Prosoape și lenjerie sunt asigurate.</p><p>Citibank Tower este la 8,1 km, iar Mercatorhalle la 8,2 km. Aeroportul Düsseldorf este la 10 km.</p>"
+      },
+      "w06_dus_2": {
+        "title": "Central: apartament lângă Aeroportul și Târgul Düsseldorf",
+        "text": "Garsonieră lângă aeroportul și târgul Düsseldorf.",
+        "button": "Detalii",
+        "city": "Walderbenweg 6, 47269 Duisburg, Germania",
+        "rooms": "2 camere",
+        "beds": "3 paturi",
+        "area": "35 m²",
+        "parking": "Parcare gratuită la proprietate",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "Central: apartament lângă Aeroportul și Târgul Düsseldorf",
+        "amenities": [
+          "Wi‑Fi inclus",
+          "Bucătărie",
+          "Duș",
+          "Mașină de spălat",
+          "Vedere",
+          "Terasă",
+          "Fără fumători"
+        ],
+        "longDescription": "<p>La mai puțin de 7,2 km de Einschornsteinsiedlung și 7,7 km de Gara Centrală Duisburg, Central Location Apartment near Düsseldorf Airport, Messe oferă Wi‑Fi gratuit și grădină. Apartamentul este la 8,2 km de Mercatorhalle și 8,5 km de Primăria Duisburg.</p><p>Dispune de terasă cu vedere la grădină, dormitor, living cu TV cu ecran plat, bucătărie bine utilată (frigider și mașină de spălat vase) și o baie cu duș. Prosoape și lenjerie sunt incluse.</p><p>Silberpalais este la 7,9 km, iar Citibank Tower la 8,1 km. Aeroportul Düsseldorf este la 10 km.</p>"
+      },
+      "w07_dus_3": {
+        "title": "Central: apartament cu terasă lângă Aeroportul și Târgul Düsseldorf",
+        "text": "Garsonieră cu terasă lângă aeroportul și târgul Düsseldorf.",
+        "button": "Detalii",
+        "city": "Walderbenweg 6, 47269 Duisburg, Germania",
+        "rooms": "1 cameră",
+        "beds": "2 paturi",
+        "area": "35 m²",
+        "parking": "Parcare gratuită la proprietate",
+        "price": "35 EUR / persoană / noapte",
+        "alt": "Central: apartament cu terasă lângă Aeroportul și Târgul Düsseldorf",
+        "amenities": [
+          "Wi‑Fi inclus",
+          "Bucătărie complet utilată",
+          "Duș",
+          "Terasă",
+          "Fără fumători",
+          "Vedere",
+          "Mașină de spălat"
+        ],
+        "longDescription": "<p>Situat în cartierul Großenbaum din Duisburg, Central Messe Airport DUS Apartment with Terrace oferă cazare modernă, cu Wi‑Fi gratuit în toată proprietatea. La 7,7 km de Gara Centrală Duisburg, 7,9 km de Silberpalais și 8,1 km de Citibank Tower, în timp ce Einschornsteinsiedlung este la 7,2 km.</p><p>Apartamentul are 1 dormitor, 1 baie, lenjerie și prosoape, TV cu ecran plat, bucătărie complet utilată și terasă cu vedere la grădină.</p><p>Mercatorhalle este la 8,2 km, iar Primăria Duisburg la 8,5 km. Aeroportul Düsseldorf este la 10 km.</p>"
+      }
+    }
+  },
+
+  "ueberUns": {
+    "headline": "Despre noi",
+    "description": "Suntem o companie tânără și dinamică din Duisburg, în inima Ruhrului. Serviciile noastre includ intermediere, administrare și evaluare imobiliară. Ca partener profesional, suntem alături de tine pentru toate întrebările legate de închirieri. <br><br>DERKO Immobilien s‑a specializat în ultimii ani și în închirierea de cazare pentru muncitori și apartamente. Ne extindem constant portofoliul pentru a crea mai mult spațiu locativ și servicii optime.",
+    "founders": {
+      "alt": "Fondatorii DERKO Real Estate",
+      "caption": "Fondatorii DERKO"
+    },
+    "cards": {
+      "vorteile": {
+        "title": "Avantajele tale",
+        "text": [
+          "Locații și apartamente centrale, dar liniștite",
+          "Camere mobilate, curate și bine întreținute",
+          "Rezervare rapidă și perioadă flexibilă de închiriere",
+          "Pentru persoane fizice, echipe și companii"
+        ]
+      },
+      "wirBieten": {
+        "title": "Ce oferim",
+        "text": [
+          "Apartamente moderne, complet utilate (bucătărie, Wi‑Fi, posibilitate de spălare, baie)",
+          "Soluții de la garsonieră la apartament pentru echipă",
+          "Cazare pentru meșteșugari, muncitori, navetiști și echipe de proiect",
+          "La cerere, administrare și organizare pentru confortul tău"
+        ]
+      },
+      "vorgehen": {
+        "title": "Cum procedăm",
+        "text": [
+          "Contactează‑ne și completează formularul de ofertă",
+          "Revenim cu o ofertă potrivită",
+          "După confirmare, departamentul nostru de contabilitate îți va trimite factura",
+          "Predăm cheile și îți dorim un sejur plăcut"
+        ]
+      }
+    },
+    "partners": { "title": "Partenerii noștri" }
+  },
+
+  "kontakt": {
+    "headline": "Ofertă",
+    "description": "Întrebări sau vrei să soliciți un apartament? Folosește formularul sau sună‑ne.",
+    "form": {
+      "name": "Nume / Firmă",
+      "email": "E‑mail",
+      "phone": "Telefon",
+      "message": "Mesaj",
+      "dateFrom": "Data de la",
+      "dateTo": "Data până la",
+      "topic": "Subiect",
+      "topicBooking": "Cerere de rezervare",
+      "topicOther": "Alte întrebări",
+      "apartment": "Apartament",
+      "apartmentPlaceholder": "Selectează apartamentul",
+      "persons": "Număr de persoane",
+      "personsPlaceholder": "Selectează numărul de persoane",
+      "privacyConsent": "Am citit politica de confidențialitate. Sunt de acord ca datele mele să fie stocate pentru contact și întrebări ulterioare.",
+      "submit": "Trimite",
+      "captchaLabel": "Verificare de securitate",
+      "captchaHelp": "Introduceți caracterele din imagine.",
+      "captchaRefresh": "Reîncarcă"
+    },
+    "validation": {
+      "nameRequired": "Vă rugăm să introduceți numele.",
+      "emailRequired": "Vă rugăm să introduceți un e‑mail valid.",
+      "phoneInvalid": "Vă rugăm să introduceți un număr de telefon valid (ex. +40 723 123 456).",
+      "messageRequired": "Vă rugăm să introduceți un mesaj.",
+      "personsRequired": "Vă rugăm să introduceți numărul de persoane (cel puțin 1).",
+      "privacyRequired": "Vă rugăm să acceptați stocarea datelor dvs.",
+      "bot": "Solicitare blocată: încercați din nou peste câteva secunde.",
+      "captcha": "Codul de securitate este incorect."
+    },
+    "email": {
+      "subjectIdLabel": "ID solicitare",
+      "yourDetails": "Datele dvs.:"
+    }
+  },
+
+  "agb": { "headline": "Termeni și condiții", "text": "lang/ro/ro.agb.html" },
+  "impressum": {
+    "headline": "Informații legale",
+    "text": "lang/ro/ro.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Confidențialitate",
+    "text": "lang/ro/ro.datenschutz.html"
+  },
+  "legal": { "revealEmail": "Afișează adresa de e‑mail" },
+
+  "notFound": {
+    "title": "404",
+    "headline": "Pagina nu a fost găsită",
+    "description": "Pagina solicitată nu a fost găsită sau nu mai există.",
+    "backHome": "Înapoi la pagina de start"
+  },
+
+  "wohnungDetail": {
+    "headline": "Detalii apartament",
+    "cta": "Solicită ofertă",
+    "meta": { "title": "Date esențiale" },
+    "amenities": { "title": "Dotări" },
+    "description": { "title": "Descriere" },
+    "gallery": {
+      "showMore": "Mai multe imagini",
+      "showLess": "Mai puține imagini",
+      "photo": "Fotografie"
+    }
+  },
+
+  "error": {
+    "session": {
+      "title": "Sesiune expirată",
+      "message": "Sesiunea dvs. a expirat. Reîncărcați pagina și trimiteți din nou formularul."
+    },
+    "rate": {
+      "title": "Vă rugăm să așteptați puțin",
+      "message": "Tocmai ați trimis o solicitare. Vă rugăm să așteptați un moment și să încercați din nou.",
+      "messageWithWait": "Tocmai ați trimis o solicitare. Vă rugăm să așteptați aproximativ {seconds} secunde și să încercați din nou."
+    },
+    "backToContact": "Înapoi la formularul de contact"
+  },
+
+  "confirmation": {
+    "headline": "Solicitare trimisă",
+    "description": "Am primit solicitarea dvs.",
+    "message": "Vă mulțumim pentru interesul pentru apartamentele noastre.<br>Vom verifica detaliile dvs. și vă vom contacta cât mai curând posibil.<br><br>Cu stimă,<br>Echipa DERKO."
+  }
+}

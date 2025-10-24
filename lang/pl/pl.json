@@ -1,0 +1,349 @@
+{
+  "site": {
+    "title": "DERKO Nieruchomości",
+    "description": "Wynajem pokoi dla monterów i mieszkań – nowocześnie, korzystnie, w centrum.",
+    "skipToContent": "Przejdź do treści",
+    "brandMain": "DERKO",
+    "brandSub": "Immobilien",
+    "langNames": {
+      "de": "Niemiecki",
+      "en": "Angielski",
+      "pl": "Polski",
+      "hu": "Węgierski",
+      "sk": "Słowacki",
+      "cs": "Czeski",
+      "it": "Włoski",
+      "bg": "Bułgarski",
+      "ro": "Rumuński"
+    },
+    "cookie": {
+      "title": "Szanujemy Twoją prywatność",
+      "text": "Bardzo poważnie traktujemy ochronę Twoich danych, a jednocześnie chcemy, abyś znalazł u nas oferty dopasowane do Twoich potrzeb. Dlatego używamy wyłącznie niezbędnych technicznie usług: sesji do weryfikacji bezpieczeństwa (CAPTCHA) na stronie kontaktu oraz zapamiętania Twojego wyboru języka. Nie stosujemy żadnych plików cookie śledzących ani marketingowych.",
+      "accept": "Rozumiem",
+      "privacy": "Ochrona danych"
+    }
+  },
+  "navigation": {
+    "home": "Start",
+    "wohnungen": "Mieszkania",
+    "ueberUns": "O nas",
+    "kontakt": "Oferta"
+  },
+  "footer": {
+    "copyright": "© 2025 DERKO Immobilien – wszelkie prawa zastrzeżone",
+    "impressum": "Nota prawna",
+    "agb": "Regulamin",
+    "kontakt": "Kontakt",
+    "privacy": "Ochrona danych",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "creditHtml": "Projekt strony: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
+  },
+  "home": {
+    "headline": "Witamy w DERKO Immobilien",
+    "subheadline": "Tutaj znajdziesz komfortowe i korzystne noclegi dla fachowców i monterów.",
+    "cta": "Poproś o ofertę",
+    "hero": {
+      "title": "Mieszkania dla monterów – nowoczesne, uczciwe, centralne",
+      "lead": "Elastycznie rezerwowane, w pełni wyposażone noclegi dla zespołów, monterów i pobytów projektowych. Bezpośrednie połączenia, uczciwe warunki, niezawodna obsługa.",
+      "ctaPrimary": "Poproś o ofertę",
+      "ctaSecondary": "Zobacz mieszkania"
+    },
+    "features": {
+      "heading": "Zalety",
+      "komfort": {
+        "title": "Komfort",
+        "text": "W pełni wyposażone mieszkania z Wi‑Fi, kuchnią i parkingiem."
+      },
+      "zentral": {
+        "title": "Centralnie",
+        "text": "Dobre połączenia dla zespołów i monterów – elastycznie i praktycznie."
+      },
+      "fair": {
+        "title": "Uczciwie",
+        "text": "Przejrzyste ceny i elastyczne opcje rezerwacji."
+      }
+    }
+  },
+  "wohnungen": {
+    "headline": "Nasze mieszkania",
+    "description": "Wybierz spośród różnych noclegów – wszystkie w pełni wyposażone i w centralnej lokalizacji.",
+    "cards": {
+      "w03_exklusiv": {
+        "title": "Ekskluzywnie: mieszkanie przy lotnisku i targach w Düsseldorfie",
+        "text": "Ciche mieszkanie 2‑pokojowe z bardzo dobrym dojazdem do targów i lotniska w Düsseldorfie.",
+        "button": "Zobacz szczegóły",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Niemcy",
+        "rooms": "2 pokoje",
+        "beds": "2 łóżka",
+        "area": "50 m²",
+        "parking": "Miejsce parkingowe dostępne",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Ekskluzywnie: mieszkanie przy lotnisku i targach w Düsseldorfie",
+        "amenities": [
+          "Wi‑Fi w cenie",
+          "W pełni wyposażona kuchnia",
+          "Prysznic",
+          "Pralka",
+          "Widok na ogród",
+          "Dla niepalących",
+          "Całe mieszkanie na wyłączność",
+          "Zmywarka",
+          "Telewizor z płaskim ekranem",
+          "Ekspres do kawy"
+        ],
+        "longDescription": "<p>Obiekt Ekskluzywne mieszkanie przy lotnisku i targach w Düsseldorfie, dysponujący tarasem, oferuje noclegi w Duisburgu z bezpłatnym Wi‑Fi i widokiem na ogród. Położony 12 km od osiedla Einschornsteinsiedlung zapewnia ogród i bezpłatny prywatny parking.</p><p>To mieszkanie składa się z 1 sypialni, salonu, w pełni wyposażonej kuchni z lodówką i ekspresem do kawy oraz 1 łazienki z prysznicem i suszarką do włosów. W mieszkaniu zapewniono ręczniki i pościel.</p><p>Główny dworzec kolejowy w Duisburgu znajduje się 13 km od obiektu, a Silberpalais 13 km. Najbliższym lotniskiem jest port lotniczy Düsseldorf, oddalony o 11 km.</p>"
+      },
+      "w04_exklusiv_2": {
+        "title": "Ekskluzywnie 2: mieszkanie przy lotnisku i targach w Düsseldorfie",
+        "text": "Ciche mieszkanie 3‑pokojowe z tarasem i bardzo dobrym dojazdem do targów i lotniska w Düsseldorfie.",
+        "button": "Zobacz szczegóły",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Niemcy",
+        "rooms": "3 pokoje",
+        "beds": "8 łóżek",
+        "area": "120 m²",
+        "parking": "Miejsce parkingowe dostępne",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Ekskluzywnie 2: mieszkanie przy lotnisku i targach w Düsseldorfie",
+        "amenities": [
+          "Wi‑Fi w cenie",
+          "W pełni wyposażona kuchnia",
+          "Prysznic",
+          "Pralka",
+          "Taras",
+          "Widok na ogród",
+          "Dla niepalących",
+          "2 łazienki"
+        ],
+        "longDescription": "<p>Obiekt Ekskluzywne mieszkanie przy lotnisku i targach w Düsseldorfie, z tarasem, oferuje noclegi w Duisburgu z bezpłatnym Wi‑Fi i widokiem na ogród. Położony 12 km od osiedla Einschornsteinsiedlung zapewnia ogród i bezpłatny prywatny parking. </p><p>To mieszkanie składa się z dwóch sypialni, salonu, w pełni wyposażonej kuchni z lodówką i ekspresem do kawy oraz 2 łazienek z prysznicem i suszarką do włosów. W mieszkaniu zapewniono ręczniki i pościel. </p><p>Główny dworzec kolejowy w Duisburgu znajduje się 13 km od obiektu, a Silberpalais 13 km. Najbliższym lotniskiem jest port lotniczy Düsseldorf, oddalony o 11 km.</p>"
+      },
+      "w01_derko_apart": {
+        "title": "DERKO Apart",
+        "text": "Przestronne mieszkanie 3‑pokojowe z szybkim dojazdem do autostrad A3/A59 i bezpośrednim połączeniem S‑Bahn w kierunku Düsseldorfu.",
+        "button": "Zobacz szczegóły",
+        "city": "Walderbenweg 6, 47269 Duisburg, Niemcy",
+        "rooms": "3 pokoje",
+        "beds": "7 łóżek",
+        "area": "70 m²",
+        "parking": "Bezpłatny parking na miejscu",
+        "price": "35 EUR / osoba / noc",
+        "alt": "DERKO Apart – widoki",
+        "amenities": [
+          "Cały obiekt na wyłączność",
+          "Wi‑Fi w cenie",
+          "Prywatna łazienka",
+          "Widok na dziedziniec",
+          "Taras",
+          "Pokoje dla niepalących",
+          "Prysznic",
+          "Pralka"
+        ],
+        "longDescription": "<p>Obiekt DERKO Apart zachwyca pięknym widokiem na ogród i oferuje noclegi z tarasem oraz czajnikiem, w odległości ok. 7,2 km od osiedla Einschornsteinsiedlung. Na terenie całego obiektu dostępne jest bezpłatne Wi‑Fi, a główny dworzec kolejowy w Duisburgu znajduje się zaledwie 7,8 km dalej.</p><p>To nowoczesne mieszkanie obejmuje trzy sypialnie, łazienkę z prysznicem i suszarką do włosów oraz w pełni wyposażoną kuchnię. Zapewniono ręczniki i pościel, aby zapewnić komfortowy pobyt.</p><p>Silberpalais znajduje się 7,9 km, a Citibank Tower 8,1 km od obiektu DERKO Apart. Najbliższym lotniskiem jest port lotniczy Düsseldorf, oddalony o 10 km.</p>"
+      },
+      "w02_derko_apart_2": {
+        "title": "DERKO Apart 2",
+        "text": "Przestronne mieszkanie 4‑pokojowe o powierzchni 110 m² z szybkim dojazdem do autostrad A3/A59 i bezpośrednim połączeniem S‑Bahn w kierunku Düsseldorfu.",
+        "button": "Zobacz szczegóły",
+        "city": "Walderbenweg 6, 47269 Duisburg, Niemcy",
+        "rooms": "4 pokoje",
+        "beds": "7 łóżek",
+        "area": "110 m²",
+        "parking": "Bezpłatny parking na miejscu",
+        "price": "35 EUR / osoba / noc",
+        "alt": "DERKO Apart 2",
+        "amenities": [
+          "Wi‑Fi w cenie",
+          "W pełni wyposażona kuchnia",
+          "2 x łazienka",
+          "Pralka",
+          "Taras",
+          "Dla niepalących"
+        ],
+        "longDescription": "<p>Mniej niż 7,2 km od osiedla Einschornsteinsiedlung i 7,8 km od głównego dworca kolejowego w Duisburgu obiekt DERKO Apart 2 oferuje bezpłatne Wi‑Fi oraz taras. To mieszkanie znajduje się 8,2 km od Mercatorhalle i 8,5 km od ratusza w Duisburgu.</p><p>Mieszkanie obejmuje cztery sypialnie, w pełni wyposażoną kuchnię z lodówką oraz dwie łazienki z prysznicem i suszarką do włosów. Na czas pobytu zapewniono ręczniki i pościel.</p><p>Silberpalais oddalone jest o 7,9 km, a Citibank Tower o 8,1 km od obiektu DERKO Apart 2. Najbliższym lotniskiem jest port lotniczy Düsseldorf, położony 10 km od obiektu.</p>"
+      },
+      "w05_dus_1": {
+        "title": "Mieszkanie w pobliżu lotniska i targów Düsseldorf",
+        "text": "Mieszkanie 2‑pokojowe między lotniskiem a targami Düsseldorf w dobrze skomunikowanej lokalizacji.",
+        "button": "Zobacz szczegóły",
+        "city": "Walderbenweg 6, 47269 Duisburg, Niemcy",
+        "rooms": "2 pokoje",
+        "beds": "4 łóżka",
+        "area": "50 m²",
+        "parking": "Bezpłatny parking na miejscu",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Mieszkanie w pobliżu lotniska i targów Düsseldorf",
+        "amenities": [
+          "Wi‑Fi w cenie",
+          "W pełni wyposażona kuchnia",
+          "Taras",
+          "Dla niepalących",
+          "Pokoje rodzinne",
+          "Widok"
+        ],
+        "longDescription": "<p>Obiekt Mieszkanie w pobliżu lotniska Düsseldorf Messe znajduje się w dzielnicy Großenbaum w Duisburgu, 7,2 km od osiedla Einschornsteinsiedlung, 7,7 km od głównego dworca kolejowego i 7,9 km od Silberpalais. Oferuje ogród, taras, widok na ogród oraz bezpłatne Wi‑Fi na terenie całego obiektu.</p><p>Mieszkanie obejmuje dwie sypialnie, salon z telewizorem z płaskim ekranem, w pełni wyposażoną kuchnię z lodówką i zmywarką oraz łazienkę z suszarką do włosów. Ręczniki i pościel są zapewnione, aby umożliwić przyjemny pobyt.</p><p>Citibank Tower znajduje się 8,1 km, a Mercatorhalle 8,2 km od obiektu. Najbliższe lotnisko to port lotniczy Düsseldorf, oddalony o 10 km.</p>"
+      },
+      "w06_dus_2": {
+        "title": "Centralna lokalizacja: mieszkanie w pobliżu lotniska i targów Düsseldorf",
+        "text": "Mieszkanie 1‑pokojowe w pobliżu lotniska i targów Düsseldorf.",
+        "button": "Zobacz szczegóły",
+        "city": "Walderbenweg 6, 47269 Duisburg, Niemcy",
+        "rooms": "2 pokoje",
+        "beds": "3 łóżka",
+        "area": "35 m²",
+        "parking": "Bezpłatny parking na miejscu",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Centralna lokalizacja: mieszkanie w pobliżu lotniska i targów Düsseldorf",
+        "amenities": [
+          "Wi‑Fi w cenie",
+          "Kuchnia",
+          "Prysznic",
+          "Pralka",
+          "Widok",
+          "Taras",
+          "Dla niepalących"
+        ],
+        "longDescription": "<p>Mniej niż 7,2 km od osiedla Einschornsteinsiedlung i 7,7 km od głównego dworca kolejowego w Duisburgu obiekt Centralna lokalizacja – mieszkanie w pobliżu lotniska i targów Düsseldorf oferuje bezpłatne Wi‑Fi oraz ogród. To mieszkanie znajduje się 8,2 km od Mercatorhalle i 8,5 km od ratusza w Duisburgu.</p><p>Mieszkanie dysponuje tarasem z widokiem na ogród, sypialnią, salonem z telewizorem z płaskim ekranem, dobrze wyposażoną kuchnią z lodówką i zmywarką oraz łazienką z prysznicem. Ręczniki i pościel są zapewnione dla wygodnego pobytu.</p><p>Silberpalais oddalone jest o 7,9 km, a Citibank Tower o 8,1 km. Najbliższym lotniskiem jest port lotniczy Düsseldorf, zaledwie 10 km od obiektu.</p>"
+      },
+      "w07_dus_3": {
+        "title": "Centralna lokalizacja: mieszkanie w pobliżu lotniska i targów z tarasem",
+        "text": "Mieszkanie 1‑pokojowe z tarasem w pobliżu lotniska i targów w Düsseldorfie.",
+        "button": "Zobacz szczegóły",
+        "city": "Walderbenweg 6, 47269 Duisburg, Niemcy",
+        "rooms": "1 pokój",
+        "beds": "2 łóżka",
+        "area": "35 m²",
+        "parking": "Bezpłatny parking na miejscu",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Centralna lokalizacja: mieszkanie w pobliżu lotniska i targów z tarasem",
+        "amenities": [
+          "Wi‑Fi w cenie",
+          "W pełni wyposażona kuchnia",
+          "Prysznic",
+          "Taras",
+          "Dla niepalących",
+          "Widok",
+          "Pralka"
+        ],
+        "longDescription": "<p>Obiekt Central Messe Airport DUS Apartment with Terrace znajduje się w dzielnicy Großenbaum w Duisburgu, 7,7 km od głównego dworca kolejowego, 7,9 km od Silberpalais i 8,1 km od Citibank Tower. Obiekt położony jest 7,2 km od osiedla Einschornsteinsiedlung i oferuje bezpłatne Wi‑Fi na terenie całego obiektu.</p><p>To mieszkanie obejmuje sypialnię, łazienkę, pościel, ręczniki, telewizor z płaskim ekranem, w pełni wyposażoną kuchnię oraz taras z widokiem na ogród.</p><p>Mercatorhalle oddalone jest o 8,2 km, a ratusz w Duisburgu o 8,5 km. Najbliższym lotniskiem jest port lotniczy Düsseldorf, tylko 10 km od obiektu.</p>"
+      }
+    }
+  },
+  "ueberUns": {
+    "headline": "O nas",
+    "description": "Jesteśmy młodą, dynamiczną firmą z Duisburga w sercu Zagłębia Ruhry. Nasze usługi obejmują pośrednictwo, zarządzanie i wycenę nieruchomości. Jako profesjonalny partner służymy pomocą we wszystkich kwestiach związanych z wynajmem. <br><br>DERKO Immobilien w ostatnich latach specjalizuje się również w wynajmie pokoi dla monterów i mieszkań. Stale pracujemy nad naszym portfelem i staramy się tworzyć więcej przestrzeni mieszkalnej oraz zapewniać optymalną obsługę.",
+    "founders": {
+      "alt": "Założyciele DERKO Immobilien",
+      "caption": "Założyciele DERKO Immobilien"
+    },
+    "cards": {
+      "vorteile": {
+        "title": "Twoje korzyści",
+        "text": [
+          "Lokalizacje i mieszkania centralne, a jednocześnie spokojne",
+          "Umeblowane, czyste i zadbane pokoje",
+          "Szybka rezerwacja i elastyczny czas najmu",
+          "Dla osób indywidualnych, zespołów i firm"
+        ]
+      },
+      "wirBieten": {
+        "title": "Nasze obiekty",
+        "text": [
+          "Nowoczesne, w pełni wyposażone mieszkania (kuchnia, Wi‑Fi, możliwość prania, łazienka)",
+          "Rozwiązania od kawalerki po mieszkania dla zespołów",
+          "Noclegi dla fachowców, monterów, dojeżdżających i zespołów projektowych",
+          "Opcjonalne zarządzanie i organizacja dla odciążenia"
+        ]
+      },
+      "vorgehen": {
+        "title": "Wspólne działanie",
+        "text": [
+          "Skontaktuj się z nami i wypełnij formularz ofertowy",
+          "Odezwiemy się z dopasowaną ofertą",
+          "Potwierdzasz ofertę, a nasza księgowość wysyła fakturę",
+          "Przekazujemy klucze i życzymy przyjemnego pobytu"
+        ]
+      }
+    },
+    "partners": { "title": "Nasi partnerzy" }
+  },
+  "kontakt": {
+    "headline": "Oferta",
+    "description": "Masz pytania lub chcesz zapytać o mieszkanie? Skorzystaj z formularza lub zadzwoń do nas.",
+    "form": {
+      "name": "Imię i nazwisko / Firma",
+      "email": "E‑mail",
+      "phone": "Telefon",
+      "message": "Wiadomość",
+      "dateFrom": "Data od",
+      "dateTo": "Data do",
+      "topic": "Temat",
+      "topicBooking": "Zapytanie o rezerwację",
+      "topicOther": "Inne pytania",
+      "apartment": "Mieszkanie",
+      "apartmentPlaceholder": "Wybierz mieszkanie",
+      "persons": "Liczba osób",
+      "personsPlaceholder": "Wybierz liczbę osób",
+      "privacyConsent": "Zapoznałem/am się z polityką ochrony danych. Wyrażam zgodę na zapisanie moich danych w celu kontaktu i pytań uzupełniających.",
+      "submit": "Wyślij",
+      "captchaLabel": "Weryfikacja bezpieczeństwa",
+      "captchaHelp": "Wpisz znaki z obrazka.",
+      "captchaRefresh": "Odśwież"
+    },
+    "validation": {
+      "nameRequired": "Podaj swoje imię i nazwisko.",
+      "emailRequired": "Podaj prawidłowy adres e‑mail.",
+      "phoneInvalid": "Podaj prawidłowy numer telefonu (np. +48 123 456 789).",
+      "messageRequired": "Wpisz wiadomość.",
+      "personsRequired": "Podaj liczbę osób (co najmniej 1).",
+      "privacyRequired": "Wyraź zgodę na zapisanie Twoich danych.",
+      "bot": "Zapytanie zablokowane: spróbuj ponownie za kilka sekund.",
+      "captcha": "Kod bezpieczeństwa jest nieprawidłowy."
+    },
+    "email": { "subjectIdLabel": "ID zapytania", "yourDetails": "Twoje dane:" }
+  },
+  "agb": { "headline": "Regulamin (OWH)", "text": "lang/pl/pl.agb.html" },
+  "impressum": {
+    "headline": "Nota prawna",
+    "text": "lang/pl/pl.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Ochrona danych",
+    "text": "lang/pl/pl.datenschutz.html"
+  },
+  "notFound": {
+    "title": "404",
+    "headline": "Nie znaleziono strony",
+    "description": "Żądana strona nie została znaleziona lub już nie istnieje.",
+    "backHome": "Powrót na stronę główną"
+  },
+  "wohnungDetail": {
+    "headline": "Szczegóły mieszkania",
+    "cta": "Poproś o ofertę",
+    "meta": { "title": "Dane podstawowe" },
+    "amenities": { "title": "Udogodnienia" },
+    "description": { "title": "Opis" },
+    "gallery": {
+      "showMore": "Więcej zdjęć",
+      "showLess": "Mniej zdjęć",
+      "photo": "Zdjęcie"
+    }
+  },
+  "error": {
+    "session": {
+      "title": "Sesja wygasła",
+      "message": "Twoja sesja wygasła. Odśwież stronę i wyślij formularz ponownie."
+    },
+    "rate": {
+      "title": "Prosimy o chwilę cierpliwości",
+      "message": "Właśnie wysłałeś/aś zapytanie. Poczekaj moment i spróbuj ponownie.",
+      "messageWithWait": "Właśnie wysłałeś/aś zapytanie. Poczekaj około {seconds} sekund i spróbuj ponownie."
+    },
+    "backToContact": "Powrót do formularza kontaktowego"
+  },
+  "confirmation": {
+    "headline": "Zapytanie wysłane",
+    "description": "Otrzymaliśmy Twoje zapytanie.",
+    "message": "Dziękujemy za zainteresowanie naszymi mieszkaniami.<br>Przeanalizujemy Twoje dane i skontaktujemy się tak szybko, jak to możliwe.<br><br>Pozdrawiamy,<br>Zespół DERKO."
+  },
+  "legal": { "revealEmail": "Pokaż adres e‑mail" }
+}

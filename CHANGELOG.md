@@ -1,4 +1,53 @@
-Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## v1.0.0 (2025-10-24)
+
+First public launch of the DERKO Immobilien website with security hardening, full multilingual support, and production-ready contact flow.
+
+### Highlights
+- Security and robustness
+  - Strict Content Security Policy (CSP); removed inline scripts and extracted JS.
+  - Unified 404 page and hardened error handling.
+  - CSRF protection with session tokens and refresh on form load.
+  - CAPTCHA + honeypot + rate limiting for contact form.
+  - Sanitizer preserves safe attributes (aria-*, data-*), preventing XSS while keeping accessibility.
+- Privacy‑friendly email protection
+  - Removed public mailto links; added JS click‑to‑reveal using obfuscated spans.
+  - i18n label for the reveal button: `legal.revealEmail`.
+- Full multilingual rollout (parity with `de.json`)
+  - Locales: German (de), English (en), Polish (pl), Hungarian (hu), Slovak (sk), Czech (cs), Italian (it), Bulgarian (bg), Romanian (ro).
+  - Each locale includes: UI translations (JSON) and legal pages (Impressum, Datenschutz/Privacy, AGB/Terms).
+  - Language switcher with flags; selection persists; backend emails localized (user in selected language, operator in German).
+- UX and accessibility
+  - Improved form validations and ARIA labeling.
+  - Responsive layout, consistent spacing, and mobile navigation refinements.
+  - Cache busting for critical assets; removed duplicate renders.
+- Backend/API
+  - `api/sendmail.php` supports multi‑language templates; Accept‑Language + POST override; safe defaults.
+  - Centralized configuration for email; guards for missing configs.
+
+### Added
+- Obfuscated, click‑to‑reveal email components across pages.
+- New locale folders: `lang/pl`, `lang/hu`, `lang/sk`, `lang/cs`, `lang/it`, `lang/bg`, `lang/ro` with complete translations.
+- Romanian: completed Privacy (ro.datenschutz.html) and Terms (ro.agb.html).
+
+### Changed
+- Extracted inline JS to dedicated files for CSP compliance.
+- Navigation with flag‑based language switcher; footer links internationalized.
+- Legal content moved to per‑locale HTML partials referenced from locale JSON.
+
+### Fixed
+- Resolved duplicate trailing JSON stub in `lang/cs/cs.json` causing parse errors.
+- Addressed minor layout issues and ensured consistent apartment details across locales.
+
+### Security
+- Strict CSP, CSRF, CAPTCHA, and email obfuscation to reduce spam and automated scraping.
+
+### Notes
+- Robots and sitemap: `robots.txt` present; `sitemap.xml` expected at site root (ensure it is generated/deployed if applicable).
+- Deployment recommendation: build or sync only the production assets and purge removed files on the server.Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 

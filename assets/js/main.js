@@ -427,12 +427,18 @@
         const name = (window.translateKey ? window.translateKey(nameKey) : null) || lang.toUpperCase();
         label.textContent = name;
       }
-      flag.innerHTML = '';
-      if (lang === 'de'){
-        flag.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-de-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-de-mask-current)"><path fill="#000" d="M0 0h24v24H0z"/><path fill="#DD0000" d="M0 8h24v16H0z"/><path fill="#FFCE00" d="M0 16h24v8H0z"/></g></svg>';
-      } else {
-        flag.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#01247d"/><path stroke="#fff" stroke-width="4" d="M0 12h24M12 0v24"/><path stroke="#c8102e" stroke-width="2.5" d="M0 12h24M12 0v24"/><path stroke="#fff" stroke-width="4" d="M3 3l18 18M21 3L3 21"/><path stroke="#c8102e" stroke-width="2.5" d="M3 3l18 18M21 3L3 21"/></svg>';
-      }
+      const flags = {
+        de: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-de-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-de-mask-current)"><path fill="#000" d="M0 0h24v24H0z"/><path fill="#DD0000" d="M0 8h24v16H0z"/><path fill="#FFCE00" d="M0 16h24v8H0z"/></g></svg>',
+        en: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#01247d"/><path stroke="#fff" stroke-width="4" d="M0 12h24M12 0v24"/><path stroke="#c8102e" stroke-width="2.5" d="M0 12h24M12 0v24"/><path stroke="#fff" stroke-width="4" d="M3 3l18 18M21 3L3 21"/><path stroke="#c8102e" stroke-width="2.5" d="M3 3l18 18M21 3L3 21"/></svg>',
+        pl: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-pl-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-pl-mask-current)"><path fill="#fff" d="M0 0h24v12H0z"/><path fill="#DC143C" d="M0 12h24v12H0z"/></g></svg>',
+        hu: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-hu-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-hu-mask-current)"><path fill="#CD2A3E" d="M0 0h24v8H0z"/><path fill="#fff" d="M0 8h24v8H0z"/><path fill="#436F4D" d="M0 16h24v8H0z"/></g></svg>',
+        sk: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-sk-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-sk-mask-current)"><path fill="#fff" d="M0 0h24v8H0z"/><path fill="#0B4EA2" d="M0 8h24v8H0z"/><path fill="#EE1C25" d="M0 16h24v8H0z"/></g></svg>',
+        cs: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-cs-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-cs-mask-current)"><path fill="#fff" d="M0 0h24v12H0z"/><path fill="#D7141A" d="M0 12h24v12H0z"/><path fill="#11457E" d="M0 0l12 12L0 24z"/></g></svg>',
+        it: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-it-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-it-mask-current)"><path fill="#009246" d="M0 0h8v24H0z"/><path fill="#fff" d="M8 0h8v24H8z"/><path fill="#CE2B37" d="M16 0h8v24h-8z"/></g></svg>',
+        bg: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-bg-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-bg-mask-current)"><path fill="#fff" d="M0 0h24v8H0z"/><path fill="#00966E" d="M0 8h24v8H0z"/><path fill="#D62612" d="M0 16h24v8H0z"/></g></svg>',
+        ro: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><mask id="flag-ro-mask-current"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#flag-ro-mask-current)"><path fill="#002B7F" d="M0 0h8v24H0z"/><path fill="#FCD116" d="M8 0h8v24H8z"/><path fill="#CE1126" d="M16 0h8v24h-8z"/></g></svg>'
+      };
+      flag.innerHTML = flags[lang] || flags['en'];
     }
 
   // Attach click handler for language switching

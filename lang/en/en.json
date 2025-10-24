@@ -4,8 +4,18 @@
     "description": "Rental of worker rooms and apartments – modern, affordable, central.",
     "skipToContent": "Skip to content",
     "brandMain": "DERKO",
-    "brandSub": "Real Estate",
-    "langNames": { "de": "German", "en": "English" },
+    "brandSub": "Immobilien",
+    "langNames": {
+      "de": "German",
+      "en": "English",
+      "pl": "Polish",
+      "hu": "Hungarian",
+      "sk": "Slovak",
+      "cs": "Czech",
+      "it": "Italian",
+      "bg": "Bulgarian",
+      "ro": "Romanian"
+    },
     "cookie": {
       "title": "We respect your privacy",
 	  "text": "We take the protection of your personal data very seriously, while also wanting you to find the offers that best suit your needs. Therefore, we only use technically necessary services — such as a security verification session (CAPTCHA) on the contact page and your language selection. No tracking or marketing cookies are used.",

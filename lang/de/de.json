@@ -2,11 +2,21 @@
   "site": {
     "title": "DERKO Immobilien",
     "description": "Vermietung von Monteurzimmern und Wohnungen – modern, günstig, zentral.",
-    "skipToContent": "Zum Inhalt springen"
-    ,"brandMain": "DERKO"
-    ,"brandSub": "Immobilien"
-    ,"langNames": { "de": "Deutsch", "en": "Englisch" }
-    ,"cookie": {
+    "skipToContent": "Zum Inhalt springen",
+    "brandMain": "DERKO",
+    "brandSub": "Immobilien",
+    "langNames": {
+      "de": "Deutsch",
+      "en": "Englisch",
+      "pl": "Polnisch",
+      "hu": "Ungarisch",
+      "sk": "Slowakisch",
+      "cs": "Tschechisch",
+      "it": "Italienisch",
+      "bg": "Bulgarisch",
+      "ro": "Rumänisch"
+    },
+    "cookie": {
       "title": "Wir respektieren Ihre Privatsphäre",
       "text": "Wir nehmen den Schutz Ihrer Daten sehr ernst und möchten gleichzeitig, dass Sie bei uns die Angebote finden, die zu Ihnen passen.  Deshalb verwenden wir nur technisch notwendige Dienste. Eine Sitzung für die Sicherheitsprüfung (CAPTCHA) auf der Kontaktseite und Ihre Sprachwahl. Es kommen keine Tracking- oder Marketing-Cookies zum Einsatz.",
       "accept": "Verstanden",
@@ -16,8 +26,8 @@
   "navigation": {
     "home": "Start",
     "wohnungen": "Wohnungen",
-  "ueberUns": "Über uns",
-  "kontakt": "Angebot"
+    "ueberUns": "Über uns",
+    "kontakt": "Angebot"
   },
   "footer": {
     "copyright": "© 2025 DERKO Immobilien – alle Rechte vorbehalten",
@@ -106,7 +116,7 @@
           "Nichtraucher",
           "2 Badezimmer"
         ],
-        "longDescription":  "<p>Die Unterkunft Exklusive Flughafen-Messe Apartment nähe Düsseldorf, die über eine Terrasse verfügt, bietet Übernachtungsmöglichkeiten in Duisburg mit kostenlosem WLAN und Gartenblick. 12 km von Einschornsteinsiedlung entfernt gelegen bietet die Unterkunft einen Garten und einen kostenlosen Privatparkplatz. </p><p>Diese Ferienwohnung besteht aus zwei Schlafzimmern, einem Wohnzimmer, einer voll ausgestatteten Küche mit einem Kühlschrank und einer Kaffeemaschine sowie 2 Badezimmern mit einer Dusche und einem Haartrockner. In dieser Ferienwohnung werden Handtücher und Bettwäsche angeboten. </p><p>Hauptbahnhof Duisburg liegt 13 km von der Unterkunft Exklusive Flughafen-Messe Apartment nähe Düsseldorf entfernt, während Silberpalais 13 km entfernt ist. Der nächstgelegene Flughafen ist der Flughafen Düsseldorf, 11 km von der Unterkunft Exklusive Flughafen-Messe Apartment nähe Düsseldorf entfernt.</p>"
+        "longDescription": "<p>Die Unterkunft Exklusive Flughafen-Messe Apartment nähe Düsseldorf, die über eine Terrasse verfügt, bietet Übernachtungsmöglichkeiten in Duisburg mit kostenlosem WLAN und Gartenblick. 12 km von Einschornsteinsiedlung entfernt gelegen bietet die Unterkunft einen Garten und einen kostenlosen Privatparkplatz. </p><p>Diese Ferienwohnung besteht aus zwei Schlafzimmern, einem Wohnzimmer, einer voll ausgestatteten Küche mit einem Kühlschrank und einer Kaffeemaschine sowie 2 Badezimmern mit einer Dusche und einem Haartrockner. In dieser Ferienwohnung werden Handtücher und Bettwäsche angeboten. </p><p>Hauptbahnhof Duisburg liegt 13 km von der Unterkunft Exklusive Flughafen-Messe Apartment nähe Düsseldorf entfernt, während Silberpalais 13 km entfernt ist. Der nächstgelegene Flughafen ist der Flughafen Düsseldorf, 11 km von der Unterkunft Exklusive Flughafen-Messe Apartment nähe Düsseldorf entfernt.</p>"
       },
       "w01_derko_apart": {
         "title": "DERKO Apart",
@@ -130,7 +140,6 @@
           "Waschmaschine"
         ],
         "longDescription": "<p>Die Unterkunft DERKO Apart besticht durch ihren schönen Gartenblick und bietet Übernachtungsmöglichkeiten mit einer Terrasse und einem Wasserkocher, nur etwa 7,2 km von der Einschornsteinsiedlung entfernt. WLAN steht in der gesamten Unterkunft kostenfrei zur Verfügung, und der Duisburger Hauptbahnhof liegt nur 7,8 km entfernt.</p><p>Diese moderne Ferienwohnung verfügt über drei Schlafzimmer, ein Badezimmer mit Dusche und Haartrockner sowie eine voll ausgestattete Küche. Handtücher und Bettwäsche werden gestellt, um Ihnen einen komfortablen Aufenthalt zu bieten.</p><p>Das Silberpalais liegt 7,9 km und der Citibank Tower 8,1 km von der Unterkunft DERKO Apart entfernt. Der nächstgelegene Flughafen ist der Flughafen Düsseldorf, nur 10 km entfernt.</p>"
-
       },
       "w02_derko_apart_2": {
         "title": "DERKO Apart 2",
@@ -286,14 +295,13 @@
     "validation": {
       "nameRequired": "Bitte geben Sie Ihren Namen ein.",
       "emailRequired": "Bitte geben Sie eine gültige E-Mail ein.",
-  "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein (z. B. +49 173 1234567).",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein (z. B. +49 173 1234567).",
       "messageRequired": "Bitte geben Sie eine Nachricht ein.",
       "personsRequired": "Bitte geben Sie die Anzahl der Personen an (mindestens 1).",
       "privacyRequired": "Bitte stimmen Sie der Speicherung Ihrer Angaben zu.",
       "bot": "Anfrage blockiert: Bitte versuchen Sie es in wenigen Sekunden erneut.",
       "captcha": "Der Sicherheitscode ist nicht korrekt."
-    }
-    ,
+    },
     "email": {
       "subjectIdLabel": "Anfrage-ID",
       "yourDetails": "Ihre Angaben:"
@@ -337,8 +345,7 @@
       "showLess": "Weniger Bilder",
       "photo": "Foto"
     }
-  }
-  ,
+  },
   "error": {
     "session": {
       "title": "Sitzung abgelaufen",

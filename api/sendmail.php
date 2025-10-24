@@ -65,12 +65,13 @@ if ($TO === '' || $FROM === ''){
 function detect_lang(){
   // 1) explicit from form (hidden input 'lang')
   $l = isset($_POST['lang']) ? strtolower(substr($_POST['lang'],0,2)) : '';
-  if ($l === 'de' || $l === 'en') return $l;
+  $supported = ['de','en','pl','hu','sk','cs','it','bg','ro'];
+  if (in_array($l, $supported, true)) return $l;
   // 2) Accept-Language header
   if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
-    if (preg_match('/^(de|en)/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $m)){
+    if (preg_match('/^(de|en|pl|hu|sk|cs|it|bg|ro)/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $m)){
       $l = strtolower($m[1]);
-      if ($l === 'de' || $l === 'en') return $l;
+      if (in_array($l, $supported, true)) return $l;
     }
   }
   return 'de';

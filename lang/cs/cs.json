@@ -1,0 +1,300 @@
+{
+  "site": {
+    "title": "DERKO Nemovitosti",
+    "description": "Pronájem ubytování pro montéry a bytů – moderní, výhodné, centrální.",
+    "skipToContent": "Přeskočit na obsah",
+    "brandMain": "DERKO",
+    "brandSub": "Immobilien",
+    "langNames": {
+      "de": "Němčina",
+      "en": "Angličtina",
+      "pl": "Polština",
+      "hu": "Maďarština",
+      "sk": "Slovenština",
+      "cs": "Čeština",
+      "it": "Italština",
+      "bg": "Bulharština",
+      "ro": "Rumunština"
+    },
+    "cookie": {
+      "title": "Respektujeme vaše soukromí",
+      "text": "Ochranu vašich údajů bereme velmi vážně a chceme, abyste u nás našli vhodné nabídky. Používáme pouze technicky nezbytné služby: relaci pro bezpečnostní kontrolu (CAPTCHA) na stránce kontaktu a pro zapamatování zvoleného jazyka. Nepoužíváme žádné sledovací ani marketingové cookies.",
+      "accept": "Rozumím",
+      "privacy": "Ochrana osobních údajů"
+    }
+  },
+  "navigation": {
+    "home": "Domů",
+    "wohnungen": "Byty",
+    "ueberUns": "O nás",
+    "kontakt": "Poptávka"
+  },
+  "footer": {
+    "copyright": "© 2025 DERKO Immobilien – všechna práva vyhrazena",
+    "impressum": "Impresum",
+    "agb": "VOP",
+    "kontakt": "Kontakt",
+    "privacy": "Ochrana osobních údajů",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "creditHtml": "Webdesign: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
+  },
+  "home": {
+    "headline": "Vítejte u DERKO Nemovitosti",
+    "subheadline": "Nabízíme pohodlné a cenově výhodné ubytování pro řemeslníky a montéry.",
+    "cta": "Vyžádat nabídku",
+    "hero": {
+      "title": "Byty pro montéry – moderní, férové, centrální",
+      "lead": "Flexibilně rezervovatelná, plně vybavená ubytování pro týmy, montéry a projektové pobyty. Přímé spojení, férové podmínky, spolehlivý servis.",
+      "ctaPrimary": "Vyžádat nabídku",
+      "ctaSecondary": "Zobrazit byty"
+    },
+    "features": {
+      "heading": "Výhody",
+      "komfort": { "title": "Komfort", "text": "Plně vybavené byty s Wi‑Fi, kuchyní a parkováním." },
+      "zentral": { "title": "Centrální", "text": "Dobrá dostupnost pro týmy a montéry – flexibilní a praktické." },
+      "fair": { "title": "Férové", "text": "Transparentní ceny a flexibilní možnosti rezervace." }
+    }
+  },
+  "wohnungen": {
+    "headline": "Naše byty",
+    "description": "Vyberte si z různých ubytování – všechna jsou plně vybavená a centrálně umístěná.",
+    "cards": {
+      "w03_exklusiv": {
+        "title": "Exkluzivně: byt u letiště a veletrhu Düsseldorf",
+        "text": "Tichý 2‑pokojový byt s velmi dobrým spojením na veletrh a letiště Düsseldorf.",
+        "button": "Detaily",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Německo",
+        "rooms": "2 pokoje",
+        "beds": "2 lůžka",
+        "area": "50 m²",
+        "parking": "Parkovací místo k dispozici",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Exkluzivně: byt u letiště a veletrhu Düsseldorf",
+        "amenities": [
+          "Wi‑Fi zdarma",
+          "Plně vybavená kuchyně",
+          "Sprcha",
+          "Pračka",
+          "Výhled do zahrady",
+          "Nekuřácké",
+          "Celý byt pouze pro vás",
+          "Myčka nádobí",
+          "TV s plochou obrazovkou",
+          "Kávovar"
+        ],
+        "longDescription": "<p>Exkluzivní byt u letiště a veletrhu Düsseldorf nabízí terasu, bezplatné Wi‑Fi a výhled do zahrady v Duisburgu. Nedaleko (12 km) leží Einschornsteinsiedlung; k dispozici je zahrada a bezplatné soukromé parkování.</p><p>Byt se skládá z 1 ložnice, obývacího pokoje, plně vybavené kuchyně (lednice a kávovar) a 1 koupelny (sprcha a fén). K dispozici jsou ručníky a ložní prádlo.</p><p>Hlavní nádraží Duisburg je vzdálené 13 km, Silberpalais 13 km. Nejbližší letiště je Düsseldorf, 11 km.</p>"
+      },
+      "w04_exklusiv_2": {
+        "title": "Exkluzivně 2: byt u letiště a veletrhu Düsseldorf",
+        "text": "Tichý 3‑pokojový byt s terasou a výborným spojením na veletrh a letiště Düsseldorf.",
+        "button": "Detaily",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Německo",
+        "rooms": "3 pokoje",
+        "beds": "8 lůžek",
+        "area": "120 m²",
+        "parking": "Parkovací místo k dispozici",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Exkluzivně 2: byt u letiště a veletrhu Düsseldorf",
+        "amenities": [
+          "Wi‑Fi zdarma",
+          "Plně vybavená kuchyně",
+          "Sprcha",
+          "Pračka",
+          "Terasa",
+          "Výhled do zahrady",
+          "Nekuřácké",
+          "2 koupelny"
+        ],
+        "longDescription": "<p>Exkluzivní byt u letiště a veletrhu Düsseldorf nabízí terasu, bezplatné Wi‑Fi a výhled do zahrady. Zahrada a bezplatné soukromé parkování jsou k dispozici poblíž (12 km) od Einschornsteinsiedlung.</p><p>Byt se skládá ze dvou ložnic, obývacího pokoje, plně vybavené kuchyně (lednice a kávovar) a 2 koupelen (sprcha a fén). Ručníky a ložní prádlo jsou k dispozici.</p><p>Hlavní nádraží Duisburg je 13 km, Silberpalais 13 km. Nejbližší letiště je Düsseldorf, 11 km.</p>"
+      },
+      "w01_derko_apart": {
+        "title": "DERKO Apart",
+        "text": "Prostorný 3‑pokojový byt s rychlým napojením na dálnice A3/A59 a přímým spojením S‑Bahn do Düsseldorfu.",
+        "button": "Detaily",
+        "city": "Walderbenweg 6, 47269 Duisburg, Německo",
+        "rooms": "3 pokoje",
+        "beds": "7 lůžek",
+        "area": "70 m²",
+        "parking": "Bezplatné parkování na místě",
+        "price": "35 EUR / osoba / noc",
+        "alt": "DERKO Apart – fotografie",
+        "amenities": [
+          "Celé ubytování jen pro vás",
+          "Wi‑Fi zdarma",
+          "Soukromá koupelna",
+          "Výhled do dvora",
+          "Terasa",
+          "Nekuřácké pokoje",
+          "Sprcha",
+          "Pračka"
+        ],
+        "longDescription": "<p>DERKO Apart nabízí pěkný výhled do zahrady, terasu a rychlovarnou konvici přibližně 7,2 km od Einschornsteinsiedlung. V celém objektu je k dispozici bezplatné Wi‑Fi a hlavní nádraží Duisburg je jen 7,8 km.</p><p>Tento moderní apartmán má tři ložnice, koupelnu se sprchou a fénem a plně vybavenou kuchyni. Pro vaše pohodlí jsou připraveny ručníky a ložní prádlo.</p><p>Silberpalais je vzdálen 7,9 km, Citibank Tower 8,1 km. Nejbližší letiště je Düsseldorf, 10 km.</p>"
+      },
+      "w02_derko_apart_2": {
+        "title": "DERKO Apart 2",
+        "text": "Prostorný 4‑pokojový byt o 110 m² s rychlým napojením na A3/A59 a přímým spojením S‑Bahn do Düsseldorfu.",
+        "button": "Detaily",
+        "city": "Walderbenweg 6, 47269 Duisburg, Německo",
+        "rooms": "4 pokoje",
+        "beds": "7 lůžek",
+        "area": "110 m²",
+        "parking": "Bezplatné parkování na místě",
+        "price": "35 EUR / osoba / noc",
+        "alt": "DERKO Apart 2",
+        "amenities": [
+          "Wi‑Fi zdarma",
+          "Plně vybavená kuchyně",
+          "2 x koupelna",
+          "Pračka",
+          "Terasa",
+          "Nekuřácké"
+        ],
+        "longDescription": "<p>Méně než 7,2 km od Einschornsteinsiedlung a 7,8 km od hlavního nádraží Duisburg nabízí DERKO Apart 2 bezplatné Wi‑Fi a terasu. Apartmán se nachází 8,2 km od Mercatorhalle a 8,5 km od radnice Duisburg.</p><p>Apartmán má čtyři ložnice, plně vybavenou kuchyni s lednicí a dvě koupelny se sprchou a fénem. Ručníky a ložní prádlo jsou k dispozici.</p><p>Silberpalais je 7,9 km, Citibank Tower 8,1 km. Nejbližší letiště je Düsseldorf, 10 km.</p>"
+      },
+      "w05_dus_1": {
+        "title": "Byt u letiště a veletrhu Düsseldorf",
+        "text": "2‑pokojový byt mezi letištěm a veletrhem Düsseldorf s dobrou dostupností.",
+        "button": "Detaily",
+        "city": "Walderbenweg 6, 47269 Duisburg, Německo",
+        "rooms": "2 pokoje",
+        "beds": "4 lůžka",
+        "area": "50 m²",
+        "parking": "Bezplatné parkování na místě",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Byt u letiště a veletrhu Düsseldorf",
+        "amenities": [
+          "Wi‑Fi zdarma",
+          "Plně vybavená kuchyně",
+          "Terasa",
+          "Nekuřácké",
+          "Rodinné pokoje",
+          "Výhled"
+        ],
+        "longDescription": "<p>Apartmán u Düsseldorf Airport Messe se nachází ve čtvrti Duisburg‑Großenbaum, 7,2 km od Einschornsteinsiedlung, 7,7 km od hlavního nádraží Duisburg a 7,9 km od Silberpalais. Nabízí zahradu, terasu, výhled do zahrady a bezplatné Wi‑Fi v celém objektu.</p><p>Apartmán má dvě ložnice, obývací pokoj s TV s plochou obrazovkou, plně vybavenou kuchyni (lednice a myčka) a koupelnu s fénem. Ručníky a ložní prádlo jsou zajištěny.</p><p>Citibank Tower je 8,1 km, Mercatorhalle 8,2 km. Nejbližší letiště je Düsseldorf, 10 km.</p>"
+      },
+      "w06_dus_2": {
+        "title": "Centrálně: byt u letiště a veletrhu Düsseldorf",
+        "text": "1‑pokojový byt u letiště a veletrhu Düsseldorf.",
+        "button": "Detaily",
+        "city": "Walderbenweg 6, 47269 Duisburg, Německo",
+        "rooms": "2 pokoje",
+        "beds": "3 lůžka",
+        "area": "35 m²",
+        "parking": "Bezplatné parkování na místě",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Centrálně: byt u letiště a veletrhu Düsseldorf",
+        "amenities": [
+          "Wi‑Fi zdarma",
+          "Kuchyně",
+          "Sprcha",
+          "Pračka",
+          "Výhled",
+          "Terasa",
+          "Nekuřácké"
+        ],
+        "longDescription": "<p>Méně než 7,2 km od Einschornsteinsiedlung a 7,7 km od hlavního nádraží Duisburg nabízí Centrálně: byt u Düsseldorf Airport, Messe bezplatné Wi‑Fi a zahradu. Apartmán je 8,2 km od Mercatorhalle a 8,5 km od radnice Duisburg.</p><p>Apartmán nabízí terasu s výhledem do zahrady, ložnici, obývací pokoj s TV s plochou obrazovkou, dobře vybavenou kuchyni (lednice a myčka) a koupelnu se sprchou. Ručníky a ložní prádlo jsou k dispozici.</p><p>Silberpalais je 7,9 km, Citibank Tower 8,1 km. Nejbližší letiště je Düsseldorf, 10 km.</p>"
+      },
+      "w07_dus_3": {
+        "title": "Centrálně: byt s terasou u letiště a veletrhu Düsseldorf",
+        "text": "1‑pokojový byt s terasou u letiště a veletrhu Düsseldorf.",
+        "button": "Detaily",
+        "city": "Walderbenweg 6, 47269 Duisburg, Německo",
+        "rooms": "1 pokoj",
+        "beds": "2 lůžka",
+        "area": "35 m²",
+        "parking": "Bezplatné parkování na místě",
+        "price": "35 EUR / osoba / noc",
+        "alt": "Centrálně: byt s terasou u letiště a veletrhu Düsseldorf",
+        "amenities": [
+          "Wi‑Fi zdarma",
+          "Plně vybavená kuchyně",
+          "Sprcha",
+          "Terasa",
+          "Nekuřácké",
+          "Výhled",
+          "Pračka"
+        ],
+        "longDescription": "<p>Central Messe Airport DUS Apartment with Terrace se nachází ve čtvrti Duisburg‑Großenbaum, 7,7 km od hlavního nádraží Duisburg, 7,9 km od Silberpalais a 8,1 km od Citibank Tower. Ubytování je 7,2 km od Einschornsteinsiedlung a nabízí bezplatné Wi‑Fi v celém objektu.</p><p>Apartmán má 1 ložnici, 1 koupelnu, ložní prádlo, ručníky, TV s plochou obrazovkou, plně vybavenou kuchyni a terasu s výhledem do zahrady.</p><p>Mercatorhalle je 8,2 km, radnice Duisburg 8,5 km. Nejbližší letiště je Düsseldorf, 10 km.</p>"
+      }
+    }
+  },
+  "ueberUns": {
+    "headline": "O nás",
+    "description": "Jsme mladá dynamická společnost z Duisburgu, v srdci Porúří. Naše služby zahrnují zprostředkování, správu a oceňování nemovitostí. Jako profesionální partner jsme vám k dispozici pro všechny otázky pronájmu. <br><br>DERKO Immobilien se v posledních letech specializuje také na pronájem ubytování pro montéry a bytů. Neustále rozšiřujeme portfolio a usilujeme o více obytného prostoru a optimální servis.",
+    "founders": { "alt": "Zakladatelé DERKO Immobilien", "caption": "Zakladatelé DERKO Immobilien" },
+    "cards": {
+      "vorteile": {
+        "title": "Vaše výhody",
+        "text": [
+          "Centrální a přesto tiché lokality a byty",
+          "Zařízené, čisté a udržované pokoje",
+          "Rychlá rezervace a flexibilní délka pronájmu",
+          "Pro jednotlivce, týmy a firmy"
+        ]
+      },
+      "wirBieten": {
+        "title": "Naše nabídka",
+        "text": [
+          "Moderní, plně vybavené byty (kuchyně, Wi‑Fi, možnost praní, koupelna)",
+          "Řešení od garsonky po týmový byt",
+          "Ubytování pro řemeslníky, montéry, dojíždějící a projektové týmy",
+          "Dle potřeby správa a organizace pro vaše odlehčení"
+        ]
+      },
+      "vorgehen": {
+        "title": "Společný postup",
+        "text": [
+          "Kontaktujte nás a vyplňte poptávkový formulář",
+          "Ozveme se s vhodnou nabídkou",
+          "Po přijetí nabídky vám účetní odešle fakturu",
+          "Předáme klíče a přejeme příjemný pobyt"
+        ]
+      }
+    },
+    "partners": { "title": "Naši partneři" }
+  },
+  "kontakt": {
+    "headline": "Poptávka",
+    "description": "Máte dotazy nebo chcete poptat byt? Použijte formulář nebo nám zavolejte.",
+    "form": {
+      "name": "Jméno / Firma",
+      "email": "E‑mail",
+      "phone": "Telefon",
+      "message": "Zpráva",
+      "dateFrom": "Datum od",
+      "dateTo": "Datum do",
+      "topic": "Téma",
+      "topicBooking": "Poptávka na rezervaci",
+      "topicOther": "Další dotazy",
+      "apartment": "Byt",
+      "apartmentPlaceholder": "Vyberte byt",
+      "persons": "Počet osob",
+      "personsPlaceholder": "Vyberte počet osob",
+      "privacyConsent": "Seznámil(a) jsem se s politikou ochrany osobních údajů. Souhlasím s uložením svých údajů za účelem kontaktu a zpětných dotazů.",
+      "submit": "Odeslat",
+      "captchaLabel": "Bezpečnostní kontrola",
+      "captchaHelp": "Zadejte znaky z obrázku.",
+      "captchaRefresh": "Obnovit"
+    },
+    "validation": {
+      "nameRequired": "Zadejte své jméno.",
+      "emailRequired": "Zadejte platný e‑mail.",
+      "phoneInvalid": "Zadejte platné telefonní číslo (např. +420 777 123 456).",
+      "messageRequired": "Zadejte zprávu.",
+      "personsRequired": "Zadejte počet osob (minimálně 1).",
+      "privacyRequired": "Souhlaste s uložením svých údajů.",
+      "bot": "Poptávka zablokována: zkuste to znovu za několik sekund.",
+      "captcha": "Bezpečnostní kód není správný."
+    },
+    "email": { "subjectIdLabel": "ID poptávky", "yourDetails": "Vaše údaje:" }
+  },
+  "agb": { "headline": "Všeobecné obchodní podmínky (VOP)", "text": "lang/cs/cs.agb.html" },
+  "impressum": { "headline": "Impresum", "text": "lang/cs/cs.impressum.html" },
+  "datenschutz": { "headline": "Ochrana osobních údajů", "text": "lang/cs/cs.datenschutz.html" },
+  "legal": { "revealEmail": "Zobrazit e‑mailovou adresu" },
+  "notFound": { "title": "404", "headline": "Stránka nenalezena", "description": "Požadovaná stránka nebyla nalezena nebo již neexistuje.", "backHome": "Zpět na úvod" },
+  "wohnungDetail": { "headline": "Detaily bytu", "cta": "Vyžádat nabídku", "meta": { "title": "Základní údaje" }, "amenities": { "title": "Vybavení" }, "description": { "title": "Popis" }, "gallery": { "showMore": "Více obrázků", "showLess": "Méně obrázků", "photo": "Fotografie" } },
+  "error": { "session": { "title": "Relace vypršela", "message": "Vaše relace vypršela. Obnovte stránku a odešlete formulář znovu." }, "rate": { "title": "Prosíme o strpení", "message": "Právě jste odeslali poptávku. Počkejte chvíli a zkuste to znovu.", "messageWithWait": "Právě jste odeslali poptávku. Počkejte přibližně {seconds} sekund a zkuste to znovu." }, "backToContact": "Zpět na kontaktní formulář" },
+  "confirmation": { "headline": "Poptávka odeslána", "description": "Vaši poptávku jsme obdrželi.", "message": "Děkujeme za váš zájem o naše byty.<br>Vaše údaje zkontrolujeme a ozveme se co nejdříve.<br><br>S pozdravem,<br>Tým DERKO." }
+}

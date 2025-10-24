@@ -1,0 +1,355 @@
+{
+  "site": {
+    "title": "DERKO Ingatlan",
+    "description": "Szerelőknek és munkásoknak szállások és lakások bérbeadása – modern, kedvező, központi helyen.",
+    "skipToContent": "Ugrás a tartalomra",
+    "brandMain": "DERKO",
+    "brandSub": "Immobilien",
+    "langNames": {
+      "de": "Német",
+      "en": "Angol",
+      "pl": "Lengyel",
+      "hu": "Magyar",
+      "sk": "Szlovák",
+      "cs": "Cseh",
+      "it": "Olasz",
+      "bg": "Bolgár",
+      "ro": "Román"
+    },
+    "cookie": {
+      "title": "Tiszteletben tartjuk az adatvédelmét",
+      "text": "Nagyon komolyan vesszük az Ön adatainak védelmét, és azt szeretnénk, hogy megtalálja nálunk az Önnek megfelelő ajánlatokat. Ezért kizárólag technikailag szükséges szolgáltatásokat használunk: egy munkamenetet a kapcsolat oldalon lévő biztonsági ellenőrzéshez (CAPTCHA) és az Ön nyelvválasztásának megjegyzéséhez. Nem használunk nyomkövető vagy marketing célú sütiket.",
+      "accept": "Értem",
+      "privacy": "Adatvédelem"
+    }
+  },
+  "navigation": {
+    "home": "Kezdőlap",
+    "wohnungen": "Lakások",
+    "ueberUns": "Rólunk",
+    "kontakt": "Ajánlatkérés"
+  },
+  "footer": {
+    "copyright": "© 2025 DERKO Immobilien – minden jog fenntartva",
+    "impressum": "Impresszum",
+    "agb": "ÁSZF",
+    "kontakt": "Kapcsolat",
+    "privacy": "Adatvédelem",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "creditHtml": "Webdesign: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
+  },
+  "home": {
+    "headline": "Üdvözöljük a DERKO Ingatlannál",
+    "subheadline": "Kényelmes és kedvező szállásokat talál szakembereknek és szerelőknek.",
+    "cta": "Ajánlatkérés",
+    "hero": {
+      "title": "Szerelői lakások – modern, korrekt, központi",
+      "lead": "Rugalmasan foglalható, teljesen felszerelt szállások csapatoknak, szerelőknek és projekt tartózkodásokra. Közvetlen kapcsolatok, korrekt feltételek, megbízható szolgáltatás.",
+      "ctaPrimary": "Ajánlatkérés",
+      "ctaSecondary": "Lakások megtekintése"
+    },
+    "features": {
+      "heading": "Előnyök",
+      "komfort": {
+        "title": "Kényelem",
+        "text": "Teljesen felszerelt lakások Wi‑Fi‑vel, konyhával és parkolóval."
+      },
+      "zentral": {
+        "title": "Központi",
+        "text": "Jó közlekedés csapatoknak és szerelőknek – rugalmas és praktikus."
+      },
+      "fair": {
+        "title": "Korrekt",
+        "text": "Átlátható árak és rugalmas foglalási lehetőségek."
+      }
+    }
+  },
+  "wohnungen": {
+    "headline": "Lakásaink",
+    "description": "Válasszon különböző szállásaink közül – mind teljesen felszerelt és központi elhelyezkedésű.",
+    "cards": {
+      "w03_exklusiv": {
+        "title": "Exkluzív: lakás a düsseldorfi repülőtér és vásár közelében",
+        "text": "Csendes, 2 szobás lakás nagyon jó közlekedéssel a düsseldorfi vásár és repülőtér irányába.",
+        "button": "Részletek",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Németország",
+        "rooms": "2 szoba",
+        "beds": "2 ágy",
+        "area": "50 m²",
+        "parking": "Parkolóhely biztosított",
+        "price": "35 EUR / fő / éj",
+        "alt": "Exkluzív: lakás a düsseldorfi repülőtér és vásár közelében",
+        "amenities": [
+          "Ingyenes Wi‑Fi",
+          "Teljesen felszerelt konyha",
+          "Zuhanyzó",
+          "Mosógép",
+          "Kertre néző kilátás",
+          "Nem dohányzó",
+          "Teljes lakás kizárólagos használattal",
+          "Mosogatógép",
+          "Laposképernyős TV",
+          "Kávéfőző"
+        ],
+        "longDescription": "<p>Az Exkluzív lakás a düsseldorfi repülőtér és vásár közelében terasszal rendelkezik, és ingyenes Wi‑Fi‑t, valamint kertre néző kilátást kínál Duisburgban. A 12 km‑re található Einschornsteinsiedlung közelében kert és ingyenes privát parkoló áll rendelkezésre.</p><p>A lakás 1 hálószobából, nappaliból, teljesen felszerelt konyhából (hűtőszekrény és kávéfőző) és 1 fürdőszobából áll (zuhanyzó és hajszárító). Törölköző és ágynemű biztosított.</p><p>A duisburgi főpályaudvar 13 km‑re, a Silberpalais 13 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, 11 km‑re.</p>"
+      },
+      "w04_exklusiv_2": {
+        "title": "Exkluzív 2: lakás a düsseldorfi repülőtér és vásár közelében",
+        "text": "Csendes, 3 szobás lakás terasszal és kiváló közlekedéssel a düsseldorfi vásárhoz és repülőtérhez.",
+        "button": "Részletek",
+        "city": "Walter‑Schönheit‑Straße 68b, 47269 Duisburg, Németország",
+        "rooms": "3 szoba",
+        "beds": "8 ágy",
+        "area": "120 m²",
+        "parking": "Parkolóhely biztosított",
+        "price": "35 EUR / fő / éj",
+        "alt": "Exkluzív 2: lakás a düsseldorfi repülőtér és vásár közelében",
+        "amenities": [
+          "Ingyenes Wi‑Fi",
+          "Teljesen felszerelt konyha",
+          "Zuhanyzó",
+          "Mosógép",
+          "Terasz",
+          "Kertre néző kilátás",
+          "Nem dohányzó",
+          "2 fürdőszoba"
+        ],
+        "longDescription": "<p>Az Exkluzív lakás a düsseldorfi repülőtér és vásár közelében terasszal rendelkezik, és ingyenes Wi‑Fi‑t, valamint kertre néző kilátást kínál Duisburgban. A 12 km‑re található Einschornsteinsiedlung közelében kert és ingyenes privát parkoló áll rendelkezésre.</p><p>A lakás két hálószobából, nappaliból, teljesen felszerelt konyhából (hűtőszekrény és kávéfőző) és 2 fürdőszobából áll (zuhanyzó és hajszárító). Törölköző és ágynemű biztosított.</p><p>A duisburgi főpályaudvar 13 km‑re, a Silberpalais 13 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, 11 km‑re.</p>"
+      },
+      "w01_derko_apart": {
+        "title": "DERKO Apart",
+        "text": "Tágas, 3 szobás lakás gyors autópálya‑kapcsolattal az A3/A59 felé és közvetlen S‑Bahn összeköttetéssel Düsseldorf irányába.",
+        "button": "Részletek",
+        "city": "Walderbenweg 6, 47269 Duisburg, Németország",
+        "rooms": "3 szoba",
+        "beds": "7 ágy",
+        "area": "70 m²",
+        "parking": "Ingyenes parkolás a helyszínen",
+        "price": "35 EUR / fő / éj",
+        "alt": "DERKO Apart – képek",
+        "amenities": [
+          "Az egész szállás az Önöké",
+          "Ingyenes Wi‑Fi",
+          "Saját fürdőszoba",
+          "Udvarra néző kilátás",
+          "Terasz",
+          "Nemdohányzó szobák",
+          "Zuhanyzó",
+          "Mosógép"
+        ],
+        "longDescription": "<p>A DERKO Apart szép kertre néző kilátással rendelkezik, és terasszal, valamint vízforralóval kínál szállást kb. 7,2 km‑re az Einschornsteinsiedlungtól. Az egész szálláshelyen ingyenes Wi‑Fi érhető el, a duisburgi főpályaudvar pedig mindössze 7,8 km‑re található.</p><p>Ez a modern apartman három hálószobával, zuhanyzós és hajszárítós fürdőszobával, valamint teljesen felszerelt konyhával rendelkezik. A kényelmes tartózkodás érdekében törölköző és ágynemű biztosított.</p><p>A Silberpalais 7,9 km‑re, a Citibank Tower 8,1 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, mindössze 10 km‑re.</p>"
+      },
+      "w02_derko_apart_2": {
+        "title": "DERKO Apart 2",
+        "text": "Tágas, 4 szobás lakás 110 m²‑en, gyors autópálya‑kapcsolattal az A3/A59 felé és közvetlen S‑Bahn összeköttetéssel Düsseldorf irányába.",
+        "button": "Részletek",
+        "city": "Walderbenweg 6, 47269 Duisburg, Németország",
+        "rooms": "4 szoba",
+        "beds": "7 ágy",
+        "area": "110 m²",
+        "parking": "Ingyenes parkolás a helyszínen",
+        "price": "35 EUR / fő / éj",
+        "alt": "DERKO Apart 2",
+        "amenities": [
+          "Ingyenes Wi‑Fi",
+          "Teljesen felszerelt konyha",
+          "2 x fürdőszoba",
+          "Mosógép",
+          "Terasz",
+          "Nemdohányzó"
+        ],
+        "longDescription": "<p>Kevesebb mint 7,2 km‑re az Einschornsteinsiedlungtól és 7,8 km‑re a duisburgi főpályaudvartól, a DERKO Apart 2 ingyenes Wi‑Fi‑t és teraszt kínál. Az apartman 8,2 km‑re található a Mercatorhalle‑tól és 8,5 km‑re a duisburgi városházától.</p><p>Az apartman négy hálószobával, hűtőszekrénnyel felszerelt, teljesen felszerelt konyhával, valamint két zuhanyzós és hajszárítós fürdőszobával rendelkezik. A tartózkodás idejére törölköző és ágynemű biztosított.</p><p>A Silberpalais 7,9 km‑re, a Citibank Tower 8,1 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, mindössze 10 km‑re.</p>"
+      },
+      "w05_dus_1": {
+        "title": "Lakás a düsseldorfi repülőtér és vásár közelében",
+        "text": "2 szobás lakás a repülőtér és a düsseldorfi vásár között, jó megközelíthetőséggel.",
+        "button": "Részletek",
+        "city": "Walderbenweg 6, 47269 Duisburg, Németország",
+        "rooms": "2 szoba",
+        "beds": "4 ágy",
+        "area": "50 m²",
+        "parking": "Ingyenes parkolás a helyszínen",
+        "price": "35 EUR / fő / éj",
+        "alt": "Lakás a düsseldorfi repülőtér és vásár közelében",
+        "amenities": [
+          "Ingyenes Wi‑Fi",
+          "Teljesen felszerelt konyha",
+          "Terasz",
+          "Nemdohányzó",
+          "Családi szobák",
+          "Kilátás"
+        ],
+        "longDescription": "<p>Az Apartman a Düsseldorf Airport Messe közelében a duisburgi Großenbaum városrészben található, 7,2 km‑re az Einschornsteinsiedlungtól, 7,7 km‑re a duisburgi főpályaudvartól és 7,9 km‑re a Silberpalais‑tól. Kertet, teraszt, kertre néző kilátást és ingyenes Wi‑Fi‑t kínál a teljes szálláshelyen.</p><p>Az apartman két hálószobával, laposképernyős TV‑vel felszerelt nappalival, teljesen felszerelt konyhával (hűtőszekrény és mosogatógép) és hajszárítós fürdőszobával rendelkezik. Törölköző és ágynemű biztosított a kellemes tartózkodáshoz.</p><p>A Citibank Tower 8,1 km‑re, a Mercatorhalle 8,2 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, mindössze 10 km‑re.</p>"
+      },
+      "w06_dus_2": {
+        "title": "Központi elhelyezkedésű lakás a düsseldorfi repülőtér és vásár közelében",
+        "text": "1 szobás lakás a düsseldorfi repülőtér és vásár közelében.",
+        "button": "Részletek",
+        "city": "Walderbenweg 6, 47269 Duisburg, Németország",
+        "rooms": "2 szoba",
+        "beds": "3 ágy",
+        "area": "35 m²",
+        "parking": "Ingyenes parkolás a helyszínen",
+        "price": "35 EUR / fő / éj",
+        "alt": "Központi elhelyezkedésű lakás a düsseldorfi repülőtér és vásár közelében",
+        "amenities": [
+          "Ingyenes Wi‑Fi",
+          "Konyha",
+          "Zuhanyzó",
+          "Mosógép",
+          "Kilátás",
+          "Terasz",
+          "Nemdohányzó"
+        ],
+        "longDescription": "<p>Kevesebb mint 7,2 km‑re az Einschornsteinsiedlungtól és 7,7 km‑re a duisburgi főpályaudvartól, a Központi elhelyezkedésű lakás a Düsseldorf Airport, Messe közelében ingyenes Wi‑Fi‑t és kertet kínál. Az apartman 8,2 km‑re található a Mercatorhalle‑tól és 8,5 km‑re a duisburgi városházától.</p><p>Az apartman kertre néző terasszal, hálószobával, laposképernyős TV‑vel felszerelt nappalival, jól felszerelt konyhával (hűtő és mosogatógép), valamint zuhanyzós fürdőszobával rendelkezik. A kényelmes tartózkodás érdekében törölköző és ágynemű biztosított.</p><p>A Silberpalais 7,9 km‑re, a Citibank Tower 8,1 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, mindössze 10 km‑re.</p>"
+      },
+      "w07_dus_3": {
+        "title": "Központi elhelyezkedésű lakás terasszal a düsseldorfi repülőtér és vásár közelében",
+        "text": "1 szobás lakás terasszal a düsseldorfi repülőtér és vásár közelében.",
+        "button": "Részletek",
+        "city": "Walderbenweg 6, 47269 Duisburg, Németország",
+        "rooms": "1 szoba",
+        "beds": "2 ágy",
+        "area": "35 m²",
+        "parking": "Ingyenes parkolás a helyszínen",
+        "price": "35 EUR / fő / éj",
+        "alt": "Központi elhelyezkedésű lakás terasszal a düsseldorfi repülőtér és vásár közelében",
+        "amenities": [
+          "Ingyenes Wi‑Fi",
+          "Teljesen felszerelt konyha",
+          "Zuhanyzó",
+          "Terasz",
+          "Nemdohányzó",
+          "Kilátás",
+          "Mosógép"
+        ],
+        "longDescription": "<p>A Central Messe Airport DUS Apartment with Terrace a duisburgi Großenbaum városrészben található, 7,7 km‑re a duisburgi főpályaudvartól, 7,9 km‑re a Silberpalais‑tól és 8,1 km‑re a Citibank Towertől. A szállás 7,2 km‑re fekszik az Einschornsteinsiedlungtól és ingyenes Wi‑Fi‑t kínál a teljes szálláshelyen.</p><p>Az apartman 1 hálószobával, 1 fürdőszobával, ágyneművel, törölközőkkel, laposképernyős TV‑vel, teljesen felszerelt konyhával és kertre néző terasszal rendelkezik.</p><p>A Mercatorhalle 8,2 km‑re, a duisburgi városháza 8,5 km‑re található. A legközelebbi repülőtér a Düsseldorf repülőtér, mindössze 10 km‑re.</p>"
+      }
+    }
+  },
+  "ueberUns": {
+    "headline": "Rólunk",
+    "description": "Fiatal, dinamikus cég vagyunk Duisburgból, a Ruhr‑vidék szívéből. Szolgáltatásaink az ingatlanközvetítést, kezelést és értékbecslést foglalják magukba. Professzionális partnerként minden bérleti kérdésben az Ön rendelkezésére állunk. <br><br>A DERKO Immobilien az elmúlt években a szerelői szállások és lakások bérbeadására is szakosodott. Folyamatosan bővítjük portfóliónkat, és igyekszünk több lakóteret és optimális szolgáltatást biztosítani.",
+    "founders": {
+      "alt": "A DERKO Immobilien alapítói",
+      "caption": "A DERKO Immobilien alapítói"
+    },
+    "cards": {
+      "vorteile": {
+        "title": "Az Ön előnyei",
+        "text": [
+          "Központi, mégis csendes elhelyezkedésű helyszínek és lakások",
+          "Bútorozott, tiszta és gondozott szobák",
+          "Gyors foglalás és rugalmas bérleti idő",
+          "Egyéneknek, csapatoknak és cégeknek"
+        ]
+      },
+      "wirBieten": {
+        "title": "Ingatlanjaink",
+        "text": [
+          "Modern, teljesen felszerelt lakások (konyha, Wi‑Fi, mosási lehetőség, fürdő)",
+          "Megoldások garzontól a csapatlakásig",
+          "Szállások szakembereknek, szerelőknek, ingázóknak és projektcsapatoknak",
+          "Igény szerint kezelés és szervezés a tehermentesítésért"
+        ]
+      },
+      "vorgehen": {
+        "title": "Közös folyamat",
+        "text": [
+          "Lépjen kapcsolatba velünk és töltse ki az ajánlatkérő űrlapot",
+          "Visszajelzünk egy megfelelő ajánlattal",
+          "Az ajánlat elfogadása után könyvelésünk elküldi a számlát",
+          "Átadjuk a kulcsokat és kellemes tartózkodást kívánunk"
+        ]
+      }
+    },
+    "partners": { "title": "Partnereink" }
+  },
+  "kontakt": {
+    "headline": "Ajánlatkérés",
+    "description": "Kérdése van vagy lakást szeretne foglalni? Használja az űrlapot vagy hívjon minket.",
+    "form": {
+      "name": "Név / Cég",
+      "email": "E‑mail",
+      "phone": "Telefon",
+      "message": "Üzenet",
+      "dateFrom": "Dátum ‑tól",
+      "dateTo": "Dátum ‑ig",
+      "topic": "Téma",
+      "topicBooking": "Foglalási megkeresés",
+      "topicOther": "Egyéb kérdések",
+      "apartment": "Lakás",
+      "apartmentPlaceholder": "Válasszon lakást",
+      "persons": "Személyek száma",
+      "personsPlaceholder": "Válassza ki a személyek számát",
+      "privacyConsent": "Elolvastam az adatvédelmi tájékoztatót. Hozzájárulok, hogy adataimat kapcsolatfelvételhez és visszajelzéshez tárolják.",
+      "submit": "Küldés",
+      "captchaLabel": "Biztonsági ellenőrzés",
+      "captchaHelp": "Kérjük, írja be a képen látható karaktereket.",
+      "captchaRefresh": "Frissítés"
+    },
+    "validation": {
+      "nameRequired": "Kérjük, adja meg a nevét.",
+      "emailRequired": "Kérjük, adjon meg érvényes e‑mail címet.",
+      "phoneInvalid": "Kérjük, adjon meg érvényes telefonszámot (pl. +36 30 123 4567).",
+      "messageRequired": "Kérjük, írjon üzenetet.",
+      "personsRequired": "Kérjük, adja meg a személyek számát (legalább 1).",
+      "privacyRequired": "Kérjük, járuljon hozzá adatai tárolásához.",
+      "bot": "Kérés blokkolva: próbálja meg pár másodperc múlva.",
+      "captcha": "A biztonsági kód helytelen."
+    },
+    "email": {
+      "subjectIdLabel": "Kérelem azonosító",
+      "yourDetails": "Az Ön adatai:"
+    }
+  },
+  "agb": {
+    "headline": "Általános Szerződési Feltételek (ÁSZF)",
+    "text": "lang/hu/hu.agb.html"
+  },
+  "impressum": {
+    "headline": "Impresszum",
+    "text": "lang/hu/hu.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Adatvédelem",
+    "text": "lang/hu/hu.datenschutz.html"
+  },
+  "legal": { "revealEmail": "E‑mail cím megjelenítése" },
+  "notFound": {
+    "title": "404",
+    "headline": "Az oldal nem található",
+    "description": "A kért oldal nem található vagy már nem létezik.",
+    "backHome": "Vissza a kezdőlapra"
+  },
+  "wohnungDetail": {
+    "headline": "Lakás részletei",
+    "cta": "Ajánlatkérés",
+    "meta": { "title": "Fő adatok" },
+    "amenities": { "title": "Felszereltség" },
+    "description": { "title": "Leírás" },
+    "gallery": {
+      "showMore": "Több kép",
+      "showLess": "Kevesebb kép",
+      "photo": "Fotó"
+    }
+  },
+  "error": {
+    "session": {
+      "title": "Munkamenet lejárt",
+      "message": "A munkamenet lejárt. Kérjük, frissítse az oldalt és küldje be újra az űrlapot."
+    },
+    "rate": {
+      "title": "Kis türelmet kérünk",
+      "message": "Épp most küldött egy kérést. Kérjük, várjon egy pillanatot, majd próbálja újra.",
+      "messageWithWait": "Épp most küldött egy kérést. Kérjük, várjon kb. {seconds} másodpercet, majd próbálja újra."
+    },
+    "backToContact": "Vissza a kapcsolatfelvételi űrlaphoz"
+  },
+  "confirmation": {
+    "headline": "Kérés elküldve",
+    "description": "Megkaptuk a kérését.",
+    "message": "Köszönjük érdeklődését lakásaink iránt.<br>Áttekintjük adatait, és a lehető leghamarabb felvesszük Önnel a kapcsolatot.<br><br>Üdvözlettel,<br>A DERKO csapata."
+  }
+}
