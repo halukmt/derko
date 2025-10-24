@@ -26,6 +26,18 @@
     <header id="site-header" class="sticky-top" data-component="header"></header>
     <main id="main" class="py-5">
       <div class="container">
+        <nav aria-label="Breadcrumb" class="mb-3 small">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+              <a href="/" class="breadcrumb-home" aria-label="Home">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                <span class="visually-hidden" data-i18n="navigation.home"></span>
+              </a>
+            </li>
+            <li class="breadcrumb-item"><a href="/pages/kontakt.html" data-i18n="navigation.kontakt"></a></li>
+            <li class="breadcrumb-item active" aria-current="page" data-i18n="error.rate.title"></li>
+          </ol>
+        </nav>
         <div class="text-center py-5">
           <h1 class="h2 mb-3" data-i18n="error.rate.title"></h1>
           <p id="msg" class="lead mb-4" data-i18n="error.rate.message"></p>

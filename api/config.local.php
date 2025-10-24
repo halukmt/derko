@@ -5,7 +5,7 @@
 // For environment-specific overrides, set the env vars DERKO_CONTACT_TO / DERKO_CONTACT_FROM.
 
 if (!defined('DERKO_CONTACT_TO')) {
-  define('DERKO_CONTACT_TO', 'social@techsulting.de');
+  define('DERKO_CONTACT_TO', 'kontakt@derko-immobilien.de');
 }
 if (!defined('DERKO_CONTACT_FROM')) {
   define('DERKO_CONTACT_FROM', 'kontakt@derko-immobilien.de');
