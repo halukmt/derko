@@ -1,3 +1,8 @@
+# [v1.0.1] - 2025-11-23
+### Changed
+- Footer: Code and structure updated for clarity and maintainability. All legal and contact links now use i18n keys and absolute routes. Social media links are accessible and use ARIA labels. No functional changes, but improved markup and internationalization consistency.
+
+---
 # Changelog
 
 All notable changes to this project will be documented in this file.
