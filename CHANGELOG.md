@@ -1,3 +1,16 @@
+# [v1.0.3] - 2025-12-14
+### Added
+- Added `privacyKeyword` and updated `privacyConsent` in all language JSONs for robust i18n privacy policy linking in the contact form ([see discussion](https://github.com/halukmt/derko/issues/)).
+- Czech (cs.json) language file brought up to date with all missing keys from German (de.json), with correct translations.
+
+### Changed
+- kontakt.js: Privacy policy link logic now uses i18n `privacyKeyword` for all languages and always links to the central privacy page (datenschutz.html or /datenschutz).
+- All language JSONs: Consent texts aligned to ensure the privacy keyword is present and linkable in every language.
+
+### Fixed
+- Fixed missing privacy policy link in non-German languages on the contact form.
+- Fixed structural inconsistencies in cs.json and other language files for i18n completeness.
+
 
 # [v1.0.2] - 2025-12-14
 ### Changed

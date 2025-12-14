@@ -275,6 +275,7 @@
       "persons": "Numero di persone",
       "personsPlaceholder": "Seleziona numero di persone",
       "privacyConsent": "Ho preso visione dell'informativa sulla privacy. Acconsento alla memorizzazione dei miei dati per contatto e richieste di chiarimento.",
+      "privacyKeyword": "informativa sulla privacy",
       "submit": "Invia",
       "captchaLabel": "Controllo di sicurezza",
       "captchaHelp": "Inserisci i caratteri dall'immagine.",

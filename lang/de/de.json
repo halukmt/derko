@@ -287,6 +287,7 @@
       "persons": "Anzahl Personen",
       "personsPlaceholder": "Anzahl Personen wählen",
       "privacyConsent": "Ich habe die Datenschutzerklärung zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden.",
+      "privacyKeyword": "Datenschutzerklärung",
       "submit": "Absenden",
       "captchaLabel": "Sicherheitsprüfung",
       "captchaHelp": "Bitte geben Sie die Zeichen aus dem Bild ein.",

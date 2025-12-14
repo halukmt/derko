@@ -284,6 +284,7 @@
       "persons": "Személyek száma",
       "personsPlaceholder": "Válassza ki a személyek számát",
       "privacyConsent": "Elolvastam az adatvédelmi tájékoztatót. Hozzájárulok, hogy adataimat kapcsolatfelvételhez és visszajelzéshez tárolják.",
+      "privacyKeyword": "adatvédelmi tájékoztatót",
       "submit": "Küldés",
       "captchaLabel": "Biztonsági ellenőrzés",
       "captchaHelp": "Kérjük, írja be a képen látható karaktereket.",

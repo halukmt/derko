@@ -283,13 +283,19 @@
     // Idempotent guard
     if(label.querySelector('a[data-privacy-link]')) return;
     const txt = label.textContent || '';
-  // Use pretty URL for prod, .html for local (auch lokale IPs erkennen)
-  const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-  const target = isLocal ? 'datenschutz.html' : '/datenschutz';
-    const keyword = 'Datenschutzerklärung';
+    // Use pretty URL for prod, .html for local (auch lokale IPs erkennen)
+    const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+    // Always link to the central privacy page (datenschutz.html or /datenschutz), regardless of language
+    const target = isLocal ? 'datenschutz.html' : '/datenschutz';
+    // Get keyword from i18n
+    let keyword = (window.translateKey && window.translateKey('kontakt.form.privacyKeyword')) || '';
+    if (!keyword) {
+      // fallback: try to guess from text (legacy)
+      keyword = lang === 'de' ? 'Datenschutzerklärung' : 'privacy policy';
+    }
     const idx = txt.indexOf(keyword);
     if(idx === -1){
-      // No keyword found (likely non-DE language). Do nothing to avoid awkward phrasing.
+      // No keyword found. Do nothing to avoid awkward phrasing.
       return;
     }
     const before = txt.slice(0, idx);
@@ -297,8 +303,8 @@
     label.textContent = '';
     label.appendChild(document.createTextNode(before));
     const a = document.createElement('a');
-  a.href = target; a.textContent = keyword; a.setAttribute('data-privacy-link','');
-  a.className = 'inline-link';
+    a.href = target; a.textContent = keyword; a.setAttribute('data-privacy-link','');
+    a.className = 'inline-link';
     a.rel = 'noopener noreferrer';
     a.target = '_blank';
     label.appendChild(a);

@@ -288,6 +288,7 @@
       "persons": "Number of persons",
       "personsPlaceholder": "Select number of persons",
       "privacyConsent": "I have read the privacy policy. I agree that my details will be stored permanently for contact and follow-up questions.",
+      "privacyKeyword": "privacy policy",
       "submit": "Send",
       "captchaLabel": "Security check",
       "captchaHelp": "Please enter the characters from the image.",
