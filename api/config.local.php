@@ -4,6 +4,9 @@
 // It can remain in the repository as your canonical defaults.
 // For environment-specific overrides, set the env vars DERKO_CONTACT_TO / DERKO_CONTACT_FROM.
 
+// Debug toggle (set to false to reduce log noise)
+if (!defined('DERKO_DEBUG')) { define('DERKO_DEBUG', false); }
+
 if (!defined('DERKO_CONTACT_TO')) {
   define('DERKO_CONTACT_TO', 'kontakt@derko-immobilien.de');
 }

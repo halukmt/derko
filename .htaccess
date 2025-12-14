@@ -1,3 +1,5 @@
+# Debug-Modus für PHP aktivieren (Umgebungsvariable für sendmail.php)
+SetEnv DERKO_DEBUG 1
 # .htaccess — security, performance, and SEO rewrites
 
 # Disable MultiViews (content negotiation) to avoid rewrite surprises
