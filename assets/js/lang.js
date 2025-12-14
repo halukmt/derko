@@ -240,7 +240,7 @@
     try{
       CURRENT_LANG = lang || 'de';
       localStorage.setItem('lang', CURRENT_LANG);
-      const isLocalHost = ['localhost', '127.0.0.1'].includes(location.hostname);
+      const isLocalHost = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
       const hasPort = !!location.port; // dev servers often use a port
       const isDev = isLocalHost || hasPort;
       const cacheBuster = isDev ? `?v=${Date.now()}` : '';

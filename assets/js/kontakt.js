@@ -283,7 +283,9 @@
     // Idempotent guard
     if(label.querySelector('a[data-privacy-link]')) return;
     const txt = label.textContent || '';
-  const target = 'datenschutz.html';
+  // Use pretty URL for prod, .html for local (auch lokale IPs erkennen)
+  const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+  const target = isLocal ? 'datenschutz.html' : '/datenschutz';
     const keyword = 'Datenschutzerklärung';
     const idx = txt.indexOf(keyword);
     if(idx === -1){

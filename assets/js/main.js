@@ -45,27 +45,39 @@
     const brandLink = document.querySelector('.navbar-brand');
     if (brandLink) brandLink.setAttribute('href','/');
     // Navigation: home = '/', others absolute /pages/...
+    // Umschreiben Header-Links
     document.querySelectorAll('.navbar .nav-link').forEach(a=>{
       const id = a.id || '';
+      const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+      const env = isLocal ? 'local' : 'prod';
       const fileMap = {
-        'nav-home':'index.html',
-        'nav-wohnungen':'wohnungen.html',
-        'nav-ueberuns':'ueber-uns.html',
-        'nav-kontakt':'kontakt.html',
-        'nav-agb':'/agb',
-        'nav-impressum':'/impressum'
+        'nav-home': {prod: '/', local: '/index.html'},
+        'nav-wohnungen': {prod: '/wohnungen', local: '/pages/wohnungen.html'},
+        'nav-ueberuns': {prod: '/ueber-uns', local: '/pages/ueber-uns.html'},
+        'nav-kontakt': {prod: '/kontakt', local: '/pages/kontakt.html'},
+        'nav-agb': {prod: '/agb', local: '/pages/agb.html'},
+        'nav-impressum': {prod: '/impressum', local: '/pages/impressum.html'}
       };
-      const file = fileMap[id];
+      const file = fileMap[id] && fileMap[id][env];
       if (!file) return;
-      if (file === 'index.html') a.setAttribute('href','/');
-      else a.setAttribute('href','/pages/' + file);
+      a.setAttribute('href', file);
     });
-    // Footer links
-    document.querySelectorAll('#site-footer a.nav-link').forEach(a=>{
-      const href = a.getAttribute('href');
-      if (!href) return;
-      // No rewrite: footer now uses .html links for local/prod compatibility
-    });
+
+    // Umschreiben Footer-Links (lokal/LAN zu .html)
+    if (/^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname)) {
+      const footerMap = {
+        '/impressum': '/pages/impressum.html',
+        '/agb': '/pages/agb.html',
+        '/datenschutz': '/pages/datenschutz.html',
+        '/kontakt': '/pages/kontakt.html'
+      };
+      document.querySelectorAll('#ft-impressum, #ft-agb, #ft-privacy, #ft-kontakt').forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href) return;
+        const mapped = footerMap[href];
+        if (mapped) a.setAttribute('href', mapped);
+      });
+    }
   }
   document.addEventListener('component:loaded', adjustNavLinks);
   document.addEventListener('DOMContentLoaded', adjustNavLinks);
@@ -88,6 +100,7 @@
   document.addEventListener('DOMContentLoaded', function(){
     setupIncludes();
     setupValidation();
+    setupCookieBanner();
   // Highlight active navigation link
   function markActive(){
       const p = location.pathname.split('/').pop() || 'index.html';
@@ -412,6 +425,7 @@
   document.addEventListener('i18n:ready', function(){ renderAllCards(); buildWohnungenJSONLD(); });
   document.addEventListener('component:loaded', function(){ renderAllCards(); buildWohnungenJSONLD(); });
   document.addEventListener('i18n:changed', buildWohnungenJSONLD);
+  });
 
     // Language switcher in header
   // Update language flag & label
@@ -455,13 +469,13 @@
     if (document.querySelector('#current-lang-label')) setupLanguageSwitcher();
 
     // --- GDPR / Cookie Banner -------------------------------------------------
-    (function setupCookieBanner(){
+    function setupCookieBanner(){
       try{
         // We only use essential cookies/storage: PHP session for CAPTCHA (contact only) and localStorage for language preference.
         const CONSENT_KEY = 'siteConsent';
         const hasConsent = localStorage.getItem(CONSENT_KEY) === 'true';
         if (hasConsent) return;
-  const bar = document.createElement('div');
+        const bar = document.createElement('div');
         bar.className = 'cookie-banner';
         bar.innerHTML = `
           <div class="cookie-inner">
@@ -475,7 +489,9 @@
                 <button type="button" class="btn btn-outline-primary" data-action="privacy" data-i18n="site.cookie.privacy"></button>
               </div>
             </div>
-          </div>`;
+          </div>
+        `;
+
         // Add backdrop beneath banner
         const backdrop = document.createElement('div');
         backdrop.className = 'cookie-backdrop';
@@ -493,11 +509,12 @@
             return;
           }
           if (more){
-            window.location.href = '/datenschutz';
+            const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+            const href = isLocal ? '/pages/datenschutz.html' : '/datenschutz';
+            window.location.href = href;
             return;
           }
         });
       }catch(err){ console.warn('Cookie banner failed', err); }
-    })();
-  });
+    }
 })();
