@@ -1,3 +1,17 @@
+# [v1.0.4] - 2025-12-14
+### Changed
+- Improved debug environment detection: now supports .htaccess SetEnv, config.local.php, and multiple PHP env sources for robust debug toggling.
+- Debug headers and diagnostic logging are now only emitted when DERKO_DEBUG is enabled, reducing log noise in production.
+- Logging logic now attempts multiple paths and reports write status for easier diagnostics on shared hosting.
+
+### Fixed
+- CSRF failures are now always logged to error.log, regardless of debug mode, ensuring all security-relevant errors are documented.
+- Fixed issue where error.log was not updated due to PHP file status caching or environment propagation issues on Strato/Apache shared hosting.
+
+### Security
+- Hardened CSRF/session error logging: always records reason, session state, and minimal context for every CSRF failure.
+- Ensured that successful contact form submissions do not create log entries, keeping error.log focused on real issues.
+
 # [v1.0.3] - 2025-12-14
 ### Added
 - Added `privacyKeyword` and updated `privacyConsent` in all language JSONs for robust i18n privacy policy linking in the contact form ([see discussion](https://github.com/halukmt/derko/issues/)).
