@@ -52,8 +52,8 @@
         'nav-wohnungen':'wohnungen.html',
         'nav-ueberuns':'ueber-uns.html',
         'nav-kontakt':'kontakt.html',
-        'nav-agb':'agb.html',
-        'nav-impressum':'impressum.html'
+        'nav-agb':'/agb',
+        'nav-impressum':'/impressum'
       };
       const file = fileMap[id];
       if (!file) return;
@@ -64,9 +64,7 @@
     document.querySelectorAll('#site-footer a.nav-link').forEach(a=>{
       const href = a.getAttribute('href');
       if (!href) return;
-      if (['impressum.html','agb.html','datenschutz.html'].includes(href)){
-        a.setAttribute('href','/pages/' + href);
-      }
+      // No rewrite: footer now uses .html links for local/prod compatibility
     });
   }
   document.addEventListener('component:loaded', adjustNavLinks);
@@ -495,7 +493,7 @@
             return;
           }
           if (more){
-            window.location.href = '/pages/datenschutz.html';
+            window.location.href = '/datenschutz';
             return;
           }
         });

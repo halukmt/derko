@@ -1,13 +1,40 @@
+
+# [v1.0.2] - 2025-12-14
+### Changed
+- All legal and footer links now consistently use .html endings (e.g., impressum.html, agb.html, datenschutz.html, kontakt.html) for compatibility in both local development and production environments.
+- Removed canonical URL rewrites in JS for legal/footer links; now direct .html links are used everywhere for clarity and reliability.
+- Updated privacy policy link in contact form to use datenschutz.html for local/prod compatibility.
+- Navigation and footer link logic unified for consistent behavior across environments.
+
+### Fixed
+- Fixed 404 errors when opening legal/footer links locally (php -S) by standardizing on .html URLs.
+- Resolved confusion between canonical and .html URLs in navigation and footer.
+
 # [v1.0.1] - 2025-11-23
 ### Changed
 - Footer: Code and structure updated for clarity and maintainability. All legal and contact links now use i18n keys and absolute routes. Social media links are accessible and use ARIA labels. No functional changes, but improved markup and internationalization consistency.
 
 ---
+
+# Changelog
+chore: update footer structure and i18n (refs #footer)
+Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+
+## [v1.0.1] - 2025-11-23
+### Added
+-
+
+### Changed
+-  Footer: Code and structure updated for clarity and maintainability. All legal and contact links now use i18n keys and absolute routes. Social media links are accessible and use ARIA labels. No functional changes, but improved markup and internationalization consistency.
+
+### Fixed
+-
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
-## v1.0.0 (2025-10-24)
+## [v1.0.0] (2025-10-24)
 
 First public launch of the DERKO Immobilien website with security hardening, full multilingual support, and production-ready contact flow.
 

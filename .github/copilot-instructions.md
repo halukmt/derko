@@ -1,18 +1,19 @@
+
 # Copilot & AI Agent Instructions for DERKO Immobilien Website
 
-## Project Overview
-- **Type:** Static multilingual website with minimal PHP backend (mail, CAPTCHA)
-- **Frontend:** Bootstrap 5.3 (CDN), Font Awesome, Inter font, no build tool required
-- **Backend:** PHP endpoints for contact form, CSRF, CAPTCHA (see `api/`)
-- **i18n:** JSON files per language in `lang/`, HTML partials for legal pages
+## Project Architecture
+- **Static multilingual website** with minimal PHP backend (mail, CAPTCHA, CSRF)
+- **Frontend:** Bootstrap 5.3 (CDN), Font Awesome, Inter font; no build tool required
+- **Backend:** PHP endpoints in `api/` for contact, CSRF, CAPTCHA; config in `api/config.php`
+- **i18n:** JSON per language in `lang/`, HTML partials for legal pages
 - **Components:** HTML partials in `components/` loaded via JS fetch
 - **Data:** Apartment/variant data in `assets/data/*.json`
 
 ## Key Patterns & Conventions
-- **No build step:** All JS/CSS is loaded directly; components are fetched at runtime
+- **No build step:** All JS/CSS loaded directly; components fetched at runtime
 - **Strict CSP:** No inline scripts/styles; all JS must be in external files
-- **i18n:** Use `data-i18n`, `data-i18n-meta`, `data-i18n-html` attributes; see `assets/js/lang.js`
-- **Cards:** Feature and apartment cards are rendered dynamically from JSON and i18n keys (see `main.js`)
+- **i18n:** Use `data-i18n`, `data-i18n-meta`, `data-i18n-html` attributes (see `assets/js/lang.js`)
+- **Cards:** Feature and apartment cards rendered dynamically from JSON and i18n keys (see `main.js`)
 - **Image handling:** Responsive AVIF/WebP/PNG with `srcset`; optimize with `assets/js/optimize-images.js`
 - **Security:**
   - CSRF tokens via `api/csrf.php` (see `sendmail.php` for validation)
@@ -43,10 +44,20 @@
 - JSON-LD for SEO in main and apartment pages
 - Hreflang/canonical tags for all main pages
 
-## Testing & Troubleshooting
+## Security & Testing
 - Test contact form with honeypot, minimum time, CAPTCHA
 - Use browser dev tools to debug i18n and card loading
 - CSP errors: ensure all scripts/styles are external
+- CSRF: Token from `api/csrf.php`, validated in `sendmail.php`
+- Rate limiting: max 3 submissions/10min (see `api/sendmail.php`)
+- Honeypot, CAPTCHA, and input sanitizing in contact form
+
+## Performance & Deployment
+- Hero image preload for LCP
+- AVIF/WebP variants via `assets/js/optimize-images.js`
+- Lazy loading for card images
+- `robots.txt` & `sitemap.xml` present
+- Set correct HTTP 404 for `404.html` server-side
 
 ## Key Files/Dirs
 - `assets/js/main.js`, `assets/js/lang.js`, `assets/js/optimize-images.js`
