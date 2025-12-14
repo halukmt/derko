@@ -21,13 +21,32 @@ if (defined('PHP_VERSION_ID') && PHP_VERSION_ID >= 70300) {
 @session_start();
 
 // --- Lightweight crash logging & fail-safe 500 handler --------------------
-// Enable by creating an empty file api/.debug on the server (no PII included)
-$__DERKO_DEBUG = @is_file(__DIR__.DIRECTORY_SEPARATOR.'.debug');
-function derko_log($msg){
-  $line = '['.date('Y-m-d H:i:s').'] '.$msg.' ip='.( $_SERVER['REMOTE_ADDR'] ?? 'n/a')."\n";
-  @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'error.log', $line, FILE_APPEND);
+// Debug-Modus über Umgebungsvariable DERKO_DEBUG (siehe config.php)
+function derko_log($msg, $extra = []){
+  $line = '['.date('Y-m-d H:i:s').'] '.$msg;
+  if (!empty($extra) && is_array($extra)) {
+    foreach ($extra as $k => $v) {
+      $line .= ' ' . $k . '=' . (is_scalar($v) ? $v : json_encode($v));
+    }
+  }
+  $line .= ' ip='.( $_SERVER['REMOTE_ADDR'] ?? 'n/a');
+  $line .= "\n";
+  $paths = [
+    __DIR__.DIRECTORY_SEPARATOR.'error.log',
+    (function_exists('sys_get_temp_dir') ? sys_get_temp_dir() : '/tmp').DIRECTORY_SEPARATOR.'derko_error.log'
+  ];
+  $ok = false;
+  $attempts = [];
+  foreach ($paths as $p){
+    $res = @file_put_contents($p, $line, FILE_APPEND);
+    $attempts[] = ['path'=>$p, 'status'=>($res !== false ? 'ok' : 'fail')];
+    if ($res !== false) { $ok = true; break; }
+  }
+  if (!$ok) { @error_log($line); }
+  $GLOBALS['__DERKO_LAST_LOG_OK'] = $ok;
+  $GLOBALS['__DERKO_LOG_ATTEMPTS'] = $attempts;
 }
-register_shutdown_function(function() use ($__DERKO_DEBUG){
+register_shutdown_function(function(){
   $e = error_get_last();
   if (!$e) return;
   $fatalTypes = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR];
@@ -37,7 +56,7 @@ register_shutdown_function(function() use ($__DERKO_DEBUG){
     http_response_code(500);
     header('Content-Type: application/json; charset=UTF-8');
     $body = ['ok'=>false,'errors'=>['server_error']];
-    if ($__DERKO_DEBUG){ $body['debug']=$e['message']; }
+    if (defined('DERKO_DEBUG') && DERKO_DEBUG){ $body['debug']=$e['message']; }
     echo json_encode($body);
   }
 });
@@ -45,7 +64,19 @@ register_shutdown_function(function() use ($__DERKO_DEBUG){
 // Config (externalized)
 // Read operator addresses from api/config.php (with env var overrides)
 // Falls back to previous defaults if config is missing
-@require_once __DIR__ . '/config.php';
+$configPath = __DIR__ . '/config.php';
+@require_once $configPath;
+// Debug-Infos nur ausgeben, wenn Debug aktiv ist
+if (defined('DERKO_DEBUG') && DERKO_DEBUG) {
+  derko_log('DEBUG-TEST: getenv='.var_export(getenv('DERKO_DEBUG'), true).' const='.var_export(defined('DERKO_DEBUG') ? DERKO_DEBUG : null, true));
+  if (!headers_sent()){
+    $envVal = getenv('DERKO_DEBUG');
+    if ($envVal === false) { $envVal = getenv('REDIRECT_DERKO_DEBUG'); }
+    header('X-DERKO-DEBUG: env='.var_export($envVal, true).'; const='.(defined('DERKO_DEBUG') && DERKO_DEBUG ? '1' : '0').'; logWrite='.(isset($GLOBALS['__DERKO_LAST_LOG_OK']) && $GLOBALS['__DERKO_LAST_LOG_OK'] ? 'ok' : 'fail'));
+    $attempts = isset($GLOBALS['__DERKO_LOG_ATTEMPTS']) ? $GLOBALS['__DERKO_LOG_ATTEMPTS'] : [];
+    if (!empty($attempts)) { header('X-DERKO-LOG-ATTEMPTS: '.json_encode($attempts)); }
+  }
+}
 $TO = defined('DERKO_CONTACT_TO') ? DERKO_CONTACT_TO : '';
 $FROM = defined('DERKO_CONTACT_FROM') ? DERKO_CONTACT_FROM : '';
 // Fail fast if config not provided (avoid leaking or using placeholder addresses)
@@ -239,12 +270,29 @@ if (!$csrf_ok){
   $hasPostedTok  = ($csrf_token !== '');
   $age = $issuedAt ? (time() - $issuedAt) : -1;
   $reason = !$hasSessionTok ? 'no_session_token' : (!$hasPostedTok ? 'no_post_token' : ($issuedAt && $age > $CSRF_TTL ? 'expired' : 'mismatch'));
-  // Optional debug header + log when api/.debug exists
-  if (@is_file(__DIR__.DIRECTORY_SEPARATOR.'.debug')){
+  // Optional debug header (only when debug is enabled)
+  if (defined('DERKO_DEBUG') && DERKO_DEBUG){
     header('X-DERKO-CSRF: '.$reason);
-    $ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-    derko_log('CSRF fail: sid='.session_id()." reason=$reason age=$age ttl=$CSRF_TTL referer=".safe_header($ref));
   }
+  // Always log CSRF failures (minimal PII; includes IP from derko_log)
+  $ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+  $host = $_SERVER['HTTP_HOST'] ?? '';
+  $cookie = $_COOKIE[session_name()] ?? '';
+  $cookie_domain = ini_get('session.cookie_domain');
+  $save_path = ini_get('session.save_path');
+  $samesite = ini_get('session.cookie_samesite');
+  $free_tmp = function_exists('disk_free_space') ? @disk_free_space('/tmp') : 'n/a';
+  derko_log(
+    'CSRF fail: sid='.session_id()." reason=$reason age=$age ttl=$CSRF_TTL referer=".safe_header($ref),
+    [
+      'host'=>$host,
+      'session_cookie'=>($cookie ? 'set' : 'none'),
+      'cookie_domain'=>$cookie_domain,
+      'save_path'=>$save_path,
+      'samesite'=>$samesite,
+      'free_tmp'=>$free_tmp
+    ]
+  );
   // Redirect to friendly session timeout page (do not count towards rate limit)
   header('Location: /pages/error-session.html');
   exit;
