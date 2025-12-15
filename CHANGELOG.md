@@ -1,3 +1,20 @@
+# [v1.0.5] - 2025-12-15
+### Added
+- `api/contact_form_health.php`: token-protected healthcheck endpoint that exercises the server-side contact-mail path and returns HTTP 200 on success.
+- Local, append-only `api/contact_form_health.log` to record attempts, successes and failures (visible via FTP for easy troubleshooting).
+- New health configuration entries in `api/weekly_mail_config.php`: `health_token`, `health_to` (supports multiple recipients), `health_subject` and `health_body`.
+
+### Changed
+- Removed experimental weekly-mailer artifacts: `api/weekly_mailer.php` and `api/weekly_mailer_webhook.php` and cleaned related webhook configuration from `api/weekly_mail_config.php`.
+- `contact_form_health.php` now implements a lockfile to avoid duplicate runs (returns 429 when retriggered within the lock window) and writes concise local logs for visibility.
+- README updated to document the contact-form healthcheck and recommended `cron-job.org` setup; obsolete weekly-mailer documentation removed.
+
+### Fixed
+- Improved healthcheck logging and error handling: failures now write a descriptive entry to the local log and to `error_log()` for host-level diagnostics.
+
+### Security
+- Healthcheck endpoint is protected by a long `health_token` and optionally respects an IP allowlist when configured.
+
 # [v1.0.4] - 2025-12-14
 ### Changed
 - Improved debug environment detection: now supports .htaccess SetEnv, config.local.php, and multiple PHP env sources for robust debug toggling.
