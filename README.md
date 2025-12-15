@@ -1,77 +1,68 @@
-# DERKO Immobilien – Website
+# Weekly Mailer (CRON)
 
-Moderne, mehrsprachige Website mit statischem Frontend und kleinem PHP-Backend für Mailversand und CAPTCHA. Strikte CSP, keine Inline-Skripte.
+A script for sending a configurable weekly email (e.g., report, reminder) via PHP mail().
 
-## Features (Aktuell)
-- Bootstrap 5.3 (CDN), Font Awesome, Inter Font
-- Komponenten (Header, Footer, Cards) via Fetch – kein Build-Tool notwendig
-- i18n mit JSON-Struktur + HTML-Partials für Rechtstexte
-- Dynamische Feature-Cards & Wohnungs-Cards
-- JSON-LD (WebSite & dynamisch generierte Collection/Apartments inkl. Offers & Breadcrumb)
-- Strenge Content-Security-Policy (keine inline Skripte nötig)
-- Einheitliches Button-/Branding-Design (CSS Custom Properties)
-- Barrierefreiheit: Skip-Link, ARIA, Fokus-Ring, semantische Überschriften
-- Hreflang & Canonical Tags für alle Hauptseiten (de, en, x-default)
-- Responsive Bildausgabe (AVIF/WebP + PNG Fallback) inkl. srcset für Wohnungen (-400/-800/-1200) + Hero Preload
-- Lokalisierte Alt-Texte für Wohnungsbilder (Keys `wohnungen.cards.<key>.alt`)
-- CSRF-Token Endpoint & Validierung beim Kontaktformular
-- Sicherheits-Header (.htaccess) & `/.well-known/security.txt`
-- Hero-Image Preload (LCP-Optimierung)
+## Configuration
+- Edit `api/weekly_mail_config.php` to set:
+	- `weekday` (0=Sunday, 1=Monday, ...)
+	- `hour` (0-23)
+	- `minute` (0-59)
+	- `to` (array or string of recipient emails)
+	- `from` (sender email)
+	- `subject` (mail subject)
+	- `body` (mail body)
 
-## Projektstruktur
-```
-assets/
-	css/style.css
-	js/lang.js        # i18n Loader & Sanitizer
-	js/main.js        # Komponenten, Cards, JSON-LD
-	img/...           # Bilder & Icons
-components/
-	header.html
-	footer.html
-	card.html         # <template> mit Varianten (feature | wohnung)
-lang/
-	de/de.json
-	en/en.json
-pages/
-	*.html            # Unterseiten (werden unter /pages/ ausgeliefert)
-index.html          # Startseite
-404.html            # Fehlerseite (noindex)
-```
+## Usage
+- **Manual test:**
+	- Run: `php api/weekly_mailer.php`
+	- By default, script runs regardless of time. To enforce schedule, uncomment the `exit("Not scheduled time.");` line in `weekly_mailer.php`.
 
-## Lokale Entwicklung
-Einfachen HTTP Server starten (weil Fetch für Komponenten / i18n benötigt wird). Für das PHP-Backend (Mail & CAPTCHA) bitte den PHP Built-in Server nutzen:
+- **CRON setup (Strato example):**
+	- Open Strato CRON settings.
+	- Set schedule to match your config (e.g., every Monday at 07:00):
+		```
+		0 7 * * 1 /usr/bin/php /home/strato/www/youruser/htdocs/api/weekly_mailer.php
+		```
+	- Adjust path as needed for your Strato webspace.
 
-```powershell
-cd C:\zdev\derko
-# PHP Built-in Server (empfohlen)
-php -S localhost:8080 -t .
-# Alternativ, nur statisch (ohne PHP-Endpunkte):
-npx http-server -p 8080
-```
+## Security
+- Script is not web-accessible (no routing from public site).
+- Only callable via CLI/CRON.
+- Config and script must not be writable by web users.
 
-Aufrufen: http://localhost:8080/
+## Troubleshooting
+- Check Strato mail logs or error.log for delivery issues.
+- Ensure sender address is allowed by Strato (use a domain email).
+- For debug, run manually and check output.
 
-## Internationalisierung (i18n)
-Struktur (verschachtelt): `lang/<code>/<code>.json`
+---
+For more, see comments in `api/weekly_mailer.php` and `api/weekly_mail_config.php`.
 
-Unterstützte Konstrukte:
-- `data-i18n` für Plaintext / minimal HTML
-- `data-i18n-meta` für `<meta>` Content
-- `data-i18n-html` für längere HTML-Bereiche oder ausgelagerte Partials (Dateipfad als Wert)
+**cron-job.org setup (example)**
 
-Beispiel Ausschnitt (`de/de.json`):
-```json
-{
-	"home": { "headline": "Willkommen ..." },
-	"wohnungen": {
-		"cards": {
-			"w01_derko_apart": { "title": "DERKO Apart", "text": "Kurzbeschreibung ...", "button": "Details ansehen" }
-		}
-	}
-}
-```
+- **Name:** DERKO weekly mail
+- **URL:** `https://www.derko-immobilien.de/api/weekly_mailer_webhook.php?token=b7f9c2e8a3d4f6b1c0e9f2a3b4c5d6e7`
+````markdown
+**Contact-form healthcheck (cron-job.org)**
 
-## Feature-Cards (Startseite)
+You can monitor the actual contact-form send path with a protected healthcheck endpoint.
+
+- **URL:** `https://www.derko-immobilien.de/api/contact_form_health.php?token=<health_token>`
+`````markdown
+**Contact-form healthcheck (cron-job.org)**
+
+You can monitor the actual contact-form send path with a protected healthcheck endpoint.
+
+- **URL:** `https://www.derko-immobilien.de/api/contact_form_health.php?token=<health_token>`
+- **Method:** `GET`
+- **Schedule:** choose as needed (hourly/daily). Example daily at 06:00: `0 6 * * *`
+- **What it does:** sends a small admin mail to the address configured in `health_to` and writes a log entry. Returns HTTP 200 on success.
+
+Security:
+- Use the `health_token` in `api/weekly_mail_config.php`; treat it as a secret.
+- Optionally add allowed IPs to `webhook_allowed_ips` if your cron provider publishes them.
+
+If you want, set the cron-job.org job to call the same URL used for the weekly mail webhook, but for clarity we recommend a dedicated healthcheck URL as shown above.
 Im Code fest definiert (`main.js` → `renderFeatureCards`). Bilder: `assets/img/allgemein/komfort|zentral|fair.png`.
 Für weitere Vorteile: Array in `main.js` erweitern (Icon, Title-Key, Text-Key, Bild).
 
