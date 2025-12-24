@@ -256,15 +256,16 @@
     setTimeout(() => { ensureStaticYear(df); ensureStaticYear(dt); }, 0);
   }
 
+  // Google Änderungsvorschlag
   function initCaptcha(){
-    const img = document.getElementById('captcha-img');
-    if (!img) return;
-    const btn = document.getElementById('captcha-refresh');
-    const refresh = () => { img.src = '/api/captcha.php?r=' + Date.now(); };
-    if (btn && !btn._wired){ btn.addEventListener('click', refresh); btn._wired = true; }
-    // cache-bust on first load
-    refresh();
-  }
+      const img = document.getElementById('captcha-img');
+      if (!img) return;
+      const btn = document.getElementById('captcha-refresh');
+      const refresh = () => { img.src = '/api/captcha.php?r=' + Date.now(); };
+      if (btn && !btn._wired){ btn.addEventListener('click', refresh); btn._wired = true; }
+      // cache-bust on first load -> NICHT NÖTIG, da HTML schon lädt
+      // refresh();  <-- Auskommentiert, damit das Bild nicht doppelt lädt
+    }
 
   function markRequiredLabels(){
     // Map input/select/textarea[required] to its label[for]

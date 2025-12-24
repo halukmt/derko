@@ -1,14 +1,70 @@
 <?php
 // Simple self-hosted SVG CAPTCHA (no external deps)
-// Stores the solution in $_SESSION['captcha_code'] with hardened cookie flags
+// Debug/diagnostics patch: logs all errors, session, and request info if DERKO_DEBUG is true
+
+// 1. CONFIG LADEN (WICHTIG: Damit DERKO_DEBUG bekannt ist) Google
+// require_once __DIR__ . '/config.php'
+
+// --- DEBUG/LOGGING SETUP ---
+$debug = defined('DERKO_DEBUG') && DERKO_DEBUG;
+
+// --- SESSION CONFIGURATION (Harmonized) ---
+$cookieDomain = '.derko-immobilien.de';
+$isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+@ini_set('session.cookie_domain', $cookieDomain);
+@ini_set('session.cookie_samesite', 'Lax');
+@ini_set('session.cookie_secure', $isHttps ? '1' : '0');
+@ini_set('session.cookie_httponly', '1');
 @session_set_cookie_params([
   'path' => '/',
-  'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+  'secure' => $isHttps,
   'httponly' => true,
-  'samesite' => 'Lax'
+  'samesite' => 'Lax',
+  'domain' => $cookieDomain
 ]);
-@session_start();
 
+// Robust multi-path logging: try api/captcha_debug.log, then /tmp/derko_captcha_debug.log, then PHP error_log
+function log_captcha($msg) {
+  $ts = date('c');
+  $ip = $_SERVER['REMOTE_ADDR'] ?? '-';
+  $ua = $_SERVER['HTTP_USER_AGENT'] ?? '-';
+  $sid = session_id();
+  $line = "$ts\t$ip\tSID:$sid\t$msg\tUA:$ua\n";
+  $paths = [
+    __DIR__ . DIRECTORY_SEPARATOR . 'captcha_debug.log',
+    (function_exists('sys_get_temp_dir') ? sys_get_temp_dir() : '/tmp') . DIRECTORY_SEPARATOR . 'derko_captcha_debug.log'
+  ];
+  $ok = false;
+  foreach ($paths as $p) {
+    $res = @file_put_contents($p, $line, FILE_APPEND | LOCK_EX);
+    if ($res !== false) { $ok = true; break; }
+  }
+  if (!$ok) { @error_log($line); }
+}
+
+if ($debug) {
+  set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    log_captcha("PHP_ERROR: [$errno] $errstr in $errfile:$errline");
+    if (!headers_sent()) header('X-Debug-Error: '.rawurlencode($errstr));
+    return false; // Let normal error handler run too
+  });
+  register_shutdown_function(function() {
+    $err = error_get_last();
+    if ($err) log_captcha("FATAL: [{$err['type']}] {$err['message']} in {$err['file']}:{$err['line']}");
+  });
+}
+
+// --- SESSION START ---
+if (!@session_start()) {
+  if ($debug) {
+    log_captcha('SESSION_FAIL: session_start() failed');
+    if (!headers_sent()) header('X-Debug-Error: session_start failed');
+  }
+  http_response_code(503);
+  exit;
+}
+
+// --- CAPTCHA GENERATION ---
 function make_code($len = 5) {
   $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   $out = '';
@@ -20,6 +76,11 @@ function make_code($len = 5) {
 
 $code = make_code(5);
 $_SESSION['captcha_code'] = $code;
+
+if ($debug) {
+  log_captcha("OK: captcha generated: $code");
+  if (!headers_sent()) header('X-Debug-Session: '.session_id());
+}
 
 header('Content-Type: image/svg+xml; charset=UTF-8');
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');

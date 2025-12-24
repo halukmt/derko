@@ -1,23 +1,18 @@
 <?php
-// Harden session cookie flags (must be set before session_start)
-// Backward-compatible across older PHP versions on some hosts.
+// --- SESSION CONFIGURATION (Harmonized) ---
+$cookieDomain = '.derko-immobilien.de';
 $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
-if (defined('PHP_VERSION_ID') && PHP_VERSION_ID >= 70300) {
-  // PHP 7.3+: array form supports SameSite
-  @session_set_cookie_params([
-    'path' => '/',
-    'secure' => $isHttps,
-    'httponly' => true,
-    'samesite' => 'Lax'
-  ]);
-} else {
-  // Older PHP: fallbacks via ini_set + classic signature
-  @ini_set('session.cookie_secure', $isHttps ? '1' : '0');
-  @ini_set('session.cookie_httponly', '1');
-  // SameSite may not be supported; try if available
-  @ini_set('session.cookie_samesite', 'Lax');
-  @session_set_cookie_params(0, '/');
-}
+@ini_set('session.cookie_domain', $cookieDomain);
+@ini_set('session.cookie_samesite', 'Lax');
+@ini_set('session.cookie_secure', $isHttps ? '1' : '0');
+@ini_set('session.cookie_httponly', '1');
+@session_set_cookie_params([
+  'path' => '/',
+  'secure' => $isHttps,
+  'httponly' => true,
+  'samesite' => 'Lax',
+  'domain' => $cookieDomain
+]);
 @session_start();
 
 // --- Lightweight crash logging & fail-safe 500 handler --------------------

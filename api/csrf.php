@@ -1,11 +1,20 @@
 <?php
 // Simple CSRF token issuer. Returns JSON with token.
 // Stores token in session; single token reused per session.
+
+// --- SESSION CONFIGURATION (Harmonized) ---
+$cookieDomain = '.derko-immobilien.de';
+$isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+@ini_set('session.cookie_domain', $cookieDomain);
+@ini_set('session.cookie_samesite', 'Lax');
+@ini_set('session.cookie_secure', $isHttps ? '1' : '0');
+@ini_set('session.cookie_httponly', '1');
 @session_set_cookie_params([
   'path' => '/',
-  'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+  'secure' => $isHttps,
   'httponly' => true,
-  'samesite' => 'Lax'
+  'samesite' => 'Lax',
+  'domain' => $cookieDomain
 ]);
 @session_start();
 header('Content-Type: application/json; charset=UTF-8');
