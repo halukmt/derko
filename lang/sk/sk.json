@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "DERKO Nehnuteľnosti",
-    "description": "Prenájom ubytovania pre montérov a bytov – moderné, výhodné, centrálne.",
+    "description": "Prenájom bytov pre montérov v okolí Düsseldorfu – moderné, výhodné, blízko letiska a veľtrhu.",
     "skipToContent": "Preskočiť na obsah",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,20 +45,20 @@
     "cta": "Vyžiadať ponuku",
     "hero": {
       "title": "Byty pre montérov – moderné, férové, centrálne",
-      "lead": "Flexibilne rezervovateľné, plne vybavené ubytovania pre tímy, montérov a projektové pobyty. Priame spojenia, férové podmienky, spoľahlivý servis.",
+      "lead": "Flexibilne rezervovateľné, plne vybavené ubytovania pre tímy, montérov a projektové pobyty v blízkosti letiska a veľtrhu Düsseldorf. Priame spojenia, férové podmienky, spoľahlivý servis.",
       "ctaPrimary": "Vyžiadať ponuku",
       "ctaSecondary": "Zobraziť byty"
     },
     "features": {
       "heading": "Výhody",
       "komfort": { "title": "Komfort", "text": "Plne vybavené byty s Wi‑Fi, kuchyňou a parkovaním." },
-      "zentral": { "title": "Centrálne", "text": "Dobrá dostupnosť pre tímy a montérov – flexibilné a praktické." },
-      "fair": { "title": "Férové", "text": "Transparentné ceny a flexibilné možnosti rezervácie." }
+      "zentral": { "title": "Centrálne", "text": "Dobrá dostupnosť pre tímy a montérov, v blízkosti Düsseldorfu / letiska / veľtrhu." },
+      "fair": { "title": "Férové", "text": "Transparentné ceny a flexibilné možnosti rezervácie od 25 EUR / deň." }
     }
   },
   "wohnungen": {
     "headline": "Naše byty",
-    "description": "Vyberte si z rôznych ubytovaní – všetky sú plne vybavené a centrálne umiestnené.",
+    "description": "Vyberte si plne vybavené ubytovanie pre montérov v Duisburgu‑Großenbaum pri letisku a veľtrhu Düsseldorf – ideálne pre tímy a projektové pobyty.",
     "cards": {
       "w03_exklusiv": {
         "title": "Exkluzívne: byt pri letisku a veľtrhu Düsseldorf",
@@ -256,7 +256,7 @@
   },
   "kontakt": {
     "headline": "Ponuka",
-    "description": "Máte otázky alebo chcete dopytovať byt? Použite formulár alebo nám zavolajte.",
+    "description": "Hľadáte byt pre montérov pri Düsseldorfe? Vyplňte formulár alebo nám zavolajte a pripravíme nezáväznú ponuku.",
     "form": {
       "name": "Meno / Firma",
       "email": "E‑mail",

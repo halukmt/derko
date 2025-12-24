@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "DERKO Nieruchomości",
-    "description": "Wynajem pokoi dla monterów i mieszkań – nowocześnie, korzystnie, w centrum.",
+    "description": "Wynajem mieszkań dla monterów w okolicach Düsseldorfu – nowocześnie, korzystnie, blisko lotniska i targów.",
     "skipToContent": "Przejdź do treści",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,7 +45,7 @@
     "cta": "Poproś o ofertę",
     "hero": {
       "title": "Mieszkania dla monterów – nowoczesne, uczciwe, centralne",
-      "lead": "Elastycznie rezerwowane, w pełni wyposażone noclegi dla zespołów, monterów i pobytów projektowych. Bezpośrednie połączenia, uczciwe warunki, niezawodna obsługa.",
+      "lead": "Elastycznie rezerwowane, w pełni wyposażone noclegi dla zespołów, monterów i pobytów projektowych w pobliżu lotniska i targów w Düsseldorfie. Bezpośrednie połączenia, uczciwe warunki, niezawodna obsługa.",
       "ctaPrimary": "Poproś o ofertę",
       "ctaSecondary": "Zobacz mieszkania"
     },
@@ -57,17 +57,17 @@
       },
       "zentral": {
         "title": "Centralnie",
-        "text": "Dobre połączenia dla zespołów i monterów – elastycznie i praktycznie."
+        "text": "Dobre połączenia dla zespołów i monterów, w pobliżu Düsseldorfu / targów / lotniska."
       },
       "fair": {
         "title": "Uczciwie",
-        "text": "Przejrzyste ceny i elastyczne opcje rezerwacji."
+        "text": "Przejrzyste ceny i elastyczne opcje rezerwacji od 25 EUR / dzień."
       }
     }
   },
   "wohnungen": {
     "headline": "Nasze mieszkania",
-    "description": "Wybierz spośród różnych noclegów – wszystkie w pełni wyposażone i w centralnej lokalizacji.",
+    "description": "Wybierz w pełni wyposażone mieszkania pracownicze w Duisburgu‑Großenbaum, blisko lotniska i targów w Düsseldorfie – idealne dla ekip i pobytów projektowych.",
     "cards": {
       "w03_exklusiv": {
         "title": "Ekskluzywnie: mieszkanie przy lotnisku i targach w Düsseldorfie",
@@ -268,7 +268,7 @@
   },
   "kontakt": {
     "headline": "Oferta",
-    "description": "Masz pytania lub chcesz zapytać o mieszkanie? Skorzystaj z formularza lub zadzwoń do nas.",
+    "description": "Szukasz mieszkania dla ekipy w pobliżu Düsseldorfu? Skorzystaj z formularza lub zadzwoń do nas po niezobowiązującą ofertę.",
     "form": {
       "name": "Imię i nazwisko / Firma",
       "email": "E‑mail",

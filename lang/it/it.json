@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "DERKO Immobiliare",
-    "description": "Affitto di alloggi per operai e appartamenti – moderni, convenienti, centrali.",
+    "description": "Affitto di alloggi per lavoratori vicino a Düsseldorf – moderni, convenienti, a pochi minuti da aeroporto e fiera.",
     "skipToContent": "Salta al contenuto",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,21 +45,21 @@
     "cta": "Richiedi un'offerta",
     "hero": {
       "title": "Appartamenti per lavoratori – moderni, equi, centrali",
-      "lead": "Alloggi flessibili e completamente attrezzati per squadre, tecnici e soggiorni di progetto. Collegamenti diretti, condizioni eque, servizio affidabile.",
+      "lead": "Alloggi flessibili e completamente attrezzati per squadre, tecnici e soggiorni di progetto vicino all'aeroporto e alla fiera di Düsseldorf. Collegamenti diretti, condizioni eque, servizio affidabile.",
       "ctaPrimary": "Richiedi un'offerta",
       "ctaSecondary": "Vedi appartamenti"
     },
     "features": {
       "heading": "Vantaggi",
       "komfort": { "title": "Comfort", "text": "Appartamenti completamente attrezzati con Wi‑Fi, cucina e parcheggio." },
-      "zentral": { "title": "Centrale", "text": "Ottimi collegamenti per squadre e tecnici – flessibili e pratici." },
+      "zentral": { "title": "Centrale", "text": "Ottimi collegamenti per squadre e tecnici, vicino a Düsseldorf / fiera / aeroporto." },
       "fair": { "title": "Equo", "text": "Prezzi trasparenti e prenotazioni flessibili." }
     }
   },
 
   "wohnungen": {
     "headline": "I nostri appartamenti",
-    "description": "Scegli tra diverse soluzioni – tutte completamente attrezzate e in posizione centrale.",
+    "description": "Scegli appartamenti per lavoratori completamente attrezzati a Duisburg‑Großenbaum, vicino all'aeroporto e alla fiera di Düsseldorf – ideali per squadre e progetti.",
     "cards": {
       "w03_exklusiv": {
         "title": "Esclusivo: appartamento Aeroporto‑Fiera vicino a Düsseldorf",
@@ -259,7 +259,7 @@
 
   "kontakt": {
     "headline": "Offerta",
-    "description": "Domande o vuoi richiedere un appartamento? Usa il modulo o chiamaci.",
+    "description": "Cerchi un appartamento per la tua squadra vicino a Düsseldorf? Richiedi un'offerta senza impegno tramite il modulo o chiamaci.",
     "form": {
       "name": "Nome / Azienda",
       "email": "E‑mail",

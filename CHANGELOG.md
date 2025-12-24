@@ -1,3 +1,7 @@
+# [v1.0.6] - 2025-12-24
+### Changed
+- Updated marketing copy and SEO-oriented texts in all language JSON files (`home.hero.lead`, `home.features.zentral.text`, `home.features.fair.text`, and selected meta descriptions) to consistently emphasize worker apartments near Düsseldorf Airport and Exhibition Centre, including transparent pricing from 25 EUR per day.
+
 # [v1.0.5] - 2025-12-15
 ### Added
 - `api/contact_form_health.php`: token-protected healthcheck endpoint that exercises the server-side contact-mail path and returns HTTP 200 on success.

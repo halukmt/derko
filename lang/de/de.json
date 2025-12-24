@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "DERKO Immobilien",
-    "description": "Vermietung von Monteurzimmern und Wohnungen – modern, günstig, zentral.",
+    "title": "DERKO Immobilien – Monteurwohnungen & Apartments bei Düsseldorf",
+    "description": "Vermietung von Monteurzimmern und Wohnungen im Raum Düsseldorf – modern, günstig, zentral.",
     "skipToContent": "Zum Inhalt springen",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,7 +45,7 @@
     "cta": "Angebot anfragen",
     "hero": {
       "title": "Monteurwohnungen – modern, fair, zentral",
-      "lead": "Flexibel buchbare, vollständig ausgestattete Unterkünfte für Teams, Monteure und Projektaufenthalte. Direkte Anbindung, faire Konditionen, zuverlässiger Service.",
+      "lead": "Flexibel buchbare, vollständig ausgestattete Unterkünfte für Teams, Monteure und Projektaufenthalte, nähe Düsseldorf / Messe / Flughafen. Direkte Anbindung, faire Konditionen, zuverlässiger Service.",
       "ctaPrimary": "Angebot anfragen",
       "ctaSecondary": "Wohnungen ansehen"
     },
@@ -57,18 +57,18 @@
       },
       "zentral": {
         "title": "Zentral",
-        "text": "Gute Anbindung für Teams und Monteure – flexibel und praktisch."
+        "text": "Gute Anbindung für Teams und Monteure, nähe Düsseldorf / Messe / Flughafen."
       },
       "fair": {
         "title": "Fair",
-        "text": "Transparente Preise und flexible Buchungsoptionen."
+        "text": "Transparente Preise und flexible Buchungsoptionen ab 25 EUR / Tag."
       }
     }
   },
 
   "wohnungen": {
     "headline": "Unsere Wohnungen",
-    "description": "Wählen Sie aus verschiedenen Unterkünften – alle vollständig ausgestattet und zentral gelegen.",
+    "description": "Wählen Sie aus verschiedenen Unterkünften nahe Düsseldorf Flughafen und Messe – alle vollständig ausgestattet und zentral gelegen.",
     "cards": {
       "w03_exklusiv": {
         "title": "Exklusiv: Flughafen‑Messe Wohnung nähe Düsseldorf",

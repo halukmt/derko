@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "DERKO Real Estate",
-    "description": "Rental of worker rooms and apartments – modern, affordable, central.",
+    "description": "Worker and contractor apartments near Düsseldorf Airport and trade fair – modern, fully equipped, central in the Ruhr area.",
     "skipToContent": "Skip to content",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,7 +45,7 @@
     "cta": "Book now",
     "hero": {
       "title": "Contractor apartments – modern, fair, central",
-      "lead": "Flexible, fully equipped accommodation for teams, trades and project stays. Direct connections, fair terms, reliable service.",
+      "lead": "Flexible, fully equipped accommodation for teams, contractors and project stays near Düsseldorf Exhibition Centre and Airport. Direct connections, fair terms, reliable service.",
       "ctaPrimary": "Request an offer",
       "ctaSecondary": "View apartments"
     },
@@ -57,18 +57,18 @@
       },
       "zentral": {
         "title": "Central",
-        "text": "Good connections for teams – flexible and practical."
+        "text": "Good connections for teams and contractors, close to Düsseldorf Airport and Exhibition Centre."
       },
       "fair": {
         "title": "Fair",
-        "text": "Transparent pricing and flexible booking options."
+        "text": "Transparent pricing and flexible booking options from 25 EUR / day."
       }
     }
   },
 
   "wohnungen": {
     "headline": "Our apartments",
-    "description": "Choose from various accommodations – all fully equipped and centrally located.",
+    "description": "Choose from fully equipped worker apartments in Duisburg‑Großenbaum near Düsseldorf Airport and Messe – ideal for teams and project stays.",
     "cards": {
 
       "w03_exklusiv": {
@@ -272,7 +272,7 @@
   },
   "kontakt": {
     "headline": "Offer",
-    "description": "Questions or want to inquire about an apartment? Use the form or call us.",
+    "description": "Looking for worker apartments near Düsseldorf? Request your non‑binding offer via the form or give us a call.",
     "form": {
       "name": "Name / Company",
       "email": "Email",

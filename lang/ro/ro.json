@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "DERKO Imobiliare",
-    "description": "Închiriere camere pentru muncitori și apartamente – moderne, accesibile, centrale.",
+    "description": "Închiriere apartamente pentru muncitori în zona Düsseldorf – moderne, accesibile, aproape de aeroport și târg.",
     "skipToContent": "Sari la conținut",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,7 +45,7 @@
     "cta": "Solicită ofertă",
     "hero": {
       "title": "Apartamente pentru muncitori – moderne, corecte, centrale",
-      "lead": "Cazare flexibilă și complet utilată pentru echipe, meseriași și proiecte. Conexiuni directe, condiții corecte, servicii de încredere.",
+      "lead": "Cazare flexibilă și complet utilată pentru echipe, meseriași și proiecte în apropiere de aeroportul și târgul Düsseldorf. Conexiuni directe, condiții corecte, servicii de încredere.",
       "ctaPrimary": "Solicită ofertă",
       "ctaSecondary": "Vezi apartamentele"
     },
@@ -57,18 +57,18 @@
       },
       "zentral": {
         "title": "Central",
-        "text": "Conexiuni bune pentru echipe – flexibil și practic."
+        "text": "Conexiuni bune pentru echipe, aproape de Düsseldorf / aeroport / târg."
       },
       "fair": {
         "title": "Corect",
-        "text": "Prețuri transparente și opțiuni flexibile de rezervare."
+        "text": "Prețuri transparente și opțiuni flexibile de rezervare de la 25 EUR / zi."
       }
     }
   },
 
   "wohnungen": {
     "headline": "Apartamentele noastre",
-    "description": "Alege din mai multe tipuri de cazare – toate complet utilate și situate central.",
+    "description": "Alege apartamente pentru muncitori complet utilate în Duisburg‑Großenbaum, aproape de aeroportul și târgul Düsseldorf – ideale pentru echipe și proiecte.",
     "cards": {
       "w03_exklusiv": {
         "title": "Exclusiv: apartament Aeroport‑Târg lângă Düsseldorf",
@@ -271,7 +271,7 @@
 
   "kontakt": {
     "headline": "Ofertă",
-    "description": "Întrebări sau vrei să soliciți un apartament? Folosește formularul sau sună‑ne.",
+    "description": "Cauți cazare pentru echipă lângă Düsseldorf? Trimite o cerere prin formular sau sună‑ne pentru o ofertă fără obligații.",
     "form": {
       "name": "Nume / Firmă",
       "email": "E‑mail",

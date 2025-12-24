@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "DERKO Ingatlan",
-    "description": "Szerelőknek és munkásoknak szállások és lakások bérbeadása – modern, kedvező, központi helyen.",
+    "description": "Szerelő- és munkásszállások Düsseldorf környékén – modern, kedvező, a repülőtérhez és vásárhoz közel.",
     "skipToContent": "Ugrás a tartalomra",
     "brandMain": "DERKO",
     "brandSub": "Immobilien",
@@ -45,7 +45,7 @@
     "cta": "Ajánlatkérés",
     "hero": {
       "title": "Szerelői lakások – modern, korrekt, központi",
-      "lead": "Rugalmasan foglalható, teljesen felszerelt szállások csapatoknak, szerelőknek és projekt tartózkodásokra. Közvetlen kapcsolatok, korrekt feltételek, megbízható szolgáltatás.",
+      "lead": "Rugalmasan foglalható, teljesen felszerelt szállások csapatoknak, szerelőknek és projekt tartózkodásokra a düsseldorfi repülőtér és vásár közelében. Közvetlen kapcsolatok, korrekt feltételek, megbízható szolgáltatás.",
       "ctaPrimary": "Ajánlatkérés",
       "ctaSecondary": "Lakások megtekintése"
     },
@@ -57,17 +57,17 @@
       },
       "zentral": {
         "title": "Központi",
-        "text": "Jó közlekedés csapatoknak és szerelőknek – rugalmas és praktikus."
+        "text": "Jó közlekedés csapatoknak és szerelőknek, a düsseldorfi repülőtér és vásár közelében."
       },
       "fair": {
         "title": "Korrekt",
-        "text": "Átlátható árak és rugalmas foglalási lehetőségek."
+        "text": "Átlátható árak és rugalmas foglalási lehetőségek már 25 EUR / nap ártól."
       }
     }
   },
   "wohnungen": {
     "headline": "Lakásaink",
-    "description": "Válasszon különböző szállásaink közül – mind teljesen felszerelt és központi elhelyezkedésű.",
+    "description": "Válasszon teljesen felszerelt munkásszálló lakásaink közül Duisburg‑Großenbaumban, a düsseldorfi repülőtér és vásár közelében – ideális csapatoknak és projektekre.",
     "cards": {
       "w03_exklusiv": {
         "title": "Exkluzív: lakás a düsseldorfi repülőtér és vásár közelében",
@@ -268,7 +268,7 @@
   },
   "kontakt": {
     "headline": "Ajánlatkérés",
-    "description": "Kérdése van vagy lakást szeretne foglalni? Használja az űrlapot vagy hívjon minket.",
+    "description": "Szerelőknek keres lakást Düsseldorf közelében? Kérjen kötelezettségmentes ajánlatot űrlapunkon vagy telefonon.",
     "form": {
       "name": "Név / Cég",
       "email": "E‑mail",
