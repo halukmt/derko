@@ -36,7 +36,19 @@ Options -MultiViews
   AddType image/webp .webp
 </IfModule>
 
-# Browser caching for static assets
+# 1. SICHERHEIT: Log-Dateien und Configs sperren (NEU)
+# Verhindert, dass jemand error.log oder config.local.php im Browser öffnet
+<FilesMatch "\.(log|lock|local\.php)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 2. PERFORMANCE: Browser caching (DEIN ALTER CODE)
 <FilesMatch "\.(avif|webp|png|jpe?g|svg|css|js|woff2)$">
   <IfModule mod_expires.c>
     ExpiresActive On
@@ -46,6 +58,7 @@ Options -MultiViews
     Header set Cache-Control "public, max-age=2592000, immutable"
   </IfModule>
 </FilesMatch>
+
 
 # Pretty URLs and 301 redirects
 <IfModule mod_rewrite.c>
