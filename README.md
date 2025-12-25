@@ -1,3 +1,42 @@
+# Debug-Modus & Logging
+
+## Debug-Modus aktivieren/deaktivieren
+
+Das System unterstützt einen zentralen Debug-Modus, der das Logging-Verhalten beeinflusst und zusätzliche Diagnose-Informationen ausgibt.
+
+### Debug-Modus aktivieren
+
+- **Global (empfohlen):**
+	- In `.htaccess` setzen:
+		```
+		SetEnv DERKO_DEBUG 1
+		```
+	- Alternativ in `api/config.local.php`:
+		```php
+		define('DERKO_DEBUG', true);
+		```
+	- Sobald aktiviert, werden zusätzliche Debug-Informationen und Logs (z.B. `api/logs/error.log`) geschrieben. Fehler und sicherheitsrelevante Ereignisse werden ausführlich protokolliert.
+
+- **CAPTCHA-spezifisch:**
+	- In `api/captcha.php` kann temporär `$debug = true;` gesetzt werden.
+	- Dann wird zusätzlich `api/logs/captcha_debug.log` mit detaillierten CAPTCHA-Diagnosen erstellt.
+
+### Debug-Modus deaktivieren
+
+- In `.htaccess`:
+	```
+	SetEnv DERKO_DEBUG 0
+	```
+- Oder in `api/config.local.php`:
+	```php
+	define('DERKO_DEBUG', false);
+	```
+- Im deaktivierten Zustand werden nur Fehler und sicherheitsrelevante Ereignisse geloggt (kein Debug-Output).
+
+**Hinweis:**
+- Die globale Einstellung überschreibt lokale Werte. Für produktive Umgebungen Debug immer deaktivieren!
+- Log-Verzeichnisse: `api/logs/error.log` (global), `api/logs/captcha_debug.log` (nur bei aktiviertem CAPTCHA-Debug).
+
 # Weekly Mailer (CRON)
 
 A script for sending a configurable weekly email (e.g., report, reminder) via PHP mail().

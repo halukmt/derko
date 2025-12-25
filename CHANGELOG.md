@@ -1,3 +1,18 @@
+# [v1.0.7] - 2025-12-25
+### Added
+- New friendly error page for invalid/expired CAPTCHA: `pages/error-captcha.html` (shown on browser POST fallback, no more cryptic JSON for users).
+- i18n: Added/updated `error.captcha` keys (title/message) in all language JSON files for consistent multilingual error display.
+
+### Changed
+- `api/sendmail.php`: Now detects browser POSTs and redirects to `/pages/error-captcha.html` on CAPTCHA failure (instead of returning JSON). AJAX requests still receive JSON as before.
+- Improved error handling and user experience for contact form failures (CAPTCHA/session/rate-limit) in both JS and non-JS scenarios.
+
+### Fixed
+- Ensured all error pages and i18n keys are present and correct in all supported languages (de, en, pl, hu, it, ro, sk, cs, bg).
+
+### Security
+- No sensitive error details are exposed to end users; all error responses are now user-friendly and localized.
+
 # [v1.0.6] - 2025-12-24
 ### Changed
 - Updated marketing copy and SEO-oriented texts in all language JSON files (`home.hero.lead`, `home.features.zentral.text`, `home.features.fair.text`, and selected meta descriptions) to consistently emphasize worker apartments near Düsseldorf Airport and Exhibition Centre, including transparent pricing from 25 EUR per day.

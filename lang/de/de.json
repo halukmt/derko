@@ -352,6 +352,10 @@
       "title": "Sitzung abgelaufen",
       "message": "Ihre Sitzung ist abgelaufen. Bitte laden Sie die Seite neu und senden Sie das Formular erneut."
     },
+    "captcha": {
+      "title": "CAPTCHA ungültig",
+      "message": "Der Sicherheitscode war leider falsch oder abgelaufen. Bitte laden Sie die Seite neu und versuchen Sie es erneut."
+    },
     "rate": {
       "title": "Bitte kurz warten",
       "message": "Sie haben soeben eine Anfrage gesendet. Bitte warten Sie einen Moment und versuchen Sie es erneut.",

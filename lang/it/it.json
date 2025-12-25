@@ -303,7 +303,7 @@
 
   "wohnungDetail": { "headline": "Dettagli appartamento", "cta": "Richiedi un'offerta", "meta": { "title": "Dati principali" }, "amenities": { "title": "Servizi" }, "description": { "title": "Descrizione" }, "gallery": { "showMore": "Più immagini", "showLess": "Meno immagini", "photo": "Foto" } },
 
-  "error": { "session": { "title": "Sessione scaduta", "message": "La tua sessione è scaduta. Ricarica la pagina e invia di nuovo il modulo." }, "rate": { "title": "Attendi un momento", "message": "Hai appena inviato una richiesta. Attendi un momento e riprova.", "messageWithWait": "Hai appena inviato una richiesta. Attendi circa {seconds} secondi e riprova." }, "backToContact": "Torna al modulo di contatto" },
+  "error": { "session": { "title": "Sessione scaduta", "message": "La tua sessione è scaduta. Ricarica la pagina e invia di nuovo il modulo." }, "captcha": { "title": "CAPTCHA non valido", "message": "Il codice di sicurezza è errato o scaduto. Ricarica la pagina e riprova." }, "rate": { "title": "Attendi un momento", "message": "Hai appena inviato una richiesta. Attendi un momento e riprova.", "messageWithWait": "Hai appena inviato una richiesta. Attendi circa {seconds} secondi e riprova." }, "backToContact": "Torna al modulo di contatto" },
 
   "confirmation": { "headline": "Richiesta inviata", "description": "Abbiamo ricevuto la tua richiesta.", "message": "Grazie per l'interesse nei nostri appartamenti.<br>Verificheremo i tuoi dati e ti contatteremo al più presto.<br><br>Cordiali saluti,<br>Il team DERKO." }
 }

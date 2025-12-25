@@ -334,6 +334,10 @@
       "title": "Sesja wygasła",
       "message": "Twoja sesja wygasła. Odśwież stronę i wyślij formularz ponownie."
     },
+    "captcha": {
+      "title": "Nieprawidłowy CAPTCHA",
+      "message": "Kod zabezpieczający jest nieprawidłowy lub wygasł. Odśwież stronę i spróbuj ponownie."
+    },
     "rate": {
       "title": "Prosimy o chwilę cierpliwości",
       "message": "Właśnie wysłałeś/aś zapytanie. Poczekaj moment i spróbuj ponownie.",

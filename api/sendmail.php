@@ -185,6 +185,25 @@ if (!function_exists('random_int')){
 function get_post($key){ return isset($_POST[$key]) ? trim((string)$_POST[$key]) : ''; }
 function safe_header($v){ return preg_replace('/[\r\n]+/', ' ', $v); }
 
+function derko_wants_json_response(){
+  // If the client explicitly accepts JSON, keep API-style responses.
+  $accept = strtolower($_SERVER['HTTP_ACCEPT'] ?? '');
+  if (strpos($accept, 'application/json') !== false) return true;
+  // Explicit XHR marker (some clients)
+  $xrw = strtolower($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '');
+  if ($xrw === 'xmlhttprequest') return true;
+  return false;
+}
+
+function derko_is_browser_navigation(){
+  // Browser form submits usually use Sec-Fetch-Mode: navigate
+  $mode = strtolower($_SERVER['HTTP_SEC_FETCH_MODE'] ?? '');
+  if ($mode === 'navigate') return true;
+  // Fallback: typical browser Accept header includes text/html
+  $accept = strtolower($_SERVER['HTTP_ACCEPT'] ?? '');
+  return (strpos($accept, 'text/html') !== false) && !derko_wants_json_response();
+}
+
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
   http_response_code(405);
   header('Allow: POST');
@@ -298,6 +317,12 @@ if ($captcha === '' || !isset($_SESSION['captcha_code']) || strcasecmp(trim($cap
 }
 // Invalidate used code regardless
 unset($_SESSION['captcha_code']);
+
+// Friendly browser redirect for CAPTCHA failures (avoid showing raw JSON)
+if (in_array('captcha', $errors, true) && derko_is_browser_navigation() && !derko_wants_json_response()){
+  header('Location: /pages/error-captcha.html', true, 303);
+  exit;
+}
 
 // --- Rate limiting (only after CSRF is valid) ------------------------------
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';

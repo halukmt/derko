@@ -355,6 +355,10 @@
       "title": "Session expired",
       "message": "Your session has expired. Please reload the page and submit the form again."
     },
+    "captcha": {
+      "title": "CAPTCHA invalid",
+      "message": "The security code was incorrect or expired. Please reload the page and try again."
+    },
     "rate": {
       "title": "Please wait a moment",
       "message": "You have just sent a request. Please wait a moment and try again.",

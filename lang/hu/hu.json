@@ -341,6 +341,10 @@
       "title": "Munkamenet lejárt",
       "message": "A munkamenet lejárt. Kérjük, frissítse az oldalt és küldje be újra az űrlapot."
     },
+    "captcha": {
+      "title": "Érvénytelen CAPTCHA",
+      "message": "A biztonsági kód hibás vagy lejárt. Kérjük, frissítse az oldalt és próbálja újra."
+    },
     "rate": {
       "title": "Kis türelmet kérünk",
       "message": "Épp most küldött egy kérést. Kérjük, várjon egy pillanatot, majd próbálja újra.",
