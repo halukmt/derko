@@ -35,10 +35,26 @@
   function setupIncludes(){
     const header = document.querySelector('[data-component="header"]');
     const footer = document.querySelector('[data-component="footer"]');
-  const inPages = location.pathname.includes('/pages/');
-  const compBase = inPages ? '../components/' : 'components/';
-  if (header) injectComponent(header, compBase + 'header.html');
-  if (footer) injectComponent(footer, compBase + 'footer.html');
+    const inPages = location.pathname.includes('/pages/');
+    const compBase = inPages ? '../components/' : 'components/';
+    if (header) injectComponent(header, compBase + 'header.html');
+    if (footer) injectComponent(footer, compBase + 'footer.html');
+
+    // WhatsApp Floating Button dynamisch einfügen
+    // Nur einfügen, wenn noch nicht vorhanden
+    if (!document.getElementById('wa-fab-btn')) {
+      fetch(compBase + 'whatsapp-button.html', { credentials: 'same-origin' })
+        .then(res => res.ok ? res.text() : null)
+        .then(html => {
+          if (!html) return;
+          const wrap = document.createElement('div');
+          wrap.innerHTML = html.trim();
+          const btn = wrap.firstElementChild;
+          if (btn) document.body.appendChild(btn);
+          if (window.applyTranslations) window.applyTranslations(btn);
+        })
+        .catch(()=>{});
+    }
 
   function adjustNavLinks(){
     // Brand always root

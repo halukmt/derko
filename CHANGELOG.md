@@ -1,3 +1,22 @@
+# [v1.1.0] - 2026-01-09
+### Added
+- WhatsApp Floating Action Button: Added a persistent WhatsApp contact button to all pages, positioned bottom-right and always visible (floating, scrolls with viewport).
+- New HTML component `components/whatsapp-button.html` for modular WhatsApp button markup.
+- JavaScript logic in `assets/js/whatsapp-fab.js` for dynamic injection of the WhatsApp button on every page.
+
+### Changed
+- CSS: Unified and refactored `.wa-fab` styles for container alignment and responsive positioning. Button now aligns with main content container on all screen sizes.
+- CSS: Ensured WhatsApp button icon is always white and visually consistent.
+- CSS: Adjusted z-index so the cookie banner overlays the WhatsApp button when visible.
+
+### Fixed
+- Fixed CSP violation by removing all inline styles from WhatsApp button markup and moving all styling to CSS.
+- Fixed responsive alignment issues for WhatsApp button between mobile and desktop breakpoints.
+- Fixed duplicate and conflicting `.wa-fab` CSS blocks in `style.css`.
+
+### Security
+- WhatsApp button implementation respects strict CSP and accessibility requirements (ARIA, i18n, visually hidden text).
+
 # [v1.0.7] - 2025-12-25
 ### Added
 - New friendly error page for invalid/expired CAPTCHA: `pages/error-captcha.html` (shown on browser POST fallback, no more cryptic JSON for users).

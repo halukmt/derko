@@ -111,9 +111,8 @@ a:active { color: var(--brand-dark-active); }
   line-height: 1.25;
   border-radius: .6rem;
   box-shadow: 0 2px 4px rgba(0,0,0,.08);
-  text-decoration: none;
-  letter-spacing: .25px;
-  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .15s ease;
+ letter-spacing: .25px;
+ transition: background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .15s ease;
 }
 
 .btn:focus-visible,
@@ -122,6 +121,7 @@ a:active { color: var(--brand-dark-active); }
 
 /* Remove outline visual difference – ensure outline variant (if present in markup) matches primary */
 .btn-outline-primary { background: var(--brand-dark); color: #fff; }
+
 
 /* Normalize .btn-lg to unified size so only one look remains */
 .btn-lg { padding: .65rem 1.25rem; font-size: 1rem; border-radius: .6rem; }
@@ -305,8 +305,8 @@ footer .container{ row-gap: .5rem; flex-wrap: wrap; }
   - Circular buttons using brand accent background
   - Accessible (focus ring, hidden label spans)
 ---------------------------------------------- */
-.social-links{ gap:.75rem; }
-.social-links .social-link{ display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:50%; background:var(--brand-light-bg); border:1px solid var(--brand-border); color:var(--brand-primary); position:relative; transition: background .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease; }
+.social-links{ gap:.75rem;}
+.social-links .social-link{ text-decoration: none; display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:50%; background:var(--brand-light-bg); border:1px solid var(--brand-border); color:var(--brand-primary); position:relative; transition: background .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease; }
 .social-links .social-link:focus-visible{ outline:none; box-shadow: var(--focus-ring); }
 .social-links .social-link:hover, .social-links .social-link:focus{ background:var(--brand-primary); color:#fff; text-decoration:none; }
 /* Force icon glyphs to invert (white) on interactive states overriding global icon color rule */
@@ -645,4 +645,89 @@ body{ overflow-y: scroll; }
 /* hide controls if not needed (JS may toggle) */
 .partners-band[data-controls="hidden"] .partners-control{ display:none; }
 
+/* WhatsApp Floating Action Button */
+.wa-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+  font-size: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size:2.2rem;
+}
 
+.wa-fab i {
+  color: #fff !important;
+}
+
+  /*--brand-primary: #B69B5C;
+  --brand-dark: #505C61;*/
+
+.wa-fab:hover, .wa-fab:focus {
+
+  background: #1ebe5d;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  outline: none;
+  transform: scale(1.06);
+}
+.wa-fab:active {
+  background: #128c7e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transform: scale(0.97);
+}
+.wa-fab i {
+  margin: 0 auto;
+}
+.wa-fab .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+@media (max-width: 576px) {
+  .wa-fab {
+    width: 48px;
+    height: 48px;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    font-size: 1.6rem;
+
+  }
+}
+
+@media (min-width: 1200px) {
+  .wa-fab {
+    right: calc((100vw - 1200px)/2 + 2.2rem);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 1200px) {
+  .wa-fab {
+    right: calc((100vw - 540px)/2 + 0.3rem); /* 540px ist die Bootstrap container-sm Breite */
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .wa-fab {
+    right: calc((100vw - 720px)/2 + 0.3rem); /* container-md */
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .wa-fab {
+    right: calc((100vw - 960px)/2 + 0.3rem); /* container-lg */
+  }
+}
