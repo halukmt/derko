@@ -27,7 +27,8 @@
     "home": "Domov",
     "wohnungen": "Byty",
     "ueberUns": "O nás",
-    "kontakt": "Ponuka"
+    "kontakt": "Ponuka",
+    "faq": "FAQ"
   },
   "footer": {
     "copyright": "© 2025 DERKO Immobilien – všetky práva vyhradené",
@@ -297,5 +298,53 @@
   "notFound": { "title": "404", "headline": "Stránka sa nenašla", "description": "Požadovaná stránka sa nenašla alebo už neexistuje.", "backHome": "Späť na úvod" },
   "wohnungDetail": { "headline": "Detaily bytu", "cta": "Vyžiadať ponuku", "meta": { "title": "Základné údaje" }, "amenities": { "title": "Vybavenie" }, "description": { "title": "Popis" }, "gallery": { "showMore": "Viac obrázkov", "showLess": "Menej obrázkov", "photo": "Fotografia" } },
   "error": { "session": { "title": "Relácia vypršala", "message": "Vaša relácia vypršala. Obnovte stránku a odošlite formulár znova." }, "captcha": { "title": "Neplatné CAPTCHA", "message": "Bezpečnostný kód je nesprávny alebo vypršal. Obnovte stránku a skúste to znova." }, "rate": { "title": "Prosíme o chvíľku strpenia", "message": "Práve ste odoslali dopyt. Počkajte chvíľu a skúste znova.", "messageWithWait": "Práve ste odoslali dopyt. Počkajte približne {seconds} sekúnd a skúste znova." }, "backToContact": "Späť na kontaktný formulár" },
-  "confirmation": { "headline": "Dopyt odoslaný", "description": "Váš dopyt sme prijali.", "message": "Ďakujeme za váš záujem o naše byty.<br>Skontrolujeme vaše údaje a ozveme sa vám čo najskôr.<br><br>S pozdravom,<br>Tím DERKO." }
+  "confirmation": { "headline": "Dopyt odoslaný", "description": "Váš dopyt sme prijali.", "message": "Ďakujeme za váš záujem o naše byty.<br>Skontrolujeme vaše údaje a ozveme sa vám čo najskôr.<br><br>S pozdravom,<br>Tím DERKO." },
+
+  "faq": {
+    "metaTitle": "FAQ – Často kladené otázky o montážnych apartmánoch",
+    "metaDescription": "Odpovede na často kladené otázky o našich montážnych apartmánoch v Düsseldorfskej oblasti: vybavenie, poloha, ceny, rezervácia a ďalšie.",
+    "headline": "Často kladené otázky (FAQ)",
+    "items": {
+      "guenstige-monteurzimmer": {
+        "q": "Kde nájdem lacné montážne izby v Düsseldorfe s dobrým napojením na diaľnicu?",
+        "a": "DERKO Nehnuteľnosti ponúka cenovo výhodné montážne izby v Düsseldorfe, ktoré sú strategicky dobre napojené na diaľnice A44, A52 a A3. Umožňuje to remeselníkom dostať sa na stavby v Rath, Derendorf alebo v centre mesta v najkratšom čase. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Na naše ubytovania</a>"
+      },
+      "provisionsfreie-messewohnungen": {
+        "q": "Ponúkate apartmány bez provízií pre návštevníkov veľtrhov v Düsseldorfe?",
+        "a": "Áno, naše apartmány na veľtrhy v Düsseldorfe sa prenajímajú bez provízie priamo. Poskytujú pohodlnú a cenovo výhodnejšiu alternatívu k drahým hotelom počas veľkých veľtrhov, ako sú Drupa alebo K. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Zistite viac</a>"
+      },
+      "handwerker-teams-duisburg": {
+        "q": "Sú tu ubytovania pre tímy remeselníkov v južnom Duisburgu?",
+        "a": "Máme priestranné ubytovania v rôznych mestských častiach Duisburgu, ktoré sú ideálne pre väčšie tímy remeselníkov a stavebné pracovníkov. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Naše tímové apartmány</a>"
+      },
+      "entfernung-flughafen": {
+        "q": "Ako ďaleko je ubytovanie od letiska Düsseldorf (DUS)?",
+        "a": "Mnohé z našich nehnuteľností sú vzdialené len 10–15 minút od letiska Düsseldorf (DUS). To je ideálne pre projektových pracovníkov, logistických špecialistov a medzinárodných hostí. <a href=\"/pages/wohnung-detail.html?id=w05_dus_1\" class=\"inline-link\">Apartmány pri letisku</a>"
+      },
+      "ausstattung-wlan-kueche": {
+        "q": "Sú montážne izby vybavené Wi-Fi a vlastnou kuchyňou?",
+        "a": "Všetky naše montážne izby a apartmány majú vysokorýchlostnú Wi-Fi a úplne vybavenú kuchyňu na vlastný chov, aby bol pobyt čo najpohodlnejší. <a href=\"/pages/wohnung-detail.html?id=w04_exklusiv_2\" class=\"inline-link\">Detaily vybavenia</a>"
+      },
+      "parkmoeglichkeiten": {
+        "q": "Sú parkovacie miesta pre furgóny alebo nákladné autá pri ubytovaní?",
+        "a": "Pri výbere našich nehnuteľností sa zameriavame na dobré parkovacie možnosti na verejných priestranstvách alebo priamo pri objekte, aby väčšie furgóny a firemné vozidlá mohli byť bezpečne zaparkované. <a href=\"/pages/wohnung-detail.html?id=w06_dus_2\" class=\"inline-link\">Pozrite si parkovacie možnosti</a>"
+      },
+      "kurzfristige-buchung": {
+        "q": "Ako rýchlo si môžem zarezervovať montážne ubytovanie v Duisburgu?",
+        "a": "Často umožňujeme krátkodobé rezervácie montážnych izieb v Duisburgu a Düsseldorfe. Kontaktujte nás priamo telefonicky alebo e-mailom, aby ste sa dozvedeli o aktuálnej dostupnosti. <a href=\"/pages/wohnung-detail.html?id=w07_dus_3\" class=\"inline-link\">Požiadajte o ponuku teraz</a>"
+      },
+      "preise-uebernachtung": {
+        "q": "Koľko stojí nočný pobyt montérov v oblasti Düsseldorf/Duisburg?",
+        "a": "Ceny sa líšia v závislosti od doby pobytu a počtu osôb. Ponúkame však spravodlivé a konkurencieschopné podmienky, ktoré sú výrazne nižšie ako zvyčajné hotelové ceny v regióne. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Pozrite si ceny</a>"
+      },
+      "rabatte-firmen": {
+        "q": "Ponúkate zľavy pre firmy pri dlhodobom prenájme alebo veľkých skupinách?",
+        "a": "Áno, pre firmy plánujúce dlhodobý prenájom alebo ktoré musia ubytovať veľké tímy, ponúkame atraktívne stupňované zľavy. Spýtajte sa na naše podmienky B2B. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Ponuky B2B</a>"
+      },
+      "bettwaesche-handtuecher": {
+        "q": "Sú posteľná bielizeň a uteráky zahrnuté v montážnom apartmáne?",
+        "a": "Pri našich ubytovaniach zvyčajne zahrnúť úvodní posteľnú bielizeň, takže vašich zamestnancov nemusí nič znepokojovať a môžu sa okamžite nasťahovať. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Na vybavenie</a>"
+      }
+    }
+  }
 }

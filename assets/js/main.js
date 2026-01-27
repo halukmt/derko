@@ -71,6 +71,7 @@
         'nav-wohnungen': {prod: '/wohnungen', local: '/pages/wohnungen.html'},
         'nav-ueberuns': {prod: '/ueber-uns', local: '/pages/ueber-uns.html'},
         'nav-kontakt': {prod: '/kontakt', local: '/pages/kontakt.html'},
+        'nav-faq': {prod: '/faq', local: '/pages/faq.html'},
         'nav-agb': {prod: '/agb', local: '/pages/agb.html'},
         'nav-impressum': {prod: '/impressum', local: '/pages/impressum.html'}
       };
@@ -125,7 +126,8 @@
         'wohnungen.html': '#nav-wohnungen',
         'wohnung-detail.html': '#nav-wohnungen', // Detailseite ebenfalls Wohnungen aktiv setzen
         'ueber-uns.html': '#nav-ueberuns',
-        'kontakt.html': '#nav-kontakt'
+        'kontakt.html': '#nav-kontakt',
+        'faq.html': '#nav-faq'
       };
       const sel = map[p] || (p === '' ? '#nav-home' : null);
       if (!sel) return;

@@ -27,7 +27,8 @@
     "home": "Start",
     "wohnungen": "Wohnungen",
     "ueberUns": "Über uns",
-    "kontakt": "Angebot"
+    "kontakt": "Angebot",
+    "faq": "FAQ"
   },
   "footer": {
     "copyright": "© 2025 DERKO Immobilien – alle Rechte vorbehalten",
@@ -368,5 +369,52 @@
     "headline": "Anfrage gesendet",
     "description": "Wir haben Ihre Anfrage erhalten.",
     "message": "Vielen Dank für Ihr Interesse an unseren Wohnungen.<br>Wir prüfen Ihre Angaben und melden uns so schnell wie möglich bei Ihnen.<br><br>Herzliche Grüße,<br>Ihr DERKO-Team."
+  },
+  "faq": {
+    "metaTitle": "FAQ – Häufig gestellte Fragen zu Monteurzimmern & Unterkünften",
+    "metaDescription": "Antworten auf häufige Fragen zu unseren Monteurwohnungen im Raum Düsseldorf und Duisburg: Ausstattung, Lage, Preise, Buchung und mehr.",
+    "headline": "Häufig gestellte Fragen (FAQ)",
+    "items": {
+      "guenstige-monteurzimmer": {
+        "q": "Wo gibt es günstige Monteurzimmer in Düsseldorf mit guter Autobahnanbindung?",
+        "a": "Derko Immobilien bietet preiswerte Monteurzimmer in Düsseldorf an, die strategisch günstig an die A44, A52 und A3 angebunden sind. So erreichen Handwerker Baustellen in Rath, Derendorf oder dem Zentrum in kürzester Zeit. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Zu unseren Unterkünften</a>"
+      },
+      "provisionsfreie-messewohnungen": {
+        "q": "Bieten Sie provisionsfreie Wohnungen für Messebesucher in Düsseldorf an?",
+        "a": "Ja, unsere Messewohnungen in Düsseldorf werden provisionsfrei direkt vermietet. Sie bieten eine komfortable und kostengünstige Alternative zu teuren Hotels während großer Messen wie der Drupa oder K. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Mehr erfahren</a>"
+      },
+      "handwerker-teams-duisburg": {
+        "q": "Gibt es Unterkünfte für Handwerker-Teams in Duisburg-Süd?",
+        "a": "Wir verfügen über geräumige Unterkünfte in verschiedenen Stadtteilen von Duisburg, die ideal für größere Handwerker-Teams und Bautrupps geeignet sind. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Unsere Teamwohnungen</a>"
+      },
+      "entfernung-flughafen": {
+        "q": "Wie weit ist die Unterkunft vom Flughafen Düsseldorf (DUS) entfernt?",
+        "a": "Viele unserer Immobilien liegen nur 10–15 Minuten vom Flughafen Düsseldorf (DUS) entfernt. Dies ist ideal für Projektmitarbeiter, Logistiker und internationale Gäste. <a href=\"/pages/wohnung-detail.html?id=w05_dus_1\" class=\"inline-link\">Wohnungen in Flughafennähe</a>"
+      },
+      "ausstattung-wlan-kueche": {
+        "q": "Sind die Monteurwohnungen mit WLAN und eigener Küche ausgestattet?",
+        "a": "Alle unsere Monteurzimmer und Wohnungen verfügen über schnelles WLAN und eine voll ausgestattete Küche zur Selbstversorgung, um den Aufenthalt so angenehm wie möglich zu gestalten. <a href=\"/pages/wohnung-detail.html?id=w04_exklusiv_2\" class=\"inline-link\">Details zur Ausstattung</a>"
+      },
+      "parkmoeglichkeiten": {
+        "q": "Gibt es Parkmöglichkeiten für Transporter oder LKW an der Unterkunft?",
+        "a": "Bei der Auswahl unserer Immobilien achten wir auf gute Parkmöglichkeiten im öffentlichen Raum oder direkt am Objekt, damit auch größere Transporter und Firmenfahrzeuge sicher abgestellt werden können. <a href=\"/pages/wohnung-detail.html?id=w06_dus_2\" class=\"inline-link\">Parkmöglichkeiten ansehen</a>"
+      },
+      "kurzfristige-buchung": {
+        "q": "Wie kurzfristig kann ich eine Monteurunterkunft in Duisburg buchen?",
+        "a": "Wir ermöglichen oft kurzfristige Buchungen für Monteurzimmer in Duisburg und Düsseldorf. Kontaktieren Sie uns direkt per Telefon oder E-Mail für eine tagesaktuelle Verfügbarkeit. <a href=\"/pages/wohnung-detail.html?id=w07_dus_3\" class=\"inline-link\">Jetzt anfragen</a>"
+      },
+      "preise-uebernachtung": {
+        "q": "Was kostet eine Übernachtung für Monteure im Raum Düsseldorf/Duisburg?",
+        "a": "Die Preise variieren je nach Aufenthaltsdauer und Personenanzahl. Wir bieten jedoch faire und marktgerechte Konditionen, die deutlich unter den üblichen Hotelpreisen der Region liegen. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Preise ansehen</a>"
+      },
+      "rabatte-firmen": {
+        "q": "Bieten Sie Rabatte für Firmen bei Langzeitmiete oder Großgruppen an?",
+        "a": "Ja, für Firmen, die Langzeitmieten planen oder große Teams unterbringen müssen, bieten wir attraktive Rabattstaffelungen an. Fragen Sie nach unseren B2B-Konditionen. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">B2B-Angebote</a>"
+      },
+      "bettwaesche-handtuecher": {
+        "q": "Sind Bettwäsche und Handtücher in der Handwerkerwohnung inklusive?",
+        "a": "In der Regel ist die Erstausstattung mit Bettwäsche bei unseren Unterkünften inklusive, sodass sich Ihre Mitarbeiter um nichts kümmern müssen und sofort einziehen können. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Zur Ausstattung</a>"
+      }
+    }
   }
 }
