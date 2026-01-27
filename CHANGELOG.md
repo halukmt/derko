@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v1.3.0] - 2026-01-27
+### Added
+- New FAQ page at `/faq` with an i18n-ready accordion layout and SEO metadata (canonical + hreflang).
+- Structured data: automatic `FAQPage` JSON-LD generation from the translated FAQ content via `assets/js/faq.js`.
+
+### Changed
+- Routing/SEO: Added pretty URL routing and canonical redirect rules for the FAQ page in `.htaccess`.
+- Navigation: Added "FAQ" and reordered navigation to surface it before "Angebot".
+- Sitemap: Added the FAQ page.
+- i18n: Updated translations for the new FAQ content across supported locales.
+- PR: https://github.com/halukmt/derko/pull/62
+
+### Fixed
+- i18n: Corrected bed count from 7 to 8 across multiple language files.
+
 ## [v1.2.0] - 2026-01-27
 ### Changed
 - i18n: Removed the hard-coded “from 25 EUR / day” price claim from the Home “Fair” feature text across locales (de, en, pl, hu, ro, bg, cs, sk).
@@ -494,6 +509,7 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v1.3.0]: https://github.com/halukmt/derko/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/halukmt/derko/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/halukmt/derko/compare/v1.0.7...v1.1.0
 [v1.0.7]: https://github.com/halukmt/derko/compare/v1.0.6...v1.0.7
