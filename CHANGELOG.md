@@ -1,4 +1,15 @@
-# [v1.1.0] - 2026-01-09
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+## [v1.2.0] - 2026-01-27
+### Changed
+- i18n: Removed the hard-coded “from 25 EUR / day” price claim from the Home “Fair” feature text across locales (de, en, pl, hu, ro, bg, cs, sk).
+
+## [v1.1.0] - 2026-01-09
 ### Added
 - WhatsApp Floating Action Button: Added a persistent WhatsApp contact button to all pages, positioned bottom-right and always visible (floating, scrolls with viewport).
 - New HTML component `components/whatsapp-button.html` for modular WhatsApp button markup.
@@ -17,7 +28,7 @@
 ### Security
 - WhatsApp button implementation respects strict CSP and accessibility requirements (ARIA, i18n, visually hidden text).
 
-# [v1.0.7] - 2025-12-25
+## [v1.0.7] - 2025-12-25
 ### Added
 - New friendly error page for invalid/expired CAPTCHA: `pages/error-captcha.html` (shown on browser POST fallback, no more cryptic JSON for users).
 - i18n: Added/updated `error.captcha` keys (title/message) in all language JSON files for consistent multilingual error display.
@@ -32,11 +43,11 @@
 ### Security
 - No sensitive error details are exposed to end users; all error responses are now user-friendly and localized.
 
-# [v1.0.6] - 2025-12-24
+## [v1.0.6] - 2025-12-24
 ### Changed
 - Updated marketing copy and SEO-oriented texts in all language JSON files (`home.hero.lead`, `home.features.zentral.text`, `home.features.fair.text`, and selected meta descriptions) to consistently emphasize worker apartments near Düsseldorf Airport and Exhibition Centre, including transparent pricing from 25 EUR per day.
 
-# [v1.0.5] - 2025-12-15
+## [v1.0.5] - 2025-12-15
 ### Added
 - `api/contact_form_health.php`: token-protected healthcheck endpoint that exercises the server-side contact-mail path and returns HTTP 200 on success.
 - Local, append-only `api/contact_form_health.log` to record attempts, successes and failures (visible via FTP for easy troubleshooting).
@@ -53,7 +64,7 @@
 ### Security
 - Healthcheck endpoint is protected by a long `health_token` and optionally respects an IP allowlist when configured.
 
-# [v1.0.4] - 2025-12-14
+## [v1.0.4] - 2025-12-14
 ### Changed
 - Improved debug environment detection: now supports .htaccess SetEnv, config.local.php, and multiple PHP env sources for robust debug toggling.
 - Debug headers and diagnostic logging are now only emitted when DERKO_DEBUG is enabled, reducing log noise in production.
@@ -67,7 +78,7 @@
 - Hardened CSRF/session error logging: always records reason, session state, and minimal context for every CSRF failure.
 - Ensured that successful contact form submissions do not create log entries, keeping error.log focused on real issues.
 
-# [v1.0.3] - 2025-12-14
+## [v1.0.3] - 2025-12-14
 ### Added
 - Added `privacyKeyword` and updated `privacyConsent` in all language JSONs for robust i18n privacy policy linking in the contact form ([see discussion](https://github.com/halukmt/derko/issues/)).
 - Czech (cs.json) language file brought up to date with all missing keys from German (de.json), with correct translations.
@@ -81,7 +92,7 @@
 - Fixed structural inconsistencies in cs.json and other language files for i18n completeness.
 
 
-# [v1.0.2] - 2025-12-14
+## [v1.0.2] - 2025-12-14
 ### Changed
 - All legal and footer links now consistently use .html endings (e.g., impressum.html, agb.html, datenschutz.html, kontakt.html) for compatibility in both local development and production environments.
 - Removed canonical URL rewrites in JS for legal/footer links; now direct .html links are used everywhere for clarity and reliability.
@@ -92,31 +103,11 @@
 - Fixed 404 errors when opening legal/footer links locally (php -S) by standardizing on .html URLs.
 - Resolved confusion between canonical and .html URLs in navigation and footer.
 
-# [v1.0.1] - 2025-11-23
+## [v1.0.1] - 2025-11-23
 ### Changed
 - Footer: Code and structure updated for clarity and maintainability. All legal and contact links now use i18n keys and absolute routes. Social media links are accessible and use ARIA labels. No functional changes, but improved markup and internationalization consistency.
 
----
-
-# Changelog
-chore: update footer structure and i18n (refs #footer)
-Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
-
-## [v1.0.1] - 2025-11-23
-### Added
--
-
-### Changed
--  Footer: Code and structure updated for clarity and maintainability. All legal and contact links now use i18n keys and absolute routes. Social media links are accessible and use ARIA labels. No functional changes, but improved markup and internationalization consistency.
-
-### Fixed
--
-
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
-## [v1.0.0] (2025-10-24)
+## [v1.0.0] - 2025-10-24
 
 First public launch of the DERKO Immobilien website with security hardening, full multilingual support, and production-ready contact flow.
 
@@ -161,12 +152,7 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 
 ### Notes
 - Robots and sitemap: `robots.txt` present; `sitemap.xml` expected at site root (ensure it is generated/deployed if applicable).
-- Deployment recommendation: build or sync only the production assets and purge removed files on the server.Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
-und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
-
-
-# Changelog
-Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+- Deployment recommendation: build or sync only the production assets and purge removed files on the server.
 
 ## [v0.9.2] - 2025-10-24
 ### Added
@@ -507,3 +493,14 @@ Alle relevanten Änderungen an diesem Projekt werden in dieser Datei dokumentier
 
 ### Fixed
 -
+
+[v1.2.0]: https://github.com/halukmt/derko/compare/v1.1.0...v1.2.0
+[v1.1.0]: https://github.com/halukmt/derko/compare/v1.0.7...v1.1.0
+[v1.0.7]: https://github.com/halukmt/derko/compare/v1.0.6...v1.0.7
+[v1.0.6]: https://github.com/halukmt/derko/compare/v1.0.5...v1.0.6
+[v1.0.5]: https://github.com/halukmt/derko/compare/v1.0.4...v1.0.5
+[v1.0.4]: https://github.com/halukmt/derko/compare/v1.0.3...v1.0.4
+[v1.0.3]: https://github.com/halukmt/derko/compare/v1.0.2...v1.0.3
+[v1.0.2]: https://github.com/halukmt/derko/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/halukmt/derko/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/halukmt/derko/releases/tag/v1.0.0
