@@ -27,7 +27,8 @@
     "home": "Home",
     "wohnungen": "Apartments",
     "ueberUns": "About us",
-    "kontakt": "Offer"
+    "kontakt": "Offer",
+    "faq": "FAQ"
   },
   "footer": {
     "copyright": "© 2025 DERKO Real Estate – All rights reserved",
@@ -371,5 +372,53 @@
     "headline": "Request sent",
     "description": "We have received your request.",
     "message": "Thank you for your interest in our apartments.<br>We will review your details and get back to you as soon as possible.<br><br>Kind regards,<br>Your DERKO Team."
+  },
+
+  "faq": {
+    "metaTitle": "FAQ – Frequently Asked Questions about Worker Apartments",
+    "metaDescription": "Answers to frequently asked questions about our contractor apartments near Düsseldorf and Duisburg: Amenities, location, prices, booking and more.",
+    "headline": "Frequently Asked Questions (FAQ)",
+    "items": {
+      "guenstige-monteurzimmer": {
+        "q": "Where can I find affordable worker apartments in Düsseldorf with good motorway access?",
+        "a": "DERKO Real Estate offers affordable contractor apartments in Düsseldorf that are strategically well-connected to the A44, A52 and A3. This allows tradespeople to reach construction sites in Rath, Derendorf or the city centre in no time. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">View our accommodations</a>"
+      },
+      "provisionsfreie-messewohnungen": {
+        "q": "Do you offer commission-free apartments for trade fair visitors in Düsseldorf?",
+        "a": "Yes, our trade fair apartments in Düsseldorf are rented commission-free directly. They offer a comfortable and cost-effective alternative to expensive hotels during major trade fairs such as Drupa or K. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Learn more</a>"
+      },
+      "handwerker-teams-duisburg": {
+        "q": "Are there accommodations for craftsman teams in Duisburg North and South?",
+        "a": "We have spacious accommodations in various districts of Duisburg, both north and south, which are ideal for larger craftsman teams and construction crews. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Our team apartments</a>"
+      },
+      "entfernung-flughafen": {
+        "q": "How far is the accommodation from Düsseldorf Airport (DUS)?",
+        "a": "Many of our properties are only 10–15 minutes from Düsseldorf Airport (DUS). This is ideal for project staff, logistics personnel and international guests. <a href=\"/pages/wohnung-detail.html?id=w05_dus_1\" class=\"inline-link\">Apartments near the airport</a>"
+      },
+      "ausstattung-wlan-kueche": {
+        "q": "Are the contractor apartments equipped with Wi-Fi and their own kitchen?",
+        "a": "All our contractor rooms and apartments feature fast Wi-Fi and a fully equipped kitchen for self-catering to make the stay as pleasant as possible. <a href=\"/pages/wohnung-detail.html?id=w04_exklusiv_2\" class=\"inline-link\">Details on amenities</a>"
+      },
+      "parkmoeglichkeiten": {
+        "q": "Are there parking options for vans or lorries at the accommodation?",
+        "a": "When selecting our properties, we focus on good parking options in public spaces or directly at the property, so larger vans and company vehicles can be safely parked. <a href=\"/pages/wohnung-detail.html?id=w06_dus_2\" class=\"inline-link\">View parking options</a>"
+      },
+      "kurzfristige-buchung": {
+        "q": "How quickly can I book a contractor apartment in Duisburg?",
+        "a": "We often allow short-notice bookings for contractor rooms in Duisburg and Düsseldorf. Contact us directly by phone or email for current availability. <a href=\"/pages/wohnung-detail.html?id=w07_dus_3\" class=\"inline-link\">Request now</a>"
+      },
+      "preise-uebernachtung": {
+        "q": "How much does an overnight stay for contractors cost in the Düsseldorf/Duisburg area?",
+        "a": "Prices vary depending on length of stay and number of persons. However, we offer fair and market-competitive rates that are significantly lower than typical hotel prices in the region. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">View prices</a>"
+      },
+      "rabatte-firmen": {
+        "q": "Do you offer discounts for companies for long-term rentals or large groups?",
+        "a": "Yes, for companies planning long-term rentals or needing to accommodate large teams, we offer attractive tiered discounts. Ask about our B2B terms. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">B2B offers</a>"
+      },
+      "bettwaesche-handtuecher": {
+        "q": "Are bed linen and towels included in the contractor apartment?",
+        "a": "As a rule, the initial bedding is included in our accommodations, so your employees don't have to worry about anything and can move right in. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Amenities</a>"
+      }
+    }
   }
 }
