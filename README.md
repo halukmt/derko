@@ -1,325 +1,301 @@
-# Debug-Modus & Logging
+# DERKO Immobilien Website
 
-## Debug-Modus aktivieren/deaktivieren
+A modern, multilingual static website for property management with minimal PHP backend for contact forms and security features.
 
-Das System unterstützt einen zentralen Debug-Modus, der das Logging-Verhalten beeinflusst und zusätzliche Diagnose-Informationen ausgibt.
+## Table of Contents
 
-### Debug-Modus aktivieren
+- [About](#about)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Local Development](#local-development)
+- [Project Structure](#project-structure)
+- [Configuration](#configuration)
+- [Development](#development)
+  - [Adding New Apartments](#adding-new-apartments)
+  - [Internationalization](#internationalization)
+  - [Image Optimization](#image-optimization)
+- [Security](#security)
+- [Performance](#performance)
+- [Deployment](#deployment)
+- [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-- **Global (empfohlen):**
-	- In `.htaccess` setzen:
-		```
-		SetEnv DERKO_DEBUG 1
-		```
-	- Alternativ in `api/config.local.php`:
-		```php
-		define('DERKO_DEBUG', true);
-		```
-	- Sobald aktiviert, werden zusätzliche Debug-Informationen und Logs (z.B. `api/logs/error.log`) geschrieben. Fehler und sicherheitsrelevante Ereignisse werden ausführlich protokolliert.
+## About
 
-- **CAPTCHA-spezifisch:**
-	- In `api/captcha.php` kann temporär `$debug = true;` gesetzt werden.
-	- Dann wird zusätzlich `api/logs/captcha_debug.log` mit detaillierten CAPTCHA-Diagnosen erstellt.
+This is a static multilingual website for property management with a minimal PHP backend. The project focuses on performance, security, accessibility, and SEO best practices.
 
-### Debug-Modus deaktivieren
+### Key Technologies
 
-- In `.htaccess`:
-	```
-	SetEnv DERKO_DEBUG 0
-	```
-- Oder in `api/config.local.php`:
-	```php
-	define('DERKO_DEBUG', false);
-	```
-- Im deaktivierten Zustand werden nur Fehler und sicherheitsrelevante Ereignisse geloggt (kein Debug-Output).
+- **Frontend:** Bootstrap 5.3 (CDN), Font Awesome, Inter font family
+- **Backend:** PHP for email handling, CSRF protection, and CAPTCHA
+- **Build:** No build tool required - all assets loaded directly
+- **i18n:** JSON-based translations with HTML partials for legal pages
 
-**Hinweis:**
-- Die globale Einstellung überschreibt lokale Werte. Für produktive Umgebungen Debug immer deaktivieren!
-- Log-Verzeichnisse: `api/logs/error.log` (global), `api/logs/captcha_debug.log` (nur bei aktiviertem CAPTCHA-Debug).
+## Features
 
-# Weekly Mailer (CRON)
+- 🌍 **Multilingual** - Full i18n support with language switching
+- 🔒 **Secure** - CSRF protection, rate limiting, input sanitization, strict CSP
+- ⚡ **Fast** - Optimized images (AVIF/WebP), lazy loading, preloading
+- ♿ **Accessible** - ARIA labels, semantic HTML, skip links
+- 📱 **Responsive** - Mobile-first design with Bootstrap 5
+- 🎨 **Dynamic Cards** - Feature and apartment cards rendered from JSON
+- 📧 **Contact Form** - Secure form with honeypot, CAPTCHA, and validation
+- 🔍 **SEO-Optimized** - JSON-LD structured data, semantic markup
 
-A script for sending a configurable weekly email (e.g., report, reminder) via PHP mail().
+## Getting Started
+
+### Prerequisites
+
+- PHP 7.4+ (for local development and backend features)
+- Node.js 14+ (optional, for image optimization)
+
+### Local Development
+
+Start a local PHP server:
+
+```bash
+php -S localhost:8080 -t .
+```
+
+Or use a static server (limited functionality):
+
+```bash
+npx http-server -p 8080
+```
+
+Visit `http://localhost:8080` in your browser.
+
+## Project Structure
+
+```
+├── api/                  # PHP backend endpoints
+│   ├── config.php        # Configuration (use environment variables)
+│   ├── sendmail.php      # Contact form handler
+│   ├── csrf.php          # CSRF token generation
+│   └── captcha.php       # CAPTCHA generation
+├── assets/
+│   ├── css/             # Stylesheets
+│   ├── img/             # Images (optimized variants)
+│   ├── js/              # JavaScript modules
+│   └── data/            # JSON data files
+├── components/          # HTML partials (header, footer, etc.)
+├── lang/               # i18n JSON files
+├── pages/              # HTML pages
+├── .htaccess           # Server configuration and security headers
+└── index.html          # Main entry point
+```
 
 ## Configuration
-- Edit `api/weekly_mail_config.php` to set:
-	- `weekday` (0=Sunday, 1=Monday, ...)
-	- `hour` (0-23)
-	- `minute` (0-59)
-	- `to` (array or string of recipient emails)
-	- `from` (sender email)
-	- `subject` (mail subject)
-	- `body` (mail body)
 
-## Usage
-- **Manual test:**
-	- Run: `php api/weekly_mailer.php`
-	- By default, script runs regardless of time. To enforce schedule, uncomment the `exit("Not scheduled time.");` line in `weekly_mailer.php`.
+### Environment Variables
 
-- **CRON setup (Strato example):**
-	- Open Strato CRON settings.
-	- Set schedule to match your config (e.g., every Monday at 07:00):
-		```
-		0 7 * * 1 /usr/bin/php /home/strato/www/youruser/htdocs/api/weekly_mailer.php
-		```
-	- Adjust path as needed for your Strato webspace.
+Configure the application using environment variables (recommended for production):
 
-## Security
-- Script is not web-accessible (no routing from public site).
-- Only callable via CLI/CRON.
-- Config and script must not be writable by web users.
+```bash
+# Email configuration
+DERKO_CONTACT_TO="your-email@example.com"
+DERKO_CONTACT_FROM="noreply@example.com"
 
-## Troubleshooting
-- Check Strato mail logs or error.log for delivery issues.
-- Ensure sender address is allowed by Strato (use a domain email).
-- For debug, run manually and check output.
+# Security settings
+DERKO_CSRF_TTL=600          # CSRF token lifetime in seconds
+DERKO_RATE_WINDOW=600       # Rate limit window in seconds
+DERKO_RATE_MAX=3            # Max submissions per window
 
----
-For more, see comments in `api/weekly_mailer.php` and `api/weekly_mail_config.php`.
-
-**cron-job.org setup (example)**
-
-- **Name:** DERKO weekly mail
-- **URL:** `https://www.derko-immobilien.de/api/weekly_mailer_webhook.php?token=b7f9c2e8a3d4f6b1c0e9f2a3b4c5d6e7`
-````markdown
-**Contact-form healthcheck (cron-job.org)**
-
-You can monitor the actual contact-form send path with a protected healthcheck endpoint.
-
-- **URL:** `https://www.derko-immobilien.de/api/contact_form_health.php?token=<health_token>`
-`````markdown
-**Contact-form healthcheck (cron-job.org)**
-
-You can monitor the actual contact-form send path with a protected healthcheck endpoint.
-
-- **URL:** `https://www.derko-immobilien.de/api/contact_form_health.php?token=<health_token>`
-- **Method:** `GET`
-- **Schedule:** choose as needed (hourly/daily). Example daily at 06:00: `0 6 * * *`
-- **What it does:** sends a small admin mail to the address configured in `health_to` and writes a log entry. Returns HTTP 200 on success.
-
-Security:
-- Use the `health_token` in `api/weekly_mail_config.php`; treat it as a secret.
-- Optionally add allowed IPs to `webhook_allowed_ips` if your cron provider publishes them.
-
-If you want, set the cron-job.org job to call the same URL used for the weekly mail webhook, but for clarity we recommend a dedicated healthcheck URL as shown above.
-Im Code fest definiert (`main.js` → `renderFeatureCards`). Bilder: `assets/img/allgemein/komfort|zentral|fair.png`.
-Für weitere Vorteile: Array in `main.js` erweitern (Icon, Title-Key, Text-Key, Bild).
-
-## Wohnungs-Cards (dynamisch)
-Die Seite `pages/wohnungen.html` enthält ein DIV mit:
-```html
-<div id="wohnung-list" data-cards='[{"key":"w01_derko_apart","img":"/assets/img/wohnungen/w01_derko_apart/main.png","alt":"DERKO Apart"}]'></div>
+# Debug mode (disable in production!)
+DERKO_DEBUG=0
 ```
 
-`main.js` liest `data-cards` (JSON Array) und baut für jeden Eintrag eine Card basierend auf Keys in den Sprachdateien:
+### Local Configuration
 
-Key-Konvention:
-```
-wohnungen.cards.<key>.title
-wohnungen.cards.<key>.text
-wohnungen.cards.<key>.button
-```
-
-### Neue Wohnung hinzufügen – Schritt für Schritt
-1. Bilder ablegen, z.B.: `assets/img/wohnungen/w08_beispiel/main.png`
-2. Sprachdateien erweitern:
-```json
- "wohnungen": {
-	"cards": {
-		"w08_beispiel": {
-			"title": "Wohnung Beispiel",
-			"text": "Kurzer Beschreibungstext ...",
-			"button": "Details ansehen"
-		}
-	}
-}
-```
-3. In `pages/wohnungen.html` im `data-cards` Array ergänzen:
-```json
-{"key":"w08_beispiel","img":"/assets/img/wohnungen/w08_beispiel/main.png","alt":"Wohnung Beispiel"}
-```
-4. Seite neu laden. (Cache leeren falls Keys nicht sofort erscheinen.)
-
-Fallback: Falls kein `data-cards` gesetzt → eine Legacy-Karte mit Schlüssel `wohnungen.card.*`.
-
-### Barrierefreiheit & Alt-Texte
-`alt` wird nun lokalisiert über Schlüssel `wohnungen.cards.<key>.alt` (Fallback zu statischem Wert / "Wohnungsbild").
-
-## JSON-LD
-- Startseite: `WebSite` + Publisher Logo.
-- Wohnungen: Dynamisch erzeugtes `CollectionPage` + `Apartment` Einträge (Titel, Beschreibung, Zimmer, Fläche, Betten, Parking) + `Offer` (Preis extrahiert) + `BreadcrumbList`.
-	- Preis wird aus Text (`price`) normalisiert; zukünftige Erweiterung: mehrere Offers für Saisonpreise.
-
-## Sicherheit
-- CSP ohne `unsafe-inline` / Hash: alle Skripte extern oder dynamisch DOM-generiert.
-- Sanitizing in `lang.js` Whitelist (Tags & Attribute) für Übersetzungen und HTML-Partials.
-- Kontaktformular zusätzliche Schutzschicht (Server):
-	- IP-Rate-Limit: max 3 Einsendungen / 10 Minuten (429 bei Überschreitung)
-	- Honeypot + Mindestzeit + CAPTCHA (bereits vorhanden)
-	- Eingabefeld-Sanitizing (Strip Tags, Zeichensatz-Whitelist, Längenbegrenzung)
-	- Limitierte Anzahl URLs in Nachricht (max 2) zur Spam-Eindämmung
-	- Blockierung einfacher Wegwerf-Domains (mailinator, trashmail, tempmail, 10minutemail)
-	- Zufällige Antwort-Verzögerung (80–220 ms) gegen Timing-Angriffe
-	- Header-Säuberung (CRLF Removal) in `safe_header()`
-	- CSRF Token Prüfung (`api/csrf.php` + Hidden Field `csrf_token`)
-	- Session-Cookie Flags (Secure/HttpOnly/SameSite=Lax) gesetzt vor `session_start()`
-	- Sicherheits-Header via `.htaccess` (X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP/CORP/COEP)
-	- `/.well-known/security.txt` vorhanden (Kontakt & Policy)
-
-### CSRF Schutz
-`api/csrf.php` erzeugt pro Session einen Token (`csrf_token`). Dieser wird beim Laden des Kontaktformulars via JS (Fetch) eingefügt. `sendmail.php` validiert den Token vor Versand. Fehlender/ungültiger Token → 400 Fehler.
-
-### Security Headers
-Zentrale `.htaccess` liefert konsistente Header:
-- Content-Security-Policy (strikt, kein Inline JS/CSS)
-- X-Frame-Options: DENY
-- Referrer-Policy: strict-origin-when-cross-origin
-- Permissions-Policy: geolocation=(), camera=(), microphone=()
-- Strict-Transport-Security (Produktiv auf HTTPS)
-- Cross-Origin-* (OPENER/EMBEDDER/RESOURCE) vorbereitet für zukünftige Isolation
-
-### SPF / DKIM Empfehlung
-- SPF-Record Beispiel (Strato, nur Mailserver + Webserver):
-	`v=spf1 a mx include:strato.com ~all`
-- DKIM: Über Strato-Panel aktivieren (Schlüsselpaar + DNS TXT). Sicherstellen, dass Selector im DNS korrekt hinterlegt ist.
-- DMARC für Analyse/Policy:
-	`_dmarc.derko-immobilien.de TXT "v=DMARC1; p=none; rua=mailto:dmarc@derko-immobilien.de"`
-	Nach Auswertung später p=quarantine oder p=reject setzen.
-
-Zustellbarkeit testen:
-1. Testmail an Mail-Tester oder Gmail senden.
-2. Header prüfen (Authentication-Results: SPF=pass DKIM=pass DMARC=pass).
-3. Bei Problemen: DNS TTL, korrekte Absenderadresse (`FROM` Domain) und keine HTML-Injection sicherstellen.
-
-## Navigation
-- Alle Links absolut (`/`, `/pages/...`) → robust bei 404 & Deep Links.
-- Aktive Seite wird nach Komponenten-Load + i18n markiert.
-
-## Cards Template
-`components/card.html` enthält `<template id="card-template">` mit Varianten:
-```html
-<div class="card" data-variant="feature"> ... </div>
-<div class="card d-none" data-variant="wohnung"> ... </div>
-```
-JS klont immer die passende Variante.
-
-## E-Mail-Versand
-Produktiver Versand ohne Drittanbieter via `api/sendmail.php` (Strato‑kompatibel über `mail()`):
-
-- Formular: `pages/kontakt.html` → `action="../api/sendmail.php"`, Methode POST
-- Pflichtfelder: Name, E‑Mail, Telefon, Thema, Nachricht, Datenschutz; bei Thema=booking zusätzlich: Von/Bis/Wohnung/Personen
-- Betreffschema: `Thema - Name - Anfrage-ID: DDMMYYHHMM`
-- Versand: 1) an Betreiber, 2) Bestätigung an Absender (Reply‑To = Absender)
-- Weiterleitung nach Erfolg: `/pages/bestaetigung.html`
-
- Konfiguration (Empfänger/Absender) erfolgt zentral in `api/config.php` (optional via Umgebungsvariablen überschreibbar):
+Alternatively, create `api/config.local.php` for local overrides:
 
 ```php
 <?php
-// api/config.php
-define('DERKO_CONTACT_TO', getenv('DERKO_CONTACT_TO') ?: 'contact@example.com');
-define('DERKO_CONTACT_FROM', getenv('DERKO_CONTACT_FROM') ?: 'no-reply@example.com');
+define('DERKO_CONTACT_TO', 'your-email@example.com');
+define('DERKO_CONTACT_FROM', 'noreply@example.com');
+define('DERKO_DEBUG', false);
 ```
 
-`api/sendmail.php` lädt diese Konstanten automatisch und verwendet sie als Absender/Empfänger.
+**Never commit sensitive configuration to version control!**
 
-Zentrale Sicherheits-/Rate-Parameter (ebenfalls in `api/config.php`):
+## Development
 
-```php
-// Standardwerte (überschreibbar via Env oder config.local.php)
-define('DERKO_CSRF_TTL', 600);       // Sekunden
-define('DERKO_RATE_WINDOW', 60);     // Sekunden pro Fenster
-define('DERKO_RATE_MAX', 1);         // max. Einsendungen je Fenster
-```
+### Adding New Apartments
 
-Hinweise Zustellbarkeit:
-- FROM sollte zu deiner Domain gehören (SPF/DMARC prüfen).
-- Bei Bedarf später SMTP/PHPMailer einsetzen (gleiches Endpoint, anderer Versandweg).
+1. **Add images** to `assets/img/wohnungen/<key>/main.png`
+2. **Update translations** in all language files (`lang/*.json`):
+   ```json
+   "wohnungen": {
+     "cards": {
+       "w01_example": {
+         "title": "Apartment Title",
+         "text": "Description...",
+         "button": "View Details",
+         "alt": "Alt text for image"
+       }
+     }
+   }
+   ```
+3. **Add entry** to `data-cards` array in `pages/wohnungen.html`:
+   ```json
+   {"key":"w01_example","img":"/assets/img/wohnungen/w01_example/main.png","alt":"Apartment Example"}
+   ```
+4. **Refresh** the page (clear cache if needed)
 
-## Datenschutz-/Cookie-Banner (TTDSG)
-- Informativ (keine Analytics; nur essentielle Dienste):
-	- PHP Session-Cookie für CAPTCHA auf der Kontaktseite
-	- `localStorage` für Sprachpräferenz und Banner-Einwilligung
-- Banner: Vollbreite, dimmender Backdrop, gestapelte gleich breite Buttons
-	- „Verstanden“: setzt `localStorage.siteConsent`
-	- „Datenschutz“: öffnet die Datenschutzseite
-- Texte über i18n (`site.cookie.*`) gepflegt.
+### Internationalization
 
-Banner erneut anzeigen (lokal testen):
-```js
-localStorage.removeItem('siteConsent'); location.reload();
-```
+The site uses a custom i18n system with:
 
-## Performance Hinweise
-- Hero Bild Preload für verkürzte LCP: `<link rel="preload" as="image" href="/assets/img/allgemein/fair-800.avif" type="image/avif" imagesrcset="/assets/img/allgemein/fair-400.avif 400w, /assets/img/allgemein/fair-800.avif 800w, /assets/img/allgemein/fair-1200.avif 1200w" />`
-- AVIF/WebP Varianten via Script `assets/js/optimize-images.js` (Qualität avif=50, webp=78).
-- Lazy Loading aller Card-Bilder reduziert initiales Transfer-Volumen.
-- Potenzial: Self-Hosting Fonts, kritisches CSS Inline (falls CSP angepasst), HTTP/2 Push ersetzt durch Preload.
+- `data-i18n` - Simple text translation
+- `data-i18n-meta` - Meta tag translations
+- `data-i18n-html` - HTML content translation
 
-## Deployment Hinweise
-- `robots.txt` & `sitemap.xml` sind vorhanden (Sitemap verweist in `robots.txt`).
-- Empfohlen: Richtigen HTTP 404 Status für `404.html` serverseitig setzen.
-- Optional: Lokales Hosten der Fonts für Datenschutz.
+See `assets/js/lang.js` for implementation details.
 
-Sicherheit & CSP:
-- Keine Dritt‑Domains nötig; `form-action 'self'` bleibt erhalten.
-- Serverseitige Header‑Injection vorbeugt (`\r\n` entfernt), Minimal‑Validierung vorhanden.
+### Image Optimization
 
-Bestätigungsseite:
-- `pages/bestaetigung.html` zeigt lokalisierte Meldung (`confirmation.message`) und ist wie die Detailseite aufgebaut (Header, Footer, Breadcrumb).
+Generate optimized AVIF and WebP variants:
 
-Testfälle (Server):
-1. Thema=Booking: Alle Felder ausfüllen → Redirect auf Bestätigungsseite; Betreiber‑Mail + Bestätigungsmail an Absender; Betreff mit korrekter Anfrage-ID.
-2. Thema=Other: Booking‑Felder ausgeblendet/disabled → E‑Mail enthält nur befüllte Felder.
-3. Validierung: ungültige E‑Mail bzw. fehlende Pflichtfelder → 400 (bei direktem POST sichtbar).
-4. Reply‑To: Antwort auf Betreiber‑Mail geht an Absender.
-
-
-
-## Testing-Hinweise
-- Honeypot auslösen: in der Konsole das versteckte Feld befüllen und absenden
-```js
-const hp = document.querySelector('input[name="company"]'); if (hp) hp.value = 'bot';
-```
-- Mindestzeit: Standard 1500 ms (anpassbar in `assets/js/kontakt.js`)
-- CAPTCHA: Refresh-Icon lädt neues Bild; falscher Code → Feld-Fehler
-
-## Wartung / Erweiterung ToDos (Potenzial)
-- Erweiterte Preis-/Verfügbarkeitslogik für Offers (z.B. Mindestnächte, saisonale Raten)
-- Lazy Loading Gallerien / Lightbox
-- Detailseiten pro Wohnung (`/pages/wohnung-<slug>.html` + Deep Link Schema.org)
-- Erweiterte Breadcrumbs für Unterseiten/Detail
-- Automatisches Pre-Rendering wichtiger Komponenten bei Build (optional)
-- Font Self-Hosting zur weiteren DSGVO-Optimierung
-- Performante Galerie: IntersectionObserver + gestaffeltes Laden (Ansatz vorbereitbar)
-	- (Neu) Formular-Härtung: Rate-Limit, Sanitizing, URL/Disposable-Domain-Checks implementiert
-
-## Schnelles Troubleshooting
-| Problem | Ursache | Lösung |
-|---------|---------|-------|
-| Keine Übersetzungen | JSON nicht geladen | Dev-Tools Network prüfen (Pfad) |
-| Karten fehlen | `data-cards` JSON ungültig | JSON validieren (Lint / Konsole) |
-| CSP Fehler | Inline Script eingefügt | In externe Datei auslagern |
-
-## Workflow
-- Branches: `feat/<nr>-kurz`, `fix/<nr>-kurz`
-- Commits referenzieren Issues: „feat: … (refs #123)“
-- PR-Text mit „Fixes #123“ schließt Issues automatisch
-- GitHub Projects: Issues/PRs verknüpfen
-
-## Lokale Commands (Beispiele)
-```powershell
-npx http-server -p 8080
-# Bilder optimieren (benötigt: npm install sharp)
+```bash
+npm install sharp
 node assets/js/optimize-images.js
-git add .
-git commit -m "feat: update"
-git tag vX.Y.Z
-git push origin main --tags
 ```
 
-## Lizenz / Rechtliches
-Interne Nutzung. (Optional: Lizenzblock ergänzen)
+This creates responsive image variants with optimal quality settings.
+
+## Security
+
+### Built-in Security Features
+
+- **CSRF Protection** - Token-based validation for all forms
+- **Rate Limiting** - Maximum 3 submissions per 10 minutes per IP
+- **Input Sanitization** - Strict validation and filtering
+- **Honeypot Field** - Bot detection
+- **CAPTCHA** - Human verification
+- **Strict CSP** - No inline scripts or styles allowed
+- **Security Headers** - X-Frame-Options, HSTS, Referrer-Policy, etc.
+- **Disposable Email Blocking** - Prevention of temporary email services
+
+### Debug Mode
+
+**Warning:** Only enable debug mode in development environments!
+
+Enable globally in `.htaccess`:
+```
+SetEnv DERKO_DEBUG 1
+```
+
+Or in `api/config.local.php`:
+```php
+define('DERKO_DEBUG', true);
+```
+
+Debug logs are written to `api/logs/error.log`.
+
+### Email Security Recommendations
+
+Configure SPF, DKIM, and DMARC records for your domain:
+
+- **SPF:** `v=spf1 a mx include:your-provider.com ~all`
+- **DKIM:** Enable in your hosting control panel
+- **DMARC:** `v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com`
+
+## Performance
+
+- **Hero Image Preload** - Improved LCP (Largest Contentful Paint)
+- **Modern Image Formats** - AVIF/WebP with PNG fallback
+- **Lazy Loading** - Deferred loading of off-screen images
+- **CDN Resources** - Bootstrap and Font Awesome from CDN
+- **Minimal Dependencies** - No build step required
+
+## Deployment
+
+1. **Upload** files to your web server
+2. **Configure** environment variables or `api/config.local.php`
+3. **Set permissions** - Ensure `api/logs/` is writable
+4. **Verify** security headers are active (check `.htaccess`)
+5. **Test** contact form functionality
+6. **Configure** 404 error page to return proper HTTP status
+
+### Scheduled Tasks
+
+For weekly email reports or health checks, configure cron jobs:
+
+```bash
+# Weekly mail (example: Mondays at 07:00)
+0 7 * * 1 /usr/bin/php /path/to/api/weekly_mailer.php
+
+# Health check (use your configured token)
+0 6 * * * curl -s "https://yourdomain.com/api/contact_form_health.php?token=YOUR_TOKEN"
+```
+
+Configure tokens and settings in `api/weekly_mail_config.php`.
+
+**Important:** Keep tokens secure and never commit them to version control.
+
+## Testing
+
+### Manual Testing
+
+**Test honeypot detection:**
+```javascript
+const hp = document.querySelector('input[name="company"]');
+if (hp) hp.value = 'bot';
+// Submit form - should be rejected
+```
+
+**Test minimum time validation:**
+- Default: 1500ms (configurable in `assets/js/kontakt.js`)
+- Submit immediately - should be rejected
+
+**Test CAPTCHA:**
+- Use refresh icon to load new CAPTCHA
+- Enter incorrect code - should show field error
+
+### Cookie Banner Testing
+
+Remove consent to test banner display:
+```javascript
+localStorage.removeItem('siteConsent');
+location.reload();
+```
+
+## Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| Translations missing | JSON not loaded | Check Network tab in dev tools for 404s |
+| Cards not displaying | Invalid JSON in `data-cards` | Validate JSON syntax |
+| CSP errors | Inline scripts/styles | Move all code to external files |
+| Email not sending | Configuration error | Check `api/config.php` and mail logs |
+| Form submission fails | CSRF token expired | Increase `DERKO_CSRF_TTL` or refresh page |
+
+## Contributing
+
+### Workflow
+
+1. **Branch naming:** `feat/<issue-nr>-description` or `fix/<issue-nr>-description`
+2. **Commit messages:** Reference issues, e.g., `feat: add feature (refs #123)`
+3. **Pull requests:** Use `Fixes #123` to auto-close issues
+4. **Testing:** Test all changes locally before submitting PR
+
+### Development Guidelines
+
+- Follow existing code style and patterns
+- Add translations for all new text content
+- Test in multiple browsers and screen sizes
+- Ensure accessibility standards are met
+- Update documentation as needed
+
+## License
+
+For internal use. (License to be determined)
 
 ---
-Fragen oder Erweiterungswünsche: Siehe Changelog / Issues.
+
+For detailed technical instructions and AI agent guidelines, see [.github/copilot-instructions.md](.github/copilot-instructions.md).
+
+For questions or feature requests, please open an issue or check the [CHANGELOG](CHANGELOG.md).
