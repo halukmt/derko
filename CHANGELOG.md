@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v1.4.0] - 2026-02-14
+### Added
+- Added example templates for local/private configuration: `api/config.local.example.php` and `api/weekly_mail_config.example.php`.
+- Documentation: Expanded Getting Started instructions in `README.md` for local setup (including config templates and debug guidance).
+
+### Changed
+- Git hygiene: Extended `.gitignore` to exclude local/private configuration files and runtime artifacts (logs, lockfiles, rate store).
+- Server config: Disabled `DERKO_DEBUG` by default in `.htaccess` (now commented out).
+- Developer docs: Updated `.github/copilot-instructions.md` to document the new config template workflow.
+
+### Security
+- Removed sensitive configuration files from version control (`api/config.local.php`, `api/weekly_mail_config.php`).
+
 ## [v1.3.0] - 2026-01-27
 ### Added
 - New FAQ page at `/faq` with an i18n-ready accordion layout and SEO metadata (canonical + hreflang).

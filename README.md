@@ -9,6 +9,13 @@ A modern, multilingual static website for property management with minimal PHP b
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Local Development](#local-development)
+  - [Testing Your Setup](#testing-your-setup)
+  - [Troubleshooting Setup](#troubleshooting-setup)
+- [Collaboration](#collaboration)
+  - [Branching](#branching)
+  - [Pull Requests](#pull-requests)
+  - [Commit Messages](#commit-messages)
+  - [General Rules](#general-rules)
 - [Project Structure](#project-structure)
 - [Configuration](#configuration)
 - [Development](#development)
@@ -49,24 +56,157 @@ This is a static multilingual website for property management with a minimal PHP
 
 ### Prerequisites
 
-- PHP 7.4+ (for local development and backend features)
-- Node.js 14+ (optional, for image optimization)
+- **PHP 7.4+** (required for local development and backend features)
+- **Node.js 14+** (required for build tools and image optimization)
+- **Git** (for cloning the repository)
 
-### Local Development
+### Initial Setup (First Time)
 
-Start a local PHP server:
+Follow these steps to set up the project on your local machine:
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/halukmt/derko.git
+cd derko
+```
+
+#### 2. Install Dependencies
+
+Install Node.js dependencies for image optimization and build tools:
+
+```bash
+npm install
+```
+
+This installs: `sharp` (image processing), `esbuild` (JS minification), `clean-css-cli` (CSS minification), and `html-minifier-terser` (HTML minification).
+
+#### 3. Create Configuration Files
+
+The project uses local configuration files that are **not tracked in Git** for security reasons:
+
+**a) Create `api/config.local.php`:**
+- Copy `api/config.local.example.php` to `api/config.local.php`
+- Edit the file and set your email addresses for testing
+- Enable `DERKO_DEBUG` for local development
+
+**b) Create `api/weekly_mail_config.php`:**
+- Copy `api/weekly_mail_config.example.php` to `api/weekly_mail_config.php`
+- Generate a secure random token (use `openssl rand -hex 16` or similar)
+- Update the file with your token and admin email addresses
+
+**⚠️ Important:** Never commit these files to version control!
+
+#### 4. (Optional) Enable Debug Mode in .htaccess
+
+For local development, you can enable debug mode globally in `.htaccess` by uncommenting line 2:
+
+```apache
+SetEnv DERKO_DEBUG 1
+```
+
+**⚠️ Important:** Disable this before deploying to production!
+
+#### 5. Create Log Directory
+
+Create the logs directory if it doesn't exist:
+
+```bash
+# Windows (PowerShell)
+New-Item -ItemType Directory -Path api\logs -Force
+
+# macOS/Linux
+mkdir -p api/logs
+```
+
+### Local Development Server
+
+Start a local PHP development server:
 
 ```bash
 php -S localhost:8080 -t .
 ```
 
-Or use a static server (limited functionality):
+**Alternative:** Use a Node.js static server (limited functionality - contact form won't work):
 
 ```bash
 npx http-server -p 8080
 ```
 
-Visit `http://localhost:8080` in your browser.
+**Open in Browser:**
+
+Visit `http://localhost:8080` in your browser. The site should load with all functionalities.
+
+### Testing Your Setup
+
+1. **Homepage loads** - Navigate to `http://localhost:8080`
+2. **Language switching works** - Try `?lang=en`, `?lang=de`, etc.
+3. **Contact form loads** - Navigate to `/pages/kontakt.html`
+4. **CAPTCHA displays** - Check if the CAPTCHA image appears
+5. **Form submission** - Fill out and submit the contact form (check your configured email)
+
+### Troubleshooting Setup
+
+| Issue | Solution |
+|-------|----------|
+| `php` command not found | Install PHP from [php.net](https://www.php.net/downloads) and add to PATH |
+| `npm install` fails | Ensure Node.js 14+ is installed. On Windows, may need Visual Studio Build Tools |
+| Contact form doesn't send | Verify `api/config.local.php` exists with valid email addresses |
+| CAPTCHA doesn't display | Check PHP session configuration, ensure `api/captcha.php` is accessible |
+| Permission denied errors | Ensure `api/logs/` directory exists and is writable |
+
+## Collaboration
+
+This repository follows a pull request--based workflow to keep `main`
+stable and production-ready.
+
+### Branching
+
+-   Never commit directly to `main`
+-   Always create a separate branch from the latest `main`
+-   Use a clear and meaningful branch name (e.g. `seo-update`,
+    `faq-section`, `header-refactor`)
+
+Example:
+
+``` bash
+git checkout main
+git pull
+git checkout -b seo-update
+```
+
+### Pull Requests
+
+-   Open a Pull Request targeting `main`
+-   Provide a short and clear description of the change
+-   Wait for at least 1 review before merging
+-   Merges are done using **Squash & Merge**
+
+### Commit Messages
+
+Use clear and descriptive commit messages.
+
+Good examples:
+
+    Add structured FAQ section
+    Fix canonical URL handling
+    Refactor navigation component
+
+Avoid vague messages like:
+
+    update
+    fix
+    changes
+
+### General Rules
+
+-   No direct pushes to `main`
+-   No force pushes
+-   No sensitive data (API keys, credentials, `.env` files)
+
+The goal is a clean history, stable releases, and professional
+collaboration.
+
 
 ## Project Structure
 

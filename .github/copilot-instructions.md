@@ -30,8 +30,9 @@ Static multilingual apartment rental website with minimal PHP backend. 9 languag
 
 ## Configuration Files
 - **api/config.php:** Email addresses (`DERKO_CONTACT_TO`, `DERKO_CONTACT_FROM`), rate limits, CSRF TTL. Override via environment variables or `api/config.local.php`.
-- **api/config.local.php:** Local overrides (gitignored). Create this file for dev email addresses or debug mode. Example: `define('DERKO_DEBUG', true);`
-- **.htaccess:** Security headers (CSP, COOP/COEP/CORP, X-Frame-Options), URL rewrites (pretty URLs), MIME types (AVIF/WebP), cache headers, log file protection. Debug mode: `SetEnv DERKO_DEBUG 1`.
+- **api/config.local.php:** Local overrides (gitignored). **IMPORTANT:** Copy from `config.local.example.php` and fill in real values. NEVER commit this file! Example: `define('DERKO_DEBUG', true);`
+- **api/weekly_mail_config.php:** Healthcheck configuration with tokens and admin emails (gitignored). **IMPORTANT:** Copy from `weekly_mail_config.example.php` and generate a secure token. NEVER commit this file!
+- **.htaccess:** Security headers (CSP, COOP/COEP/CORP, X-Frame-Options), URL rewrites (pretty URLs), MIME types (AVIF/WebP), cache headers, log file protection. Debug mode via `SetEnv DERKO_DEBUG 1` (commented out by default).
 - **package.json:** npm scripts for build/optimization. Dependencies are locked in `package-lock.json`.
 
 ## Key Architecture Patterns
@@ -68,6 +69,7 @@ Static multilingual apartment rental website with minimal PHP backend. 9 languag
 **Disable debug in production:** Set `DERKO_DEBUG=0` in `.htaccess`.
 
 ## Common Workflows
+**First-time setup:** (1) Copy `api/config.local.example.php` to `api/config.local.php` and fill in your email addresses. (2) Copy `api/weekly_mail_config.example.php` to `api/weekly_mail_config.php` and generate a secure token (use `openssl rand -hex 16`). (3) Never commit these files to git!
 **Add apartment:** (1) Create `assets/img/wohnungen/w##_key/main.png` + detail images. (2) Run `npm run optimize:images`. (3) Add i18n keys to all 9 `lang/<code>/<code>.json` under `wohnungen.cards.w##_key`. (4) Add entry to `data-cards` array in `pages/wohnungen.html`. (5) Test locally.
 **Update translations:** Edit `lang/<code>/<code>.json`. No build step needed (loaded dynamically). Clear browser cache if changes don't appear.
 **Deploy:** (1) Run `npm run build`. (2) Upload `dist/` contents to production server. (3) Verify `.htaccess` and `api/config.local.php` on server. (4) Test contact form on production.

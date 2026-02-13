@@ -2,3 +2,16 @@ node_modules/
 .DS_Store
 Thumbs.db
 dist/
+
+# Sensitive configuration files (use .example templates)
+api/config.local.php
+api/weekly_mail_config.php
+
+# Log files and runtime data
+api/*.log
+api/*.lock
+api/rate_store/
+
+# Environment files (if ever used)
+.env
+.env.local
