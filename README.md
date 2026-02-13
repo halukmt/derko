@@ -432,7 +432,8 @@ location.reload();
 
 ## License
 
-For internal use. (License to be determined)
+- “Copyright (c) 2026 DERKO Immobilien. All rights reserved.”
+- “No permission is granted to use, modify, or redistribute without written permission.”
 
 ---
 
