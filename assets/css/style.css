@@ -798,12 +798,13 @@ body{ overflow-y: scroll; }
   Section Whitespace Improvements
   - Increase vertical padding on main content sections
   - More breathing room for text blocks
+  - Note: !important needed to override Bootstrap utility classes that use !important
 -------------------------------------------------- */
-main.py-5 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+#main.py-5, main#main { padding-top: 4rem !important; padding-bottom: 4rem !important; }
 @media (min-width: 768px) {
-  main.py-5 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+  #main.py-5, main#main { padding-top: 5rem !important; padding-bottom: 5rem !important; }
 }
-section.mb-4, section.mb-5 { margin-bottom: 3rem !important; }
+#main > .container > section { margin-bottom: 3rem; }
 @media (min-width: 768px) {
-  section.mb-4, section.mb-5 { margin-bottom: 4rem !important; }
+  #main > .container > section { margin-bottom: 4rem; }
 }
