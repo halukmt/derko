@@ -110,5 +110,13 @@ Options -MultiViews
   # FAQ
   RewriteRule ^faq/?$ /pages/faq.html [L]
 
+  # Multi-language URL routing: /{lang}/ and /{lang}/{page}
+  # Language root pages (e.g. /en/, /pl/)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/?$ /index.html [L]
+  # Language-prefixed detail pages (preserve query string)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/wohnung/?$ /pages/wohnung-detail.html [QSA,L]
+  # Language-prefixed standard pages
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/(wohnungen|kontakt|ueber-uns|faq|agb|impressum|datenschutz|bestaetigung)/?$ /pages/$2.html [L]
+
   # (Replaced RedirectMatch rules with THE_REQUEST-based rules above to prevent redirect loops)
 </IfModule>

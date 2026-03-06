@@ -296,14 +296,45 @@
       }
       document.dispatchEvent(new CustomEvent('i18n:changed', { detail: { lang: CURRENT_LANG } }));
       applyTranslations();
+      updateCanonical(CURRENT_LANG);
+      updateOgLocale(CURRENT_LANG);
     }catch(err){
       console.error(err);
     }
   }
 
+  const SUPPORTED_LANGS = ['de','en','pl','hu','sk','cs','it','bg','ro'];
+  const LOCALE_MAP = {
+    de:'de_DE', en:'en_GB', pl:'pl_PL', hu:'hu_HU',
+    sk:'sk_SK', cs:'cs_CZ', it:'it_IT', bg:'bg_BG', ro:'ro_RO'
+  };
+
+  function detectLangFromUrl(){
+    const m = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+    return m ? m[1] : null;
+  }
+
+  function updateCanonical(lang){
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) return;
+    const baseUrl = 'https://www.derko-immobilien.de';
+    // Strip any existing lang prefix from the path
+    const path = location.pathname.replace(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/, '/');
+    const langPrefix = (lang && lang !== 'de') ? '/' + lang : '';
+    // Normalize trailing slash: keep it only for root
+    const normPath = path === '/' ? '/' : path.replace(/\/$/, '');
+    canonical.href = baseUrl + langPrefix + normPath;
+  }
+
+  function updateOgLocale(lang){
+    const primary = document.querySelector('meta[property="og:locale"]');
+    if (primary) primary.setAttribute('content', LOCALE_MAP[lang] || LOCALE_MAP['de']);
+  }
+
   async function init(){
+    const urlLang = detectLangFromUrl();
     const stored = localStorage.getItem('lang');
-    CURRENT_LANG = stored || 'de';
+    CURRENT_LANG = urlLang || stored || 'de';
     await setLanguage(CURRENT_LANG);
   }
 
