@@ -5,9 +5,9 @@ ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 // --- DEBUG EINSTELLUNG ---
-// Zum Testen setzen wir das HART auf true.
-// Wenn alles läuft, ändere dies später wieder auf 'false'.
-$debug = true;
+// Debug-Modus: nur für lokale Entwicklung auf true setzen.
+// Für Production IMMER auf false lassen.
+$debug = false;
 
 // --- SESSION CONFIGURATION ---
 $cookieDomain = '.derko-immobilien.de';

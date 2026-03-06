@@ -16,6 +16,24 @@
       opt.value = k; opt.textContent = title;
       sel.appendChild(opt);
     });
+    preselectApartmentFromURL();
+  }
+
+  function preselectApartmentFromURL(){
+    const params = new URLSearchParams(location.search);
+    const wohnung = params.get('wohnung');
+    if (!wohnung) return;
+    const sel = document.getElementById('apartment');
+    if (!sel) return;
+    const opt = Array.from(sel.options).find(o => o.value === wohnung);
+    if (!opt) return;
+    sel.value = wohnung;
+    // Ensure booking topic is selected so the apartment field is visible
+    const topicSel = document.getElementById('topic');
+    if (topicSel && topicSel.value !== 'booking') {
+      topicSel.value = 'booking';
+      topicSel.dispatchEvent(new Event('change'));
+    }
   }
 
   function toggleBookingOnlyFields(){

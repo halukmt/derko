@@ -198,6 +198,14 @@
         translateAttr(variant.querySelector('[data-title]'), item.title);
         translateAttr(variant.querySelector('[data-text]'), item.text);
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
+        // Make feature card clickable – links to apartments listing
+        const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+        const featureHref = isLocal ? '/pages/wohnungen.html' : '/wohnungen';
+        variant.classList.add('card-clickable');
+        variant.setAttribute('role', 'link');
+        variant.setAttribute('tabindex', '0');
+        variant.addEventListener('click', function() { location.href = featureHref; });
+        variant.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.href = featureHref; } });
       });
       host.dataset.rendered = 'true';
       if (window.applyTranslations) window.applyTranslations(host);
@@ -420,6 +428,15 @@
           if (el) translateAttr(el, prefix + m.key);
         });
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
+        // Make the whole card clickable (navigates to same href as button)
+        const cardHref = btn.getAttribute('href');
+        if (cardHref) {
+          variant.classList.add('card-clickable');
+          variant.addEventListener('click', function(e) {
+            if (e.target.closest('a, button')) return;
+            location.href = cardHref;
+          });
+        }
       });
       host.dataset.rendered = 'true';
       delete host.dataset.rendering;

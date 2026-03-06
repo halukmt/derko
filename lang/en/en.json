@@ -18,7 +18,7 @@
     },
     "cookie": {
       "title": "We respect your privacy",
-	  "text": "We take the protection of your personal data very seriously, while also wanting you to find the offers that best suit your needs. Therefore, we only use technically necessary services — such as a security verification session (CAPTCHA) on the contact page and your language selection. No tracking or marketing cookies are used.",
+      "text": "We take the protection of your personal data very seriously, while also wanting you to find the offers that best suit your needs. Therefore, we only use technically necessary services — such as a security verification session (CAPTCHA) on the contact page and your language selection. No tracking or marketing cookies are used.",
       "accept": "Got it",
       "privacy": "Privacy"
     }
@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign by <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Welcome to DERKO Real Estate",
+    "headline": "Away for work? DERKO has a home for you.",
     "subheadline": "Find comfortable and affordable accommodation for teams and contractors.",
     "cta": "Book now",
     "hero": {
@@ -66,12 +66,10 @@
       }
     }
   },
-
   "wohnungen": {
     "headline": "Our apartments",
     "description": "Choose from fully equipped worker apartments in Duisburg‑Großenbaum near Düsseldorf Airport and Messe – ideal for teams and project stays.",
     "cards": {
-
       "w03_exklusiv": {
         "title": "Exclusiv: Airport / Exhibition Centre apartment near Düsseldorf",
         "text": "Quiet 2‑room apartment with excellent connection towards Düsseldorf Exhibition Centre and airport.",
@@ -260,10 +258,10 @@
       "vorgehen": {
         "title": "Common approach",
         "text": [
-            "Contact us and fill out the inquiry form",
-            "We will get back to you with a suitable offer",
-            "You confirm our offer and we will send you the invoice from our accounting department",
-            "We hand over the keys and wish you a pleasant stay"
+          "Contact us and fill out the inquiry form",
+          "We will get back to you with a suitable offer",
+          "You confirm our offer and we will send you the invoice from our accounting department",
+          "We hand over the keys and wish you a pleasant stay"
         ]
       }
     },
@@ -298,14 +296,13 @@
     "validation": {
       "nameRequired": "Please enter your name.",
       "emailRequired": "Please enter a valid email.",
-  "phoneInvalid": "Please enter a valid phone number (e.g., +49 173 1234567).",
+      "phoneInvalid": "Please enter a valid phone number (e.g., +49 173 1234567).",
       "messageRequired": "Please enter a message.",
       "personsRequired": "Please enter the number of persons (at least 1).",
       "privacyRequired": "Please accept to store your details.",
       "bot": "Request blocked: please try again in a few seconds.",
       "captcha": "The security code is incorrect."
-    }
-    ,
+    },
     "email": {
       "subjectIdLabel": "Request ID",
       "yourDetails": "Your details:"
@@ -349,8 +346,7 @@
       "showLess": "Fewer images",
       "photo": "Photo"
     }
-  }
-  ,
+  },
   "error": {
     "session": {
       "title": "Session expired",
@@ -367,13 +363,11 @@
     },
     "backToContact": "Back to contact form"
   },
-
   "confirmation": {
     "headline": "Request sent",
     "description": "We have received your request.",
     "message": "Thank you for your interest in our apartments.<br>We will review your details and get back to you as soon as possible.<br><br>Kind regards,<br>Your DERKO Team."
   },
-
   "faq": {
     "metaTitle": "FAQ – Frequently Asked Questions about Worker Apartments",
     "metaDescription": "Answers to frequently asked questions about our contractor apartments near Düsseldorf and Duisburg: Amenities, location, prices, booking and more.",

@@ -41,7 +41,7 @@
     "creditHtml": "Projekt strony: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Witamy w DERKO Immobilien",
+    "headline": "Na delegacji? U DERKO jesteś dobrze zadbany.",
     "subheadline": "Tutaj znajdziesz komfortowe i korzystne noclegi dla fachowców i monterów.",
     "cta": "Poproś o ofertę",
     "hero": {
@@ -265,7 +265,9 @@
         ]
       }
     },
-    "partners": { "title": "Nasi partnerzy" }
+    "partners": {
+      "title": "Nasi partnerzy"
+    }
   },
   "kontakt": {
     "headline": "Oferta",
@@ -301,9 +303,15 @@
       "bot": "Zapytanie zablokowane: spróbuj ponownie za kilka sekund.",
       "captcha": "Kod bezpieczeństwa jest nieprawidłowy."
     },
-    "email": { "subjectIdLabel": "ID zapytania", "yourDetails": "Twoje dane:" }
+    "email": {
+      "subjectIdLabel": "ID zapytania",
+      "yourDetails": "Twoje dane:"
+    }
   },
-  "agb": { "headline": "Regulamin (OWH)", "text": "lang/pl/pl.agb.html" },
+  "agb": {
+    "headline": "Regulamin (OWH)",
+    "text": "lang/pl/pl.agb.html"
+  },
   "impressum": {
     "headline": "Nota prawna",
     "text": "lang/pl/pl.impressum.html"
@@ -321,9 +329,15 @@
   "wohnungDetail": {
     "headline": "Szczegóły mieszkania",
     "cta": "Poproś o ofertę",
-    "meta": { "title": "Dane podstawowe" },
-    "amenities": { "title": "Udogodnienia" },
-    "description": { "title": "Opis" },
+    "meta": {
+      "title": "Dane podstawowe"
+    },
+    "amenities": {
+      "title": "Udogodnienia"
+    },
+    "description": {
+      "title": "Opis"
+    },
     "gallery": {
       "showMore": "Więcej zdjęć",
       "showLess": "Mniej zdjęć",
@@ -351,8 +365,9 @@
     "description": "Otrzymaliśmy Twoje zapytanie.",
     "message": "Dziękujemy za zainteresowanie naszymi mieszkaniami.<br>Przeanalizujemy Twoje dane i skontaktujemy się tak szybko, jak to możliwe.<br><br>Pozdrawiamy,<br>Zespół DERKO."
   },
-  "legal": { "revealEmail": "Pokaż adres e‑mail" },
-
+  "legal": {
+    "revealEmail": "Pokaż adres e‑mail"
+  },
   "faq": {
     "metaTitle": "FAQ – Najczęściej zadawane pytania o mieszkania dla monterów",
     "metaDescription": "Odpowiedzi na najczęściej zadawane pytania na temat naszych mieszkań dla monterów w okolicach Düsseldorfu i Duisburga: wyposażenie, lokalizacja, ceny, rezerwacja i inne.",

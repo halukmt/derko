@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign de <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Bun venit la DERKO Imobiliare",
+    "headline": "La lucru în altă localitate? La DERKO ești bine cazat.",
     "subheadline": "Cazare confortabilă și accesibilă pentru echipe și profesioniști.",
     "cta": "Solicită ofertă",
     "hero": {
@@ -66,7 +66,6 @@
       }
     }
   },
-
   "wohnungen": {
     "headline": "Apartamentele noastre",
     "description": "Alege apartamente pentru muncitori complet utilate în Duisburg‑Großenbaum, aproape de aeroportul și târgul Düsseldorf – ideale pentru echipe și proiecte.",
@@ -230,7 +229,6 @@
       }
     }
   },
-
   "ueberUns": {
     "headline": "Despre noi",
     "description": "Suntem o companie tânără și dinamică din Duisburg, în inima Ruhrului. Serviciile noastre includ intermediere, administrare și evaluare imobiliară. Ca partener profesional, suntem alături de tine pentru toate întrebările legate de închirieri. <br><br>DERKO Immobilien s‑a specializat în ultimii ani și în închirierea de cazare pentru muncitori și apartamente. Ne extindem constant portofoliul pentru a crea mai mult spațiu locativ și servicii optime.",
@@ -267,9 +265,10 @@
         ]
       }
     },
-    "partners": { "title": "Partenerii noștri" }
+    "partners": {
+      "title": "Partenerii noștri"
+    }
   },
-
   "kontakt": {
     "headline": "Ofertă",
     "description": "Cauți cazare pentru echipă lângă Düsseldorf? Trimite o cerere prin formular sau sună‑ne pentru o ofertă fără obligații.",
@@ -309,8 +308,10 @@
       "yourDetails": "Datele dvs.:"
     }
   },
-
-  "agb": { "headline": "Termeni și condiții", "text": "lang/ro/ro.agb.html" },
+  "agb": {
+    "headline": "Termeni și condiții",
+    "text": "lang/ro/ro.agb.html"
+  },
   "impressum": {
     "headline": "Informații legale",
     "text": "lang/ro/ro.impressum.html"
@@ -319,28 +320,33 @@
     "headline": "Confidențialitate",
     "text": "lang/ro/ro.datenschutz.html"
   },
-  "legal": { "revealEmail": "Afișează adresa de e‑mail" },
-
+  "legal": {
+    "revealEmail": "Afișează adresa de e‑mail"
+  },
   "notFound": {
     "title": "404",
     "headline": "Pagina nu a fost găsită",
     "description": "Pagina solicitată nu a fost găsită sau nu mai există.",
     "backHome": "Înapoi la pagina de start"
   },
-
   "wohnungDetail": {
     "headline": "Detalii apartament",
     "cta": "Solicită ofertă",
-    "meta": { "title": "Date esențiale" },
-    "amenities": { "title": "Dotări" },
-    "description": { "title": "Descriere" },
+    "meta": {
+      "title": "Date esențiale"
+    },
+    "amenities": {
+      "title": "Dotări"
+    },
+    "description": {
+      "title": "Descriere"
+    },
     "gallery": {
       "showMore": "Mai multe imagini",
       "showLess": "Mai puține imagini",
       "photo": "Fotografie"
     }
   },
-
   "error": {
     "session": {
       "title": "Sesiune expirată",
@@ -357,13 +363,11 @@
     },
     "backToContact": "Înapoi la formularul de contact"
   },
-
   "confirmation": {
     "headline": "Solicitare trimisă",
     "description": "Am primit solicitarea dvs.",
     "message": "Vă mulțumim pentru interesul pentru apartamentele noastre.<br>Vom verifica detaliile dvs. și vă vom contacta cât mai curând posibil.<br><br>Cu stimă,<br>Echipa DERKO."
   },
-
   "faq": {
     "metaTitle": "FAQ – Întrebări frecvente despre apartamente pentru muncitori",
     "metaDescription": "Răspunsuri la întrebări frecvente despre apartamentele noastre pentru muncitori în zona Düsseldorf: dotări, locație, prețuri, rezervări și altele.",
