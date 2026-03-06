@@ -99,10 +99,8 @@
   async function injectHtmlPartial(el, path){
     try{
       if (HTML_PARTIAL_CACHE[path]){ el.innerHTML = sanitizeHtml(HTML_PARTIAL_CACHE[path]); return; }
-      const inPages = location.pathname.includes('/pages/');
-      // If path starts with 'lang/' we need correct relative base from /pages/
-      let fetchPath = path;
-      if (path.startsWith('lang/')) fetchPath = inPages ? '../'+path : path;
+      // Use absolute path so partial loading works from any URL depth (root, /pages/, /en/, etc.)
+      const fetchPath = path.startsWith('/') ? path : '/' + path;
       const res = await fetch(fetchPath, { credentials:'same-origin' });
       if (!res.ok) { console.warn('Partial not found:', path); return; }
       const txt = await res.text();
@@ -244,8 +242,7 @@
       const hasPort = !!location.port; // dev servers often use a port
       const isDev = isLocalHost || hasPort;
       const cacheBuster = isDev ? `?v=${Date.now()}` : '';
-  const inPages = location.pathname.includes('/pages/');
-  const langBase = inPages ? '../lang/' : 'lang/';
+  const langBase = '/lang/';
       // Determine preferred structure (cached)
       const structurePrefKey = 'i18nStructure'; // 'nested' | 'flat'
       let pref = localStorage.getItem(structurePrefKey);
@@ -254,21 +251,18 @@
       if (pref === 'nested') {
         candidates = [
           `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`,
-          `${langBase}${CURRENT_LANG}.json${cacheBuster}`,
-          (location.pathname.includes('/pages/') ? '../' : '') + `${CURRENT_LANG}.json${cacheBuster}`
+          `${langBase}${CURRENT_LANG}.json${cacheBuster}`
         ];
       } else if (pref === 'flat') {
         candidates = [
           `${langBase}${CURRENT_LANG}.json${cacheBuster}`,
-          `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`,
-          (location.pathname.includes('/pages/') ? '../' : '') + `${CURRENT_LANG}.json${cacheBuster}`
+          `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`
         ];
       } else {
-        // Unknown -> optimistically try nested first (if exists no 404), then flat, then root fallback
+        // Unknown -> optimistically try nested first (if exists no 404), then flat
         candidates = [
           `${langBase}${CURRENT_LANG}/${CURRENT_LANG}.json${cacheBuster}`,
-          `${langBase}${CURRENT_LANG}.json${cacheBuster}`,
-          (location.pathname.includes('/pages/') ? '../' : '') + `${CURRENT_LANG}.json${cacheBuster}`
+          `${langBase}${CURRENT_LANG}.json${cacheBuster}`
         ];
       }
       let loaded = null;

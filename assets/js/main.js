@@ -35,15 +35,16 @@
   function setupIncludes(){
     const header = document.querySelector('[data-component="header"]');
     const footer = document.querySelector('[data-component="footer"]');
-    const inPages = location.pathname.includes('/pages/');
-    const compBase = inPages ? '../components/' : 'components/';
+    // Use absolute paths so components load correctly from any URL depth
+    // (root /, /wohnungen, /en/wohnungen, /pages/wohnungen.html, etc.)
+    const compBase = '/components/';
     if (header) injectComponent(header, compBase + 'header.html');
     if (footer) injectComponent(footer, compBase + 'footer.html');
 
     // WhatsApp Floating Button dynamisch einfügen
     // Nur einfügen, wenn noch nicht vorhanden
     if (!document.getElementById('wa-fab-btn')) {
-      fetch(compBase + 'whatsapp-button.html', { credentials: 'same-origin' })
+      fetch('/components/whatsapp-button.html', { credentials: 'same-origin' })
         .then(res => res.ok ? res.text() : null)
         .then(html => {
           if (!html) return;
@@ -144,14 +145,12 @@
     document.addEventListener('component:loaded', markActive);
 
     // --- Reusable Card Template Loading & Rendering ---
-    const IS_PAGES = location.pathname.includes('/pages/');
 
   // Fetch card template once and append <template> to body
   async function ensureCardTemplate(){
       if (document.getElementById('card-template')) return true;
-      const base = IS_PAGES ? '../' : '';
       try{
-        const res = await fetch(base + 'components/card.html', { credentials: 'same-origin', cache: 'no-store' });
+        const res = await fetch('/components/card.html', { credentials: 'same-origin', cache: 'no-store' });
         if (!res.ok) return false;
         const html = await res.text();
         const wrap = document.createElement('div');
@@ -169,7 +168,7 @@
       const host = document.getElementById('feature-cards');
       const tpl = document.getElementById('card-template');
       if (!host || !tpl || host.dataset.rendered) return;
-      const baseImg = (IS_PAGES ? '../' : '') + 'assets/img/allgemein/';
+      const baseImg = '/assets/img/allgemein/';
       const data = [
         { icon: 'fa-bed', title: 'home.features.komfort.title', text: 'home.features.komfort.text', img: baseImg + 'komfort.png' },
         { icon: 'fa-location-dot', title: 'home.features.zentral.title', text: 'home.features.zentral.text', img: baseImg + 'zentral.png' },
@@ -344,7 +343,6 @@
     // Prevent concurrent duplicate renders when multiple events fire near-simultaneously
     if (host.dataset.rendered === 'true' || host.dataset.rendering === 'true') return;
     host.dataset.rendering = 'true';
-      const base = IS_PAGES ? '../' : '';
       const vmap = await getVariantsMap();
       // Card-Konfiguration aus data-cards Attribut (JSON) oder Fallback
       let cardKeys = [];
@@ -353,7 +351,7 @@
         try { cardKeys = JSON.parse(raw); } catch(e){ console.warn('Invalid data-cards JSON', e); }
       }
       if (!cardKeys.length){
-        cardKeys = [{ key: 'card', img: base + 'assets/img/sample.svg', alt: 'Wohnungsbild' }];
+        cardKeys = [{ key: 'card', img: '/assets/img/sample.svg', alt: 'Wohnungsbild' }];
       }
 
       cardKeys.forEach(cfg => {
@@ -361,7 +359,7 @@
         variant.classList.remove('d-none');
         if (cfg.key) variant.setAttribute('data-apartment-key', cfg.key);
         const imgEl = variant.querySelector('[data-img]');
-        const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
+        const imgSrc = cfg.img || '/assets/img/sample.svg';
         // If the image looks like /assets/img/wohnungen/<apt>/main.png build responsive <picture> ONLY if variants exist.
         const isMainAptImg = (/\/assets\/img\/wohnungen\//.test(imgSrc) && /\/main\.(png|jpe?g)$/i.test(imgSrc));
         const hasVariants = cfg.key && vmap && vmap[cfg.key] === true;
@@ -499,17 +497,20 @@
         const btn = e.target.closest('[data-lang]');
         if (!btn) return;
         const lang = btn.getAttribute('data-lang');
-        // Navigate to the language-prefixed URL so the URL bar and canonical stay in sync.
-        // Strip any existing lang prefix from current path, then prepend new one (or none for 'de').
-        const LANG_PREFIX_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
-        const strippedPath = location.pathname.replace(LANG_PREFIX_RE, '/');
-        const newPath = (lang && lang !== 'de') ? '/' + lang + strippedPath : strippedPath;
-        const newUrl = newPath + location.search + location.hash;
-        if (newUrl !== location.pathname + location.search + location.hash) {
-          window.location.href = newUrl;
-        } else if (window.setLanguage) {
-          window.setLanguage(lang).then(updateLangIndicator);
+        const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+        // On production: navigate to the language-prefixed URL so the URL bar and canonical stay in sync.
+        // On localhost: http-server has no .htaccess support, so just update translations in place.
+        if (!isLocal) {
+          const LANG_PREFIX_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
+          const strippedPath = location.pathname.replace(LANG_PREFIX_RE, '/');
+          const newPath = (lang && lang !== 'de') ? '/' + lang + strippedPath : strippedPath;
+          const newUrl = newPath + location.search + location.hash;
+          if (newUrl !== location.pathname + location.search + location.hash) {
+            window.location.href = newUrl;
+            return;
+          }
         }
+        if (window.setLanguage) window.setLanguage(lang).then(updateLangIndicator);
       });
       document.addEventListener('i18n:changed', updateLangIndicator);
       updateLangIndicator();
