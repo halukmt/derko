@@ -57,31 +57,34 @@
     }
 
   function adjustNavLinks(){
-    // Brand always root
-    const brandLink = document.querySelector('.navbar-brand');
-    if (brandLink) brandLink.setAttribute('href','/');
     // Navigation: home = '/', others absolute /pages/...
     // Umschreiben Header-Links
+    const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+    // Detect current language prefix from URL to keep nav links consistent
+    const langMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+    const urlLang = langMatch ? langMatch[1] : 'de';
+    const langPrefix = (urlLang !== 'de') ? '/' + urlLang : '';
+    // Brand: root of current language
+    const brandLink = document.querySelector('.navbar-brand');
+    if (brandLink) brandLink.setAttribute('href', langPrefix + '/');
     document.querySelectorAll('.navbar .nav-link').forEach(a=>{
       const id = a.id || '';
-      const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-      const env = isLocal ? 'local' : 'prod';
       const fileMap = {
-        'nav-home': {prod: '/', local: '/index.html'},
-        'nav-wohnungen': {prod: '/wohnungen', local: '/pages/wohnungen.html'},
-        'nav-ueberuns': {prod: '/ueber-uns', local: '/pages/ueber-uns.html'},
-        'nav-kontakt': {prod: '/kontakt', local: '/pages/kontakt.html'},
-        'nav-faq': {prod: '/faq', local: '/pages/faq.html'},
-        'nav-agb': {prod: '/agb', local: '/pages/agb.html'},
-        'nav-impressum': {prod: '/impressum', local: '/pages/impressum.html'}
+        'nav-home': isLocal ? '/index.html' : langPrefix + '/',
+        'nav-wohnungen': isLocal ? '/pages/wohnungen.html' : langPrefix + '/wohnungen',
+        'nav-ueberuns': isLocal ? '/pages/ueber-uns.html' : langPrefix + '/ueber-uns',
+        'nav-kontakt': isLocal ? '/pages/kontakt.html' : langPrefix + '/kontakt',
+        'nav-faq': isLocal ? '/pages/faq.html' : langPrefix + '/faq',
+        'nav-agb': isLocal ? '/pages/agb.html' : langPrefix + '/agb',
+        'nav-impressum': isLocal ? '/pages/impressum.html' : langPrefix + '/impressum'
       };
-      const file = fileMap[id] && fileMap[id][env];
+      const file = fileMap[id];
       if (!file) return;
       a.setAttribute('href', file);
     });
 
     // Umschreiben Footer-Links (lokal/LAN zu .html)
-    if (/^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname)) {
+    if (isLocal) {
       const footerMap = {
         '/impressum': '/pages/impressum.html',
         '/agb': '/pages/agb.html',
@@ -410,7 +413,9 @@
         const btn = variant.querySelector('[data-button]');
         translateAttr(btn, prefix + '.button');
         if(cfg.key){
-          btn.setAttribute('href', '/pages/wohnung-detail.html?id='+encodeURIComponent(cfg.key));
+          const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+          const detailBase = isLocal ? '/pages/wohnung-detail.html' : '/wohnung';
+          btn.setAttribute('href', detailBase + '?id=' + encodeURIComponent(cfg.key));
         } else {
           btn.setAttribute('href', '/pages/wohnungen.html');
         }
@@ -494,7 +499,17 @@
         const btn = e.target.closest('[data-lang]');
         if (!btn) return;
         const lang = btn.getAttribute('data-lang');
-        if (window.setLanguage) window.setLanguage(lang).then(updateLangIndicator);
+        // Navigate to the language-prefixed URL so the URL bar and canonical stay in sync.
+        // Strip any existing lang prefix from current path, then prepend new one (or none for 'de').
+        const LANG_PREFIX_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
+        const strippedPath = location.pathname.replace(LANG_PREFIX_RE, '/');
+        const newPath = (lang && lang !== 'de') ? '/' + lang + strippedPath : strippedPath;
+        const newUrl = newPath + location.search + location.hash;
+        if (newUrl !== location.pathname + location.search + location.hash) {
+          window.location.href = newUrl;
+        } else if (window.setLanguage) {
+          window.setLanguage(lang).then(updateLangIndicator);
+        }
       });
       document.addEventListener('i18n:changed', updateLangIndicator);
       updateLangIndicator();

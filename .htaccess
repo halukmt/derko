@@ -85,7 +85,7 @@ Options -MultiViews
   RewriteCond %{THE_REQUEST} \s/+pages/datenschutz\.html [NC]
   RewriteRule ^pages/datenschutz\.html$ /datenschutz [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/wohnung-detail\.html [NC]
-  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [R=301,L]
+  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [QSA,R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/faq\.html [NC]
   RewriteRule ^pages/faq\.html$ /faq [R=301,L]
 
