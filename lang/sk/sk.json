@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Vitajte v DERKO Nehnuteľnosti",
+    "headline": "Na montáži? U DERKO ste dobre postarané.",
     "subheadline": "Nájdete u nás pohodlné a cenovo výhodné ubytovanie pre remeselníkov a montérov.",
     "cta": "Vyžiadať ponuku",
     "hero": {
@@ -52,9 +52,18 @@
     },
     "features": {
       "heading": "Výhody",
-      "komfort": { "title": "Komfort", "text": "Plne vybavené byty s Wi‑Fi, kuchyňou a parkovaním." },
-      "zentral": { "title": "Centrálne", "text": "Dobrá dostupnosť pre tímy a montérov, v blízkosti Düsseldorfu / letiska / veľtrhu." },
-      "fair": { "title": "Férové", "text": "Transparentné ceny a flexibilné možnosti rezervácie." }
+      "komfort": {
+        "title": "Komfort",
+        "text": "Plne vybavené byty s Wi‑Fi, kuchyňou a parkovaním."
+      },
+      "zentral": {
+        "title": "Centrálne",
+        "text": "Dobrá dostupnosť pre tímy a montérov, v blízkosti Düsseldorfu / letiska / veľtrhu."
+      },
+      "fair": {
+        "title": "Férové",
+        "text": "Transparentné ceny a flexibilné možnosti rezervácie."
+      }
     }
   },
   "wohnungen": {
@@ -223,7 +232,10 @@
   "ueberUns": {
     "headline": "O nás",
     "description": "Sme mladá dynamická spoločnosť z Duisburgu, v srdci Ruhrskej oblasti. Medzi naše služby patrí sprostredkovanie, správa a oceňovanie nehnuteľností. Ako profesionálny partner sme vám k dispozícii pri všetkých otázkach prenájmu. <br><br>DERKO Immobilien sa v posledných rokoch špecializuje aj na prenájom ubytovania pre montérov a bytov. Neustále rozširujeme portfólio a usilujeme sa poskytovať viac obytného priestoru a optimálnu službu.",
-    "founders": { "alt": "Zakladatelia DERKO Immobilien", "caption": "Zakladatelia DERKO Immobilien" },
+    "founders": {
+      "alt": "Zakladatelia DERKO Immobilien",
+      "caption": "Zakladatelia DERKO Immobilien"
+    },
     "cards": {
       "vorteile": {
         "title": "Vaše výhody",
@@ -253,7 +265,9 @@
         ]
       }
     },
-    "partners": { "title": "Naši partneri" }
+    "partners": {
+      "title": "Naši partneri"
+    }
   },
   "kontakt": {
     "headline": "Ponuka",
@@ -289,17 +303,71 @@
       "bot": "Dopyt zablokovaný: skúste znova o niekoľko sekúnd.",
       "captcha": "Bezpečnostný kód nie je správny."
     },
-    "email": { "subjectIdLabel": "ID dopytu", "yourDetails": "Vaše údaje:" }
+    "email": {
+      "subjectIdLabel": "ID dopytu",
+      "yourDetails": "Vaše údaje:"
+    }
   },
-  "agb": { "headline": "Všeobecné obchodné podmienky (VOP)", "text": "lang/sk/sk.agb.html" },
-  "impressum": { "headline": "Impresum", "text": "lang/sk/sk.impressum.html" },
-  "datenschutz": { "headline": "Ochrana osobných údajov", "text": "lang/sk/sk.datenschutz.html" },
-  "legal": { "revealEmail": "Zobraziť e‑mailovú adresu" },
-  "notFound": { "title": "404", "headline": "Stránka sa nenašla", "description": "Požadovaná stránka sa nenašla alebo už neexistuje.", "backHome": "Späť na úvod" },
-  "wohnungDetail": { "headline": "Detaily bytu", "cta": "Vyžiadať ponuku", "meta": { "title": "Základné údaje" }, "amenities": { "title": "Vybavenie" }, "description": { "title": "Popis" }, "gallery": { "showMore": "Viac obrázkov", "showLess": "Menej obrázkov", "photo": "Fotografia" } },
-  "error": { "session": { "title": "Relácia vypršala", "message": "Vaša relácia vypršala. Obnovte stránku a odošlite formulár znova." }, "captcha": { "title": "Neplatné CAPTCHA", "message": "Bezpečnostný kód je nesprávny alebo vypršal. Obnovte stránku a skúste to znova." }, "rate": { "title": "Prosíme o chvíľku strpenia", "message": "Práve ste odoslali dopyt. Počkajte chvíľu a skúste znova.", "messageWithWait": "Práve ste odoslali dopyt. Počkajte približne {seconds} sekúnd a skúste znova." }, "backToContact": "Späť na kontaktný formulár" },
-  "confirmation": { "headline": "Dopyt odoslaný", "description": "Váš dopyt sme prijali.", "message": "Ďakujeme za váš záujem o naše byty.<br>Skontrolujeme vaše údaje a ozveme sa vám čo najskôr.<br><br>S pozdravom,<br>Tím DERKO." },
-
+  "agb": {
+    "headline": "Všeobecné obchodné podmienky (VOP)",
+    "text": "lang/sk/sk.agb.html"
+  },
+  "impressum": {
+    "headline": "Impresum",
+    "text": "lang/sk/sk.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Ochrana osobných údajov",
+    "text": "lang/sk/sk.datenschutz.html"
+  },
+  "legal": {
+    "revealEmail": "Zobraziť e‑mailovú adresu"
+  },
+  "notFound": {
+    "title": "404",
+    "headline": "Stránka sa nenašla",
+    "description": "Požadovaná stránka sa nenašla alebo už neexistuje.",
+    "backHome": "Späť na úvod"
+  },
+  "wohnungDetail": {
+    "headline": "Detaily bytu",
+    "cta": "Vyžiadať ponuku",
+    "meta": {
+      "title": "Základné údaje"
+    },
+    "amenities": {
+      "title": "Vybavenie"
+    },
+    "description": {
+      "title": "Popis"
+    },
+    "gallery": {
+      "showMore": "Viac obrázkov",
+      "showLess": "Menej obrázkov",
+      "photo": "Fotografia"
+    }
+  },
+  "error": {
+    "session": {
+      "title": "Relácia vypršala",
+      "message": "Vaša relácia vypršala. Obnovte stránku a odošlite formulár znova."
+    },
+    "captcha": {
+      "title": "Neplatné CAPTCHA",
+      "message": "Bezpečnostný kód je nesprávny alebo vypršal. Obnovte stránku a skúste to znova."
+    },
+    "rate": {
+      "title": "Prosíme o chvíľku strpenia",
+      "message": "Práve ste odoslali dopyt. Počkajte chvíľu a skúste znova.",
+      "messageWithWait": "Práve ste odoslali dopyt. Počkajte približne {seconds} sekúnd a skúste znova."
+    },
+    "backToContact": "Späť na kontaktný formulár"
+  },
+  "confirmation": {
+    "headline": "Dopyt odoslaný",
+    "description": "Váš dopyt sme prijali.",
+    "message": "Ďakujeme za váš záujem o naše byty.<br>Skontrolujeme vaše údaje a ozveme sa vám čo najskôr.<br><br>S pozdravom,<br>Tím DERKO."
+  },
   "faq": {
     "metaTitle": "FAQ – Často kladené otázky o montážnych apartmánoch",
     "metaDescription": "Odpovede na často kladené otázky o našich montážnych apartmánoch v Düsseldorfskej oblasti: vybavenie, poloha, ceny, rezervácia a ďalšie.",

@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign von <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Willkommen bei DERKO Immobilien",
+    "headline": "Auf Montage? Bei DERKO sind Sie gut untergebracht.",
     "subheadline": "Hier finden Sie komfortable und günstige Unterkünfte für Handwerker und Monteure.",
     "cta": "Angebot anfragen",
     "hero": {
@@ -66,7 +66,6 @@
       }
     }
   },
-
   "wohnungen": {
     "headline": "Unsere Wohnungen",
     "description": "Wählen Sie aus verschiedenen Unterkünften nahe Düsseldorf Flughafen und Messe – alle vollständig ausgestattet und zentral gelegen.",
@@ -364,7 +363,6 @@
     },
     "backToContact": "Zurück zum Kontaktformular"
   },
-
   "confirmation": {
     "headline": "Anfrage gesendet",
     "description": "Wir haben Ihre Anfrage erhalten.",

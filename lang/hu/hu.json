@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Üdvözöljük a DERKO Ingatlannál",
+    "headline": "Munkán vagy? A DERKO-nál jó kezekben van.",
     "subheadline": "Kényelmes és kedvező szállásokat talál szakembereknek és szerelőknek.",
     "cta": "Ajánlatkérés",
     "hero": {
@@ -265,7 +265,9 @@
         ]
       }
     },
-    "partners": { "title": "Partnereink" }
+    "partners": {
+      "title": "Partnereink"
+    }
   },
   "kontakt": {
     "headline": "Ajánlatkérés",
@@ -318,7 +320,9 @@
     "headline": "Adatvédelem",
     "text": "lang/hu/hu.datenschutz.html"
   },
-  "legal": { "revealEmail": "E‑mail cím megjelenítése" },
+  "legal": {
+    "revealEmail": "E‑mail cím megjelenítése"
+  },
   "notFound": {
     "title": "404",
     "headline": "Az oldal nem található",
@@ -328,9 +332,15 @@
   "wohnungDetail": {
     "headline": "Lakás részletei",
     "cta": "Ajánlatkérés",
-    "meta": { "title": "Fő adatok" },
-    "amenities": { "title": "Felszereltség" },
-    "description": { "title": "Leírás" },
+    "meta": {
+      "title": "Fő adatok"
+    },
+    "amenities": {
+      "title": "Felszereltség"
+    },
+    "description": {
+      "title": "Leírás"
+    },
     "gallery": {
       "showMore": "Több kép",
       "showLess": "Kevesebb kép",
@@ -358,7 +368,6 @@
     "description": "Megkaptuk a kérését.",
     "message": "Köszönjük érdeklődését lakásaink iránt.<br>Áttekintjük adatait, és a lehető leghamarabb felvesszük Önnel a kapcsolatot.<br><br>Üdvözlettel,<br>A DERKO csapata."
   },
-
   "faq": {
     "metaTitle": "GYIK – Gyakran Ismételt Kérdések a szerelői lakásokról",
     "metaDescription": "Válaszok a gyakran ismételt kérdésekre szerelői lakásainkkal kapcsolatban Düsseldorf és Duisburg környékén: felszereltség, elhelyezkedés, árak, foglalás és még sok más.",

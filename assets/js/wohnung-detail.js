@@ -40,6 +40,13 @@
   const prefix = 'wohnungen.cards.' + key;
 
   function fillContent(){
+    // Update CTA link to pre-select this apartment in the contact form
+    const ctaEl = document.getElementById('apt-cta');
+    if (ctaEl) {
+      const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+      const kontaktBase = isLocal ? '/pages/kontakt.html' : '/kontakt';
+      ctaEl.setAttribute('href', kontaktBase + '?wohnung=' + encodeURIComponent(key));
+    }
     const titleEl = document.getElementById('apt-title');
     const textEl = document.getElementById('apt-text');
     const metaEl = document.getElementById('apt-meta');

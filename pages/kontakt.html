@@ -94,11 +94,11 @@
           <input type="hidden" id="form_ts" name="form_ts" value="" />
           <input type="hidden" id="csrf_token" name="csrf_token" value="" />
           <div class="row g-3">
-            <div class="col-md-6">
+            <div class="col-12">
               <label for="name" class="form-label" data-i18n="kontakt.form.name"></label
               ><input
                 type="text"
-                class="form-control"
+                class="form-control form-control-lg"
                 id="name"
                 name="name"
                 autocomplete="name"
@@ -110,7 +110,7 @@
                 data-i18n="kontakt.validation.nameRequired">
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12">
               <label
                 for="email"
                 class="form-label"
@@ -118,7 +118,7 @@
                 ></label
               ><input
                 type="email"
-                class="form-control"
+                class="form-control form-control-lg"
                 id="email"
                 name="email"
                 autocomplete="email"
@@ -131,7 +131,7 @@
               >
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12">
               <label
                 for="phone"
                 class="form-label"
@@ -139,7 +139,7 @@
                 ></label
               ><input
                 type="tel"
-                class="form-control"
+                class="form-control form-control-lg"
                 id="phone"
                 name="phone"
                 autocomplete="tel"
@@ -156,30 +156,30 @@
               >
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12">
               <label for="topic" class="form-label" data-i18n="kontakt.form.topic"></label>
-              <select id="topic" name="topic" class="form-select" required aria-required="true">
+              <select id="topic" name="topic" class="form-select form-select-lg" required aria-required="true">
                 <option value="booking" data-i18n="kontakt.form.topicBooking"></option>
                 <option value="other" data-i18n="kontakt.form.topicOther"></option>
               </select>
             </div>
-            <div class="col-md-3" data-booking-only>
+            <div class="col-12" data-booking-only>
               <label for="date_from" class="form-label" data-i18n="kontakt.form.dateFrom"></label>
-              <input type="text" class="form-control" id="date_from" name="date_from" placeholder="tt.mm.jjjj" required aria-required="true" />
+              <input type="text" class="form-control form-control-lg" id="date_from" name="date_from" placeholder="tt.mm.jjjj" required aria-required="true" />
             </div>
-            <div class="col-md-3" data-booking-only>
+            <div class="col-12" data-booking-only>
               <label for="date_to" class="form-label" data-i18n="kontakt.form.dateTo"></label>
-              <input type="text" class="form-control" id="date_to" name="date_to" placeholder="tt.mm.jjjj" required aria-required="true" />
+              <input type="text" class="form-control form-control-lg" id="date_to" name="date_to" placeholder="tt.mm.jjjj" required aria-required="true" />
             </div>
-            <div class="col-md-3" data-booking-only>
+            <div class="col-12" data-booking-only>
               <label for="apartment" class="form-label" data-i18n="kontakt.form.apartment"></label>
-              <select id="apartment" name="apartment" class="form-select" required aria-required="true">
+              <select id="apartment" name="apartment" class="form-select form-select-lg" required aria-required="true">
                 <option value="" data-i18n="kontakt.form.apartmentPlaceholder"></option>
               </select>
             </div>
-            <div class="col-md-3" data-booking-only>
+            <div class="col-12" data-booking-only>
               <label for="persons" class="form-label" data-i18n="kontakt.form.persons"></label>
-              <input type="number" class="form-control" id="persons" name="persons" inputmode="numeric" pattern="[0-9]*" min="1" step="1" required aria-required="true" aria-describedby="personsHelp personsFeedback" />
+              <input type="number" class="form-control form-control-lg" id="persons" name="persons" inputmode="numeric" pattern="[0-9]*" min="1" step="1" required aria-required="true" aria-describedby="personsHelp personsFeedback" />
               <div id="personsHelp" class="form-text" data-i18n="kontakt.form.personsPlaceholder"></div>
               <div id="personsFeedback" class="invalid-feedback" data-i18n="kontakt.validation.personsRequired"></div>
             </div>
@@ -190,7 +190,7 @@
                 data-i18n="kontakt.form.message"
                 ></label
               ><textarea
-                class="form-control"
+                class="form-control form-control-lg"
                 id="message"
                 name="message"
                 rows="5"
@@ -210,10 +210,10 @@
                 <div class="invalid-feedback" data-i18n="kontakt.validation.privacyRequired"></div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12">
               <label for="captcha" class="form-label" data-i18n="kontakt.form.captchaLabel"></label>
               <div class="d-flex align-items-center gap-2 mb-1">
-                <input type="text" class="form-control" id="captcha" name="captcha" autocomplete="off" inputmode="text" required aria-required="true" />
+                <input type="text" class="form-control form-control-lg" id="captcha" name="captcha" autocomplete="off" inputmode="text" required aria-required="true" />
                 <img id="captcha-img" src="/api/captcha.php" alt="CAPTCHA" width="120" height="40" class="rounded border flex-shrink-0" />
                 <button type="button" id="captcha-refresh" class="icon-circle flex-shrink-0" aria-label="Neu laden">
                   <i class="fa-solid fa-rotate" aria-hidden="true"></i>

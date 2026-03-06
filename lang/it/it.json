@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign di <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Benvenuti da DERKO Immobiliare",
+    "headline": "In trasferta? Con DERKO sei a casa.",
     "subheadline": "Alloggi confortevoli e convenienti per squadre e tecnici.",
     "cta": "Richiedi un'offerta",
     "hero": {
@@ -52,12 +52,20 @@
     },
     "features": {
       "heading": "Vantaggi",
-      "komfort": { "title": "Comfort", "text": "Appartamenti completamente attrezzati con Wi‑Fi, cucina e parcheggio." },
-      "zentral": { "title": "Centrale", "text": "Ottimi collegamenti per squadre e tecnici, vicino a Düsseldorf / fiera / aeroporto." },
-      "fair": { "title": "Equo", "text": "Prezzi trasparenti e prenotazioni flessibili." }
+      "komfort": {
+        "title": "Comfort",
+        "text": "Appartamenti completamente attrezzati con Wi‑Fi, cucina e parcheggio."
+      },
+      "zentral": {
+        "title": "Centrale",
+        "text": "Ottimi collegamenti per squadre e tecnici, vicino a Düsseldorf / fiera / aeroporto."
+      },
+      "fair": {
+        "title": "Equo",
+        "text": "Prezzi trasparenti e prenotazioni flessibili."
+      }
     }
   },
-
   "wohnungen": {
     "headline": "I nostri appartamenti",
     "description": "Scegli appartamenti per lavoratori completamente attrezzati a Duisburg‑Großenbaum, vicino all'aeroporto e alla fiera di Düsseldorf – ideali per squadre e progetti.",
@@ -221,11 +229,13 @@
       }
     }
   },
-
   "ueberUns": {
     "headline": "Chi siamo",
     "description": "Siamo una giovane e dinamica azienda di Duisburg, nel cuore della Ruhr. I nostri servizi comprendono intermediazione, gestione e valutazione immobiliare. Come partner professionale, siamo al tuo fianco per tutte le domande relative agli affitti. <br><br>DERKO Immobilien negli ultimi anni si è specializzata anche nell'affitto di alloggi per lavoratori e appartamenti. Lavoriamo costantemente al nostro portafoglio per offrire più spazi abitativi e un servizio ottimale.",
-    "founders": { "alt": "I fondatori di DERKO Immobilien", "caption": "Fondatori di DERKO Immobilien" },
+    "founders": {
+      "alt": "I fondatori di DERKO Immobilien",
+      "caption": "Fondatori di DERKO Immobilien"
+    },
     "cards": {
       "vorteile": {
         "title": "I tuoi vantaggi",
@@ -255,9 +265,10 @@
         ]
       }
     },
-    "partners": { "title": "I nostri partner" }
+    "partners": {
+      "title": "I nostri partner"
+    }
   },
-
   "kontakt": {
     "headline": "Offerta",
     "description": "Cerchi un appartamento per la tua squadra vicino a Düsseldorf? Richiedi un'offerta senza impegno tramite il modulo o chiamaci.",
@@ -292,22 +303,71 @@
       "bot": "Richiesta bloccata: riprova tra qualche secondo.",
       "captcha": "Il codice di sicurezza non è corretto."
     },
-    "email": { "subjectIdLabel": "ID richiesta", "yourDetails": "I tuoi dati:" }
+    "email": {
+      "subjectIdLabel": "ID richiesta",
+      "yourDetails": "I tuoi dati:"
+    }
   },
-
-  "agb": { "headline": "Condizioni generali (CG)", "text": "lang/it/it.agb.html" },
-  "impressum": { "headline": "Note legali", "text": "lang/it/it.impressum.html" },
-  "datenschutz": { "headline": "Privacy", "text": "lang/it/it.datenschutz.html" },
-  "legal": { "revealEmail": "Mostra indirizzo e‑mail" },
-
-  "notFound": { "title": "404", "headline": "Pagina non trovata", "description": "La pagina richiesta non è stata trovata o non esiste più.", "backHome": "Torna alla home" },
-
-  "wohnungDetail": { "headline": "Dettagli appartamento", "cta": "Richiedi un'offerta", "meta": { "title": "Dati principali" }, "amenities": { "title": "Servizi" }, "description": { "title": "Descrizione" }, "gallery": { "showMore": "Più immagini", "showLess": "Meno immagini", "photo": "Foto" } },
-
-  "error": { "session": { "title": "Sessione scaduta", "message": "La tua sessione è scaduta. Ricarica la pagina e invia di nuovo il modulo." }, "captcha": { "title": "CAPTCHA non valido", "message": "Il codice di sicurezza è errato o scaduto. Ricarica la pagina e riprova." }, "rate": { "title": "Attendi un momento", "message": "Hai appena inviato una richiesta. Attendi un momento e riprova.", "messageWithWait": "Hai appena inviato una richiesta. Attendi circa {seconds} secondi e riprova." }, "backToContact": "Torna al modulo di contatto" },
-
-  "confirmation": { "headline": "Richiesta inviata", "description": "Abbiamo ricevuto la tua richiesta.", "message": "Grazie per l'interesse nei nostri appartamenti.<br>Verificheremo i tuoi dati e ti contatteremo al più presto.<br><br>Cordiali saluti,<br>Il team DERKO." },
-
+  "agb": {
+    "headline": "Condizioni generali (CG)",
+    "text": "lang/it/it.agb.html"
+  },
+  "impressum": {
+    "headline": "Note legali",
+    "text": "lang/it/it.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Privacy",
+    "text": "lang/it/it.datenschutz.html"
+  },
+  "legal": {
+    "revealEmail": "Mostra indirizzo e‑mail"
+  },
+  "notFound": {
+    "title": "404",
+    "headline": "Pagina non trovata",
+    "description": "La pagina richiesta non è stata trovata o non esiste più.",
+    "backHome": "Torna alla home"
+  },
+  "wohnungDetail": {
+    "headline": "Dettagli appartamento",
+    "cta": "Richiedi un'offerta",
+    "meta": {
+      "title": "Dati principali"
+    },
+    "amenities": {
+      "title": "Servizi"
+    },
+    "description": {
+      "title": "Descrizione"
+    },
+    "gallery": {
+      "showMore": "Più immagini",
+      "showLess": "Meno immagini",
+      "photo": "Foto"
+    }
+  },
+  "error": {
+    "session": {
+      "title": "Sessione scaduta",
+      "message": "La tua sessione è scaduta. Ricarica la pagina e invia di nuovo il modulo."
+    },
+    "captcha": {
+      "title": "CAPTCHA non valido",
+      "message": "Il codice di sicurezza è errato o scaduto. Ricarica la pagina e riprova."
+    },
+    "rate": {
+      "title": "Attendi un momento",
+      "message": "Hai appena inviato una richiesta. Attendi un momento e riprova.",
+      "messageWithWait": "Hai appena inviato una richiesta. Attendi circa {seconds} secondi e riprova."
+    },
+    "backToContact": "Torna al modulo di contatto"
+  },
+  "confirmation": {
+    "headline": "Richiesta inviata",
+    "description": "Abbiamo ricevuto la tua richiesta.",
+    "message": "Grazie per l'interesse nei nostri appartamenti.<br>Verificheremo i tuoi dati e ti contatteremo al più presto.<br><br>Cordiali saluti,<br>Il team DERKO."
+  },
   "faq": {
     "metaTitle": "FAQ – Domande frequenti su alloggi per lavoratori",
     "metaDescription": "Risposte alle domande frequenti sui nostri alloggi per lavoratori nel Düsseldorf: attrezzature, posizione, prezzi, prenotazione e altro.",
