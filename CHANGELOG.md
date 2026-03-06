@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Added
+- UX/UI feedback analysis and implementation plan in `.github/plan/ux-ui-plan.md` covering 11 actionable improvements across frontend and backend.
+- `serve:php` npm script: starts a PHP 8.2 dev server via Docker (`npm run serve:php`) for local testing of sessions, CAPTCHA and contact form.
+
 ## [v1.4.0] - 2026-02-14
 ### Added
 - Added example templates for local/private configuration: `api/config.local.example.php` and `api/weekly_mail_config.example.php`.

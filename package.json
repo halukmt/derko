@@ -12,7 +12,9 @@
     "build:js": "esbuild assets/js/email-reveal.js assets/js/error-rate-limit.js assets/js/kontakt.js assets/js/lang.js assets/js/main.js assets/js/partners.js assets/js/wohnung-detail.js --minify --sourcemap=external --outdir=dist/assets/js",
     "build:css": "cleancss -o dist/assets/css/style.css assets/css/style.css",
     "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir pages --output-dir dist/pages && html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir lang --output-dir dist/lang && if exist index.html html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o dist/index.html index.html",
-    "build": "npm-run-all clean copy build:js build:css build:html"
+    "build": "npm-run-all clean copy build:js build:css build:html",
+    "serve:php": "docker run --rm -p 8080:8080 -v \"%CD%:/var/www/html\" php:8.2-cli php -S 0.0.0.0:8080 -t /var/www/html",
+    "//serve:php": "Startet PHP 8.2 via Docker auf http://localhost:8080 – inkl. Sessions & CAPTCHA. Docker Desktop muss laufen."
   },
   "dependencies": {
     "sharp": "^0.33.3"
