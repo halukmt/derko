@@ -10,7 +10,9 @@ error_reporting(E_ALL);
 $debug = false;
 
 // --- SESSION CONFIGURATION ---
-$cookieDomain = '.derko-immobilien.de';
+// Allow override via DERKO_COOKIE_DOMAIN env var so sessions work on localhost
+// (Docker sets this to empty string; production falls back to .derko-immobilien.de)
+$cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
 $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 
 @ini_set('session.cookie_domain', $cookieDomain);

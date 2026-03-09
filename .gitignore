@@ -15,3 +15,6 @@ api/rate_store/
 # Environment files (if ever used)
 .env
 .env.local
+
+# Docker: msmtp config contains no secrets but follows best-practice gitignore
+.docker/msmtprc

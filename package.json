@@ -14,8 +14,9 @@
     "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir pages --output-dir dist/pages && html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir lang --output-dir dist/lang && if exist index.html html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o dist/index.html index.html",
     "build": "npm-run-all clean copy build:js build:css build:html",
     "dev": "php -S localhost:8080 router.php",
-    "serve:php": "docker run --rm -p 8080:8080 -v \"%CD%:/var/www/html\" php:8.2-cli php -S 0.0.0.0:8080 -t /var/www/html",
-    "//serve:php": "Startet PHP 8.2 via Docker auf http://localhost:8080 – inkl. Sessions & CAPTCHA. Docker Desktop muss laufen."
+    "docker:up": "docker compose up",
+    "docker:down": "docker compose down",
+    "//docker": "Startet Apache+PHP 8.2 + Mailpit via Docker. Web: http://localhost:8080 | Mail-UI: http://localhost:8025. Docker Desktop muss laufen."
   },
   "dependencies": {
     "sharp": "^0.33.3"
