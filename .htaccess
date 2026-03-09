@@ -85,7 +85,7 @@ Options -MultiViews
   RewriteCond %{THE_REQUEST} \s/+pages/datenschutz\.html [NC]
   RewriteRule ^pages/datenschutz\.html$ /datenschutz [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/wohnung-detail\.html [NC]
-  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [R=301,L]
+  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [QSA,R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/faq\.html [NC]
   RewriteRule ^pages/faq\.html$ /faq [R=301,L]
 
@@ -109,6 +109,14 @@ Options -MultiViews
   RewriteRule ^wohnung/?$ /pages/wohnung-detail.html [QSA,L]
   # FAQ
   RewriteRule ^faq/?$ /pages/faq.html [L]
+
+  # Multi-language URL routing: /{lang}/ and /{lang}/{page}
+  # Language root pages (e.g. /en/, /pl/)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/?$ /index.html [L]
+  # Language-prefixed detail pages (preserve query string)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/wohnung/?$ /pages/wohnung-detail.html [QSA,L]
+  # Language-prefixed standard pages
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/(wohnungen|kontakt|ueber-uns|faq|agb|impressum|datenschutz|bestaetigung)/?$ /pages/$2.html [L]
 
   # (Replaced RedirectMatch rules with THE_REQUEST-based rules above to prevent redirect loops)
 </IfModule>

@@ -121,13 +121,23 @@ mkdir -p api/logs
 
 ### Local Development Server
 
-Start a local PHP development server:
+> ⚠️ **Important:** Always use `router.php` when starting the PHP built-in server. Without it, language URLs (`/en/wohnungen`) return 404 and the custom error page is not shown.
+
+**Recommended — npm script (shortest):**
 
 ```bash
-php -S localhost:8080 -t .
+npm run dev
 ```
 
-**Alternative:** Use a Node.js static server (limited functionality - contact form won't work):
+**Or run PHP directly:**
+
+```bash
+php -S localhost:8080 router.php
+```
+
+The `router.php` script mirrors the `.htaccess` rewrite rules so that pretty URLs (`/wohnungen`), language-prefixed URLs (`/en/wohnungen`, `/pl/kontakt`, etc.) and the custom 404 page (`pages/404.html`) all work correctly on localhost.
+
+**Alternative (no URL routing or custom 404):** Use a Node.js static server (limited functionality — contact form, pretty URLs and custom 404 won't work):
 
 ```bash
 npx http-server -p 8080
