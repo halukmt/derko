@@ -7,20 +7,38 @@
 //  - Limited initial render + "show more" toggle
 //  - JSON-LD uses curated image list (not speculative pattern)
 //  - Dynamic hero <link rel="preload"> injection
+//  - Clean slug URLs: /wohnung/<slug> and /<lang>/wohnung/<slug>
 (function(){
-  const params = new URLSearchParams(location.search);
-  const key = params.get('id');
-  const root = document.querySelector('[data-apartment-root]');
+  // Slug ↔ key conversion: underscores in keys, hyphens in slugs
+  function keyToSlug(k){ return k.replace(/_/g, '-'); }
+  function slugToKey(s){ return s.replace(/-/g, '_'); }
+
+  // Extract apartment key from URL
+  // Supports: /wohnung/<slug>, /<lang>/wohnung/<slug>, legacy ?id=<key>
+  var key;
+  var slugMatch = location.pathname.match(/\/wohnung\/([a-z0-9-]+)\/?$/);
+  if (slugMatch) {
+    key = slugToKey(slugMatch[1]);
+  } else {
+    var params = new URLSearchParams(location.search);
+    key = params.get('id');
+  }
+
+  // Detect current language from URL prefix
+  var langMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)\//);
+  var currentLang = langMatch ? langMatch[1] : 'de';
+
+  var root = document.querySelector('[data-apartment-root]');
   if(!root) return;
 
-  const basePath = '/assets/img/wohnungen/';
-  const configPath = '/assets/data/apartments.json';
-  const known = ['w03_exklusiv','w04_exklusiv_2','w01_derko_apart','w02_derko_apart_2','w05_dus_1','w06_dus_2','w07_dus_3']; // sync with listing
+  var basePath = '/assets/img/wohnungen/';
+  var configPath = '/assets/data/apartments.json';
+  var known = ['w03_exklusiv','w04_exklusiv_2','w01_derko_apart','w02_derko_apart_2','w05_dus_1','w06_dus_2','w07_dus_3']; // sync with listing
   if(!key || !known.includes(key)){
     // Redirect to the dedicated 404 page for unknown/removed apartments
     // Use replace() so the invalid URL doesn't stay in history
     try {
-      const fourOhFour = '/404.html';
+      var fourOhFour = '/404.html';
       if(location.pathname !== fourOhFour){
         location.replace(fourOhFour);
         return;
@@ -30,6 +48,9 @@
     root.innerHTML = '<div class="alert alert-warning" role="status" data-i18n="notFound.description">Apartment nicht gefunden.</div>';
     return;
   }
+
+  var slug = keyToSlug(key);
+  var allLangs = ['de','en','pl','hu','sk','cs','it','bg','ro'];
 
   // Translation helper
   function t(k){
@@ -74,20 +95,18 @@
       const ogd = t(prefix + '.text') || desc || ('Details zu ' + title);
       ogDesc.setAttribute('content', ogd);
     }
-    // Canonical: include id parameter for distinct apartment pages
+    // Canonical: clean slug URL for this apartment
     const canonical = document.querySelector('link[rel="canonical"]');
     if(canonical){
-      const url = '/wohnung?id=' + encodeURIComponent(key);
-      canonical.setAttribute('href', url);
+      const langPrefix = currentLang === 'de' ? '' : '/' + currentLang;
+      canonical.setAttribute('href', langPrefix + '/wohnung/' + slug);
     }
-    // Hreflang alternates: adapt to parameter
+    // Hreflang alternates: clean slug URLs for all languages
     document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(link => {
       const lang = link.getAttribute('hreflang');
       if(!lang) return;
-      let base = '/wohnung';
-      if(lang === 'en') base = '/en/wohnung';
-      // Use same id parameter for canonical separation
-      link.setAttribute('href', base + '?id=' + encodeURIComponent(key));
+      const prefix = (lang === 'de' || lang === 'x-default') ? '' : '/' + lang;
+      link.setAttribute('href', 'https://www.derko-immobilien.de' + prefix + '/wohnung/' + slug);
     });
 
     // Meta details list

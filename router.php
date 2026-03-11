@@ -44,6 +44,12 @@ if (preg_match('/^(' . $langPattern . ')\/?$/', $path, $m)) {
     exit;
 }
 
+// Language + wohnung-detail with slug: /en/wohnung/w01-derko-apart
+if (preg_match('/^(' . $langPattern . ')\/wohnung\/([a-z0-9-]+)\/?$/', $path)) {
+    require $root . '/pages/wohnung-detail.html';
+    exit;
+}
+
 // Language + wohnung-detail: /en/wohnung
 if (preg_match('/^(' . $langPattern . ')\/wohnung\/?$/', $path)) {
     require $root . '/pages/wohnung-detail.html';
@@ -66,8 +72,29 @@ if (isset($pageMap[$path]) || isset($pageMap[rtrim($path, '/')])) {
     exit;
 }
 
+// German wohnung-detail with slug: /wohnung/w01-derko-apart
+if (preg_match('/^wohnung\/([a-z0-9-]+)\/?$/', $path)) {
+    require $root . '/pages/wohnung-detail.html';
+    exit;
+}
+
 // German wohnung-detail: /wohnung
 if ($path === 'wohnung' || $path === 'wohnung/') {
+    // 301 redirect old ?id= format to clean slug
+    $slugMap = [
+        'w01_derko_apart'   => 'w01-derko-apart',
+        'w02_derko_apart_2' => 'w02-derko-apart-2',
+        'w03_exklusiv'      => 'w03-exklusiv',
+        'w04_exklusiv_2'    => 'w04-exklusiv-2',
+        'w05_dus_1'         => 'w05-dus-1',
+        'w06_dus_2'         => 'w06-dus-2',
+        'w07_dus_3'         => 'w07-dus-3',
+    ];
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    if ($id !== '' && isset($slugMap[$id])) {
+        header('Location: /wohnung/' . $slugMap[$id], true, 301);
+        exit;
+    }
     require $root . '/pages/wohnung-detail.html';
     exit;
 }

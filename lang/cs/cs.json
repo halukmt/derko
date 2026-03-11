@@ -375,43 +375,43 @@
     "items": {
       "guenstige-monteurzimmer": {
         "q": "Kde najdu levné montérské pokoje v Düsseldorfu s dobrým napojením na dálnici?",
-        "a": "DERKO Nemovitosti nabízí cenově výhodné montérské pokoje v Düsseldorfu, které jsou strategicky dobře napojeny na dálnice A44, A52 a A3. Umožňuje to řemeslníkům dostat se na stavby v Rath, Derendorf nebo do centra města v nejkratším čase. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">K našim ubytováním</a>"
+        "a": "DERKO Nemovitosti nabízí cenově výhodné montérské pokoje v Düsseldorfu, které jsou strategicky dobře napojeny na dálnice A44, A52 a A3. Umožňuje to řemeslníkům dostat se na stavby v Rath, Derendorf nebo do centra města v nejkratším čase. <a href=\"/wohnung/w01-derko-apart\" class=\"inline-link\">K našim ubytováním</a>"
       },
       "provisionsfreie-messewohnungen": {
         "q": "Nabízíte byty bez provize pro návštěvníky veletrhů v Düsseldorfu?",
-        "a": "Ano, naše veletržní byty v Düsseldorfu se pronajímají bez provize přímo. Nabízejí pohodlnou a cenově výhodnější alternativu k drahým hotelům během velkých veletrhů, jako jsou Drupa či K. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Dozvěďte se více</a>"
+        "a": "Ano, naše veletržní byty v Düsseldorfu se pronajímají bez provize přímo. Nabízejí pohodlnou a cenově výhodnější alternativu k drahým hotelům během velkých veletrhů, jako jsou Drupa či K. <a href=\"/wohnung/w03-exklusiv\" class=\"inline-link\">Dozvěďte se více</a>"
       },
       "handwerker-teams-duisburg": {
         "q": "Jsou tu ubytování pro týmy řemeslníků v jižním Duisburgu?",
-        "a": "Máme prostorné ubytování v různých částech Duisburgu, které jsou ideální pro větší řemeslnické týmy a stavbyvedoucí. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Naše týmové byty</a>"
+        "a": "Máme prostorné ubytování v různých částech Duisburgu, které jsou ideální pro větší řemeslnické týmy a stavbyvedoucí. <a href=\"/wohnung/w02-derko-apart-2\" class=\"inline-link\">Naše týmové byty</a>"
       },
       "entfernung-flughafen": {
         "q": "Jak daleko je ubytování od letiště Düsseldorf (DUS)?",
-        "a": "Mnohé z našich nemovitostí jsou vzdáleny pouhých 10–15 minut od letiště Düsseldorf (DUS). To je ideální pro projektové manažery, logistické specialisty a mezinárodní hosty. <a href=\"/pages/wohnung-detail.html?id=w05_dus_1\" class=\"inline-link\">Byty u letiště</a>"
+        "a": "Mnohé z našich nemovitostí jsou vzdáleny pouhých 10–15 minut od letiště Düsseldorf (DUS). To je ideální pro projektové manažery, logistické specialisty a mezinárodní hosty. <a href=\"/wohnung/w05-dus-1\" class=\"inline-link\">Byty u letiště</a>"
       },
       "ausstattung-wlan-kueche": {
         "q": "Jsou montérské pokoje vybaveny Wi-Fi a vlastní kuchyní?",
-        "a": "Všechny naše montérské pokoje a byty jsou vybaveny vysokorychlostním Wi-Fi a plně vybavenou kuchyní na vlastní provoz, aby byl pobyt co nejpohodlnější. <a href=\"/pages/wohnung-detail.html?id=w04_exklusiv_2\" class=\"inline-link\">Podrobnosti vybavení</a>"
+        "a": "Všechny naše montérské pokoje a byty jsou vybaveny vysokorychlostním Wi-Fi a plně vybavenou kuchyní na vlastní provoz, aby byl pobyt co nejpohodlnější. <a href=\"/wohnung/w04-exklusiv-2\" class=\"inline-link\">Podrobnosti vybavení</a>"
       },
       "parkmoeglichkeiten": {
         "q": "Jsou u ubytování parkovací místa pro dodávky nebo nákladní auta?",
-        "a": "Při výběru našich nemovitostí se zaměřujeme na dobrá parkovací místa na veřejných prostranstvích nebo přímo u objektu, aby větší dodávky a podnikové vozy mohly být bezpečně zaparkované. <a href=\"/pages/wohnung-detail.html?id=w06_dus_2\" class=\"inline-link\">Podívejte se na parkovací místa</a>"
+        "a": "Při výběru našich nemovitostí se zaměřujeme na dobrá parkovací místa na veřejných prostranstvích nebo přímo u objektu, aby větší dodávky a podnikové vozy mohly být bezpečně zaparkované. <a href=\"/wohnung/w06-dus-2\" class=\"inline-link\">Podívejte se na parkovací místa</a>"
       },
       "kurzfristige-buchung": {
         "q": "Jak rychle si mohu zarezervovat montérské ubytování v Duisburgu?",
-        "a": "Často umožňujeme krátkodobé rezervace montérských pokojů v Duisburgu a Düsseldorfu. Kontaktujte nás přímo telefonicky nebo e-mailem, abyste se dozvěděli o aktuální dostupnosti. <a href=\"/pages/wohnung-detail.html?id=w07_dus_3\" class=\"inline-link\">Požádejte o nabídku nyní</a>"
+        "a": "Často umožňujeme krátkodobé rezervace montérských pokojů v Duisburgu a Düsseldorfu. Kontaktujte nás přímo telefonicky nebo e-mailem, abyste se dozvěděli o aktuální dostupnosti. <a href=\"/wohnung/w07-dus-3\" class=\"inline-link\">Požádejte o nabídku nyní</a>"
       },
       "preise-uebernachtung": {
         "q": "Kolik stojí nocleh pro montéry v oblasti Düsseldorf/Duisburg?",
-        "a": "Ceny se liší podle doby pobytu a počtu osob. Nabízíme však férové a konkurenceschopné podmínky, které jsou výrazně nižší než obvyklé hotelové ceny v regionu. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Zobrazit ceny</a>"
+        "a": "Ceny se liší podle doby pobytu a počtu osob. Nabízíme však férové a konkurenceschopné podmínky, které jsou výrazně nižší než obvyklé hotelové ceny v regionu. <a href=\"/wohnung/w01-derko-apart\" class=\"inline-link\">Zobrazit ceny</a>"
       },
       "rabatte-firmen": {
         "q": "Nabízíte slevy pro firmy při dlouhodobém pronájmu nebo velkých skupinách?",
-        "a": "Ano, pro firmy plánující dlouhodobý pronájem nebo které potřebují ubytovat velké týmy nabízíme atraktivní stupňované slevy. Zeptejte se na naše B2B podmínky. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">B2B nabídky</a>"
+        "a": "Ano, pro firmy plánující dlouhodobý pronájem nebo které potřebují ubytovat velké týmy nabízíme atraktivní stupňované slevy. Zeptejte se na naše B2B podmínky. <a href=\"/wohnung/w02-derko-apart-2\" class=\"inline-link\">B2B nabídky</a>"
       },
       "bettwaesche-handtuecher": {
         "q": "Jsou v montérském bytě zahrnuty ložní prádlo a ručníky?",
-        "a": "V našich ubytováních je zpravidla zahrnuto základní ložní prádlo, takže se vaši zaměstnanci nemusí o nic starat a mohou se ihned nastěhovat. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Na vybavení</a>"
+        "a": "V našich ubytováních je zpravidla zahrnuto základní ložní prádlo, takže se vaši zaměstnanci nemusí o nic starat a mohou se ihned nastěhovat. <a href=\"/wohnung/w03-exklusiv\" class=\"inline-link\">Na vybavení</a>"
       }
     }
   }
