@@ -5,7 +5,7 @@ services:
     build:
       context: .docker
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       # Mount source directly — no container rebuild needed after file changes
       - .:/var/www/html
@@ -21,11 +21,11 @@ services:
   # ── Mailpit — local email catcher ─────────────────────────────────────────
   # All PHP mail() calls are relayed here via msmtp (no real emails sent).
   # SMTP:   localhost:1025  (internal only, used by msmtp inside web container)
-  # Web UI: http://localhost:8025
+  # Web UI: http://localhost:9000
   mailpit:
     image: axllent/mailpit:latest
     ports:
-      - "8025:8025"   # Web UI
+      - "9000:8025"   # Web UI
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: "1"
       MP_SMTP_AUTH_ALLOW_INSECURE: "1"

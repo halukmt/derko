@@ -16,7 +16,7 @@
     "dev": "php -S localhost:8080 router.php",
     "docker:up": "docker compose up",
     "docker:down": "docker compose down",
-    "//docker": "Startet Apache+PHP 8.2 + Mailpit via Docker. Web: http://localhost:8080 | Mail-UI: http://localhost:8025. Docker Desktop muss laufen."
+    "//docker": "Startet Apache+PHP 8.2 + Mailpit via Docker. Web: http://localhost:8081 | Mail-UI: http://localhost:9000. Docker Desktop muss laufen."
   },
   "dependencies": {
     "sharp": "^0.33.3"

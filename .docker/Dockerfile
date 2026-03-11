@@ -11,8 +11,16 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends msmtp \
     && rm -rf /var/lib/apt/lists/*
 
-# GD extension: required by api/captcha.php to generate the math-challenge image
-RUN docker-php-ext-install gd
+# GD extension: required by api/captcha.php to generate the math-challenge image.
+# libpng-dev, libjpeg-dev, libfreetype6-dev are the native libraries GD compiles against.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && rm -rf /var/lib/apt/lists/*
 
 # Apache VirtualHost: AllowOverride All so .htaccess rewrites and headers are active
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
