@@ -515,7 +515,10 @@ $headersUser[] = 'X-Mailer: PHP/'.phpversion();
 $headerStrUser = implode("\r\n", $headersUser);
 
 // 1) Mail an Betreiber (immer Deutsch)
-@mail($TO, $subjectEncoded_op, $body_op, $headerStrOp);
+$mailOpOk = mail($TO, $subjectEncoded_op, $body_op, $headerStrOp);
+if (!$mailOpOk) {
+  derko_log('MAIL FAIL: operator email not sent', ['to' => $TO, 'subject' => $subject_op]);
+}
 
 // 2) Bestätigungsmail an Absender (localized nach Benutzer-Sprache)
 // Prefer confirmation.message from i18n (chain lookup)
@@ -523,7 +526,10 @@ $successHtml = t_chain($__DICT_CHAIN, 'confirmation.message', '');
 $successText = $successHtml ? html_to_text($successHtml) : '';
 $yourDetails = t_chain($__DICT_CHAIN, 'kontakt.email.yourDetails');
 $confirmBody = $successText."\r\n\r\n".$yourDetails."\r\n".$body_user;
-@mail($email, $subjectEncoded_user, $confirmBody, $headerStrUser);
+$mailUserOk = mail($email, $subjectEncoded_user, $confirmBody, $headerStrUser);
+if (!$mailUserOk) {
+  derko_log('MAIL FAIL: confirmation email not sent', ['to' => $email]);
+}
 
 // Weiterleitung auf Bestätigungsseite
 header('Location: /pages/bestaetigung.html');
