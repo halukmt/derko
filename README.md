@@ -121,13 +121,23 @@ mkdir -p api/logs
 
 ### Local Development Server
 
-> ⚠️ **Important:** Always use `router.php` when starting the PHP built-in server. Without it, language URLs (`/en/wohnungen`) return 404 and the custom error page is not shown.
+Two modes are available depending on what you need to test:
 
-**Recommended — npm script (shortest):**
+---
+
+#### Mode 1: `npm run dev` — Quick local dev (PHP built-in server)
+
+> ⚠️ **Important:** Always use `router.php` when starting the PHP built-in server. Without it, language URLs (`/en/wohnungen`) return 404 and the custom error page is not shown.
 
 ```bash
 npm run dev
 ```
+
+- **URL:** `http://localhost:8080`
+- Pretty URLs and language-prefixed URLs work via `router.php`
+- **No** Apache, **no** email sending, **no** security/cache headers
+- Requires PHP installed locally
+- ✅ Best for: quick JS/CSS/HTML changes
 
 **Or run PHP directly:**
 
@@ -135,17 +145,41 @@ npm run dev
 php -S localhost:8080 router.php
 ```
 
-The `router.php` script mirrors the `.htaccess` rewrite rules so that pretty URLs (`/wohnungen`), language-prefixed URLs (`/en/wohnungen`, `/pl/kontakt`, etc.) and the custom 404 page (`pages/404.html`) all work correctly on localhost.
+---
+
+#### Mode 2: `npm run docker:up` — Strato simulation (Apache + Mailpit)
+
+```bash
+npm run docker:up    # start
+npm run docker:down  # stop
+```
+
+- **Website:** `http://localhost:8081`
+- **Mailpit (email UI):** `http://localhost:9000`
+- Full Apache + `.htaccess` active: 301 redirects, security headers, cache headers, AVIF/WebP MIME types
+- All `mail()` calls are caught by Mailpit — no real emails sent
+- Requires Docker Desktop running
+- ✅ Best for: email testing, URL redirects, header validation
+
+> **Port note (Windows/Hyper-V):** Ports 7981–8080 are reserved by Hyper-V on Windows. The Docker setup therefore uses port **8081** (web) and **9000** (Mailpit) instead of the more common 8080/8025.
+
+---
+
+**Quick reference:**
+
+| What to test | Command |
+|---|---|
+| Quick UI changes | `npm run dev` |
+| Email, URLs, headers | `npm run docker:up` |
+| Production build | `npm run build` |
+
+---
 
 **Alternative (no URL routing or custom 404):** Use a Node.js static server (limited functionality — contact form, pretty URLs and custom 404 won't work):
 
 ```bash
 npx http-server -p 8080
 ```
-
-**Open in Browser:**
-
-Visit `http://localhost:8080` in your browser. The site should load with all functionalities.
 
 ### Testing Your Setup
 

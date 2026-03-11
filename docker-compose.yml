@@ -1,0 +1,31 @@
+services:
+
+  # ── Apache + PHP 8.2 ───────────────────────────────────────────────────────
+  web:
+    build:
+      context: .docker
+    ports:
+      - "8081:80"
+    volumes:
+      # Mount source directly — no container rebuild needed after file changes
+      - .:/var/www/html
+    environment:
+      # Empty string → PHP sessions are not restricted to .derko-immobilien.de,
+      # so cookies work on localhost. See api/sendmail.php, csrf.php, captcha.php.
+      DERKO_COOKIE_DOMAIN: ""
+      # Enable debug logging (api/logs/error.log)
+      DERKO_DEBUG: "1"
+    depends_on:
+      - mailpit
+
+  # ── Mailpit — local email catcher ─────────────────────────────────────────
+  # All PHP mail() calls are relayed here via msmtp (no real emails sent).
+  # SMTP:   localhost:1025  (internal only, used by msmtp inside web container)
+  # Web UI: http://localhost:9000
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "9000:8025"   # Web UI
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: "1"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "1"
