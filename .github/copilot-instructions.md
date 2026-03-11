@@ -54,13 +54,38 @@ Static multilingual apartment rental website with minimal PHP backend. 9 languag
 **Session cookies:** Secure, HttpOnly, SameSite=Lax. Harmonized in `sendmail.php`.
 
 ## Testing & Validation
-**No automated tests.** Manual validation steps:
-1. **Contact form:** Fill, submit, check email delivery. Test honeypot (instant submit), CAPTCHA (wrong answer), rate limit (multiple submits). Verify CSRF token fetch in browser DevTools Network tab.
-2. **i18n:** Change language via `?lang=de`, check all 9 languages load correctly. Inspect console for missing keys.
-3. **Cards:** Verify apartment cards render on `/wohnungen`. Check images load (AVIF → WebP → PNG fallback). Inspect JSON-LD in page source.
-4. **CSP:** Open browser console, check NO CSP errors. If errors, ensure no inline scripts/styles.
-5. **Responsive images:** Network tab → verify AVIF loads in Chrome/Edge, WebP in Firefox, PNG fallback in old browsers.
-6. **Build:** Run `npm run build`, verify `dist/` contains minified files. Serve `dist/` locally, test all pages.
+
+### Automated E2E Tests (Playwright)
+**Prerequisites:** Docker running (`npm run docker:up` → http://localhost:8081, Mailpit → http://localhost:9000), `DERKO_DEBUG=1` in `docker-compose.yml` (already set).
+
+```bash
+npm test                              # Full run: Chromium + Firefox (~5-6 min, 282 tests)
+npx playwright test --project=chromium  # Chromium only (~2 min, 141 tests) — faster for dev
+npx playwright test contact-form.spec.ts  # Only one spec file
+npx playwright test -g "F-02"         # Filter by test name
+npm run test:ui                       # Interactive UI mode
+npm run test:report                   # Open last HTML report in browser
+```
+
+**Test files** (`tests/e2e/`):
+- `routing.spec.ts` — All URL routes, language prefixes, 301 redirects, 404
+- `canonical-seo.spec.ts` — Canonical URLs, hreflang, sitemap, OG tags
+- `contact-form.spec.ts` — Form submission, CSRF, CAPTCHA, rate limit, Mailpit email delivery
+- `pages.spec.ts` — All pages load, header/footer, apartment titles, language UI, mobile
+
+**Workflow:** During development → run only the affected spec. Before PR/merge → `npm test` (full run).
+
+**Flaky tests:** F-08 (Firefox, Mailpit timing) may occasionally need a retry — `retries: 1` is already configured and handles this automatically.
+
+**`api/test-helper.php`** is a debug-only endpoint (only active when `DERKO_DEBUG=1`) used by Playwright to read CAPTCHA codes from the PHP session. Never deploy with `DERKO_DEBUG=1` in production.
+
+### Manual Testing (Visual / Design)
+Automated tests do NOT cover these — check manually:
+1. **Visual design** — Fonts, colors, spacing, images look correct in all languages
+2. **Gallery** — Lightbox opens/closes, swipe on real mobile device
+3. **Language switcher** — All 9 languages display correctly, active state correct
+4. **Real mobile device** — Safari iOS, not just 375px viewport simulation
+5. **CSP:** Browser console shows NO CSP errors after any JS change
 
 ## Debugging
 **Enable debug mode:** Set `DERKO_DEBUG=1` in `.htaccess` OR `define('DERKO_DEBUG', true);` in `api/config.local.php`. Writes logs to `api/logs/error.log`. Exposes debug info in response headers (X-DERKO-DEBUG) and JSON responses.
@@ -83,6 +108,7 @@ Static multilingual apartment rental website with minimal PHP backend. 9 languag
 
 ## CI/CD & Deployment
 **No GitHub Actions/CI.** Manual deployment. Recommended: Run `npm run build` locally, upload `dist/` via FTP/SFTP to shared host (Strato). Verify environment variables or `api/config.local.php` on server before going live.
+**Before deploying:** Run `npm test` (requires Docker). All 282 tests must pass (Chromium + Firefox).
 
 ## Critical Files (Read These First)
 - `README.md` (debug, weekly mailer, security, SPF/DKIM setup)

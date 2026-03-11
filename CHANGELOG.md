@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v1.5.0] - 2026-03-11
+
+### Added
+- **Playwright E2E Test Suite**: 282 automated tests across 4 spec files in `tests/e2e/`, covering all URL routes, canonical/hreflang SEO, contact form security, and page rendering for all 9 languages. Run with `npm test` (Chromium + Firefox, ~5-6 min) or `npx playwright test --project=chromium` (~2 min).
+  - `routing.spec.ts` — URL routing, language prefixes, 301 redirects, 404 handling
+  - `canonical-seo.spec.ts` — Canonical URLs, hreflang tags, sitemap validation, OG tags
+  - `contact-form.spec.ts` — Form submission, CSRF, CAPTCHA, rate limiting, Mailpit email delivery
+  - `pages.spec.ts` — All pages load, apartment detail titles, language UI, mobile viewport
+- **`api/test-helper.php`**: Debug-only endpoint (active only when `DERKO_DEBUG=1`) that exposes the current CAPTCHA code from the PHP session for Playwright CAPTCHA automation. Never active in production.
+- **npm test scripts** in `package.json`: `test` (full Playwright run), `test:ui` (interactive UI mode), `test:report` (open last HTML report).
+- **`tests/playwright.config.ts`**: Playwright configuration with `baseURL=http://localhost:8081`, 4 parallel workers, `retries: 1` for flaky test resilience, and separate Chromium/Firefox projects.
+
+### Fixed
+- **Apartment detail page title overwrite**: Removed `data-i18n="wohnungDetail.headline"` from `<title>` in `pages/wohnung-detail.html`. The attribute caused `applyTranslations()` in `lang.js` to overwrite the dynamic apartment-specific title (set by `wohnung-detail.js`) back to the generic "Wohnung Details" string after `i18n:ready` fired.
+- **Apache directory listing in Docker**: Changed `Options Indexes FollowSymLinks` to `Options FollowSymLinks` in `.docker/apache.conf`, disabling directory listing for `/api/` and all other directories — matching Strato production behavior.
+- **Mail error logging**: `api/sendmail.php` now checks the return value of `mail()` and writes a log entry on failure instead of silently discarding errors (previously suppressed with `@mail()`).
+- **Absolute canonical URLs**: `assets/js/wohnung-detail.js` now sets fully qualified canonical URLs (`https://www.derko-immobilien.de/wohnung/...`) for apartment detail pages.
+
+### Changed
+- **`.github/copilot-instructions.md`**: Replaced placeholder "No automated tests" section with full Playwright documentation including all CLI commands, spec file descriptions, workflow guidance, flaky test explanation, and `test-helper.php` production warning.
+
+---
+
 ## [v1.4.2] - 2026-03-11
 ### Added
 - Docker-based local development environment mirroring the Strato Apache/PHP 8.2 production stack ([#71](https://github.com/halukmt/derko/pull/71), closes [#70](https://github.com/halukmt/derko/issues/70)):

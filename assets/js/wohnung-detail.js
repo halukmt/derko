@@ -95,11 +95,11 @@
       const ogd = t(prefix + '.text') || desc || ('Details zu ' + title);
       ogDesc.setAttribute('content', ogd);
     }
-    // Canonical: clean slug URL for this apartment
+    // Canonical: absolute clean slug URL for this apartment
     const canonical = document.querySelector('link[rel="canonical"]');
     if(canonical){
       const langPrefix = currentLang === 'de' ? '' : '/' + currentLang;
-      canonical.setAttribute('href', langPrefix + '/wohnung/' + slug);
+      canonical.setAttribute('href', 'https://www.derko-immobilien.de' + langPrefix + '/wohnung/' + slug);
     }
     // Hreflang alternates: clean slug URLs for all languages
     document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(link => {
