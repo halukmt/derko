@@ -124,7 +124,9 @@
     setupCookieBanner();
   // Highlight active navigation link
   function markActive(){
-      const p = location.pathname.split('/').pop() || 'index.html';
+      // Support both pretty URLs (/ueber-uns) and direct .html paths (/pages/ueber-uns.html)
+      const raw = location.pathname.split('/').pop() || '';
+      const p = raw.endsWith('.html') ? raw : (raw ? raw + '.html' : 'index.html');
       const map = {
         'index.html': '#nav-home',
         'wohnungen.html': '#nav-wohnungen',
@@ -133,7 +135,7 @@
         'kontakt.html': '#nav-kontakt',
         'faq.html': '#nav-faq'
       };
-      const sel = map[p] || (p === '' ? '#nav-home' : null);
+      const sel = map[p] || (raw === '' ? '#nav-home' : null);
       if (!sel) return;
       const link = document.querySelector(sel);
       if (link){
