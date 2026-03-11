@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v1.4.2] - 2026-03-11
+### Added
+- Docker-based local development environment mirroring the Strato Apache/PHP 8.2 production stack ([#71](https://github.com/halukmt/derko/pull/71), closes [#70](https://github.com/halukmt/derko/issues/70)):
+  - `.docker/Dockerfile`: `php:8.2-apache` image with `mod_rewrite`, `mod_headers`, `mod_expires`, GD extension (captcha), and msmtp for email relay.
+  - `.docker/apache.conf`: `AllowOverride All` so `.htaccess` rules are fully active during development.
+  - `.docker/php.ini`: sendmail path set to msmtp, `display_errors On` for local debugging.
+  - `.docker/msmtprc`: relays all `mail()` calls to Mailpit on port 1025 (gitignored).
+  - `docker-compose.yml`: `web` service on port `8081:80`, `mailpit` (axllent/mailpit) UI on port `9000:8025`.
+- npm scripts `docker:up` and `docker:down` in `package.json` (replaces previous `serve:php` script).
+
+### Fixed
+- Session cookies failing on localhost: replaced hardcoded `$cookieDomain = '.derko-immobilien.de'` with `DERKO_COOKIE_DOMAIN` environment variable in `api/sendmail.php`, `api/csrf.php`, and `api/captcha.php`. Docker sets this to an empty string so cookies work without a real domain.
+- Docker GD extension build: added `libpng-dev`, `libjpeg-dev`, and `libfreetype6-dev` native libraries before `docker-php-ext-install gd`.
+- Docker port conflicts on Windows with Hyper-V: ports 7981–8080 are reserved by Hyper-V; changed web port from `8080` to `8081` and Mailpit UI from `8025` to `9000`.
+
+### Changed
+- `README.md`: Added Docker quick-start instructions, both `npm run docker:up` and `php -S` dev modes documented with Mailpit email testing info.
+- `.gitignore`: Added `.docker/msmtprc` to prevent the mail relay config from being committed.
+
 ## [v1.4.1] - 2026-03-06
 ### Added
 - UX/UI feedback analysis and implementation plan in `.github/plan/ux-ui-plan.md` covering 11 actionable improvements across frontend and backend.
