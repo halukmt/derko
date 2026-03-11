@@ -135,7 +135,8 @@
         'kontakt.html': '#nav-kontakt',
         'faq.html': '#nav-faq'
       };
-      const sel = map[p] || (raw === '' ? '#nav-home' : null);
+      const sel = map[p] || (raw === '' ? '#nav-home' : null)
+        || (/\/wohnung\/[a-z0-9-]+/.test(location.pathname) ? '#nav-wohnungen' : null);
       if (!sel) return;
       const link = document.querySelector(sel);
       if (link){
@@ -413,9 +414,8 @@
         const btn = variant.querySelector('[data-button]');
         translateAttr(btn, prefix + '.button');
         if(cfg.key){
-          const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-          const detailBase = isLocal ? '/pages/wohnung-detail.html' : '/wohnung';
-          btn.setAttribute('href', detailBase + '?id=' + encodeURIComponent(cfg.key));
+          const slug = cfg.key.replace(/_/g, '-');
+          btn.setAttribute('href', '/wohnung/' + slug);
         } else {
           btn.setAttribute('href', '/pages/wohnungen.html');
         }
