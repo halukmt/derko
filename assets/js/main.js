@@ -60,7 +60,9 @@
   function adjustNavLinks(){
     // Navigation: home = '/', others absolute /pages/...
     // Umschreiben Header-Links
-    const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
+    // Use pretty URLs when current page has no .html extension (Docker/Apache supports rewrites).
+    // Fall back to .html paths for http-server which serves files directly.
+    const usePrettyUrls = !location.pathname.includes('.html');
     // Detect current language prefix from URL to keep nav links consistent
     const langMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
     const urlLang = langMatch ? langMatch[1] : 'de';
@@ -71,34 +73,48 @@
     document.querySelectorAll('.navbar .nav-link').forEach(a=>{
       const id = a.id || '';
       const fileMap = {
-        'nav-home': isLocal ? '/index.html' : langPrefix + '/',
-        'nav-wohnungen': isLocal ? '/pages/wohnungen.html' : langPrefix + '/wohnungen',
-        'nav-ueberuns': isLocal ? '/pages/ueber-uns.html' : langPrefix + '/ueber-uns',
-        'nav-kontakt': isLocal ? '/pages/kontakt.html' : langPrefix + '/kontakt',
-        'nav-faq': isLocal ? '/pages/faq.html' : langPrefix + '/faq',
-        'nav-agb': isLocal ? '/pages/agb.html' : langPrefix + '/agb',
-        'nav-impressum': isLocal ? '/pages/impressum.html' : langPrefix + '/impressum'
+        'nav-home': usePrettyUrls ? langPrefix + '/' : '/index.html',
+        'nav-wohnungen': usePrettyUrls ? langPrefix + '/wohnungen' : '/pages/wohnungen.html',
+        'nav-ueberuns': usePrettyUrls ? langPrefix + '/ueber-uns' : '/pages/ueber-uns.html',
+        'nav-kontakt': usePrettyUrls ? langPrefix + '/kontakt' : '/pages/kontakt.html',
+        'nav-faq': usePrettyUrls ? langPrefix + '/faq' : '/pages/faq.html',
+        'nav-agb': usePrettyUrls ? langPrefix + '/agb' : '/pages/agb.html',
+        'nav-impressum': usePrettyUrls ? langPrefix + '/impressum' : '/pages/impressum.html'
       };
       const file = fileMap[id];
       if (!file) return;
       a.setAttribute('href', file);
     });
 
-    // Umschreiben Footer-Links (lokal/LAN zu .html)
-    if (isLocal) {
-      const footerMap = {
-        '/impressum': '/pages/impressum.html',
-        '/agb': '/pages/agb.html',
-        '/datenschutz': '/pages/datenschutz.html',
-        '/kontakt': '/pages/kontakt.html'
-      };
-      document.querySelectorAll('#ft-impressum, #ft-agb, #ft-privacy, #ft-kontakt').forEach(a => {
-        const href = a.getAttribute('href');
-        if (!href) return;
-        const mapped = footerMap[href];
+    // All internal page links: add language prefix (pretty URLs) or remap to .html (http-server)
+    const LANG_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
+    const prettyToHtml = {
+      '/': '/index.html',
+      '/wohnungen': '/pages/wohnungen.html',
+      '/kontakt': '/pages/kontakt.html',
+      '/ueber-uns': '/pages/ueber-uns.html',
+      '/faq': '/pages/faq.html',
+      '/agb': '/pages/agb.html',
+      '/impressum': '/pages/impressum.html',
+      '/datenschutz': '/pages/datenschutz.html',
+      '/bestaetigung': '/pages/bestaetigung.html'
+    };
+    const knownPaths = Object.keys(prettyToHtml);
+    document.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('#')) return;
+      // Normalize: strip existing lang prefix to get bare path
+      const bare = href.replace(LANG_RE, '/').replace(/\/$/, '') || '/';
+      const normalBare = bare === '' ? '/' : bare;
+      if (usePrettyUrls) {
+        // Only update links that point to known internal pages
+        const matches = knownPaths.some(p => normalBare === p || normalBare.startsWith(p + '?') || normalBare.startsWith('/wohnung/'));
+        if (matches) a.setAttribute('href', langPrefix + (normalBare === '/' ? '/' : normalBare));
+      } else {
+        const mapped = prettyToHtml[normalBare];
         if (mapped) a.setAttribute('href', mapped);
-      });
-    }
+      }
+    });
   }
   document.addEventListener('component:loaded', adjustNavLinks);
   document.addEventListener('DOMContentLoaded', adjustNavLinks);
@@ -204,8 +220,9 @@
         translateAttr(variant.querySelector('[data-text]'), item.text);
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
         // Make feature card clickable – links to apartments listing
-        const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-        const featureHref = isLocal ? '/pages/wohnungen.html' : '/wohnungen';
+        const featureLangMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+        const featureLangPrefix = featureLangMatch ? '/' + featureLangMatch[1] : '';
+        const featureHref = location.pathname.includes('.html') ? '/pages/wohnungen.html' : featureLangPrefix + '/wohnungen';
         variant.classList.add('card-clickable');
         variant.setAttribute('role', 'link');
         variant.setAttribute('tabindex', '0');
@@ -347,6 +364,9 @@
     if (host.dataset.rendered === 'true' || host.dataset.rendering === 'true') return;
     host.dataset.rendering = 'true';
       const vmap = await getVariantsMap();
+      // Detect current language prefix to build language-aware apartment URLs
+      const cardLangMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+      const cardLangPrefix = cardLangMatch ? '/' + cardLangMatch[1] : '';
       // Card-Konfiguration aus data-cards Attribut (JSON) oder Fallback
       let cardKeys = [];
       const raw = host.getAttribute('data-cards');
@@ -415,7 +435,7 @@
         translateAttr(btn, prefix + '.button');
         if(cfg.key){
           const slug = cfg.key.replace(/_/g, '-');
-          btn.setAttribute('href', '/wohnung/' + slug);
+          btn.setAttribute('href', cardLangPrefix + '/wohnung/' + slug);
         } else {
           btn.setAttribute('href', '/pages/wohnungen.html');
         }
@@ -499,15 +519,18 @@
         const btn = e.target.closest('[data-lang]');
         if (!btn) return;
         const lang = btn.getAttribute('data-lang');
-        const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-        // On production: navigate to the language-prefixed URL so the URL bar and canonical stay in sync.
-        // On localhost: http-server has no .htaccess support, so just update translations in place.
-        if (!isLocal) {
+        // Navigate to language-prefixed URL when URL rewriting is available.
+        // Pretty URLs (no .html) = Apache/Docker supports rewrites → navigate.
+        // Plain .html URLs = http-server without rewrite support → update in place.
+        if (!location.pathname.includes('.html')) {
           const LANG_PREFIX_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
           const strippedPath = location.pathname.replace(LANG_PREFIX_RE, '/');
           const newPath = (lang && lang !== 'de') ? '/' + lang + strippedPath : strippedPath;
           const newUrl = newPath + location.search + location.hash;
           if (newUrl !== location.pathname + location.search + location.hash) {
+            // Persist language before navigating so the new page reads the correct lang
+            // from localStorage (important when switching to German which has no URL prefix).
+            localStorage.setItem('lang', lang || 'de');
             window.location.href = newUrl;
             return;
           }
@@ -562,8 +585,7 @@
             return;
           }
           if (more){
-            const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-            const href = isLocal ? '/pages/datenschutz.html' : '/datenschutz';
+            const href = location.pathname.includes('.html') ? '/pages/datenschutz.html' : '/datenschutz';
             window.location.href = href;
             return;
           }
