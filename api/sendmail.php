@@ -531,7 +531,8 @@ if (!$mailUserOk) {
   derko_log('MAIL FAIL: confirmation email not sent', ['to' => $email]);
 }
 
-// Weiterleitung auf Bestätigungsseite
-header('Location: /pages/bestaetigung.html');
+// Weiterleitung auf Bestätigungsseite (language-aware pretty URL)
+$confirmRedirect = ($lang && $lang !== 'de') ? '/' . $lang . '/bestaetigung' : '/bestaetigung';
+header('Location: ' . $confirmRedirect);
 exit;
 ?>

@@ -105,6 +105,7 @@ Options -MultiViews
   RewriteRule ^impressum/?$ /pages/impressum.html [L]
   RewriteRule ^agb/?$ /pages/agb.html [L]
   RewriteRule ^datenschutz/?$ /pages/datenschutz.html [L]
+  RewriteRule ^bestaetigung/?$ /pages/bestaetigung.html [L]
   # 301 redirect old ?id= format to clean slug
   RewriteCond %{QUERY_STRING} ^id=w01_derko_apart$
   RewriteRule ^wohnung/?$ /wohnung/w01-derko-apart? [R=301,L]
