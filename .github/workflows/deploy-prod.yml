@@ -1,0 +1,39 @@
+name: Deploy main → FTP /dist/
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # allows manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP to /dist/
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Target subfolder on the FTP server
+          server-dir: /dist/
+          # Only upload files relevant to the website
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/tests/**
+            **/playwright-report/**
+            **/playwright-results/**
+            **/test-results/**
+            **/docker-compose*.yml
+            **/Dockerfile*
+            **/.env*
+            **/package-lock.json
+          # Use sync state to only upload changed files
+          dangerous-clean-slate: false
+          log-level: standard
