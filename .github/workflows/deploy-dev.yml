@@ -33,4 +33,4 @@ jobs:
             --exclude='package-lock.json' \
             --exclude='.ftp-deploy-sync-state.json' \
             -e "ssh -p 22 -o StrictHostKeyChecking=no" \
-            ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/dev/
+            ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:dev/
