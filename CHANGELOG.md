@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.0] - 2026-03-13
+
+**First production release.** This version is deployed to `https://www.derko-immobilien.de` via automated GitHub Actions CI/CD.
+
+### Highlights
+- Full multilingual website (9 languages) with language-aware URL routing (`/en/`, `/pl/`, `/hu/`, etc.)
+- Automated deployment pipeline (dev → `dev.derko-immobilien.de`, main → `derko-immobilien.de`)
+- 358 Playwright E2E tests across Chromium and Firefox
+- Production-hardened contact form with CSRF, CAPTCHA, rate limiting, and spam protection
+- SEO-optimized with clean URLs, canonical tags, hreflang for all 9 languages, and sitemap
+
+### Added
+- All features from v1.0.0 through v1.5.2 are included in this production release.
+- See individual version entries below for detailed change history.
+
+---
+
 ## [v1.5.2] - 2026-03-13
 
 ### Added
@@ -607,6 +624,7 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v2.0.0]: https://github.com/halukmt/derko/compare/v1.5.2...v2.0.0
 [v1.5.2]: https://github.com/halukmt/derko/compare/v1.5.1...v1.5.2
 [v1.5.1]: https://github.com/halukmt/derko/compare/v1.5.0...v1.5.1
 [v1.5.0]: https://github.com/halukmt/derko/compare/v1.4.2...v1.5.0
