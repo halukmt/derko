@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v1.5.2] - 2026-03-13
+
+### Added
+- **GitHub Actions CI/CD**: Automated deployment workflows for dev and production environments via rsync over SSH (Strato SFTP/SSH).
+  - `.github/workflows/deploy-dev.yml`: Triggers on push to `dev`, deploys to `dev/` folder on server.
+  - `.github/workflows/deploy-prod.yml`: Triggers on push to `main`, deploys to `dist/` folder on server.
+- **Secrets-based config generation**: Both workflows automatically generate `api/config.local.php` and `api/weekly_mail_config.php` from GitHub Secrets before deployment — no more manual FTP uploads for sensitive config files.
+  - Secrets used: `DERKO_CONTACT_TO`, `DERKO_CONTACT_FROM`, `DERKO_HEALTH_FROM`, `DERKO_HEALTH_TOKEN`, `DERKO_HEALTH_TO_1`, `DERKO_HEALTH_TO_2`.
+
+### Fixed
+- **rsync target path**: Changed absolute `:/dev/` and `:/dist/` to relative `dev/` and `dist/` so rsync resolves paths relative to the SSH home directory (webspace root) instead of the Linux `/dev/` device directory.
+
+---
+
+## [v1.5.1] - 2026-03-13
+
+### Added
+- **76 new Playwright E2E tests** in `tests/e2e/lang-navigation.spec.ts` covering language URL navigation (total: 358 tests across all spec files):
+  - CSS/JS asset loading on lang-prefixed pages (no 404s)
+  - Nav and footer links retain language prefix after navigation
+  - Language switcher URL navigation including switch back to German
+  - `/bestaetigung` route for all 9 languages
+  - Apartment card links with correct language prefix on listing page
+- **`/bestaetigung` pretty URL**: Added `RewriteRule ^bestaetigung/?$` to `.htaccess` for language-aware confirmation page routing.
+
+### Fixed
+- **Broken CSS/design on language-prefixed pages** (`/en/ueber-uns` etc.): Changed all relative asset paths (`../assets/css/style.css`) to absolute paths (`/assets/css/style.css`) across all 9 page files and `index.html`. Relative paths resolved incorrectly under Apache URL rewriting.
+- **Nav and footer links losing language prefix**: Extended `adjustNavLinks()` in `main.js` to scan ALL internal `<a href>` links (not just specific nav IDs), ensuring every internal link gets the active language prefix.
+- **Language switcher not updating correctly on Docker/localhost**: Replaced all `isLocal` hostname checks with `usePrettyUrls = !pathname.includes('.html')` — more reliable across Docker and http-server environments.
+- **Switching back to German showing old language**: Added `localStorage.setItem('lang', ...)` call BEFORE `window.location.href` navigation in `setupLanguageSwitcher()`. Without this fix, navigating to a German URL (no prefix) still showed the previous language because localStorage hadn't been updated yet.
+- **Contact form redirect ignoring language prefix**: `api/sendmail.php` now redirects to `/{lang}/bestaetigung` for non-German submissions instead of always redirecting to `/pages/bestaetigung.html`.
+- **Feature card links missing language prefix**: `renderFeatureCards()` in `main.js` now respects the active language prefix for card CTA links.
+
+### Changed
+- `index.html`: All asset paths made absolute; hero CTA button hrefs updated to pretty URLs (`/kontakt`, `/wohnungen`) with IDs for test selectors.
+
+---
+
 ## [v1.5.0] - 2026-03-11
 
 ### Added
@@ -569,6 +607,10 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v1.5.2]: https://github.com/halukmt/derko/compare/v1.5.1...v1.5.2
+[v1.5.1]: https://github.com/halukmt/derko/compare/v1.5.0...v1.5.1
+[v1.5.0]: https://github.com/halukmt/derko/compare/v1.4.2...v1.5.0
+[v1.4.2]: https://github.com/halukmt/derko/compare/v1.4.1...v1.4.2
 [v1.3.0]: https://github.com/halukmt/derko/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/halukmt/derko/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/halukmt/derko/compare/v1.0.7...v1.1.0
