@@ -19,6 +19,9 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # Strato requires FTPS (FTP over explicit TLS)
+          protocol: ftps
+          port: 21
           # Target subfolder on the FTP server
           server-dir: /dist/
           # Only upload files relevant to the website
