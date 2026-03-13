@@ -85,7 +85,7 @@ Options -MultiViews
   RewriteCond %{THE_REQUEST} \s/+pages/datenschutz\.html [NC]
   RewriteRule ^pages/datenschutz\.html$ /datenschutz [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/wohnung-detail\.html [NC]
-  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [R=301,L]
+  RewriteRule ^pages/wohnung-detail\.html$ /wohnung [QSA,R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/faq\.html [NC]
   RewriteRule ^pages/faq\.html$ /faq [R=301,L]
 
@@ -105,10 +105,38 @@ Options -MultiViews
   RewriteRule ^impressum/?$ /pages/impressum.html [L]
   RewriteRule ^agb/?$ /pages/agb.html [L]
   RewriteRule ^datenschutz/?$ /pages/datenschutz.html [L]
-  # Detailseite mit Query-Parameter beibehalten
+  RewriteRule ^bestaetigung/?$ /pages/bestaetigung.html [L]
+  # 301 redirect old ?id= format to clean slug
+  RewriteCond %{QUERY_STRING} ^id=w01_derko_apart$
+  RewriteRule ^wohnung/?$ /wohnung/w01-derko-apart? [R=301,L]
+  RewriteCond %{QUERY_STRING} ^id=w02_derko_apart_2$
+  RewriteRule ^wohnung/?$ /wohnung/w02-derko-apart-2? [R=301,L]
+  RewriteCond %{QUERY_STRING} ^id=w03_exklusiv$
+  RewriteRule ^wohnung/?$ /wohnung/w03-exklusiv? [R=301,L]
+  RewriteCond %{QUERY_STRING} ^id=w04_exklusiv_2$
+  RewriteRule ^wohnung/?$ /wohnung/w04-exklusiv-2? [R=301,L]
+  RewriteCond %{QUERY_STRING} ^id=w05_dus_1$
+  RewriteRule ^wohnung/?$ /wohnung/w05-dus-1? [R=301,L]
+  RewriteCond %{QUERY_STRING} ^id=w06_dus_2$
+  RewriteRule ^wohnung/?$ /wohnung/w06-dus-2? [R=301,L]
+  RewriteCond %{QUERY_STRING} ^id=w07_dus_3$
+  RewriteRule ^wohnung/?$ /wohnung/w07-dus-3? [R=301,L]
+  # Detailseite ohne Parameter
   RewriteRule ^wohnung/?$ /pages/wohnung-detail.html [QSA,L]
+  # Apartment detail pages (clean slug URLs)
+  RewriteRule ^wohnung/([a-z0-9-]+)/?$ /pages/wohnung-detail.html [QSA,L]
   # FAQ
   RewriteRule ^faq/?$ /pages/faq.html [L]
+
+  # Multi-language URL routing: /{lang}/ and /{lang}/{page}
+  # Language root pages (e.g. /en/, /pl/)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/?$ /index.html [L]
+  # Language-prefixed detail pages (preserve query string)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/wohnung/?$ /pages/wohnung-detail.html [QSA,L]
+  # Language-prefixed apartment detail pages (clean slug URLs)
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/wohnung/([a-z0-9-]+)/?$ /pages/wohnung-detail.html [QSA,L]
+  # Language-prefixed standard pages
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/(wohnungen|kontakt|ueber-uns|faq|agb|impressum|datenschutz|bestaetigung)/?$ /pages/$2.html [L]
 
   # (Replaced RedirectMatch rules with THE_REQUEST-based rules above to prevent redirect loops)
 </IfModule>

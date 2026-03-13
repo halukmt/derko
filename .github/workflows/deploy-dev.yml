@@ -1,0 +1,62 @@
+name: Deploy dev → SFTP /dev/
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:  # allows manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate config files from secrets
+        run: |
+          cat > api/config.local.php << 'PHPEOF'
+          <?php
+          if (!defined('DERKO_DEBUG')) {
+            define('DERKO_DEBUG', true);
+          }
+          if (!defined('DERKO_CONTACT_TO')) {
+            define('DERKO_CONTACT_TO', '${{ secrets.DERKO_CONTACT_TO }}');
+          }
+          if (!defined('DERKO_CONTACT_FROM')) {
+            define('DERKO_CONTACT_FROM', '${{ secrets.DERKO_CONTACT_FROM }}');
+          }
+          PHPEOF
+
+          cat > api/weekly_mail_config.php << 'PHPEOF'
+          <?php
+          return [
+              'from'           => '${{ secrets.DERKO_HEALTH_FROM }}',
+              'health_token'   => '${{ secrets.DERKO_HEALTH_TOKEN }}',
+              'health_to'      => ['${{ secrets.DERKO_HEALTH_TO_1 }}', '${{ secrets.DERKO_HEALTH_TO_2 }}'],
+              'health_subject' => 'TEST - Site Contact Form Health Check',
+              'health_body'    => "Health check completed: OK\nTimestamp: %s\nSource: %s\n"
+          ];
+          PHPEOF
+
+      - name: Install rsync and sshpass
+        run: sudo apt-get install -y rsync sshpass
+
+      - name: Deploy via rsync over SSH to /dev/
+        run: |
+          sshpass -p "${{ secrets.SFTP_PASSWORD }}" rsync -avz \
+            --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='node_modules/' \
+            --exclude='tests/' \
+            --exclude='playwright-report/' \
+            --exclude='playwright-results/' \
+            --exclude='test-results/' \
+            --exclude='docker-compose*.yml' \
+            --exclude='Dockerfile*' \
+            --exclude='.env*' \
+            --exclude='package-lock.json' \
+            --exclude='.ftp-deploy-sync-state.json' \
+            -e "ssh -p 22 -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:dev/

@@ -6,6 +6,7 @@ dist/
 # Sensitive configuration files (use .example templates)
 api/config.local.php
 api/weekly_mail_config.php
+.claude/*
 
 # Log files and runtime data
 api/*.log
@@ -15,3 +16,11 @@ api/rate_store/
 # Environment files (if ever used)
 .env
 .env.local
+
+# Docker: msmtp config contains no secrets but follows best-practice gitignore
+.docker/msmtprc
+
+# Playwright test artifacts (generated, not source)
+playwright-report/
+playwright-results/
+test-results/

@@ -5,12 +5,14 @@ ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 // --- DEBUG EINSTELLUNG ---
-// Zum Testen setzen wir das HART auf true.
-// Wenn alles läuft, ändere dies später wieder auf 'false'.
-$debug = true;
+// Debug-Modus: nur für lokale Entwicklung auf true setzen.
+// Für Production IMMER auf false lassen.
+$debug = false;
 
 // --- SESSION CONFIGURATION ---
-$cookieDomain = '.derko-immobilien.de';
+// Allow override via DERKO_COOKIE_DOMAIN env var so sessions work on localhost
+// (Docker sets this to empty string; production falls back to .derko-immobilien.de)
+$cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
 $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 
 @ini_set('session.cookie_domain', $cookieDomain);

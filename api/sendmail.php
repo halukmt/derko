@@ -1,6 +1,8 @@
 <?php
 // --- SESSION CONFIGURATION (Harmonized) ---
-$cookieDomain = '.derko-immobilien.de';
+// Allow override via DERKO_COOKIE_DOMAIN env var so sessions work on localhost
+// (Docker sets this to empty string; production falls back to .derko-immobilien.de)
+$cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
 $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 @ini_set('session.cookie_domain', $cookieDomain);
 @ini_set('session.cookie_samesite', 'Lax');
@@ -513,7 +515,10 @@ $headersUser[] = 'X-Mailer: PHP/'.phpversion();
 $headerStrUser = implode("\r\n", $headersUser);
 
 // 1) Mail an Betreiber (immer Deutsch)
-@mail($TO, $subjectEncoded_op, $body_op, $headerStrOp);
+$mailOpOk = mail($TO, $subjectEncoded_op, $body_op, $headerStrOp);
+if (!$mailOpOk) {
+  derko_log('MAIL FAIL: operator email not sent', ['to' => $TO, 'subject' => $subject_op]);
+}
 
 // 2) Bestätigungsmail an Absender (localized nach Benutzer-Sprache)
 // Prefer confirmation.message from i18n (chain lookup)
@@ -521,9 +526,13 @@ $successHtml = t_chain($__DICT_CHAIN, 'confirmation.message', '');
 $successText = $successHtml ? html_to_text($successHtml) : '';
 $yourDetails = t_chain($__DICT_CHAIN, 'kontakt.email.yourDetails');
 $confirmBody = $successText."\r\n\r\n".$yourDetails."\r\n".$body_user;
-@mail($email, $subjectEncoded_user, $confirmBody, $headerStrUser);
+$mailUserOk = mail($email, $subjectEncoded_user, $confirmBody, $headerStrUser);
+if (!$mailUserOk) {
+  derko_log('MAIL FAIL: confirmation email not sent', ['to' => $email]);
+}
 
-// Weiterleitung auf Bestätigungsseite
-header('Location: /pages/bestaetigung.html');
+// Weiterleitung auf Bestätigungsseite (language-aware pretty URL)
+$confirmRedirect = ($lang && $lang !== 'de') ? '/' . $lang . '/bestaetigung' : '/bestaetigung';
+header('Location: ' . $confirmRedirect);
 exit;
 ?>

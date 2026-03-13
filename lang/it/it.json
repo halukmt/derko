@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign di <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Benvenuti da DERKO Immobiliare",
+    "headline": "In trasferta? Con DERKO sei a casa.",
     "subheadline": "Alloggi confortevoli e convenienti per squadre e tecnici.",
     "cta": "Richiedi un'offerta",
     "hero": {
@@ -52,12 +52,20 @@
     },
     "features": {
       "heading": "Vantaggi",
-      "komfort": { "title": "Comfort", "text": "Appartamenti completamente attrezzati con Wi‑Fi, cucina e parcheggio." },
-      "zentral": { "title": "Centrale", "text": "Ottimi collegamenti per squadre e tecnici, vicino a Düsseldorf / fiera / aeroporto." },
-      "fair": { "title": "Equo", "text": "Prezzi trasparenti e prenotazioni flessibili." }
+      "komfort": {
+        "title": "Comfort",
+        "text": "Appartamenti completamente attrezzati con Wi‑Fi, cucina e parcheggio."
+      },
+      "zentral": {
+        "title": "Centrale",
+        "text": "Ottimi collegamenti per squadre e tecnici, vicino a Düsseldorf / fiera / aeroporto."
+      },
+      "fair": {
+        "title": "Equo",
+        "text": "Prezzi trasparenti e prenotazioni flessibili."
+      }
     }
   },
-
   "wohnungen": {
     "headline": "I nostri appartamenti",
     "description": "Scegli appartamenti per lavoratori completamente attrezzati a Duisburg‑Großenbaum, vicino all'aeroporto e alla fiera di Düsseldorf – ideali per squadre e progetti.",
@@ -221,11 +229,13 @@
       }
     }
   },
-
   "ueberUns": {
     "headline": "Chi siamo",
     "description": "Siamo una giovane e dinamica azienda di Duisburg, nel cuore della Ruhr. I nostri servizi comprendono intermediazione, gestione e valutazione immobiliare. Come partner professionale, siamo al tuo fianco per tutte le domande relative agli affitti. <br><br>DERKO Immobilien negli ultimi anni si è specializzata anche nell'affitto di alloggi per lavoratori e appartamenti. Lavoriamo costantemente al nostro portafoglio per offrire più spazi abitativi e un servizio ottimale.",
-    "founders": { "alt": "I fondatori di DERKO Immobilien", "caption": "Fondatori di DERKO Immobilien" },
+    "founders": {
+      "alt": "I fondatori di DERKO Immobilien",
+      "caption": "Fondatori di DERKO Immobilien"
+    },
     "cards": {
       "vorteile": {
         "title": "I tuoi vantaggi",
@@ -255,9 +265,10 @@
         ]
       }
     },
-    "partners": { "title": "I nostri partner" }
+    "partners": {
+      "title": "I nostri partner"
+    }
   },
-
   "kontakt": {
     "headline": "Offerta",
     "description": "Cerchi un appartamento per la tua squadra vicino a Düsseldorf? Richiedi un'offerta senza impegno tramite il modulo o chiamaci.",
@@ -292,22 +303,71 @@
       "bot": "Richiesta bloccata: riprova tra qualche secondo.",
       "captcha": "Il codice di sicurezza non è corretto."
     },
-    "email": { "subjectIdLabel": "ID richiesta", "yourDetails": "I tuoi dati:" }
+    "email": {
+      "subjectIdLabel": "ID richiesta",
+      "yourDetails": "I tuoi dati:"
+    }
   },
-
-  "agb": { "headline": "Condizioni generali (CG)", "text": "lang/it/it.agb.html" },
-  "impressum": { "headline": "Note legali", "text": "lang/it/it.impressum.html" },
-  "datenschutz": { "headline": "Privacy", "text": "lang/it/it.datenschutz.html" },
-  "legal": { "revealEmail": "Mostra indirizzo e‑mail" },
-
-  "notFound": { "title": "404", "headline": "Pagina non trovata", "description": "La pagina richiesta non è stata trovata o non esiste più.", "backHome": "Torna alla home" },
-
-  "wohnungDetail": { "headline": "Dettagli appartamento", "cta": "Richiedi un'offerta", "meta": { "title": "Dati principali" }, "amenities": { "title": "Servizi" }, "description": { "title": "Descrizione" }, "gallery": { "showMore": "Più immagini", "showLess": "Meno immagini", "photo": "Foto" } },
-
-  "error": { "session": { "title": "Sessione scaduta", "message": "La tua sessione è scaduta. Ricarica la pagina e invia di nuovo il modulo." }, "captcha": { "title": "CAPTCHA non valido", "message": "Il codice di sicurezza è errato o scaduto. Ricarica la pagina e riprova." }, "rate": { "title": "Attendi un momento", "message": "Hai appena inviato una richiesta. Attendi un momento e riprova.", "messageWithWait": "Hai appena inviato una richiesta. Attendi circa {seconds} secondi e riprova." }, "backToContact": "Torna al modulo di contatto" },
-
-  "confirmation": { "headline": "Richiesta inviata", "description": "Abbiamo ricevuto la tua richiesta.", "message": "Grazie per l'interesse nei nostri appartamenti.<br>Verificheremo i tuoi dati e ti contatteremo al più presto.<br><br>Cordiali saluti,<br>Il team DERKO." },
-
+  "agb": {
+    "headline": "Condizioni generali (CG)",
+    "text": "lang/it/it.agb.html"
+  },
+  "impressum": {
+    "headline": "Note legali",
+    "text": "lang/it/it.impressum.html"
+  },
+  "datenschutz": {
+    "headline": "Privacy",
+    "text": "lang/it/it.datenschutz.html"
+  },
+  "legal": {
+    "revealEmail": "Mostra indirizzo e‑mail"
+  },
+  "notFound": {
+    "title": "404",
+    "headline": "Pagina non trovata",
+    "description": "La pagina richiesta non è stata trovata o non esiste più.",
+    "backHome": "Torna alla home"
+  },
+  "wohnungDetail": {
+    "headline": "Dettagli appartamento",
+    "cta": "Richiedi un'offerta",
+    "meta": {
+      "title": "Dati principali"
+    },
+    "amenities": {
+      "title": "Servizi"
+    },
+    "description": {
+      "title": "Descrizione"
+    },
+    "gallery": {
+      "showMore": "Più immagini",
+      "showLess": "Meno immagini",
+      "photo": "Foto"
+    }
+  },
+  "error": {
+    "session": {
+      "title": "Sessione scaduta",
+      "message": "La tua sessione è scaduta. Ricarica la pagina e invia di nuovo il modulo."
+    },
+    "captcha": {
+      "title": "CAPTCHA non valido",
+      "message": "Il codice di sicurezza è errato o scaduto. Ricarica la pagina e riprova."
+    },
+    "rate": {
+      "title": "Attendi un momento",
+      "message": "Hai appena inviato una richiesta. Attendi un momento e riprova.",
+      "messageWithWait": "Hai appena inviato una richiesta. Attendi circa {seconds} secondi e riprova."
+    },
+    "backToContact": "Torna al modulo di contatto"
+  },
+  "confirmation": {
+    "headline": "Richiesta inviata",
+    "description": "Abbiamo ricevuto la tua richiesta.",
+    "message": "Grazie per l'interesse nei nostri appartamenti.<br>Verificheremo i tuoi dati e ti contatteremo al più presto.<br><br>Cordiali saluti,<br>Il team DERKO."
+  },
   "faq": {
     "metaTitle": "FAQ – Domande frequenti su alloggi per lavoratori",
     "metaDescription": "Risposte alle domande frequenti sui nostri alloggi per lavoratori nel Düsseldorf: attrezzature, posizione, prezzi, prenotazione e altro.",
@@ -315,43 +375,43 @@
     "items": {
       "guenstige-monteurzimmer": {
         "q": "Dove trovo stanze economiche per lavoratori a Düsseldorf con buon accesso autostradale?",
-        "a": "DERKO Immobiliare offre stanze convenienti per lavoratori a Düsseldorf che hanno un buon collegamento strategico alle autostrade A44, A52 e A3. Questo permette agli artigiani di raggiungere i cantieri a Rath, Derendorf o nel centro città nel minor tempo possibile. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Ai nostri alloggi</a>"
+        "a": "DERKO Immobiliare offre stanze convenienti per lavoratori a Düsseldorf che hanno un buon collegamento strategico alle autostrade A44, A52 e A3. Questo permette agli artigiani di raggiungere i cantieri a Rath, Derendorf o nel centro città nel minor tempo possibile. <a href=\"/wohnung/w01-derko-apart\" class=\"inline-link\">Ai nostri alloggi</a>"
       },
       "provisionsfreie-messewohnungen": {
         "q": "Offrite appartamenti senza provvigione per i visitatori delle fiere di Düsseldorf?",
-        "a": "Sì, i nostri appartamenti fieristici a Düsseldorf vengono affittati direttamente senza provvigione. Rappresentano un'alternativa comoda e conveniente rispetto agli hotel costosi durante le grandi fiere come Drupa o K. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Scopri di più</a>"
+        "a": "Sì, i nostri appartamenti fieristici a Düsseldorf vengono affittati direttamente senza provvigione. Rappresentano un'alternativa comoda e conveniente rispetto agli hotel costosi durante le grandi fiere come Drupa o K. <a href=\"/wohnung/w03-exklusiv\" class=\"inline-link\">Scopri di più</a>"
       },
       "handwerker-teams-duisburg": {
         "q": "Ci sono alloggi per team di artigiani nel sud di Duisburg?",
-        "a": "Abbiamo ampi alloggi in vari quartieri di Duisburg, ideali per i team di artigiani più grandi e le squadre di lavoro. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">I nostri appartamenti per team</a>"
+        "a": "Abbiamo ampi alloggi in vari quartieri di Duisburg, ideali per i team di artigiani più grandi e le squadre di lavoro. <a href=\"/wohnung/w02-derko-apart-2\" class=\"inline-link\">I nostri appartamenti per team</a>"
       },
       "entfernung-flughafen": {
         "q": "Quanto dista l'alloggio dall'aeroporto di Düsseldorf (DUS)?",
-        "a": "Molte delle nostre proprietà si trovano a soli 10-15 minuti dall'aeroporto di Düsseldorf (DUS). Questo è ideale per responsabili di progetto, specialisti logistici e ospiti internazionali. <a href=\"/pages/wohnung-detail.html?id=w05_dus_1\" class=\"inline-link\">Appartamenti vicino all'aeroporto</a>"
+        "a": "Molte delle nostre proprietà si trovano a soli 10-15 minuti dall'aeroporto di Düsseldorf (DUS). Questo è ideale per responsabili di progetto, specialisti logistici e ospiti internazionali. <a href=\"/wohnung/w05-dus-1\" class=\"inline-link\">Appartamenti vicino all'aeroporto</a>"
       },
       "ausstattung-wlan-kueche": {
         "q": "Gli alloggi per lavoratori hanno Wi-Fi e cucina propria?",
-        "a": "Tutte le nostre stanze e appartamenti per lavoratori sono dotati di Wi-Fi ad alta velocità e cucina completamente attrezzata per l'autoapprovvigionamento, per rendere il soggiorno il più confortevole possibile. <a href=\"/pages/wohnung-detail.html?id=w04_exklusiv_2\" class=\"inline-link\">Dettagli delle attrezzature</a>"
+        "a": "Tutte le nostre stanze e appartamenti per lavoratori sono dotati di Wi-Fi ad alta velocità e cucina completamente attrezzata per l'autoapprovvigionamento, per rendere il soggiorno il più confortevole possibile. <a href=\"/wohnung/w04-exklusiv-2\" class=\"inline-link\">Dettagli delle attrezzature</a>"
       },
       "parkmoeglichkeiten": {
         "q": "Ci sono posti auto per furgoni o camion presso l'alloggio?",
-        "a": "Nella scelta delle nostre proprietà ci concentriamo su buoni posti auto negli spazi pubblici o direttamente presso la struttura, in modo che furgoni più grandi e veicoli aziendali possano essere parcheggiati in sicurezza. <a href=\"/pages/wohnung-detail.html?id=w06_dus_2\" class=\"inline-link\">Vedi le opzioni di parcheggio</a>"
+        "a": "Nella scelta delle nostre proprietà ci concentriamo su buoni posti auto negli spazi pubblici o direttamente presso la struttura, in modo che furgoni più grandi e veicoli aziendali possano essere parcheggiati in sicurezza. <a href=\"/wohnung/w06-dus-2\" class=\"inline-link\">Vedi le opzioni di parcheggio</a>"
       },
       "kurzfristige-buchung": {
         "q": "Quanto velocemente posso prenotare un alloggio per lavoratori a Duisburg?",
-        "a": "Spesso permettiamo prenotazioni a breve termine di stanze per lavoratori a Duisburg e Düsseldorf. Contattaci direttamente per telefono o e-mail per la disponibilità attuale. <a href=\"/pages/wohnung-detail.html?id=w07_dus_3\" class=\"inline-link\">Richiedi un'offerta ora</a>"
+        "a": "Spesso permettiamo prenotazioni a breve termine di stanze per lavoratori a Duisburg e Düsseldorf. Contattaci direttamente per telefono o e-mail per la disponibilità attuale. <a href=\"/wohnung/w07-dus-3\" class=\"inline-link\">Richiedi un'offerta ora</a>"
       },
       "preise-uebernachtung": {
         "q": "Quanto costa una notte per lavoratori nell'area di Düsseldorf/Duisburg?",
-        "a": "I prezzi variano a seconda della durata del soggiorno e del numero di persone. Tuttavia, offriamo condizioni eque e competitive che sono significativamente inferiori ai prezzi hotel tipici della regione. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Vedi i prezzi</a>"
+        "a": "I prezzi variano a seconda della durata del soggiorno e del numero di persone. Tuttavia, offriamo condizioni eque e competitive che sono significativamente inferiori ai prezzi hotel tipici della regione. <a href=\"/wohnung/w01-derko-apart\" class=\"inline-link\">Vedi i prezzi</a>"
       },
       "rabatte-firmen": {
         "q": "Offrite sconti per le aziende per affitti a lungo termine o grandi gruppi?",
-        "a": "Sì, per le aziende che pianificano affitti a lungo termine o hanno bisogno di alloggiare team grandi, offriamo sconti graduali attraenti. Chiedete i nostri termini B2B. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Offerte B2B</a>"
+        "a": "Sì, per le aziende che pianificano affitti a lungo termine o hanno bisogno di alloggiare team grandi, offriamo sconti graduali attraenti. Chiedete i nostri termini B2B. <a href=\"/wohnung/w02-derko-apart-2\" class=\"inline-link\">Offerte B2B</a>"
       },
       "bettwaesche-handtuecher": {
         "q": "La biancheria da letto e gli asciugamani sono inclusi nell'alloggio per lavoratori?",
-        "a": "Di norma, la biancheria da letto iniziale è inclusa nei nostri alloggi, quindi i tuoi dipendenti non devono preoccuparsi di nulla e possono trasferirsi subito. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Alle attrezzature</a>"
+        "a": "Di norma, la biancheria da letto iniziale è inclusa nei nostri alloggi, quindi i tuoi dipendenti non devono preoccuparsi di nulla e possono trasferirsi subito. <a href=\"/wohnung/w03-exklusiv\" class=\"inline-link\">Alle attrezzature</a>"
       }
     }
   }

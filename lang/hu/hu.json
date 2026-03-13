@@ -41,7 +41,7 @@
     "creditHtml": "Webdesign: <a href=\"https://www.techsulting.de\" class=\"inline-link\" target=\"_blank\" rel=\"noopener noreferrer external\">TechSulting</a>"
   },
   "home": {
-    "headline": "Üdvözöljük a DERKO Ingatlannál",
+    "headline": "Munkán vagy? A DERKO-nál jó kezekben van.",
     "subheadline": "Kényelmes és kedvező szállásokat talál szakembereknek és szerelőknek.",
     "cta": "Ajánlatkérés",
     "hero": {
@@ -265,7 +265,9 @@
         ]
       }
     },
-    "partners": { "title": "Partnereink" }
+    "partners": {
+      "title": "Partnereink"
+    }
   },
   "kontakt": {
     "headline": "Ajánlatkérés",
@@ -318,7 +320,9 @@
     "headline": "Adatvédelem",
     "text": "lang/hu/hu.datenschutz.html"
   },
-  "legal": { "revealEmail": "E‑mail cím megjelenítése" },
+  "legal": {
+    "revealEmail": "E‑mail cím megjelenítése"
+  },
   "notFound": {
     "title": "404",
     "headline": "Az oldal nem található",
@@ -328,9 +332,15 @@
   "wohnungDetail": {
     "headline": "Lakás részletei",
     "cta": "Ajánlatkérés",
-    "meta": { "title": "Fő adatok" },
-    "amenities": { "title": "Felszereltség" },
-    "description": { "title": "Leírás" },
+    "meta": {
+      "title": "Fő adatok"
+    },
+    "amenities": {
+      "title": "Felszereltség"
+    },
+    "description": {
+      "title": "Leírás"
+    },
     "gallery": {
       "showMore": "Több kép",
       "showLess": "Kevesebb kép",
@@ -358,7 +368,6 @@
     "description": "Megkaptuk a kérését.",
     "message": "Köszönjük érdeklődését lakásaink iránt.<br>Áttekintjük adatait, és a lehető leghamarabb felvesszük Önnel a kapcsolatot.<br><br>Üdvözlettel,<br>A DERKO csapata."
   },
-
   "faq": {
     "metaTitle": "GYIK – Gyakran Ismételt Kérdések a szerelői lakásokról",
     "metaDescription": "Válaszok a gyakran ismételt kérdésekre szerelői lakásainkkal kapcsolatban Düsseldorf és Duisburg környékén: felszereltség, elhelyezkedés, árak, foglalás és még sok más.",
@@ -366,43 +375,43 @@
     "items": {
       "guenstige-monteurzimmer": {
         "q": "Hol találok olcsó szerelői szobákat Düsseldorfban jó autópálya-hozzáféréssel?",
-        "a": "A DERKO Ingatlan olcsó szerelői szobákat kínál Düsseldorfban, amelyek stratégiailag jól csatlakoznak az A44, A52 és A3 autópályákhoz. Ez lehetővé teszi az szakemberek számára, hogy a rathis, derndorfi vagy városközponti építkezésekre rövid időn belül eljussanak. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Szállásainkhoz</a>"
+        "a": "A DERKO Ingatlan olcsó szerelői szobákat kínál Düsseldorfban, amelyek stratégiailag jól csatlakoznak az A44, A52 és A3 autópályákhoz. Ez lehetővé teszi az szakemberek számára, hogy a rathis, derndorfi vagy városközponti építkezésekre rövid időn belül eljussanak. <a href=\"/wohnung/w01-derko-apart\" class=\"inline-link\">Szállásainkhoz</a>"
       },
       "provisionsfreie-messewohnungen": {
         "q": "Kínálnak-e jutalék nélküli lakásokat a düsseldorfi vásárlátogatók számára?",
-        "a": "Igen, a düsseldorfi vásárlakásaink közvetlenül, jutalék nélkül kerülnek kiadásra. Kényelmes és költséghatékony alternatívát kínálnak a drága szállodákhoz a nagyobb vásárok, például a Drupa vagy a K során. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Tudj meg többet</a>"
+        "a": "Igen, a düsseldorfi vásárlakásaink közvetlenül, jutalék nélkül kerülnek kiadásra. Kényelmes és költséghatékony alternatívát kínálnak a drága szállodákhoz a nagyobb vásárok, például a Drupa vagy a K során. <a href=\"/wohnung/w03-exklusiv\" class=\"inline-link\">Tudj meg többet</a>"
       },
       "handwerker-teams-duisburg": {
         "q": "Van-e szállása szerelői csapatoknak a Duisburg-i dél részén?",
-        "a": "Duisburg különböző városrészeiben vannak tágas szállásaink, amelyek ideálisak a nagyobb szerelői csapatok és építési munkások számára. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">Csapatlakásaink</a>"
+        "a": "Duisburg különböző városrészeiben vannak tágas szállásaink, amelyek ideálisak a nagyobb szerelői csapatok és építési munkások számára. <a href=\"/wohnung/w02-derko-apart-2\" class=\"inline-link\">Csapatlakásaink</a>"
       },
       "entfernung-flughafen": {
         "q": "Milyen messze van a szállás a Düsseldorf repülőtértől (DUS)?",
-        "a": "Számos ingatlanunk mindössze 10-15 percre van a Düsseldorf repülőtértől (DUS). Ez ideális a projektvezetők, logisztikai szakemberek és nemzetközi vendégek számára. <a href=\"/pages/wohnung-detail.html?id=w05_dus_1\" class=\"inline-link\">Lakások a repülőtér közelében</a>"
+        "a": "Számos ingatlanunk mindössze 10-15 percre van a Düsseldorf repülőtértől (DUS). Ez ideális a projektvezetők, logisztikai szakemberek és nemzetközi vendégek számára. <a href=\"/wohnung/w05-dus-1\" class=\"inline-link\">Lakások a repülőtér közelében</a>"
       },
       "ausstattung-wlan-kueche": {
         "q": "A szerelői lakások Wi-Fi-vel és saját konyhával vannak-e felszerelve?",
-        "a": "Összes szerelői szobánk és lakásunk gyors Wi-Fit és teljes körűen felszerelt konyhát tartalmaz az önellátáshoz, hogy az tartózkodást kellemesebbé tegyük. <a href=\"/pages/wohnung-detail.html?id=w04_exklusiv_2\" class=\"inline-link\">Felszereltség részletei</a>"
+        "a": "Összes szerelői szobánk és lakásunk gyors Wi-Fit és teljes körűen felszerelt konyhát tartalmaz az önellátáshoz, hogy az tartózkodást kellemesebbé tegyük. <a href=\"/wohnung/w04-exklusiv-2\" class=\"inline-link\">Felszereltség részletei</a>"
       },
       "parkmoeglichkeiten": {
         "q": "Van-e parkolási lehetőség furgonok vagy teherautók számára a szállásnál?",
-        "a": "Az ingatlanok kiválasztásakor jó parkolási lehetőségekre fókuszálunk a nyilvános területen vagy közvetlenül az objektumnál, így nagyobb furgonok és cégautók biztonságosan parkolhatók. <a href=\"/pages/wohnung-detail.html?id=w06_dus_2\" class=\"inline-link\">Parkolási lehetőségek</a>"
+        "a": "Az ingatlanok kiválasztásakor jó parkolási lehetőségekre fókuszálunk a nyilvános területen vagy közvetlenül az objektumnál, így nagyobb furgonok és cégautók biztonságosan parkolhatók. <a href=\"/wohnung/w06-dus-2\" class=\"inline-link\">Parkolási lehetőségek</a>"
       },
       "kurzfristige-buchung": {
         "q": "Milyen gyorsan tudom foglalni egy szerelői szobát Duisburgban?",
-        "a": "Gyakran engedélyezünk rövid lejáratú foglalásokat a szerelői szobákra Duisburgban és Düsseldorfban. Lépjen kapcsolatba velünk közvetlenül telefonon vagy e-mailben az aktuális elérhetőségért. <a href=\"/pages/wohnung-detail.html?id=w07_dus_3\" class=\"inline-link\">Kérj ajánlatot most</a>"
+        "a": "Gyakran engedélyezünk rövid lejáratú foglalásokat a szerelői szobákra Duisburgban és Düsseldorfban. Lépjen kapcsolatba velünk közvetlenül telefonon vagy e-mailben az aktuális elérhetőségért. <a href=\"/wohnung/w07-dus-3\" class=\"inline-link\">Kérj ajánlatot most</a>"
       },
       "preise-uebernachtung": {
         "q": "Mennyibe kerül egy éjszakai szállás szerelőknek a Düsseldorf/Duisburg körzetben?",
-        "a": "Az árak a tartózkodás hossza és az emberek száma alapján változnak. Azonban korrekt és piackonform feltételeket kínálunk, amelyek jelentősen alacsonyabbak a régió szokásos hotelárainál. <a href=\"/pages/wohnung-detail.html?id=w01_derko_apart\" class=\"inline-link\">Árak megtekintése</a>"
+        "a": "Az árak a tartózkodás hossza és az emberek száma alapján változnak. Azonban korrekt és piackonform feltételeket kínálunk, amelyek jelentősen alacsonyabbak a régió szokásos hotelárainál. <a href=\"/wohnung/w01-derko-apart\" class=\"inline-link\">Árak megtekintése</a>"
       },
       "rabatte-firmen": {
         "q": "Kínálnak-e rabattokat cégeknek hosszú lejáratú bérletekre vagy nagy csapatokra?",
-        "a": "Igen, a hosszú lejáratú bérletet tervező cégek vagy nagy csapatokat kell elhelyezni, vonzó lépcsőzetes rabattokat kínálunk. Kérdezzen rá B2B feltételeinkre. <a href=\"/pages/wohnung-detail.html?id=w02_derko_apart_2\" class=\"inline-link\">B2B ajánlatok</a>"
+        "a": "Igen, a hosszú lejáratú bérletet tervező cégek vagy nagy csapatokat kell elhelyezni, vonzó lépcsőzetes rabattokat kínálunk. Kérdezzen rá B2B feltételeinkre. <a href=\"/wohnung/w02-derko-apart-2\" class=\"inline-link\">B2B ajánlatok</a>"
       },
       "bettwaesche-handtuecher": {
         "q": "Az ágynemű és törölközők a szerelői lakásban szerepelnek-e?",
-        "a": "Általában az ágynemű kezdeti felszerelése szállásainkban szerepel, így alkalmazottaid nem kell semmivel törődniük és azonnal beköltözhetnek. <a href=\"/pages/wohnung-detail.html?id=w03_exklusiv\" class=\"inline-link\">Felszereltséghez</a>"
+        "a": "Általában az ágynemű kezdeti felszerelése szállásainkban szerepel, így alkalmazottaid nem kell semmivel törődniük és azonnal beköltözhetnek. <a href=\"/wohnung/w03-exklusiv\" class=\"inline-link\">Felszereltséghez</a>"
       }
     }
   }

@@ -35,15 +35,16 @@
   function setupIncludes(){
     const header = document.querySelector('[data-component="header"]');
     const footer = document.querySelector('[data-component="footer"]');
-    const inPages = location.pathname.includes('/pages/');
-    const compBase = inPages ? '../components/' : 'components/';
+    // Use absolute paths so components load correctly from any URL depth
+    // (root /, /wohnungen, /en/wohnungen, /pages/wohnungen.html, etc.)
+    const compBase = '/components/';
     if (header) injectComponent(header, compBase + 'header.html');
     if (footer) injectComponent(footer, compBase + 'footer.html');
 
     // WhatsApp Floating Button dynamisch einfügen
     // Nur einfügen, wenn noch nicht vorhanden
     if (!document.getElementById('wa-fab-btn')) {
-      fetch(compBase + 'whatsapp-button.html', { credentials: 'same-origin' })
+      fetch('/components/whatsapp-button.html', { credentials: 'same-origin' })
         .then(res => res.ok ? res.text() : null)
         .then(html => {
           if (!html) return;
@@ -57,44 +58,63 @@
     }
 
   function adjustNavLinks(){
-    // Brand always root
-    const brandLink = document.querySelector('.navbar-brand');
-    if (brandLink) brandLink.setAttribute('href','/');
     // Navigation: home = '/', others absolute /pages/...
     // Umschreiben Header-Links
+    // Use pretty URLs when current page has no .html extension (Docker/Apache supports rewrites).
+    // Fall back to .html paths for http-server which serves files directly.
+    const usePrettyUrls = !location.pathname.includes('.html');
+    // Detect current language prefix from URL to keep nav links consistent
+    const langMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+    const urlLang = langMatch ? langMatch[1] : 'de';
+    const langPrefix = (urlLang !== 'de') ? '/' + urlLang : '';
+    // Brand: root of current language
+    const brandLink = document.querySelector('.navbar-brand');
+    if (brandLink) brandLink.setAttribute('href', langPrefix + '/');
     document.querySelectorAll('.navbar .nav-link').forEach(a=>{
       const id = a.id || '';
-      const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-      const env = isLocal ? 'local' : 'prod';
       const fileMap = {
-        'nav-home': {prod: '/', local: '/index.html'},
-        'nav-wohnungen': {prod: '/wohnungen', local: '/pages/wohnungen.html'},
-        'nav-ueberuns': {prod: '/ueber-uns', local: '/pages/ueber-uns.html'},
-        'nav-kontakt': {prod: '/kontakt', local: '/pages/kontakt.html'},
-        'nav-faq': {prod: '/faq', local: '/pages/faq.html'},
-        'nav-agb': {prod: '/agb', local: '/pages/agb.html'},
-        'nav-impressum': {prod: '/impressum', local: '/pages/impressum.html'}
+        'nav-home': usePrettyUrls ? langPrefix + '/' : '/index.html',
+        'nav-wohnungen': usePrettyUrls ? langPrefix + '/wohnungen' : '/pages/wohnungen.html',
+        'nav-ueberuns': usePrettyUrls ? langPrefix + '/ueber-uns' : '/pages/ueber-uns.html',
+        'nav-kontakt': usePrettyUrls ? langPrefix + '/kontakt' : '/pages/kontakt.html',
+        'nav-faq': usePrettyUrls ? langPrefix + '/faq' : '/pages/faq.html',
+        'nav-agb': usePrettyUrls ? langPrefix + '/agb' : '/pages/agb.html',
+        'nav-impressum': usePrettyUrls ? langPrefix + '/impressum' : '/pages/impressum.html'
       };
-      const file = fileMap[id] && fileMap[id][env];
+      const file = fileMap[id];
       if (!file) return;
       a.setAttribute('href', file);
     });
 
-    // Umschreiben Footer-Links (lokal/LAN zu .html)
-    if (/^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname)) {
-      const footerMap = {
-        '/impressum': '/pages/impressum.html',
-        '/agb': '/pages/agb.html',
-        '/datenschutz': '/pages/datenschutz.html',
-        '/kontakt': '/pages/kontakt.html'
-      };
-      document.querySelectorAll('#ft-impressum, #ft-agb, #ft-privacy, #ft-kontakt').forEach(a => {
-        const href = a.getAttribute('href');
-        if (!href) return;
-        const mapped = footerMap[href];
+    // All internal page links: add language prefix (pretty URLs) or remap to .html (http-server)
+    const LANG_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
+    const prettyToHtml = {
+      '/': '/index.html',
+      '/wohnungen': '/pages/wohnungen.html',
+      '/kontakt': '/pages/kontakt.html',
+      '/ueber-uns': '/pages/ueber-uns.html',
+      '/faq': '/pages/faq.html',
+      '/agb': '/pages/agb.html',
+      '/impressum': '/pages/impressum.html',
+      '/datenschutz': '/pages/datenschutz.html',
+      '/bestaetigung': '/pages/bestaetigung.html'
+    };
+    const knownPaths = Object.keys(prettyToHtml);
+    document.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('#')) return;
+      // Normalize: strip existing lang prefix to get bare path
+      const bare = href.replace(LANG_RE, '/').replace(/\/$/, '') || '/';
+      const normalBare = bare === '' ? '/' : bare;
+      if (usePrettyUrls) {
+        // Only update links that point to known internal pages
+        const matches = knownPaths.some(p => normalBare === p || normalBare.startsWith(p + '?') || normalBare.startsWith('/wohnung/'));
+        if (matches) a.setAttribute('href', langPrefix + (normalBare === '/' ? '/' : normalBare));
+      } else {
+        const mapped = prettyToHtml[normalBare];
         if (mapped) a.setAttribute('href', mapped);
-      });
-    }
+      }
+    });
   }
   document.addEventListener('component:loaded', adjustNavLinks);
   document.addEventListener('DOMContentLoaded', adjustNavLinks);
@@ -120,7 +140,9 @@
     setupCookieBanner();
   // Highlight active navigation link
   function markActive(){
-      const p = location.pathname.split('/').pop() || 'index.html';
+      // Support both pretty URLs (/ueber-uns) and direct .html paths (/pages/ueber-uns.html)
+      const raw = location.pathname.split('/').pop() || '';
+      const p = raw.endsWith('.html') ? raw : (raw ? raw + '.html' : 'index.html');
       const map = {
         'index.html': '#nav-home',
         'wohnungen.html': '#nav-wohnungen',
@@ -129,7 +151,8 @@
         'kontakt.html': '#nav-kontakt',
         'faq.html': '#nav-faq'
       };
-      const sel = map[p] || (p === '' ? '#nav-home' : null);
+      const sel = map[p] || (raw === '' ? '#nav-home' : null)
+        || (/\/wohnung\/[a-z0-9-]+/.test(location.pathname) ? '#nav-wohnungen' : null);
       if (!sel) return;
       const link = document.querySelector(sel);
       if (link){
@@ -141,14 +164,12 @@
     document.addEventListener('component:loaded', markActive);
 
     // --- Reusable Card Template Loading & Rendering ---
-    const IS_PAGES = location.pathname.includes('/pages/');
 
   // Fetch card template once and append <template> to body
   async function ensureCardTemplate(){
       if (document.getElementById('card-template')) return true;
-      const base = IS_PAGES ? '../' : '';
       try{
-        const res = await fetch(base + 'components/card.html', { credentials: 'same-origin', cache: 'no-store' });
+        const res = await fetch('/components/card.html', { credentials: 'same-origin', cache: 'no-store' });
         if (!res.ok) return false;
         const html = await res.text();
         const wrap = document.createElement('div');
@@ -166,7 +187,7 @@
       const host = document.getElementById('feature-cards');
       const tpl = document.getElementById('card-template');
       if (!host || !tpl || host.dataset.rendered) return;
-      const baseImg = (IS_PAGES ? '../' : '') + 'assets/img/allgemein/';
+      const baseImg = '/assets/img/allgemein/';
       const data = [
         { icon: 'fa-bed', title: 'home.features.komfort.title', text: 'home.features.komfort.text', img: baseImg + 'komfort.png' },
         { icon: 'fa-location-dot', title: 'home.features.zentral.title', text: 'home.features.zentral.text', img: baseImg + 'zentral.png' },
@@ -198,6 +219,15 @@
         translateAttr(variant.querySelector('[data-title]'), item.title);
         translateAttr(variant.querySelector('[data-text]'), item.text);
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
+        // Make feature card clickable – links to apartments listing
+        const featureLangMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+        const featureLangPrefix = featureLangMatch ? '/' + featureLangMatch[1] : '';
+        const featureHref = location.pathname.includes('.html') ? '/pages/wohnungen.html' : featureLangPrefix + '/wohnungen';
+        variant.classList.add('card-clickable');
+        variant.setAttribute('role', 'link');
+        variant.setAttribute('tabindex', '0');
+        variant.addEventListener('click', function() { location.href = featureHref; });
+        variant.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.href = featureHref; } });
       });
       host.dataset.rendered = 'true';
       if (window.applyTranslations) window.applyTranslations(host);
@@ -333,8 +363,10 @@
     // Prevent concurrent duplicate renders when multiple events fire near-simultaneously
     if (host.dataset.rendered === 'true' || host.dataset.rendering === 'true') return;
     host.dataset.rendering = 'true';
-      const base = IS_PAGES ? '../' : '';
       const vmap = await getVariantsMap();
+      // Detect current language prefix to build language-aware apartment URLs
+      const cardLangMatch = location.pathname.match(/^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/);
+      const cardLangPrefix = cardLangMatch ? '/' + cardLangMatch[1] : '';
       // Card-Konfiguration aus data-cards Attribut (JSON) oder Fallback
       let cardKeys = [];
       const raw = host.getAttribute('data-cards');
@@ -342,7 +374,7 @@
         try { cardKeys = JSON.parse(raw); } catch(e){ console.warn('Invalid data-cards JSON', e); }
       }
       if (!cardKeys.length){
-        cardKeys = [{ key: 'card', img: base + 'assets/img/sample.svg', alt: 'Wohnungsbild' }];
+        cardKeys = [{ key: 'card', img: '/assets/img/sample.svg', alt: 'Wohnungsbild' }];
       }
 
       cardKeys.forEach(cfg => {
@@ -350,7 +382,7 @@
         variant.classList.remove('d-none');
         if (cfg.key) variant.setAttribute('data-apartment-key', cfg.key);
         const imgEl = variant.querySelector('[data-img]');
-        const imgSrc = cfg.img || (base + 'assets/img/sample.svg');
+        const imgSrc = cfg.img || '/assets/img/sample.svg';
         // If the image looks like /assets/img/wohnungen/<apt>/main.png build responsive <picture> ONLY if variants exist.
         const isMainAptImg = (/\/assets\/img\/wohnungen\//.test(imgSrc) && /\/main\.(png|jpe?g)$/i.test(imgSrc));
         const hasVariants = cfg.key && vmap && vmap[cfg.key] === true;
@@ -402,7 +434,8 @@
         const btn = variant.querySelector('[data-button]');
         translateAttr(btn, prefix + '.button');
         if(cfg.key){
-          btn.setAttribute('href', '/pages/wohnung-detail.html?id='+encodeURIComponent(cfg.key));
+          const slug = cfg.key.replace(/_/g, '-');
+          btn.setAttribute('href', cardLangPrefix + '/wohnung/' + slug);
         } else {
           btn.setAttribute('href', '/pages/wohnungen.html');
         }
@@ -420,6 +453,15 @@
           if (el) translateAttr(el, prefix + m.key);
         });
         const col = document.createElement('div'); col.className='col-md-4'; col.appendChild(variant); host.appendChild(col);
+        // Make the whole card clickable (navigates to same href as button)
+        const cardHref = btn.getAttribute('href');
+        if (cardHref) {
+          variant.classList.add('card-clickable');
+          variant.addEventListener('click', function(e) {
+            if (e.target.closest('a, button')) return;
+            location.href = cardHref;
+          });
+        }
       });
       host.dataset.rendered = 'true';
       delete host.dataset.rendering;
@@ -477,6 +519,22 @@
         const btn = e.target.closest('[data-lang]');
         if (!btn) return;
         const lang = btn.getAttribute('data-lang');
+        // Navigate to language-prefixed URL when URL rewriting is available.
+        // Pretty URLs (no .html) = Apache/Docker supports rewrites → navigate.
+        // Plain .html URLs = http-server without rewrite support → update in place.
+        if (!location.pathname.includes('.html')) {
+          const LANG_PREFIX_RE = /^\/(en|pl|hu|sk|cs|it|bg|ro)(\/|$)/;
+          const strippedPath = location.pathname.replace(LANG_PREFIX_RE, '/');
+          const newPath = (lang && lang !== 'de') ? '/' + lang + strippedPath : strippedPath;
+          const newUrl = newPath + location.search + location.hash;
+          if (newUrl !== location.pathname + location.search + location.hash) {
+            // Persist language before navigating so the new page reads the correct lang
+            // from localStorage (important when switching to German which has no URL prefix).
+            localStorage.setItem('lang', lang || 'de');
+            window.location.href = newUrl;
+            return;
+          }
+        }
         if (window.setLanguage) window.setLanguage(lang).then(updateLangIndicator);
       });
       document.addEventListener('i18n:changed', updateLangIndicator);
@@ -527,8 +585,7 @@
             return;
           }
           if (more){
-            const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-            const href = isLocal ? '/pages/datenschutz.html' : '/datenschutz';
+            const href = location.pathname.includes('.html') ? '/pages/datenschutz.html' : '/datenschutz';
             window.location.href = href;
             return;
           }

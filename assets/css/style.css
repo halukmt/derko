@@ -765,3 +765,46 @@ body{ overflow-y: scroll; }
 .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23B69B5C'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
+
+/* --------------------------------------------------
+  Sticky CTA (Apartment Detail)
+  - Sticks inside the content flow when scrolling
+  - Avoids conflict with fixed WhatsApp FAB
+-------------------------------------------------- */
+.cta-sticky {
+  position: sticky;
+  top: 72px;
+  z-index: 100;
+}
+
+/* --------------------------------------------------
+  Clickable Cards (Apartment + Feature)
+  - Pointer cursor when whole card is clickable
+  - Subtle hover lift for affordance
+-------------------------------------------------- */
+.card-clickable {
+  cursor: pointer;
+  transition: box-shadow .2s ease, transform .15s ease;
+}
+.card-clickable:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.12) !important;
+  transform: translateY(-2px);
+}
+.card-clickable:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------
+  Section Whitespace Improvements
+  - Increase vertical padding on main content sections
+  - More breathing room for text blocks
+  - Note: !important needed to override Bootstrap utility classes that use !important
+-------------------------------------------------- */
+#main.py-5, main#main { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+@media (min-width: 768px) {
+  #main.py-5, main#main { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+}
+#main > .container > section { margin-bottom: 3rem; }
+@media (min-width: 768px) {
+  #main > .container > section { margin-bottom: 4rem; }
+}

@@ -5,6 +5,108 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.0] - 2026-03-13
+
+**First production release.** This version is deployed to `https://www.derko-immobilien.de` via automated GitHub Actions CI/CD.
+
+### Highlights
+- Full multilingual website (9 languages) with language-aware URL routing (`/en/`, `/pl/`, `/hu/`, etc.)
+- Automated deployment pipeline (dev → `dev.derko-immobilien.de`, main → `derko-immobilien.de`)
+- 358 Playwright E2E tests across Chromium and Firefox
+- Production-hardened contact form with CSRF, CAPTCHA, rate limiting, and spam protection
+- SEO-optimized with clean URLs, canonical tags, hreflang for all 9 languages, and sitemap
+
+### Added
+- All features from v1.0.0 through v1.5.2 are included in this production release.
+- See individual version entries below for detailed change history.
+
+---
+
+## [v1.5.2] - 2026-03-13
+
+### Added
+- **GitHub Actions CI/CD**: Automated deployment workflows for dev and production environments via rsync over SSH (Strato SFTP/SSH).
+  - `.github/workflows/deploy-dev.yml`: Triggers on push to `dev`, deploys to `dev/` folder on server.
+  - `.github/workflows/deploy-prod.yml`: Triggers on push to `main`, deploys to `dist/` folder on server.
+- **Secrets-based config generation**: Both workflows automatically generate `api/config.local.php` and `api/weekly_mail_config.php` from GitHub Secrets before deployment — no more manual FTP uploads for sensitive config files.
+  - Secrets used: `DERKO_CONTACT_TO`, `DERKO_CONTACT_FROM`, `DERKO_HEALTH_FROM`, `DERKO_HEALTH_TOKEN`, `DERKO_HEALTH_TO_1`, `DERKO_HEALTH_TO_2`.
+
+### Fixed
+- **rsync target path**: Changed absolute `:/dev/` and `:/dist/` to relative `dev/` and `dist/` so rsync resolves paths relative to the SSH home directory (webspace root) instead of the Linux `/dev/` device directory.
+
+---
+
+## [v1.5.1] - 2026-03-13
+
+### Added
+- **76 new Playwright E2E tests** in `tests/e2e/lang-navigation.spec.ts` covering language URL navigation (total: 358 tests across all spec files):
+  - CSS/JS asset loading on lang-prefixed pages (no 404s)
+  - Nav and footer links retain language prefix after navigation
+  - Language switcher URL navigation including switch back to German
+  - `/bestaetigung` route for all 9 languages
+  - Apartment card links with correct language prefix on listing page
+- **`/bestaetigung` pretty URL**: Added `RewriteRule ^bestaetigung/?$` to `.htaccess` for language-aware confirmation page routing.
+
+### Fixed
+- **Broken CSS/design on language-prefixed pages** (`/en/ueber-uns` etc.): Changed all relative asset paths (`../assets/css/style.css`) to absolute paths (`/assets/css/style.css`) across all 9 page files and `index.html`. Relative paths resolved incorrectly under Apache URL rewriting.
+- **Nav and footer links losing language prefix**: Extended `adjustNavLinks()` in `main.js` to scan ALL internal `<a href>` links (not just specific nav IDs), ensuring every internal link gets the active language prefix.
+- **Language switcher not updating correctly on Docker/localhost**: Replaced all `isLocal` hostname checks with `usePrettyUrls = !pathname.includes('.html')` — more reliable across Docker and http-server environments.
+- **Switching back to German showing old language**: Added `localStorage.setItem('lang', ...)` call BEFORE `window.location.href` navigation in `setupLanguageSwitcher()`. Without this fix, navigating to a German URL (no prefix) still showed the previous language because localStorage hadn't been updated yet.
+- **Contact form redirect ignoring language prefix**: `api/sendmail.php` now redirects to `/{lang}/bestaetigung` for non-German submissions instead of always redirecting to `/pages/bestaetigung.html`.
+- **Feature card links missing language prefix**: `renderFeatureCards()` in `main.js` now respects the active language prefix for card CTA links.
+
+### Changed
+- `index.html`: All asset paths made absolute; hero CTA button hrefs updated to pretty URLs (`/kontakt`, `/wohnungen`) with IDs for test selectors.
+
+---
+
+## [v1.5.0] - 2026-03-11
+
+### Added
+- **Playwright E2E Test Suite**: 282 automated tests across 4 spec files in `tests/e2e/`, covering all URL routes, canonical/hreflang SEO, contact form security, and page rendering for all 9 languages. Run with `npm test` (Chromium + Firefox, ~5-6 min) or `npx playwright test --project=chromium` (~2 min).
+  - `routing.spec.ts` — URL routing, language prefixes, 301 redirects, 404 handling
+  - `canonical-seo.spec.ts` — Canonical URLs, hreflang tags, sitemap validation, OG tags
+  - `contact-form.spec.ts` — Form submission, CSRF, CAPTCHA, rate limiting, Mailpit email delivery
+  - `pages.spec.ts` — All pages load, apartment detail titles, language UI, mobile viewport
+- **`api/test-helper.php`**: Debug-only endpoint (active only when `DERKO_DEBUG=1`) that exposes the current CAPTCHA code from the PHP session for Playwright CAPTCHA automation. Never active in production.
+- **npm test scripts** in `package.json`: `test` (full Playwright run), `test:ui` (interactive UI mode), `test:report` (open last HTML report).
+- **`tests/playwright.config.ts`**: Playwright configuration with `baseURL=http://localhost:8081`, 4 parallel workers, `retries: 1` for flaky test resilience, and separate Chromium/Firefox projects.
+
+### Fixed
+- **Apartment detail page title overwrite**: Removed `data-i18n="wohnungDetail.headline"` from `<title>` in `pages/wohnung-detail.html`. The attribute caused `applyTranslations()` in `lang.js` to overwrite the dynamic apartment-specific title (set by `wohnung-detail.js`) back to the generic "Wohnung Details" string after `i18n:ready` fired.
+- **Apache directory listing in Docker**: Changed `Options Indexes FollowSymLinks` to `Options FollowSymLinks` in `.docker/apache.conf`, disabling directory listing for `/api/` and all other directories — matching Strato production behavior.
+- **Mail error logging**: `api/sendmail.php` now checks the return value of `mail()` and writes a log entry on failure instead of silently discarding errors (previously suppressed with `@mail()`).
+- **Absolute canonical URLs**: `assets/js/wohnung-detail.js` now sets fully qualified canonical URLs (`https://www.derko-immobilien.de/wohnung/...`) for apartment detail pages.
+
+### Changed
+- **`.github/copilot-instructions.md`**: Replaced placeholder "No automated tests" section with full Playwright documentation including all CLI commands, spec file descriptions, workflow guidance, flaky test explanation, and `test-helper.php` production warning.
+
+---
+
+## [v1.4.2] - 2026-03-11
+### Added
+- Docker-based local development environment mirroring the Strato Apache/PHP 8.2 production stack ([#71](https://github.com/halukmt/derko/pull/71), closes [#70](https://github.com/halukmt/derko/issues/70)):
+  - `.docker/Dockerfile`: `php:8.2-apache` image with `mod_rewrite`, `mod_headers`, `mod_expires`, GD extension (captcha), and msmtp for email relay.
+  - `.docker/apache.conf`: `AllowOverride All` so `.htaccess` rules are fully active during development.
+  - `.docker/php.ini`: sendmail path set to msmtp, `display_errors On` for local debugging.
+  - `.docker/msmtprc`: relays all `mail()` calls to Mailpit on port 1025 (gitignored).
+  - `docker-compose.yml`: `web` service on port `8081:80`, `mailpit` (axllent/mailpit) UI on port `9000:8025`.
+- npm scripts `docker:up` and `docker:down` in `package.json` (replaces previous `serve:php` script).
+
+### Fixed
+- Session cookies failing on localhost: replaced hardcoded `$cookieDomain = '.derko-immobilien.de'` with `DERKO_COOKIE_DOMAIN` environment variable in `api/sendmail.php`, `api/csrf.php`, and `api/captcha.php`. Docker sets this to an empty string so cookies work without a real domain.
+- Docker GD extension build: added `libpng-dev`, `libjpeg-dev`, and `libfreetype6-dev` native libraries before `docker-php-ext-install gd`.
+- Docker port conflicts on Windows with Hyper-V: ports 7981–8080 are reserved by Hyper-V; changed web port from `8080` to `8081` and Mailpit UI from `8025` to `9000`.
+
+### Changed
+- `README.md`: Added Docker quick-start instructions, both `npm run docker:up` and `php -S` dev modes documented with Mailpit email testing info.
+- `.gitignore`: Added `.docker/msmtprc` to prevent the mail relay config from being committed.
+
+## [v1.4.1] - 2026-03-06
+### Added
+- UX/UI feedback analysis and implementation plan in `.github/plan/ux-ui-plan.md` covering 11 actionable improvements across frontend and backend.
+- `serve:php` npm script: starts a PHP 8.2 dev server via Docker (`npm run serve:php`) for local testing of sessions, CAPTCHA and contact form.
+
 ## [v1.4.0] - 2026-02-14
 ### Added
 - Added example templates for local/private configuration: `api/config.local.example.php` and `api/weekly_mail_config.example.php`.
@@ -522,6 +624,11 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v2.0.0]: https://github.com/halukmt/derko/compare/v1.5.2...v2.0.0
+[v1.5.2]: https://github.com/halukmt/derko/compare/v1.5.1...v1.5.2
+[v1.5.1]: https://github.com/halukmt/derko/compare/v1.5.0...v1.5.1
+[v1.5.0]: https://github.com/halukmt/derko/compare/v1.4.2...v1.5.0
+[v1.4.2]: https://github.com/halukmt/derko/compare/v1.4.1...v1.4.2
 [v1.3.0]: https://github.com/halukmt/derko/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/halukmt/derko/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/halukmt/derko/compare/v1.0.7...v1.1.0
