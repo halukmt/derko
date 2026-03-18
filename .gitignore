@@ -13,6 +13,9 @@ api/*.log
 api/*.lock
 api/rate_store/
 
+# Runtime session files (directory is tracked via .gitkeep)
+tmp/sessions/sess_*
+
 # Environment files (if ever used)
 .env
 .env.local

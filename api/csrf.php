@@ -7,6 +7,11 @@
 // (Docker sets this to empty string; production falls back to .derko-immobilien.de)
 $cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
 $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+// Use a project-local session save path to work around shared-hosting restrictions
+// (e.g. Strato: default /tmp may be inaccessible from subdomain document roots)
+$sessionPath = realpath(__DIR__ . '/../tmp/sessions') ?: (sys_get_temp_dir() . '/derko_sessions');
+if (!is_dir($sessionPath)) { @mkdir($sessionPath, 0700, true); }
+@ini_set('session.save_path', $sessionPath);
 @ini_set('session.cookie_domain', $cookieDomain);
 @ini_set('session.cookie_samesite', 'Lax');
 @ini_set('session.cookie_secure', $isHttps ? '1' : '0');
