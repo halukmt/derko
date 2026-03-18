@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.2] - 2026-03-18
+
+### Fixed
+- **CTA language prefix**: The "Request offer" button on apartment detail pages now links to the language-prefixed contact URL (e.g. `/it/kontakt?wohnung=...` instead of `/kontakt?wohnung=...`), preserving the active language on navigation. Applies to all non-German language variants on production; localhost retains the legacy `/pages/kontakt.html` path for local PHP router compatibility.
+
+---
+
 ## [v2.0.1] - 2026-03-18
 
 ### Fixed
