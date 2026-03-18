@@ -5,10 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.5] - 2026-03-18
+
+### Fixed
+- **Session race condition (captcha vs. CSRF)**: The captcha `<img>` tag had a hardcoded `src="/api/captcha.php"` which caused the browser to request captcha.php during HTML parsing — before the JavaScript CSRF fetch established the PHP session. Both requests arrived at the server without a PHPSESSID cookie, each creating a new session. Whichever response arrived last set the final cookie, discarding the other session's data (csrf_token or captcha_code). Fixed by removing the hardcoded captcha `src` and loading the captcha image via JavaScript only after the `csrf.php` fetch resolves (using `.finally()`). This guarantees the session is always established before captcha.php runs.
+
+---
+
 ## [v2.0.4] - 2026-03-18
 
 ### Fixed
-- **PHP session cookie overwrite by captcha**: `captcha.php` was missing the project-local session save path (`tmp/sessions/`). Because the captcha image loads before the CSRF fetch, captcha.php could not find the session in the default PHP tmp path and generated a **new session ID**, overwriting the PHPSESSID cookie. sendmail.php then received the new (empty) session ID and found no CSRF token, causing the "session expired" redirect. Fixed by applying the same `session.save_path` setup as `csrf.php` and `sendmail.php`.
+- **PHP session save path missing in captcha.php**: `captcha.php` was missing the project-local session save path (`tmp/sessions/`) that `csrf.php` and `sendmail.php` already had. Added the same `session.save_path` setup as a defence-in-depth measure.
 
 ---
 

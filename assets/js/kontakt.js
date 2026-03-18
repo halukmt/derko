@@ -83,12 +83,19 @@
     const alertBox = document.getElementById('form-alert');
     if (jsEnabled) jsEnabled.value = '1';
     if (ts) ts.value = String(Date.now());
-    // Fetch CSRF token asynchronously
+    // Fetch CSRF token asynchronously, then load captcha (ensures session is established first)
+    const loadCaptcha = () => {
+      const img = document.getElementById('captcha-img');
+      if (img && !img.src.includes('captcha.php')) { img.src = '/api/captcha.php?r=' + Date.now(); }
+    };
     if (csrfField){
       fetch('/api/csrf.php', { credentials:'same-origin' })
         .then(r=> r.ok ? r.json() : Promise.reject())
         .then(data=>{ if(data && data.ok && data.token){ csrfField.value = data.token; } })
-        .catch(()=>{ /* silently ignore; server will reject */ });
+        .catch(()=>{ /* silently ignore; server will reject */ })
+        .finally(loadCaptcha);
+    } else {
+      loadCaptcha();
     }
     let submitting = false;
   form.addEventListener('submit', (e)=>{
