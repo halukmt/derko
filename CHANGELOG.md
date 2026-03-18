@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.4] - 2026-03-18
+
+### Fixed
+- **PHP session cookie overwrite by captcha**: `captcha.php` was missing the project-local session save path (`tmp/sessions/`). Because the captcha image loads before the CSRF fetch, captcha.php could not find the session in the default PHP tmp path and generated a **new session ID**, overwriting the PHPSESSID cookie. sendmail.php then received the new (empty) session ID and found no CSRF token, causing the "session expired" redirect. Fixed by applying the same `session.save_path` setup as `csrf.php` and `sendmail.php`.
+
+---
+
 ## [v2.0.3] - 2026-03-18
 
 ### Fixed
