@@ -25,57 +25,46 @@ if (!$isLocalhost) {
     exit;
 }
 
-// Session setup (same as other API files)
-$cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
-$isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
-@ini_set('session.cookie_domain', $cookieDomain);
-@ini_set('session.cookie_samesite', 'Lax');
-@ini_set('session.cookie_secure', $isHttps ? '1' : '0');
-@ini_set('session.cookie_httponly', '1');
-@session_set_cookie_params([
-    'path'     => '/',
-    'secure'   => $isHttps,
-    'httponly' => true,
-    'samesite' => 'Lax',
-    'domain'   => $cookieDomain
-]);
-@session_start();
+// Token store (replaces session-based lookups)
+require_once __DIR__ . '/token_store.php';
 
 header('Content-Type: application/json; charset=UTF-8');
 header('Cache-Control: no-store');
 
 $action = $_GET['action'] ?? '';
+$tid    = $_GET['tid'] ?? '';
 
 switch ($action) {
     case 'captcha':
-        // Return current CAPTCHA code from session
+        // Return current CAPTCHA code from token store
+        $data = ($tid !== '') ? token_read($tid) : null;
         echo json_encode([
             'ok'   => true,
-            'code' => $_SESSION['captcha_code'] ?? null,
-            'sid'  => session_id(),
+            'code' => $data['captcha_code'] ?? null,
+            'tid'  => $tid,
         ]);
         break;
 
     case 'csrf':
-        // Return current CSRF token from session
+        // Return current CSRF token from token store
+        $data = ($tid !== '') ? token_read($tid) : null;
         echo json_encode([
             'ok'        => true,
-            'token'     => $_SESSION['csrf_token'] ?? null,
-            'issued_at' => $_SESSION['csrf_issued_at'] ?? null,
-            'sid'       => session_id(),
+            'token'     => $data['csrf_token'] ?? null,
+            'issued_at' => $data['issued_at'] ?? null,
+            'tid'       => $tid,
         ]);
         break;
 
     case 'session':
-        // Return session debug info (no sensitive values)
+        // Return token store debug info
+        $data = ($tid !== '') ? token_read($tid) : null;
         echo json_encode([
-            'ok'            => true,
-            'sid'           => session_id(),
-            'has_captcha'   => isset($_SESSION['captcha_code']),
-            'has_csrf'      => isset($_SESSION['csrf_token']),
-            'cookie_domain' => ini_get('session.cookie_domain'),
-            'save_path'     => ini_get('session.save_path'),
-            'samesite'      => ini_get('session.cookie_samesite'),
+            'ok'          => true,
+            'tid'         => $tid,
+            'has_captcha' => isset($data['captcha_code']),
+            'has_csrf'    => isset($data['csrf_token']),
+            'token_dir'   => realpath(__DIR__ . '/../tmp/tokens') ?: 'not_found',
         ]);
         break;
 

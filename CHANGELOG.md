@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.6] - 2026-03-18
+
+### Changed
+- **Replace PHP sessions with file-based token store**: Eliminated all PHP session/cookie dependencies from the contact form flow. The CSRF token, CAPTCHA code, and form state are now stored in server-side JSON files (`tmp/tokens/{id}.json`) identified by a 128-bit random token ID passed via form fields and URL parameters. This fundamentally fixes the "Session expired" error on Strato shared hosting where `session.cookie_secure=1` in php.ini prevents HTTP dev servers from setting session cookies.
+  - New `api/token_store.php`: shared CRUD helper with file locking, path traversal protection (`^[0-9a-f]{32}$`), and automatic cleanup of expired tokens.
+  - `api/csrf.php`: rewritten to create/refresh tokens via token store instead of PHP sessions.
+  - `api/captcha.php`: rewritten to store CAPTCHA codes in the token file instead of PHP sessions.
+  - `api/sendmail.php`: validates CSRF + CAPTCHA from token file, deletes token after use (single-use).
+  - `assets/js/kontakt.js`: passes `token_id` to all API calls; captcha loaded after CSRF fetch via `.finally()`.
+  - `pages/kontakt.html`: added `token_id` hidden field.
+  - `api/test-helper.php`: reads from token store instead of sessions.
+  - `tests/e2e/contact-form.spec.ts`: updated to handle token-based flow with `tid` parameter.
+
+### Security
+- Token IDs have 128-bit entropy (same as PHP session IDs), validated with strict hex regex to prevent path traversal.
+- Tokens are single-use: deleted after successful submission or security validation failure.
+- Token files have a 1-hour TTL with automatic cleanup on new token creation.
+- No cookies required: works on HTTP, HTTPS, any hosting configuration, any browser cookie settings.
+
+---
+
 ## [v2.0.5] - 2026-03-18
 
 ### Fixed
@@ -661,6 +682,7 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v2.0.6]: https://github.com/halukmt/derko/compare/v2.0.5...v2.0.6
 [v2.0.0]: https://github.com/halukmt/derko/compare/v1.5.2...v2.0.0
 [v1.5.2]: https://github.com/halukmt/derko/compare/v1.5.1...v1.5.2
 [v1.5.1]: https://github.com/halukmt/derko/compare/v1.5.0...v1.5.1

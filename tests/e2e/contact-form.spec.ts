@@ -1,6 +1,6 @@
 /**
  * contact-form.spec.ts
- * Tests the contact form: session/CSRF handling, first-submit bug,
+ * Tests the contact form: token-based CSRF/CAPTCHA handling, first-submit bug,
  * validation, bot protection, rate limiting, and Mailpit email delivery.
  *
  * Prerequisites:
@@ -22,6 +22,16 @@ async function waitForForm(page: Page) {
     const el = document.getElementById('csrf_token') as HTMLInputElement | null;
     return el && el.value !== '';
   }, { timeout: 10_000 });
+  // Wait for token_id to be populated
+  await page.waitForFunction(() => {
+    const el = document.getElementById('token_id') as HTMLInputElement | null;
+    return el && el.value !== '';
+  }, { timeout: 10_000 });
+  // Wait for captcha image to be loaded (loaded after csrf in .finally())
+  await page.waitForFunction(() => {
+    const img = document.getElementById('captcha-img') as HTMLImageElement | null;
+    return img && img.src.includes('captcha.php');
+  }, { timeout: 10_000 });
   // Wait for form_ts to be set
   await page.waitForFunction(() => {
     const el = document.getElementById('form_ts') as HTMLInputElement | null;
@@ -29,10 +39,21 @@ async function waitForForm(page: Page) {
   }, { timeout: 5_000 });
 }
 
-/** Fetch the current CAPTCHA code from the test-helper endpoint (same session) */
+/** Reload the captcha image using the current token_id */
+async function reloadCaptcha(page: Page) {
+  await page.evaluate(async () => {
+    const tid = (document.getElementById('token_id') as HTMLInputElement)?.value || '';
+    const img = document.getElementById('captcha-img') as HTMLImageElement;
+    img.src = '/api/captcha.php?tid=' + tid + '&r=' + Date.now();
+    await new Promise(resolve => { img.onload = img.onerror = resolve; });
+  });
+}
+
+/** Fetch the current CAPTCHA code from the test-helper endpoint */
 async function getCaptchaCode(page: Page): Promise<string> {
   const data = await page.evaluate(async () => {
-    const res = await fetch('/api/test-helper.php?action=captcha', { credentials: 'same-origin' });
+    const tid = (document.getElementById('token_id') as HTMLInputElement)?.value || '';
+    const res = await fetch('/api/test-helper.php?action=captcha&tid=' + tid);
     return res.json();
   });
   if (!data.ok || !data.code) {
@@ -44,7 +65,7 @@ async function getCaptchaCode(page: Page): Promise<string> {
 /** Reset rate limit for the test runner IP */
 async function resetRateLimit(page: Page) {
   await page.evaluate(async () => {
-    await fetch('/api/test-helper.php?action=reset-rate-limit', { credentials: 'same-origin' });
+    await fetch('/api/test-helper.php?action=reset-rate-limit');
   });
 }
 
@@ -97,6 +118,9 @@ test.describe('Contact form: session and CSRF initialisation', () => {
     const csrfValue = await page.inputValue('#csrf_token');
     expect(csrfValue, 'CSRF token must be populated by JS').not.toBe('');
 
+    const tokenIdValue = await page.inputValue('#token_id');
+    expect(tokenIdValue, 'token_id must be populated by JS').not.toBe('');
+
     const captchaImg = page.locator('#captcha-img');
     await expect(captchaImg).toBeVisible();
     const src = await captchaImg.getAttribute('src');
@@ -117,18 +141,12 @@ test.describe('Contact form: successful submission (first-submit bug)', () => {
   test.beforeEach(async ({ page }) => {
     await clearMailpit(page);
     await page.goto('/kontakt');
-    // Load captcha image to set session captcha_code
-    await page.waitForSelector('#captcha-img');
-    // Trigger a fresh captcha load so our session has the latest code
-    await page.evaluate(async () => {
-      const img = document.getElementById('captcha-img') as HTMLImageElement;
-      img.src = '/api/captcha.php?r=' + Date.now();
-      await new Promise(resolve => { img.onload = img.onerror = resolve; });
-    });
+    await waitForForm(page);
+    // Reload captcha to ensure a fresh code is in the token file
+    await reloadCaptcha(page);
   });
 
   test('F-02: FIRST submit after fresh page load → success (main bug regression test)', async ({ page }) => {
-    await waitForForm(page);
     const captchaCode = await getCaptchaCode(page);
     await fillForm(page, captchaCode);
 
@@ -145,7 +163,6 @@ test.describe('Contact form: successful submission (first-submit bug)', () => {
   });
 
   test('F-08: Mailpit receives operator email after successful submit', async ({ page }) => {
-    await waitForForm(page);
     const captchaCode = await getCaptchaCode(page);
     await fillForm(page, captchaCode);
     await resetRateLimit(page);
@@ -160,7 +177,6 @@ test.describe('Contact form: successful submission (first-submit bug)', () => {
   });
 
   test('F-09: Mailpit receives confirmation email to sender', async ({ page }) => {
-    await waitForForm(page);
     const captchaCode = await getCaptchaCode(page);
     await fillForm(page, captchaCode, { email: 'sender@test.local' });
     await resetRateLimit(page);
@@ -176,13 +192,8 @@ test.describe('Contact form: successful submission (first-submit bug)', () => {
 
   test('F-10: EN contact form (/en/kontakt) submit → success', async ({ page }) => {
     await page.goto('/en/kontakt');
-    await page.waitForSelector('#captcha-img');
-    await page.evaluate(async () => {
-      const img = document.getElementById('captcha-img') as HTMLImageElement;
-      img.src = '/api/captcha.php?r=' + Date.now();
-      await new Promise(resolve => { img.onload = img.onerror = resolve; });
-    });
     await waitForForm(page);
+    await reloadCaptcha(page);
     const captchaCode = await getCaptchaCode(page);
     await fillForm(page, captchaCode);
     await resetRateLimit(page);
@@ -274,13 +285,8 @@ test.describe('Contact form: bot protection', () => {
   test('F-S-04: XSS in message field → sanitized, form accepts but message is clean', async ({ page }) => {
     // This tests that the backend strips HTML/script tags
     await page.goto('/kontakt');
-    await page.waitForSelector('#captcha-img');
-    await page.evaluate(async () => {
-      const img = document.getElementById('captcha-img') as HTMLImageElement;
-      img.src = '/api/captcha.php?r=' + Date.now();
-      await new Promise(resolve => { img.onload = img.onerror = resolve; });
-    });
     await waitForForm(page);
+    await reloadCaptcha(page);
     const captchaCode = await getCaptchaCode(page);
     await resetRateLimit(page);
 
@@ -306,13 +312,8 @@ test.describe('Contact form: bot protection', () => {
 test.describe('Contact form: CAPTCHA', () => {
   test('F-06: Wrong CAPTCHA → redirects to error-captcha page', async ({ page }) => {
     await page.goto('/kontakt');
-    await page.waitForSelector('#captcha-img');
-    await page.evaluate(async () => {
-      const img = document.getElementById('captcha-img') as HTMLImageElement;
-      img.src = '/api/captcha.php?r=' + Date.now();
-      await new Promise(resolve => { img.onload = img.onerror = resolve; });
-    });
     await waitForForm(page);
+    await reloadCaptcha(page);
     await resetRateLimit(page);
 
     await page.fill('#name', 'Test User');
@@ -360,6 +361,7 @@ test.describe('Contact form: security (API level)', () => {
         js_enabled: '1',
         form_ts: String(Date.now() - 3000),
         csrf_token: '',
+        token_id: '',
         captcha: 'XXXXX',
       },
       maxRedirects: 0,
@@ -372,17 +374,11 @@ test.describe('Contact form: security (API level)', () => {
   });
 
   test('S-07: Rate limit: posting twice in quick succession → rate limit response', async ({ page }) => {
-    // Setup: navigate once, set up captcha, then reset rate limit
+    // First submit
     await page.goto('/kontakt');
-    await page.waitForSelector('#captcha-img');
-    await page.evaluate(async () => {
-      const img = document.getElementById('captcha-img') as HTMLImageElement;
-      img.src = '/api/captcha.php?r=' + Date.now();
-      await new Promise(resolve => { img.onload = img.onerror = resolve; });
-    });
     await waitForForm(page);
+    await reloadCaptcha(page);
 
-    // First submit → should succeed
     const code1 = await getCaptchaCode(page);
     await fillForm(page, code1);
     await resetRateLimit(page);
@@ -392,13 +388,8 @@ test.describe('Contact form: security (API level)', () => {
 
     // Second submit immediately (same IP, within rate window) → should hit rate limit
     await page.goto('/kontakt');
-    await page.waitForSelector('#captcha-img');
-    await page.evaluate(async () => {
-      const img = document.getElementById('captcha-img') as HTMLImageElement;
-      img.src = '/api/captcha.php?r=' + Date.now();
-      await new Promise(resolve => { img.onload = img.onerror = resolve; });
-    });
     await waitForForm(page);
+    await reloadCaptcha(page);
     const code2 = await getCaptchaCode(page);
     await fillForm(page, code2);
     await page.click('button[type="submit"]');
