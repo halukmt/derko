@@ -79,16 +79,28 @@
     const jsEnabled = form.querySelector('#js_enabled');
     const ts = form.querySelector('#form_ts');
     const csrfField = form.querySelector('#csrf_token');
+    const tokenIdField = form.querySelector('#token_id');
     const honeypot = form.querySelector('#company');
     const alertBox = document.getElementById('form-alert');
     if (jsEnabled) jsEnabled.value = '1';
     if (ts) ts.value = String(Date.now());
-    // Fetch CSRF token asynchronously
+    // Fetch CSRF token + token_id, then load captcha with the token_id
     if (csrfField){
-      fetch('/api/csrf.php', { credentials:'same-origin' })
+      fetch('/api/csrf.php')
         .then(r=> r.ok ? r.json() : Promise.reject())
-        .then(data=>{ if(data && data.ok && data.token){ csrfField.value = data.token; } })
-        .catch(()=>{ /* silently ignore; server will reject */ });
+        .then(data=>{
+          if(data && data.ok){
+            if(data.token) csrfField.value = data.token;
+            if(data.token_id && tokenIdField) tokenIdField.value = data.token_id;
+          }
+        })
+        .catch(()=>{ /* silently ignore; server will reject */ })
+        .finally(()=>{
+          // Load captcha with token_id so it writes to the same token file
+          const tid = tokenIdField ? tokenIdField.value : '';
+          const img = document.getElementById('captcha-img');
+          if (img && tid) img.src = '/api/captcha.php?tid=' + tid + '&r=' + Date.now();
+        });
     }
     let submitting = false;
   form.addEventListener('submit', (e)=>{
@@ -150,7 +162,8 @@
         if (btn){ btn.disabled = true; btn.setAttribute('aria-disabled','true'); }
         form.submit();
       };
-      const refreshCsrf = () => fetch('/api/csrf.php', { credentials:'same-origin' })
+      const tid = tokenIdField ? tokenIdField.value : '';
+      const refreshCsrf = () => fetch('/api/csrf.php' + (tid ? '?tid=' + tid : ''))
         .then(r => r.ok ? r.json() : null)
         .then(data => { if (data && data.ok && data.token && csrfField){ csrfField.value = data.token; } })
         .catch(()=>{/* ignore and proceed anyway */});
@@ -274,15 +287,15 @@
     setTimeout(() => { ensureStaticYear(df); ensureStaticYear(dt); }, 0);
   }
 
-  // Google Änderungsvorschlag
   function initCaptcha(){
       const img = document.getElementById('captcha-img');
       if (!img) return;
       const btn = document.getElementById('captcha-refresh');
-      const refresh = () => { img.src = '/api/captcha.php?r=' + Date.now(); };
+      const refresh = () => {
+        const tid = (document.getElementById('token_id') || {}).value || '';
+        if (tid) img.src = '/api/captcha.php?tid=' + tid + '&r=' + Date.now();
+      };
       if (btn && !btn._wired){ btn.addEventListener('click', refresh); btn._wired = true; }
-      // cache-bust on first load -> NICHT NÖTIG, da HTML schon lädt
-      // refresh();  <-- Auskommentiert, damit das Bild nicht doppelt lädt
     }
 
   function markRequiredLabels(){

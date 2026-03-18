@@ -1,35 +1,49 @@
 <?php
-// Simple CSRF token issuer. Returns JSON with token.
-// Stores token in session; single token reused per session.
+// CSRF token issuer. Returns JSON with token_id and token.
+// Uses file-based token store (no PHP sessions / no cookies required).
 
-// --- SESSION CONFIGURATION (Harmonized) ---
-// Allow override via DERKO_COOKIE_DOMAIN env var so sessions work on localhost
-// (Docker sets this to empty string; production falls back to .derko-immobilien.de)
-$cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
-$isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
-@ini_set('session.cookie_domain', $cookieDomain);
-@ini_set('session.cookie_samesite', 'Lax');
-@ini_set('session.cookie_secure', $isHttps ? '1' : '0');
-@ini_set('session.cookie_httponly', '1');
-@session_set_cookie_params([
-  'path' => '/',
-  'secure' => $isHttps,
-  'httponly' => true,
-  'samesite' => 'Lax',
-  'domain' => $cookieDomain
-]);
-@session_start();
+require_once __DIR__ . '/token_store.php';
+
 header('Content-Type: application/json; charset=UTF-8');
+
 // Allow only GET
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-  http_response_code(405);
-  echo json_encode(['ok'=>false,'error'=>'method']);
-  exit;
+    http_response_code(405);
+    echo json_encode(['ok' => false, 'error' => 'method']);
+    exit;
 }
-if (empty($_SESSION['csrf_token'])) {
-  // 32 random bytes base64
-  $_SESSION['csrf_token'] = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
+
+$tid = isset($_GET['tid']) ? $_GET['tid'] : '';
+
+if ($tid !== '') {
+    // Refresh existing token (update issued_at)
+    $data = token_read($tid);
+    if (!$data) {
+        http_response_code(404);
+        echo json_encode(['ok' => false, 'error' => 'invalid_token']);
+        exit;
+    }
+    token_update($tid, ['issued_at' => time()]);
+    echo json_encode([
+        'ok'       => true,
+        'token_id' => $tid,
+        'token'    => $data['csrf_token'],
+        'issued'   => time(),
+    ]);
+} else {
+    // Create new token
+    $result = token_create();
+    if (!$result) {
+        http_response_code(500);
+        echo json_encode(['ok' => false, 'error' => 'create_failed']);
+        exit;
+    }
+    // Housekeeping: remove tokens older than 1 hour
+    token_cleanup(3600);
+    echo json_encode([
+        'ok'       => true,
+        'token_id' => $result['token_id'],
+        'token'    => $result['csrf_token'],
+        'issued'   => $result['issued_at'],
+    ]);
 }
-// Touch the issued timestamp on every call to keep session fresh when user is active
-$_SESSION['csrf_issued_at'] = time();
-echo json_encode(['ok'=>true,'token'=>$_SESSION['csrf_token'],'issued'=>$_SESSION['csrf_issued_at']]);

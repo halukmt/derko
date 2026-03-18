@@ -1,21 +1,6 @@
 <?php
-// --- SESSION CONFIGURATION (Harmonized) ---
-// Allow override via DERKO_COOKIE_DOMAIN env var so sessions work on localhost
-// (Docker sets this to empty string; production falls back to .derko-immobilien.de)
-$cookieDomain = getenv('DERKO_COOKIE_DOMAIN') !== false ? getenv('DERKO_COOKIE_DOMAIN') : '.derko-immobilien.de';
-$isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
-@ini_set('session.cookie_domain', $cookieDomain);
-@ini_set('session.cookie_samesite', 'Lax');
-@ini_set('session.cookie_secure', $isHttps ? '1' : '0');
-@ini_set('session.cookie_httponly', '1');
-@session_set_cookie_params([
-  'path' => '/',
-  'secure' => $isHttps,
-  'httponly' => true,
-  'samesite' => 'Lax',
-  'domain' => $cookieDomain
-]);
-@session_start();
+// --- TOKEN STORE (replaces PHP sessions — no cookies required) ---
+require_once __DIR__ . '/token_store.php';
 
 // --- Lightweight crash logging & fail-safe 500 handler --------------------
 // Debug-Modus über Umgebungsvariable DERKO_DEBUG (siehe config.php)
@@ -232,10 +217,17 @@ $privacy = get_post('privacy');
 // Captcha
 $captcha = get_post('captcha');
 $csrf_token = get_post('csrf_token');
+$token_id = get_post('token_id');
+// Load token data from file store
+$token_data = ($token_id !== '') ? token_read($token_id) : null;
 // Anti-bot fields
 $honeypot = get_post('company'); // should stay empty
 $js_enabled = get_post('js_enabled');
 $form_ts = get_post('form_ts');
+
+// Detect language early so all error redirects include the correct prefix
+$lang = detect_lang();
+$langPrefix = ($lang && $lang !== 'de') ? '/' . $lang : '';
 
 // Einfache Validierung
 $errors = [];
@@ -271,58 +263,44 @@ if($topic === 'booking'){
   if($persons === '' || !preg_match('/^\d+$/', $persons)) $errors[] = 'persons';
 }
 
-// CSRF token check (and optional TTL)
+// CSRF token check (using file-based token store)
 $csrf_ok = true;
-if (!isset($_SESSION['csrf_token']) || $csrf_token === '' || !hash_equals($_SESSION['csrf_token'], $csrf_token)){
+$hasStoredTok = ($token_data && isset($token_data['csrf_token']));
+if (!$hasStoredTok || $csrf_token === '' || !hash_equals($token_data['csrf_token'], $csrf_token)){
   $csrf_ok = false;
 }
 // TTL if available
-$issuedAt = isset($_SESSION['csrf_issued_at']) ? (int)$_SESSION['csrf_issued_at'] : 0;
+$issuedAt = ($token_data && isset($token_data['issued_at'])) ? (int)$token_data['issued_at'] : 0;
 if ($csrf_ok && $issuedAt && (time() - $issuedAt) > $CSRF_TTL){
   $csrf_ok = false;
 }
 if (!$csrf_ok){
-  $hasSessionTok = isset($_SESSION['csrf_token']);
   $hasPostedTok  = ($csrf_token !== '');
   $age = $issuedAt ? (time() - $issuedAt) : -1;
-  $reason = !$hasSessionTok ? 'no_session_token' : (!$hasPostedTok ? 'no_post_token' : ($issuedAt && $age > $CSRF_TTL ? 'expired' : 'mismatch'));
-  // Optional debug header (only when debug is enabled)
+  $reason = !$hasStoredTok ? 'no_stored_token' : (!$hasPostedTok ? 'no_post_token' : ($issuedAt && $age > $CSRF_TTL ? 'expired' : 'mismatch'));
   if (defined('DERKO_DEBUG') && DERKO_DEBUG){
     header('X-DERKO-CSRF: '.$reason);
   }
-  // Always log CSRF failures (minimal PII; includes IP from derko_log)
   $ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
   $host = $_SERVER['HTTP_HOST'] ?? '';
-  $cookie = $_COOKIE[session_name()] ?? '';
-  $cookie_domain = ini_get('session.cookie_domain');
-  $save_path = ini_get('session.save_path');
-  $samesite = ini_get('session.cookie_samesite');
-  $free_tmp = function_exists('disk_free_space') ? @disk_free_space('/tmp') : 'n/a';
   derko_log(
-    'CSRF fail: sid='.session_id()." reason=$reason age=$age ttl=$CSRF_TTL referer=".safe_header($ref),
-    [
-      'host'=>$host,
-      'session_cookie'=>($cookie ? 'set' : 'none'),
-      'cookie_domain'=>$cookie_domain,
-      'save_path'=>$save_path,
-      'samesite'=>$samesite,
-      'free_tmp'=>$free_tmp
-    ]
+    "CSRF fail: tid=$token_id reason=$reason age=$age ttl=$CSRF_TTL referer=".safe_header($ref),
+    ['host'=>$host, 'has_token_file'=>($token_data ? 'yes' : 'no')]
   );
-  // Redirect to friendly session timeout page (do not count towards rate limit)
-  header('Location: /pages/error-session.html');
+  token_delete($token_id);
+  header('Location: ' . $langPrefix . '/error-session');
   exit;
 }
 // CAPTCHA check (case-insensitive)
-if ($captcha === '' || !isset($_SESSION['captcha_code']) || strcasecmp(trim($captcha), $_SESSION['captcha_code']) !== 0) {
+$stored_captcha = ($token_data && isset($token_data['captcha_code'])) ? $token_data['captcha_code'] : '';
+if ($captcha === '' || $stored_captcha === '' || strcasecmp(trim($captcha), $stored_captcha) !== 0) {
   $errors[] = 'captcha';
 }
-// Invalidate used code regardless
-unset($_SESSION['captcha_code']);
 
 // Friendly browser redirect for CAPTCHA failures (avoid showing raw JSON)
 if (in_array('captcha', $errors, true) && derko_is_browser_navigation() && !derko_wants_json_response()){
-  header('Location: /pages/error-captcha.html', true, 303);
+  token_delete($token_id);
+  header('Location: ' . $langPrefix . '/error-captcha', true, 303);
   exit;
 }
 
@@ -343,7 +321,7 @@ if(count($hits) >= $RATE_MAX){
   $oldest = min($hits);
   $wait = max(1, $RATE_WINDOW - ($now - $oldest));
   header('Retry-After: '.$wait);
-  header('Location: /pages/error-rate-limit.html?wait='.$wait);
+  header('Location: ' . $langPrefix . '/error-rate-limit?wait='.$wait);
   exit;
 }
 // Record current attempt now
@@ -376,7 +354,7 @@ if($emailDomain && in_array($emailDomain, $dispDomains, true)){
 }
 
 if(!empty($errors)){
-  // For regular validation errors keep JSON (used by inline feedback)
+  token_delete($token_id);
   http_response_code(400);
   header('Content-Type: application/json; charset=UTF-8');
   echo json_encode(['ok'=>false,'errors'=>$errors]);
@@ -389,7 +367,7 @@ usleep(random_int(80000, 220000)); // 80–220ms
 // Anfrage-ID erstellen (YYYYMMDDHHMM)
 // Format: Jahr-Monat-Tag-Stunde-Minute per Anforderung
 $reqId = date('YmdHi');
-$lang = detect_lang();
+// $lang already detected above (before error redirects)
 $__DICT_CHAIN = build_dict_chain($lang);
 // Topic text localized
 $topicBooking = t_chain($__DICT_CHAIN, 'kontakt.form.topicBooking');
@@ -531,8 +509,9 @@ if (!$mailUserOk) {
   derko_log('MAIL FAIL: confirmation email not sent', ['to' => $email]);
 }
 
+// Clean up token file (single-use)
+token_delete($token_id);
 // Weiterleitung auf Bestätigungsseite (language-aware pretty URL)
-$confirmRedirect = ($lang && $lang !== 'de') ? '/' . $lang . '/bestaetigung' : '/bestaetigung';
-header('Location: ' . $confirmRedirect);
+header('Location: ' . $langPrefix . '/bestaetigung');
 exit;
 ?>

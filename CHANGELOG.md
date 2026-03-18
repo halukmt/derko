@@ -5,6 +5,74 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.7] - 2026-03-18
+
+### Added
+- **Dev server noindex**: Added `X-Robots-Tag: noindex, nofollow` HTTP header that is only sent when the hostname starts with `dev.` (via Apache `SetEnvIf`). Prevents search engines from indexing `dev.derko-immobilien.de` while leaving production unaffected.
+
+### Fixed
+- **Clean URLs for error redirects**: All `sendmail.php` error and success redirects now use language-prefixed clean URLs (e.g. `/en/error-captcha`) instead of raw `/pages/error-*.html` paths. Added corresponding `.htaccess` 301 canonicalization rules and internal rewrites for error pages and confirmation page.
+
+---
+
+## [v2.0.6] - 2026-03-18
+
+### Changed
+- **Replace PHP sessions with file-based token store**: Eliminated all PHP session/cookie dependencies from the contact form flow. The CSRF token, CAPTCHA code, and form state are now stored in server-side JSON files (`tmp/tokens/{id}.json`) identified by a 128-bit random token ID passed via form fields and URL parameters. This fundamentally fixes the "Session expired" error on Strato shared hosting where `session.cookie_secure=1` in php.ini prevents HTTP dev servers from setting session cookies.
+  - New `api/token_store.php`: shared CRUD helper with file locking, path traversal protection (`^[0-9a-f]{32}$`), and automatic cleanup of expired tokens.
+  - `api/csrf.php`: rewritten to create/refresh tokens via token store instead of PHP sessions.
+  - `api/captcha.php`: rewritten to store CAPTCHA codes in the token file instead of PHP sessions.
+  - `api/sendmail.php`: validates CSRF + CAPTCHA from token file, deletes token after use (single-use).
+  - `assets/js/kontakt.js`: passes `token_id` to all API calls; captcha loaded after CSRF fetch via `.finally()`.
+  - `pages/kontakt.html`: added `token_id` hidden field.
+  - `api/test-helper.php`: reads from token store instead of sessions.
+  - `tests/e2e/contact-form.spec.ts`: updated to handle token-based flow with `tid` parameter.
+
+### Security
+- Token IDs have 128-bit entropy (same as PHP session IDs), validated with strict hex regex to prevent path traversal.
+- Tokens are single-use: deleted after successful submission or security validation failure.
+- Token files have a 1-hour TTL with automatic cleanup on new token creation.
+- No cookies required: works on HTTP, HTTPS, any hosting configuration, any browser cookie settings.
+
+---
+
+## [v2.0.5] - 2026-03-18
+
+### Fixed
+- **Session race condition (captcha vs. CSRF)**: The captcha `<img>` tag had a hardcoded `src="/api/captcha.php"` which caused the browser to request captcha.php during HTML parsing — before the JavaScript CSRF fetch established the PHP session. Both requests arrived at the server without a PHPSESSID cookie, each creating a new session. Whichever response arrived last set the final cookie, discarding the other session's data (csrf_token or captcha_code). Fixed by removing the hardcoded captcha `src` and loading the captcha image via JavaScript only after the `csrf.php` fetch resolves (using `.finally()`). This guarantees the session is always established before captcha.php runs.
+
+---
+
+## [v2.0.4] - 2026-03-18
+
+### Fixed
+- **PHP session save path missing in captcha.php**: `captcha.php` was missing the project-local session save path (`tmp/sessions/`) that `csrf.php` and `sendmail.php` already had. Added the same `session.save_path` setup as a defence-in-depth measure.
+
+---
+
+## [v2.0.3] - 2026-03-18
+
+### Fixed
+- **PHP session on dev server**: `csrf.php` and `sendmail.php` now set a project-local session save path (`tmp/sessions/`) before `session_start()`. Fixes "session expired" errors on Strato shared hosting where the default `/tmp` save path is inaccessible from subdomain document roots. Falls back to `sys_get_temp_dir()` if the local path cannot be created.
+
+---
+
+## [v2.0.2] - 2026-03-18
+
+### Fixed
+- **CTA language prefix**: The "Request offer" button on apartment detail pages now links to the language-prefixed contact URL (e.g. `/it/kontakt?wohnung=...` instead of `/kontakt?wohnung=...`), preserving the active language on navigation. Applies to all non-German language variants on production; localhost retains the legacy `/pages/kontakt.html` path for local PHP router compatibility.
+
+---
+
+## [v2.0.1] - 2026-03-18
+
+### Fixed
+- **Canonical tags**: Replaced hardcoded German canonical URLs with a synchronous inline script that sets the correct language-prefixed canonical at parse time (e.g. `/en/agb` → `https://www.derko-immobilien.de/en/agb`). Fixes "Alternative page with correct canonical tag" and "Discovered — currently not indexed" issues in Google Search Console for all 9 language variants.
+- **Internal `/pages/` links**: Replaced legacy `/pages/kontakt.html` and `/pages/wohnungen.html` hrefs with clean URLs (`/kontakt`, `/wohnungen`) in `bestaetigung.html`, `error-rate-limit.html`, `error-session.html`, `error-captcha.html`, and `wohnung-detail.html`. Eliminates "Page with redirect" warnings in Google Search Console.
+- **`npm test` script**: Added `--config=tests/playwright.config.ts` so Playwright tests can be run from the project root without changing directories.
+
+---
+
 ## [v2.0.0] - 2026-03-13
 
 **First production release.** This version is deployed to `https://www.derko-immobilien.de` via automated GitHub Actions CI/CD.
@@ -624,6 +692,8 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v2.0.7]: https://github.com/halukmt/derko/compare/v2.0.6...v2.0.7
+[v2.0.6]: https://github.com/halukmt/derko/compare/v2.0.5...v2.0.6
 [v2.0.0]: https://github.com/halukmt/derko/compare/v1.5.2...v2.0.0
 [v1.5.2]: https://github.com/halukmt/derko/compare/v1.5.1...v1.5.2
 [v1.5.1]: https://github.com/halukmt/derko/compare/v1.5.0...v1.5.1

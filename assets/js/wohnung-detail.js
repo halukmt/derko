@@ -61,11 +61,12 @@
   const prefix = 'wohnungen.cards.' + key;
 
   function fillContent(){
+    const langPrefix = currentLang === 'de' ? '' : '/' + currentLang;
     // Update CTA link to pre-select this apartment in the contact form
     const ctaEl = document.getElementById('apt-cta');
     if (ctaEl) {
       const isLocal = /^localhost$|^127\.0\.0\.1$|^192\.168\.|^10\.|^172\.(1[6-9]|2[0-9]|3[01])\./.test(location.hostname);
-      const kontaktBase = isLocal ? '/pages/kontakt.html' : '/kontakt';
+      const kontaktBase = isLocal ? '/pages/kontakt.html' : langPrefix + '/kontakt';
       ctaEl.setAttribute('href', kontaktBase + '?wohnung=' + encodeURIComponent(key));
     }
     const titleEl = document.getElementById('apt-title');
@@ -98,7 +99,6 @@
     // Canonical: absolute clean slug URL for this apartment
     const canonical = document.querySelector('link[rel="canonical"]');
     if(canonical){
-      const langPrefix = currentLang === 'de' ? '' : '/' + currentLang;
       canonical.setAttribute('href', 'https://www.derko-immobilien.de' + langPrefix + '/wohnung/' + slug);
     }
     // Hreflang alternates: clean slug URLs for all languages

@@ -8,6 +8,8 @@ Options -MultiViews
 <IfModule mod_setenvif.c>
   # Flag HTTPS so we can conditionally set powerful feature headers only on secure origins
   SetEnvIfNoCase HTTPS on HTTPS_ON=1
+  # Prevent search engine indexing on dev subdomain
+  SetEnvIf Host ^dev\. NOINDEX=1
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -21,6 +23,8 @@ Options -MultiViews
   Header set Cross-Origin-Embedder-Policy "require-corp" env=HTTPS_ON
   # Disable legacy XSS Auditor (avoid false positives)
   Header set X-XSS-Protection "0"
+  # Block indexing on dev subdomain (X-Robots-Tag only sent when Host starts with "dev.")
+  Header set X-Robots-Tag "noindex, nofollow" env=NOINDEX
 </IfModule>
 
 # Force HTTPS (optional; enable only if cert available on all hosts)
@@ -88,6 +92,14 @@ Options -MultiViews
   RewriteRule ^pages/wohnung-detail\.html$ /wohnung [QSA,R=301,L]
   RewriteCond %{THE_REQUEST} \s/+pages/faq\.html [NC]
   RewriteRule ^pages/faq\.html$ /faq [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/bestaetigung\.html [NC]
+  RewriteRule ^pages/bestaetigung\.html$ /bestaetigung [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/error-session\.html [NC]
+  RewriteRule ^pages/error-session\.html$ /error-session [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/error-captcha\.html [NC]
+  RewriteRule ^pages/error-captcha\.html$ /error-captcha [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+pages/error-rate-limit\.html [NC]
+  RewriteRule ^pages/error-rate-limit\.html$ /error-rate-limit [QSA,R=301,L]
 
   # Allow extensionless access below /pages (e.g., /pages/kontakt -> /pages/kontakt.html)
   RewriteRule ^pages/([A-Za-z0-9_-]+)/?$ /pages/$1.html [L]
@@ -106,6 +118,9 @@ Options -MultiViews
   RewriteRule ^agb/?$ /pages/agb.html [L]
   RewriteRule ^datenschutz/?$ /pages/datenschutz.html [L]
   RewriteRule ^bestaetigung/?$ /pages/bestaetigung.html [L]
+  RewriteRule ^error-session/?$ /pages/error-session.html [L]
+  RewriteRule ^error-captcha/?$ /pages/error-captcha.html [L]
+  RewriteRule ^error-rate-limit/?$ /pages/error-rate-limit.html [QSA,L]
   # 301 redirect old ?id= format to clean slug
   RewriteCond %{QUERY_STRING} ^id=w01_derko_apart$
   RewriteRule ^wohnung/?$ /wohnung/w01-derko-apart? [R=301,L]
@@ -136,7 +151,7 @@ Options -MultiViews
   # Language-prefixed apartment detail pages (clean slug URLs)
   RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/wohnung/([a-z0-9-]+)/?$ /pages/wohnung-detail.html [QSA,L]
   # Language-prefixed standard pages
-  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/(wohnungen|kontakt|ueber-uns|faq|agb|impressum|datenschutz|bestaetigung)/?$ /pages/$2.html [L]
+  RewriteRule ^(en|pl|hu|sk|cs|it|bg|ro)/(wohnungen|kontakt|ueber-uns|faq|agb|impressum|datenschutz|bestaetigung|error-session|error-captcha|error-rate-limit)/?$ /pages/$2.html [QSA,L]
 
   # (Replaced RedirectMatch rules with THE_REQUEST-based rules above to prevent redirect loops)
 </IfModule>
