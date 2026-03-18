@@ -8,6 +8,8 @@ Options -MultiViews
 <IfModule mod_setenvif.c>
   # Flag HTTPS so we can conditionally set powerful feature headers only on secure origins
   SetEnvIfNoCase HTTPS on HTTPS_ON=1
+  # Prevent search engine indexing on dev subdomain
+  SetEnvIf Host ^dev\. NOINDEX=1
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -21,6 +23,8 @@ Options -MultiViews
   Header set Cross-Origin-Embedder-Policy "require-corp" env=HTTPS_ON
   # Disable legacy XSS Auditor (avoid false positives)
   Header set X-XSS-Protection "0"
+  # Block indexing on dev subdomain (X-Robots-Tag only sent when Host starts with "dev.")
+  Header set X-Robots-Tag "noindex, nofollow" env=NOINDEX
 </IfModule>
 
 # Force HTTPS (optional; enable only if cert available on all hosts)

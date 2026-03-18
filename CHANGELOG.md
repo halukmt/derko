@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.7] - 2026-03-18
+
+### Added
+- **Dev server noindex**: Added `X-Robots-Tag: noindex, nofollow` HTTP header that is only sent when the hostname starts with `dev.` (via Apache `SetEnvIf`). Prevents search engines from indexing `dev.derko-immobilien.de` while leaving production unaffected.
+
+### Fixed
+- **Clean URLs for error redirects**: All `sendmail.php` error and success redirects now use language-prefixed clean URLs (e.g. `/en/error-captcha`) instead of raw `/pages/error-*.html` paths. Added corresponding `.htaccess` 301 canonicalization rules and internal rewrites for error pages and confirmation page.
+
+---
+
 ## [v2.0.6] - 2026-03-18
 
 ### Changed
@@ -682,6 +692,7 @@ First public launch of the DERKO Immobilien website with security hardening, ful
 ### Fixed
 -
 
+[v2.0.7]: https://github.com/halukmt/derko/compare/v2.0.6...v2.0.7
 [v2.0.6]: https://github.com/halukmt/derko/compare/v2.0.5...v2.0.6
 [v2.0.0]: https://github.com/halukmt/derko/compare/v1.5.2...v2.0.0
 [v1.5.2]: https://github.com/halukmt/derko/compare/v1.5.1...v1.5.2
