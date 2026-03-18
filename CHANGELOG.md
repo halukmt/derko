@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v2.0.1] - 2026-03-18
+
+### Fixed
+- **Canonical tags**: Replaced hardcoded German canonical URLs with a synchronous inline script that sets the correct language-prefixed canonical at parse time (e.g. `/en/agb` → `https://www.derko-immobilien.de/en/agb`). Fixes "Alternative page with correct canonical tag" and "Discovered — currently not indexed" issues in Google Search Console for all 9 language variants.
+- **Internal `/pages/` links**: Replaced legacy `/pages/kontakt.html` and `/pages/wohnungen.html` hrefs with clean URLs (`/kontakt`, `/wohnungen`) in `bestaetigung.html`, `error-rate-limit.html`, `error-session.html`, `error-captcha.html`, and `wohnung-detail.html`. Eliminates "Page with redirect" warnings in Google Search Console.
+- **`npm test` script**: Added `--config=tests/playwright.config.ts` so Playwright tests can be run from the project root without changing directories.
+
+---
+
 ## [v2.0.0] - 2026-03-13
 
 **First production release.** This version is deployed to `https://www.derko-immobilien.de` via automated GitHub Actions CI/CD.
