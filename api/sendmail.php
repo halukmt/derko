@@ -225,6 +225,10 @@ $honeypot = get_post('company'); // should stay empty
 $js_enabled = get_post('js_enabled');
 $form_ts = get_post('form_ts');
 
+// Detect language early so all error redirects include the correct prefix
+$lang = detect_lang();
+$langPrefix = ($lang && $lang !== 'de') ? '/' . $lang : '';
+
 // Einfache Validierung
 $errors = [];
 // Sanitization & hardening of input fields (strip HTML/JS, limit length, whitelist characters)
@@ -284,7 +288,7 @@ if (!$csrf_ok){
     ['host'=>$host, 'has_token_file'=>($token_data ? 'yes' : 'no')]
   );
   token_delete($token_id);
-  header('Location: /pages/error-session.html');
+  header('Location: ' . $langPrefix . '/error-session');
   exit;
 }
 // CAPTCHA check (case-insensitive)
@@ -296,7 +300,7 @@ if ($captcha === '' || $stored_captcha === '' || strcasecmp(trim($captcha), $sto
 // Friendly browser redirect for CAPTCHA failures (avoid showing raw JSON)
 if (in_array('captcha', $errors, true) && derko_is_browser_navigation() && !derko_wants_json_response()){
   token_delete($token_id);
-  header('Location: /pages/error-captcha.html', true, 303);
+  header('Location: ' . $langPrefix . '/error-captcha', true, 303);
   exit;
 }
 
@@ -317,7 +321,7 @@ if(count($hits) >= $RATE_MAX){
   $oldest = min($hits);
   $wait = max(1, $RATE_WINDOW - ($now - $oldest));
   header('Retry-After: '.$wait);
-  header('Location: /pages/error-rate-limit.html?wait='.$wait);
+  header('Location: ' . $langPrefix . '/error-rate-limit?wait='.$wait);
   exit;
 }
 // Record current attempt now
@@ -363,7 +367,7 @@ usleep(random_int(80000, 220000)); // 80–220ms
 // Anfrage-ID erstellen (YYYYMMDDHHMM)
 // Format: Jahr-Monat-Tag-Stunde-Minute per Anforderung
 $reqId = date('YmdHi');
-$lang = detect_lang();
+// $lang already detected above (before error redirects)
 $__DICT_CHAIN = build_dict_chain($lang);
 // Topic text localized
 $topicBooking = t_chain($__DICT_CHAIN, 'kontakt.form.topicBooking');
@@ -508,7 +512,6 @@ if (!$mailUserOk) {
 // Clean up token file (single-use)
 token_delete($token_id);
 // Weiterleitung auf Bestätigungsseite (language-aware pretty URL)
-$confirmRedirect = ($lang && $lang !== 'de') ? '/' . $lang . '/bestaetigung' : '/bestaetigung';
-header('Location: ' . $confirmRedirect);
+header('Location: ' . $langPrefix . '/bestaetigung');
 exit;
 ?>
