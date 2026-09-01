@@ -4,6 +4,11 @@ export default defineConfig({
   testDir: './e2e',
   outputDir: './playwright-results',
 
+  // wohnungen-toggle.spec.ts renames page files on disk, which would break every
+  // other spec running in parallel. It runs isolated via `npm run test:toggle`
+  // (see playwright.toggle.config.ts).
+  testIgnore: /wohnungen-toggle\.spec\.ts/,
+
   // Run all tests in parallel
   fullyParallel: true,
   // Fail fast on CI

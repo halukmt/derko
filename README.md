@@ -20,6 +20,7 @@ A modern, multilingual static website for property management with minimal PHP b
 - [Configuration](#configuration)
 - [Development](#development)
   - [Adding New Apartments](#adding-new-apartments)
+  - [Show / Hide the Apartments Section](#show--hide-the-apartments-section)
   - [Internationalization](#internationalization)
   - [Image Optimization](#image-optimization)
 - [Security](#security)
@@ -329,6 +330,40 @@ define('DERKO_DEBUG', false);
    ```
 4. **Refresh** the page (clear cache if needed)
 
+### Show / Hide the Apartments Section
+
+The entire apartments section can be taken offline and brought back with the project
+skill `/wohnungen-toggle` (defined in `.claude/skills/wohnungen-toggle/SKILL.md`).
+It asks whether apartments should be shown and then applies the change:
+
+| | Visible | Hidden |
+|---|---|---|
+| Overview page | `pages/wohnungen.html` | `pages/wohnungen_x.html` |
+| Detail page | `pages/wohnung-detail.html` | `pages/wohnung-detail_x.html` |
+| Nav entry | active | commented out in `components/header.html` |
+
+While hidden, every apartment URL returns a real HTTP 404 — the overview page, all
+detail pages, all 9 language variants, and legacy `?id=` links — because Apache's
+existing `ErrorDocument 404 /pages/404.html` directive takes over as soon as the
+rewrite target is missing. Links that still point at apartments (homepage button,
+feature cards, FAQ links, contact form dropdown) therefore land on the 404 page,
+which is the intended behavior.
+
+Only those three items change. `.htaccess`, `router.php`, `api/*`, `lang/*` and all
+JS files stay untouched.
+
+> **After toggling, do a hard reload** (Ctrl+F5). `components/header.html` is cached
+> by the browser, so the nav entry may otherwise still appear. A Docker restart is
+> *not* needed — the project directory is mounted into the container.
+
+Verify manually with Docker running:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8081/wohnungen
+```
+
+Or run the automated tests: `npm run test:toggle` (see [Testing](#testing)).
+
 ### Internationalization
 
 The site uses a custom i18n system with:
@@ -421,6 +456,22 @@ Configure tokens and settings in `api/weekly_mail_config.php`.
 **Important:** Keep tokens secure and never commit them to version control.
 
 ## Testing
+
+### Automated Tests (Playwright)
+
+```bash
+npm test           # full suite (parallel, chromium + firefox)
+npm run test:ui    # interactive UI mode
+npm run test:toggle # apartments show/hide toggle (isolated, single worker)
+```
+
+`test:toggle` runs `tests/e2e/wohnungen-toggle.spec.ts` separately on purpose: that
+spec renames page files on disk, which would break every other spec running in
+parallel. It is therefore excluded from the default suite via `testIgnore` and uses
+its own `tests/playwright.toggle.config.ts`. The original state is always restored
+afterwards, even if a test fails.
+
+All tests expect the Docker server at `http://localhost:8081` (`npm run docker:up`).
 
 ### Manual Testing
 
