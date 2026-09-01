@@ -7,6 +7,8 @@ dist/
 api/config.local.php
 api/weekly_mail_config.php
 .claude/*
+# ...except project skills, which are shared tooling and belong in the repo
+!.claude/skills/
 
 # Log files and runtime data
 api/*.log

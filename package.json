@@ -18,6 +18,7 @@
     "docker:down": "docker compose down",
     "//docker": "Startet Apache+PHP 8.2 + Mailpit via Docker. Web: http://localhost:8081 | Mail-UI: http://localhost:9000. Docker Desktop muss laufen.",
     "test": "playwright test --config=tests/playwright.config.ts",
+    "test:toggle": "playwright test --config=tests/playwright.toggle.config.ts",
     "test:ui": "playwright test --config=tests/playwright.config.ts --ui",
     "test:headed": "playwright test --config=tests/playwright.config.ts --headed",
     "test:report": "playwright show-report tests/playwright-report"
