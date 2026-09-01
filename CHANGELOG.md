@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v3.1.0] - 2026-09-01
+
+### Added
+- **Apartment section toggle**: New project skill `/wohnungen-toggle` (`.claude/skills/wohnungen-toggle/SKILL.md`) that shows or hides the entire apartments section in one step. When disabled, it renames `pages/wohnungen.html` → `pages/wohnungen_x.html` and `pages/wohnung-detail.html` → `pages/wohnung-detail_x.html`, and comments out the `#nav-wohnungen` entry in `components/header.html` using `WOHNUNGEN-TOGGLE:OFF-START/END` markers. Every apartment URL then returns a real HTTP 404 through the existing `ErrorDocument 404 /pages/404.html` directive — the overview page, all detail pages, all 9 language variants, and legacy `?id=` links. No changes to `.htaccess`, `router.php`, `api/*`, `lang/*` or any JS file are required.
+- **Toggle test coverage**: New `tests/e2e/wohnungen-toggle.spec.ts` (15 tests) verifying both states — HTTP 404 for all apartment URL shapes when disabled, HTTP 200 when enabled, nav entry visibility in two languages, correct 404 page rendering, and byte-identical restoration when switching back. Because the spec mutates files on disk, it is excluded from the parallel default suite via `testIgnore` and runs isolated through the new `tests/playwright.toggle.config.ts` (single worker) via `npm run test:toggle`.
+
+---
+
 ## [v3.0.0] - 2026-04-25
 
 ### Changed
